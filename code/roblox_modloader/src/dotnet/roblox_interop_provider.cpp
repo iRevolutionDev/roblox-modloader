@@ -1,4 +1,5 @@
 
+#include "RobloxModLoader/memory/foreign_call.hpp"
 #include "roblox_interop_provider.hpp"
 
 #include "RobloxModLoader/logger/logger.hpp"
@@ -22,6 +23,12 @@
 #include <utility>
 
 RML_LOG_SCOPE("Interop");
+
+static bool interop_trace_enabled()
+{
+	static const bool enabled = std::getenv("RML_TRACE_INTEROP") != nullptr;
+	return enabled;
+}
 
 namespace rml::dotnet
 {
@@ -70,13 +77,28 @@ namespace rml::dotnet
 
 	void invoke_reflection_function(RBX::Reflection::DescribedBase* instance, const RBX::Reflection::FunctionDescriptor& descriptor, const InteropVariant* args, const uint32_t arg_count, InteropVariant& out)
 	{
-		DotNetArguments arguments{args, arg_count};
+		const bool trace = interop_trace_enabled();
+
+		DotNetArguments arguments{args, arg_count, &descriptor.get_signature()};
+		if (trace)
+			RML_INFO("[trace]   step 1: arguments built");
 
 		const auto function = RBX::Function(descriptor, instance);
-		const auto ret = function.invoke(arguments);
+		if (trace)
+			RML_INFO("[trace]   step 2: Function constructed");
+
 		const auto type = descriptor.get_signature().first_result_type();
+		const bool indirect_result = TypeMarshaler::returns_indirectly(type);
+		if (trace)
+			RML_INFO("[trace]   step 3: result type = {} indirect={}", reinterpret_cast<const void*>(type), indirect_result);
+
+		const auto ret = function.invoke(arguments, indirect_result);
+		if (trace)
+			RML_INFO("[trace]   step 4: invoke returned");
 
 		TypeMarshaler::encode_return_value(type, ret, reinterpret_cast<uintptr_t>(&arguments.return_value), out);
+		if (trace)
+			RML_INFO("[trace]   step 5: encoded");
 	}
 
 	RBX::Reflection::EventArguments build_event_fire_args(const RBX::Reflection::EventDescriptor* descriptor, const InteropVariant* args, const uint32_t arg_count)
@@ -122,18 +144,51 @@ namespace rml::dotnet
 				out_result->as_uint64 = 0;
 			}
 
+			const bool trace = interop_trace_enabled();
+
 			try
 			{
 				auto* instance = as_instance(instance_ptr);
 				if (!instance || !function_name)
+				{
+					if (trace)
+						RML_INFO("[trace] invoke: bad instance/name (instance={})", instance_ptr);
 					return;
+				}
 
 				const auto* descriptor = instance->get_descriptor().find_function(function_name);
+				if (trace)
+				{
+					RML_INFO("[trace] invoke '{}' args={} descriptor={}",
+					    function_name, arg_count, reinterpret_cast<const void*>(descriptor));
+					for (uint32_t i = 0; i < arg_count && args; ++i)
+						RML_INFO("[trace]   arg[{}] tag={} value=0x{:x} text='{}'",
+						    i, static_cast<int>(args[i].tag), args[i].as_uint64,
+						    args[i].tag == InteropValueTag::String && args[i].as_string ? args[i].as_string : "");
+
+					if (descriptor)
+					{
+						const auto& signature = descriptor->get_signature();
+						const auto sig_args = signature.arguments();
+						RML_INFO("[trace]   signature expects {} arg(s)", sig_args.size());
+						for (std::size_t i = 0; i < sig_args.size(); ++i)
+							RML_INFO("[trace]     expected[{}] type={} id={}",
+							    i,
+							    sig_args[i].type ? sig_args[i].type->name.c_str() : "?",
+							    sig_args[i].type ? static_cast<int>(sig_args[i].type->type_id) : -1);
+					}
+				}
+
 				if (!descriptor)
 					return;
 
 				InteropVariant local_result{};
-				invoke_reflection_function(instance, *descriptor, args, arg_count, out_result ? *out_result : local_result);
+				auto& result = out_result ? *out_result : local_result;
+				invoke_reflection_function(instance, *descriptor, args, arg_count, result);
+
+				if (trace)
+					RML_INFO("[trace] invoke '{}' -> tag={} value=0x{:x}",
+					    function_name, static_cast<int>(result.tag), result.as_uint64);
 			}
 			catch (const std::exception& e)
 			{
@@ -228,10 +283,17 @@ namespace rml::dotnet
 					return;
 
 				const auto property_descriptor = instance->get_descriptor().find_property(property_name);
+				if (interop_trace_enabled())
+					RML_INFO("[trace] set_property '{}' tag={} descriptor={}",
+					    property_name, static_cast<int>(value->tag), reinterpret_cast<const void*>(property_descriptor));
+
 				if (!property_descriptor)
 					return;
 
 				(void)TypeMarshaler::decode_property(property_descriptor, instance, *value);
+
+				if (interop_trace_enabled())
+					RML_INFO("[trace] set_property '{}' done", property_name);
 			}
 			catch (const std::exception& e)
 			{
@@ -246,6 +308,9 @@ namespace rml::dotnet
 		table.reflection_event_connect = [](const uintptr_t instance_ptr, const char* event_name, const ManagedEventCallback callback, void* state) -> uintptr_t {
 			try
 			{
+				if (interop_trace_enabled())
+					RML_INFO("[trace] event_connect '{}' on 0x{:x}", event_name ? event_name : "?", instance_ptr);
+
 				if (!callback)
 					return 0;
 
@@ -306,9 +371,24 @@ namespace rml::dotnet
 			{
 				const auto atom = g_pointers->m_roblox_pointers.get_string_atom(class_name);
 
-				uintptr_t out{};
-				g_pointers->m_roblox_pointers.object_create_by_name(&out, 0, atom, creator_role);
+				struct CreatedInstance
+				{
+					uintptr_t instance;
+					uintptr_t control_block;
+				};
 
+				CreatedInstance created{};
+				memory::call_returning<CreatedInstance>(
+				    reinterpret_cast<void*>(g_pointers->m_roblox_pointers.object_create_by_name),
+				    created,
+				    uintptr_t{0},
+				    static_cast<uintptr_t>(atom),
+				    static_cast<uint32_t>(creator_role));
+
+				if (interop_trace_enabled())
+					RML_INFO("[trace] create '{}' -> 0x{:x}", class_name, created.instance);
+
+				const auto out = created.instance;
 				if (!out)
 				{
 					RML_ERROR("creator_create_by_name('{}') failed: null instance", class_name);

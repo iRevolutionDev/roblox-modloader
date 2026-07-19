@@ -4,7 +4,6 @@
 #include "RobloxModLoader/roblox/reflection/yield_function_descriptor.hpp"
 #include "RobloxModLoader/util/layout_assert.hpp"
 #include "dotnet_variant.hpp"
-#include "engine_scratch.hpp"
 #include "interop_registry.hpp"
 #include "type_marshaler.hpp"
 
@@ -97,7 +96,7 @@ namespace rml::dotnet
 		struct alignas(16) EngineContext
 		{
 			YieldInvocation* owner{};
-			EngineScratch<kYieldEngineScratchBytes> reserved{};
+			std::array<std::byte, kYieldEngineScratchBytes> reserved{};
 
 		private:
 			RML_LAYOUT_GUARD_BEGIN()

@@ -162,6 +162,13 @@ if (NOT RML_PLATFORM_WINDOWS)
     target_compile_definitions(RobloxModLoader INTERFACE SPDLOG_USE_STD_FORMAT)
 endif ()
 
+if (MSVC)
+    target_compile_definitions(RobloxModLoader INTERFACE
+            _ITERATOR_DEBUG_LEVEL=0
+            _HAS_ITERATOR_DEBUGGING=0
+    )
+endif ()
+
 setup_dotnet_hosting(RobloxModLoader INTERFACE)
 
 set(RML_LUA_LIBS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/resources/luau")

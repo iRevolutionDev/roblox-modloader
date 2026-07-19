@@ -12,16 +12,7 @@ namespace rml::qt
 	bool ActionDispatcher::ensure_hook()
 	{
 		std::scoped_lock lock(m_hook_mutex);
-		if (m_hook_installed)
-			return true;
-
-		void* target = QAction::activate_address();
-		if (!target)
-			return false;
-
-		Hooking::DetourHookHelper::add<&Hooks::qt_action_activate>("QAction::activate", target);
 		m_hook_installed = true;
-		LOG_INFO("[qt] hooked QAction::activate at {}", target);
 		return true;
 	}
 
@@ -36,8 +27,22 @@ namespace rml::qt
 		if (!action || !callback)
 			return;
 
-		std::scoped_lock lock(m_callbacks_mutex);
-		m_callbacks[action].push_back(std::move(callback));
+		bool first_connection = false;
+		{
+			std::scoped_lock lock(m_callbacks_mutex);
+			auto& handlers = m_callbacks[action];
+			first_connection = handlers.empty();
+			handlers.push_back(std::move(callback));
+		}
+
+		if (!first_connection)
+			return;
+
+		static void* const signal = detail::widgets_export("QAction::triggered(bool)");
+		static const void* const meta = detail::widgets_export("QAction::staticMetaObject");
+		detail::connect_function(action, signal, meta, [this, action](void**) {
+			dispatch(action);
+		});
 	}
 
 	void ActionDispatcher::connect_toggled(QAction* action, std::function<void(bool)> callback)

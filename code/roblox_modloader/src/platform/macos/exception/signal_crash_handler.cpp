@@ -3,6 +3,8 @@
 #include "RobloxModLoader/internal/common.hpp"
 
 #include <cstring>
+#include <cxxabi.h>
+#include <exception>
 #include <execinfo.h>
 #include <fcntl.h>
 #include <unistd.h>
@@ -76,10 +78,48 @@ namespace rml::exception_filter
 		s_instance = nullptr;
 	}
 
+	static std::terminate_handler s_previous_terminate = nullptr;
+
+	static void report_uncaught_exception()
+	{
+		const auto active = std::current_exception();
+		if (active)
+		{
+			try
+			{
+				std::rethrow_exception(active);
+			}
+			catch (const std::exception& e)
+			{
+				write_raw(STDERR_FILENO, "\n[RML] uncaught C++ exception: ");
+				write_raw(STDERR_FILENO, e.what());
+				write_raw(STDERR_FILENO, "\n");
+				RML_ERROR("Uncaught C++ exception: {}", e.what());
+			}
+			catch (...)
+			{
+				const auto* const type = abi::__cxa_current_exception_type();
+				write_raw(STDERR_FILENO, "\n[RML] uncaught non-standard C++ exception, type: ");
+				write_raw(STDERR_FILENO, type ? type->name() : "<unknown>");
+				write_raw(STDERR_FILENO, "\n");
+				RML_ERROR("Uncaught non-standard C++ exception: {}", type ? type->name() : "<unknown>");
+			}
+		}
+		else
+		{
+			write_raw(STDERR_FILENO, "\n[RML] std::terminate with no active exception\n");
+		}
+
+		if (s_previous_terminate)
+			s_previous_terminate();
+	}
+
 	void SignalCrashHandler::enable()
 	{
 		if (m_enabled)
 			return;
+
+		s_previous_terminate = std::set_terminate(&report_uncaught_exception);
 
 		struct sigaction action{};
 		action.sa_sigaction = &SignalCrashHandler::handle_signal;

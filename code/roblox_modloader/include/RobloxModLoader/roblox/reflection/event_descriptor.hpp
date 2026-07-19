@@ -5,6 +5,8 @@
 #include "member.hpp"
 #include "type.hpp"
 
+#include <cstdio>
+#include <cstdlib>
 #include <vector>
 
 namespace RBX::Reflection
@@ -15,24 +17,21 @@ namespace RBX::Reflection
 	{
 	public:
 		virtual ~GenericSlotWrapper() = default;
+
 		virtual bool use_submit_task()
 		{
 			return false;
 		}
+
 		virtual void deliver(const EventArguments& args) = 0;
-		virtual void reserved_slot_3()
+
+		virtual void execute_once()
 		{
-		}
-		virtual EventArguments* build_args(EventArguments& out)
-		{
-			return ::new (&out) EventArguments();
 		}
 
-		virtual void reserved_slot_5()
+		virtual EventArguments build_args()
 		{
-		}
-		virtual void reserved_slot_6()
-		{
+			return EventArguments();
 		}
 	};
 

@@ -4,10 +4,10 @@
 #include "RobloxModLoader/roblox/reflection/type.hpp"
 #include "RobloxModLoader/util/layout_assert.hpp"
 #include "dotnet_variant.hpp"
-#include "engine_scratch.hpp"
 #include "interop_registry.hpp"
 #include "type_marshaler.hpp"
 
+#include <array>
 #include <cstddef>
 #include <deque>
 #include <new>
@@ -20,7 +20,7 @@ namespace rml::dotnet
 	static_assert(sizeof(uint64_t) + kEngineReturnSlotTailBytes >= TypeMarshaler::kMaxBlittableEngineTypeBytes,
 	    "EngineReturnSlot tail must leave enough contiguous room after Arguments::return_value for the largest blittable engine return type");
 
-	using EngineReturnSlot = EngineScratch<kEngineReturnSlotTailBytes>;
+	using EngineReturnSlot = std::array<std::byte, kEngineReturnSlotTailBytes>;
 
 	class DotNetArguments final : public RBX::Reflection::FunctionDescriptor::Arguments
 	{
@@ -29,8 +29,11 @@ namespace rml::dotnet
 		uint32_t m_count;
 
 		const RBX::Reflection::SignatureDescriptor* m_signature{nullptr};
+		const RBX::Reflection::Type* m_tuple_type{nullptr};
 
 		mutable std::deque<std::string> m_string_storage;
+		mutable RBX::Reflection::Variant m_tuple_value{};
+		mutable bool m_tuple_built{false};
 
 	public:
 		DotNetArguments(const InteropVariant* args, const uint32_t count,
@@ -40,11 +43,27 @@ namespace rml::dotnet
 		    m_signature(signature)
 		{
 			return_value = 0;
+
+			if (!m_signature)
+				return;
+
+			const auto sig_args = m_signature->arguments();
+			if (sig_args.size() == 1 && sig_args[0].type && sig_args[0].type->type_id == RBX::Reflection::TypeId::Tuple)
+				m_tuple_type = sig_args[0].type;
 		}
+
+		~DotNetArguments()
+		{
+			if (m_tuple_built)
+				std::destroy_at(static_cast<std::shared_ptr<const RBX::Reflection::Tuple>*>(m_tuple_value.storage()));
+		}
+
+		DotNetArguments(const DotNetArguments&)            = delete;
+		DotNetArguments& operator=(const DotNetArguments&) = delete;
 
 		[[nodiscard]] size_t size() const override
 		{
-			return m_count;
+			return m_tuple_type ? 1u : m_count;
 		}
 
 		bool get_varint(const int index, RBX::Reflection::Variant& value) const override
@@ -142,6 +161,17 @@ namespace rml::dotnet
 
 		[[nodiscard]] void* get(const int index) const override
 		{
+			if (m_tuple_type)
+			{
+				if (index != 1)
+					return nullptr;
+
+				if (!m_tuple_built)
+					m_tuple_built = TypeMarshaler::build_tuple_variant(m_args, m_count, m_tuple_type, m_tuple_value);
+
+				return m_tuple_built ? m_tuple_value.storage() : nullptr;
+			}
+
 			if (!is_valid(index))
 				return nullptr;
 

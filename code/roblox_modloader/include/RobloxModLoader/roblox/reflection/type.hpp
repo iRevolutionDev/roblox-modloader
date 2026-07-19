@@ -174,9 +174,9 @@ namespace RBX::Reflection
 		};
 		static_assert(sizeof(ResultItem) == 0x10);
 
-		// i need to reverse more, but it's solve, im lazy
+		
 		template<typename T>
-		struct LinkedList
+		struct StdVector
 		{
 			T* m_begin{nullptr};
 			T* m_end{nullptr};
@@ -199,10 +199,10 @@ namespace RBX::Reflection
 				return {m_begin, m_end};
 			}
 		};
-		static_assert(sizeof(LinkedList<void*>) == 0x18);
+		static_assert(sizeof(StdVector<void*>) == 0x18);
 
-		LinkedList<Item> m_arguments;
-		LinkedList<ResultItem> m_result_types;
+		StdVector<Item> m_arguments;
+		StdVector<ResultItem> m_result_types;
 
 	public:
 		[[nodiscard]] std::span<const Item> arguments() const noexcept

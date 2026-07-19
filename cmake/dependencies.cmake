@@ -36,6 +36,13 @@ function(setup_compile_definitions target_name access_level)
     if (NOT RML_PLATFORM_WINDOWS)
         target_compile_definitions(${target_name} ${access_level} SPDLOG_USE_STD_FORMAT)
     endif ()
+
+    if (MSVC)
+        target_compile_definitions(${target_name} ${access_level}
+                _ITERATOR_DEBUG_LEVEL=0
+                _HAS_ITERATOR_DEBUGGING=0
+        )
+    endif ()
 endfunction()
 
 function(setup_luau_dependencies target_name access_level)
