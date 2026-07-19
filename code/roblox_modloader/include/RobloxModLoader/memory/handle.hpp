@@ -33,6 +33,8 @@ namespace rml::memory
 
 		handle adrp() const;
 
+		handle bl() const;
+
 		explicit operator bool();
 
 		friend bool operator==(handle a, handle b);
@@ -129,6 +131,21 @@ namespace rml::memory
 		}
 
 		return handle(page);
+	}
+
+	inline handle handle::bl() const
+	{
+		constexpr std::uint32_t branch_immediate_mask = 0x03FFFFFF;
+		constexpr std::int32_t branch_immediate_sign = 1 << 25;
+		constexpr std::int32_t instruction_size = 4;
+
+		const auto instruction = as<const std::uint32_t&>();
+
+		auto immediate = static_cast<std::int32_t>(instruction & branch_immediate_mask);
+		if (immediate & branch_immediate_sign)
+			immediate -= branch_immediate_sign << 1;
+
+		return add(static_cast<std::intptr_t>(immediate) * instruction_size);
 	}
 
 	inline bool operator==(handle a, handle b)
