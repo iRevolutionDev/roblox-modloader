@@ -25,9 +25,9 @@ jobs:
           - platform: windows
             runner: windows-latest
             rid: win-x64
-          # - platform: macos
-          #   runner: macos-latest
-          #   rid: osx-arm64
+          - platform: macos
+            runner: macos-15
+            rid: osx-arm64
           # - platform: linux
           #   runner: ubuntu-latest
           #   rid: linux-x64
@@ -137,13 +137,70 @@ jobs:
           Write-Host "Package assembled. Runtime size:" (
             "{0:N0} MB" -f ((Get-ChildItem $runtime -Recurse -File | Measure-Object Length -Sum).Sum / 1MB))
 
-      - name: Create archive
+      - name: Build (macOS)
+        if: matrix.platform == 'macos'
+        env:
+          ROBLOX_STUDIO_PATH: ${{ github.workspace }}/stage
+        run: |
+          cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_OSX_ARCHITECTURES=arm64
+          cmake --build build --parallel
+
+      - name: Assemble package (macOS)
+        if: matrix.platform == 'macos'
+        run: |
+          set -euo pipefail
+          stage="${{ github.workspace }}/stage"
+          rml="$stage/RobloxModLoader"
+          runtime="$rml/runtime"
+          mkdir -p "$runtime" "$rml/mods"
+
+          cp -f build/code/roblox_modloader/libroblox_modloader.dylib "$stage/roblox_modloader.dylib"
+          cp -f tools/packaging/config.default.toml "$rml/config.toml"
+
+          if [ ! -f "$runtime/libnethost.dylib" ]; then
+            nethost=$(find "$HOME/.nuget/packages" build -name libnethost.dylib -print -quit 2>/dev/null || true)
+            if [ -z "$nethost" ]; then
+              echo "libnethost.dylib not found. It ships with Microsoft.NETCore.App.Host.osx-arm64."
+              exit 1
+            fi
+            cp -f "$nethost" "$runtime/libnethost.dylib"
+            echo "libnethost.dylib <- $nethost"
+          fi
+
+          if [ -f "$runtime/RobloxModLoader.runtimeconfig.json" ]; then
+            cp -f "$runtime/RobloxModLoader.runtimeconfig.json" "$runtime/RML.runtimeconfig.json"
+          fi
+
+          rm -rf "$runtime/dotnet" "$rml/crashes" "$rml/generated" "$runtime/managed"
+
+          missing=0
+          for f in "$stage/roblox_modloader.dylib" \
+                   "$rml/config.toml" \
+                   "$runtime/libnethost.dylib" \
+                   "$runtime/RML.NativeHost.dll" \
+                   "$runtime/Roblox.dll" \
+                   "$runtime/RML.runtimeconfig.json" \
+                   "$runtime/RobloxModLoader.runtimeconfig.json"; do
+            [ -f "$f" ] || { echo "MISSING: $f"; missing=1; }
+          done
+          [ "$missing" -eq 0 ] || exit 1
+          
+          echo "Package assembled. Runtime size: $(du -sh "$runtime" | cut -f1)"
+
+      - name: Create archive (Windows)
+        if: matrix.platform == 'windows'
         shell: pwsh
         run: |
           $stage = "${{ github.workspace }}/stage"
           $zip   = "${{ github.workspace }}/nightly-${{ matrix.platform }}.zip"
           if (Test-Path $zip) { Remove-Item $zip -Force }
           Compress-Archive -Path (Join-Path $stage "*") -DestinationPath $zip -CompressionLevel Optimal
+
+      - name: Create archive (macOS)
+        if: matrix.platform == 'macos'
+        run: |
+          cd "${{ github.workspace }}/stage"
+          zip -qry "${{ github.workspace }}/nightly-${{ matrix.platform }}.zip" .
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
