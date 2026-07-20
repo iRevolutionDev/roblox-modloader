@@ -75,7 +75,6 @@ jobs:
       - name: Build (macOS)
         if: inputs.platform == 'macos'
         env:
-          ROBLOX_STUDIO_PATH: ${{ github.workspace }}/stage
           SCCACHE_GHA_ENABLED: 'true'
         run: |
           cmake -B build -G Ninja \
@@ -193,6 +192,11 @@ jobs:
           cp -f build/code/roblox_modloader/libroblox_modloader.dylib "$stage/roblox_modloader.dylib"
           cp -f tools/packaging/config.default.toml "$rml/config.toml"
 
+          dotnet publish code/dotnet/Runtime/src/RML.Core/RML.Core.csproj \
+            -c Release -o "$runtime" --nologo
+          dotnet publish code/dotnet/Runtime/src/RML.NativeHost/RML.NativeHost.csproj \
+            -c Release -o "$runtime" --nologo
+
           if [ ! -f "$runtime/libnethost.dylib" ]; then
             nethost=$(find "$HOME/.nuget/packages" build -name libnethost.dylib -print -quit 2>/dev/null || true)
             if [ -z "$nethost" ]; then
@@ -203,9 +207,7 @@ jobs:
             echo "libnethost.dylib <- $nethost"
           fi
 
-          if [ -f "$runtime/RobloxModLoader.runtimeconfig.json" ]; then
-            cp -f "$runtime/RobloxModLoader.runtimeconfig.json" "$runtime/RML.runtimeconfig.json"
-          fi
+          cp -f "$runtime/RobloxModLoader.runtimeconfig.json" "$runtime/RML.runtimeconfig.json"
 
           rm -rf "$runtime/dotnet" "$rml/crashes" "$rml/generated" "$runtime/managed"
 
