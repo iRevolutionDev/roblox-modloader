@@ -132,3 +132,83 @@ jobs:
             build/code/roblox_modloader/roblox_modloader.pdb
           retention-days: 7
           if-no-files-found: error
+
+  native-macos:
+    name: Native macOS (${{ matrix.config }})
+    runs-on: macos-15
+    strategy:
+      fail-fast: false
+      matrix:
+        config: [ Debug, RelWithDebInfo ]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Setup Ninja
+        uses: seanmiddleditch/gha-setup-ninja@master
+
+      - name: Cache CMake dependencies
+        uses: actions/cache@v4
+        with:
+          path: build/_deps
+          key: cmake-deps-${{ runner.os }}-${{ hashFiles('CMakeLists.txt', 'cmake/**/*.cmake') }}
+          restore-keys: |
+            cmake-deps-${{ runner.os }}-
+
+      - name: Configure CMake (Ninja + AppleClang arm64)
+        run: cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=${{ matrix.config }} -DCMAKE_OSX_ARCHITECTURES=arm64
+
+      - name: Build
+        run: cmake --build build --parallel
+
+      - name: Verify loader dylib
+        run: |
+          dylib="build/code/roblox_modloader/libroblox_modloader.dylib"
+          if [ ! -f "$dylib" ]; then
+            echo "Loader dylib not found at $dylib"
+            exit 1
+          fi
+          if ! lipo -archs "$dylib" | grep -q arm64; then
+            echo "Loader dylib is not arm64: $(lipo -archs "$dylib")"
+            exit 1
+          fi
+          echo "OK: $dylib ($(lipo -archs "$dylib"))"
+
+      - name: Verify native example mods
+        run: |
+          missing=0
+          for mod in basic-mod internal_developer menu_showcase script_editor_background; do
+            if [ -f "build/examples/lib${mod}.so" ]; then
+              echo "OK: ${mod}"
+            else
+              echo "MISSING: ${mod}"
+              missing=1
+            fi
+          done
+          exit $missing
+
+      - name: Verify mod ABI exports
+        run: |
+          for symbol in _start_mod _uninstall_mod _rml_abi_version; do
+            if ! nm -gU build/examples/libinternal_developer.so | grep -q " ${symbol}$"; then
+              echo "Missing exported symbol: ${symbol}"
+              exit 1
+            fi
+          done
+          echo "OK: mod ABI exports present"
+
+      - name: Upload loader artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: roblox-modloader-macos-${{ matrix.config }}
+          path: |
+            build/code/roblox_modloader/libroblox_modloader.dylib
+            build/examples/*.so
+          retention-days: 7
+          if-no-files-found: error
