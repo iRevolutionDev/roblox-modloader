@@ -14,7 +14,7 @@ on:
 jobs:
   build:
     name: ${{ inputs.platform }}
-    runs-on: ${{ inputs.platform == 'windows' && 'windows-latest' || 'macos-15' }}
+    runs-on: ${{ inputs.platform == 'windows' && 'windows-latest' || 'macos-latest' }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -177,6 +177,10 @@ jobs:
             if (Test-Path $p) { Remove-Item $p -Recurse -Force }
           }
 
+          $mods = Join-Path $rml "mods"
+          Remove-Item $mods -Recurse -Force -ErrorAction SilentlyContinue
+          New-Item -ItemType Directory -Force -Path $mods | Out-Null
+
       - name: Assemble package (macOS)
         if: inputs.platform == 'macos'
         run: |
@@ -205,15 +209,8 @@ jobs:
 
           rm -rf "$runtime/dotnet" "$rml/crashes" "$rml/generated" "$runtime/managed"
 
-      - name: Publish example mods
-        shell: bash
-        run: |
-          set -euo pipefail
-          mods="${{ github.workspace }}/stage/RobloxModLoader/mods"
-          dotnet publish examples/example_dotnet/src/ExampleMod/ExampleMod.csproj \
-            -c Release -o "$mods/ExampleMod/dotnet" --nologo
-          dotnet publish examples/discord_rpc_dotnet/src/RobloxDiscord.RPC/RobloxDiscord.RPC.csproj \
-            -c Release -o "$mods/DiscordRpc/dotnet" --nologo
+          rm -rf "$rml/mods"
+          mkdir -p "$rml/mods"
 
       - name: Validate package (Windows)
         if: inputs.platform == 'windows'
@@ -230,9 +227,7 @@ jobs:
             (Join-Path $runtime "RML.NativeHost.dll"),
             (Join-Path $runtime "Roblox.dll"),
             (Join-Path $runtime "RML.runtimeconfig.json"),
-            (Join-Path $runtime "RobloxModLoader.runtimeconfig.json"),
-            (Join-Path $rml "mods/ExampleMod/dotnet/ExampleMod.dll"),
-            (Join-Path $rml "mods/DiscordRpc/dotnet/RobloxDiscord.RPC.dll")
+            (Join-Path $runtime "RobloxModLoader.runtimeconfig.json")
           )
           $missing = $required | Where-Object { -not (Test-Path $_) }
           if ($missing) {
@@ -256,9 +251,7 @@ jobs:
                    "$runtime/RML.NativeHost.dll" \
                    "$runtime/Roblox.dll" \
                    "$runtime/RML.runtimeconfig.json" \
-                   "$runtime/RobloxModLoader.runtimeconfig.json" \
-                   "$rml/mods/ExampleMod/dotnet/ExampleMod.dll" \
-                   "$rml/mods/DiscordRpc/dotnet/RobloxDiscord.RPC.dll"; do
+                   "$runtime/RobloxModLoader.runtimeconfig.json"; do
             [ -f "$f" ] || { echo "MISSING: $f"; missing=1; }
           done
           [ "$missing" -eq 0 ] || exit 1
