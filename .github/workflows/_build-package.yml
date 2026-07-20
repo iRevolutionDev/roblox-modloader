@@ -207,6 +207,7 @@ jobs:
             echo "libnethost.dylib <- $nethost"
           fi
 
+          cp -f build/RobloxModLoader.runtimeconfig.json "$runtime/RobloxModLoader.runtimeconfig.json"
           cp -f "$runtime/RobloxModLoader.runtimeconfig.json" "$runtime/RML.runtimeconfig.json"
 
           rm -rf "$runtime/dotnet" "$rml/crashes" "$rml/generated" "$runtime/managed"
