@@ -13,12 +13,114 @@
 #endif
 
 #include <array>
+#include <cctype>
+#include <string_view>
+#include <vector>
 
 namespace rml::memory
 {
 	static bool is_itanium_mangled(const char* mangled)
 	{
 		return mangled[0] == '_' && mangled[1] == 'Z';
+	}
+
+	[[maybe_unused]] static std::string msvc_qualified_name(const char* mangled)
+	{
+		if (!mangled || mangled[0] != '?' || mangled[1] == '?')
+			return {};
+
+		std::vector<std::string_view> parts;
+		const char* start = mangled + 1;
+		const char* p = start;
+
+		for (; *p; ++p)
+		{
+			if (p[0] == '@' && p[1] == '@')
+				break;
+
+			if (*p == '@')
+			{
+				parts.emplace_back(start, static_cast<std::size_t>(p - start));
+				start = p + 1;
+			}
+		}
+
+		if (p == start || p[0] != '@' || p[1] != '@')
+			return {};
+
+		parts.emplace_back(start, static_cast<std::size_t>(p - start));
+
+		if (parts.size() < 2)
+			return {};
+
+		for (const std::string_view part : parts)
+		{
+			if (part.empty())
+				return {};
+
+			for (const char c : part)
+			{
+				if (!std::isalnum(static_cast<unsigned char>(c)) && c != '_')
+					return {};
+			}
+		}
+
+		std::string result;
+		for (std::size_t i = parts.size(); i-- > 1;)
+		{
+			result += parts[i];
+			result += "::";
+		}
+		result += parts.front();
+		return result;
+	}
+
+	[[maybe_unused]] static std::string msvc_vtable_name(const char* mangled)
+	{
+		if (!mangled || mangled[0] != '?' || mangled[1] != '?' || mangled[2] != '_' || mangled[3] != '7')
+			return {};
+
+		std::vector<std::string_view> parts;
+		const char* start = mangled + 4;
+		const char* p = start;
+
+		for (; *p; ++p)
+		{
+			if (p[0] == '@' && p[1] == '@')
+				break;
+
+			if (*p == '@')
+			{
+				parts.emplace_back(start, static_cast<std::size_t>(p - start));
+				start = p + 1;
+			}
+		}
+
+		if (p == start || p[0] != '@' || p[1] != '@')
+			return {};
+
+		parts.emplace_back(start, static_cast<std::size_t>(p - start));
+
+		for (const std::string_view part : parts)
+		{
+			if (part.empty())
+				return {};
+
+			for (const char c : part)
+			{
+				if (!std::isalnum(static_cast<unsigned char>(c)) && c != '_')
+					return {};
+			}
+		}
+
+		std::string result = "vtable for ";
+		for (std::size_t i = parts.size(); i-- > 0;)
+		{
+			result += parts[i];
+			if (i != 0)
+				result += "::";
+		}
+		return result;
 	}
 
 	std::string demangle(const char* mangled)
@@ -67,24 +169,32 @@ namespace rml::memory
 			return mangled;
 		}
 
+		if (std::string vtable = msvc_vtable_name(mangled); !vtable.empty())
+		{
+			return vtable;
+		}
+
 		char buffer[4096];
 		constexpr DWORD flags = UNDNAME_NO_FUNCTION_RETURNS | UNDNAME_NO_ACCESS_SPECIFIERS
 		                      | UNDNAME_NO_MS_KEYWORDS | UNDNAME_NO_MEMBER_TYPE
 		                      | UNDNAME_NO_LEADING_UNDERSCORES | UNDNAME_NO_THROW_SIGNATURES;
 		const DWORD written = UnDecorateSymbolName(mangled, buffer, sizeof(buffer), flags);
-		if (written == 0)
+
+		if (written != 0)
 		{
-			return {};
+			std::string demangled{buffer, written};
+			if (demangled.find('(') != std::string::npos)
+			{
+				return demangled;
+			}
 		}
 
-		std::string demangled{buffer, written};
-
-		if (demangled.find('(') == std::string::npos)
+		if (std::string qualified = msvc_qualified_name(mangled); !qualified.empty())
 		{
-			return demangle(mangled);
+			return qualified;
 		}
 
-		return demangled;
+		return demangle(mangled);
 #else
 		if (!is_itanium_mangled(mangled))
 		{
