@@ -6,7 +6,11 @@
 #include "verb_container.hpp"
 #include "workspace.hpp"
 
+#include <cstddef>
 #include <cstdint>
+#include <map>
+#include <memory>
+#include <string>
 
 namespace RBX
 {
@@ -23,24 +27,44 @@ namespace RBX
 
 	class DataModel : public ServiceProvider
 	{
+		std::byte pad_before_provider_map[0x10];
+		std::map<std::uintptr_t, std::uintptr_t> provider_map;
+		std::byte pad_after_provider_map[0x20];
+		void* named_base_vftable;
+		std::string reserved_string_0;
+		std::string reserved_string_1;
+		std::string reserved_string_2;
+
 	public:
-		char m_pad_before_workspace[0x150 - sizeof(ServiceProvider)];
-		Workspace* workspace;
-		char m_pad_before_serialize[0x2A0 - 0x150 - sizeof(void*)];
-		DataModelSerialize* data_model_serialize;
-		char m_pad_before_type[0x2C4 - 0x2A0 - sizeof(void*)];
+		std::shared_ptr<Workspace> workspace;
+
+	private:
+		std::byte pad_before_reserved_string_3[0x128];
+		std::string reserved_string_3;
+
+	public:
+		std::shared_ptr<DataModelSerialize> data_model_serialize;
+
+	private:
+		std::byte pad_before_type[0x14];
+
+	public:
 		DataModelType type;
-		char m_pad_before_verb_container[0x300 - 0x2C4 - sizeof(DataModelType)];
+
+	private:
+		std::byte pad_before_verb_container[0x38];
+
+	public:
 		VerbContainer* verb_container;
 
 		static DataModel* from_job(const DataModelJob* job);
 
 	private:
 		RML_LAYOUT_GUARD_BEGIN()
-		RML_ASSERT_LAYOUT_OFFSET(DataModel, workspace, 0x150);
-		RML_ASSERT_LAYOUT_OFFSET(DataModel, data_model_serialize, 0x2A0);
-		RML_ASSERT_LAYOUT_OFFSET(DataModel, type, 0x2C4);
-		RML_ASSERT_LAYOUT_OFFSET(DataModel, verb_container, 0x300);
+		RML_ASSERT_LAYOUT_OFFSET(DataModel, workspace, 0x160);
+		RML_ASSERT_LAYOUT_OFFSET(DataModel, data_model_serialize, 0x2B8);
+		RML_ASSERT_LAYOUT_OFFSET(DataModel, type, 0x2DC);
+		RML_ASSERT_LAYOUT_OFFSET(DataModel, verb_container, 0x318);
 		RML_LAYOUT_GUARD_END()
 	};
 }
