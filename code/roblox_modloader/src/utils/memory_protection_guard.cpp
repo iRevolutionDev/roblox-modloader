@@ -1,6 +1,7 @@
 #include "memory_protection_guard.hpp"
 
 #include "RobloxModLoader/internal/common.hpp"
+#include "RobloxModLoader/platform/memory/memory_protection.hpp"
 
 namespace rml::utils
 {
@@ -14,29 +15,12 @@ namespace rml::utils
 
 	std::expected<MemoryProtectionGuard, std::error_code> MemoryProtectionGuard::create(void* address, const std::size_t size, const MemoryProtection protection)
 	{
-#if defined(RML_WINDOWS)
-		DWORD new_protect = PAGE_READWRITE;
-		switch (protection)
-		{
-			case MemoryProtection::ReadWrite:
-				new_protect = PAGE_READWRITE;
-				break;
-			case MemoryProtection::ExecuteReadWrite:
-				new_protect = PAGE_EXECUTE_READWRITE;
-				break;
-		}
+		const auto previous = platform::set_protection(address, size, protection);
 
-		DWORD old_protect = 0;
-		if (!VirtualProtect(address, size, new_protect, &old_protect))
-			return std::unexpected(std::error_code(static_cast<int>(GetLastError()), std::system_category()));
+		if (!previous)
+			return std::unexpected(previous.error());
 
-		return MemoryProtectionGuard(address, size, old_protect);
-#else
-		(void)address;
-		(void)size;
-		(void)protection;
-		return std::unexpected(std::make_error_code(std::errc::not_supported));
-#endif
+		return MemoryProtectionGuard(address, size, *previous);
 	}
 
 	MemoryProtectionGuard::MemoryProtectionGuard(MemoryProtectionGuard&& other) noexcept :
@@ -74,9 +58,6 @@ namespace rml::utils
 
 		m_active = false;
 
-#if defined(RML_WINDOWS)
-		DWORD temp = 0;
-		VirtualProtect(m_address, m_size, static_cast<DWORD>(m_previous_protection), &temp);
-#endif
+		platform::restore_protection(m_address, m_size, m_previous_protection);
 	}
 }

@@ -8,6 +8,8 @@
 	#define WIN32_LEAN_AND_MEAN
 #endif
 
+#include "RobloxModLoader/exception/i_crash_handler.hpp"
+
 #include <Windows.h>
 #include <bit>
 #include <cstdint>
@@ -22,7 +24,7 @@ namespace PLH
 
 namespace rml::exception_filter
 {
-	class CrashDumper
+	class CrashDumper final : public ICrashHandler
 	{
 		static constexpr int DEFAULT_DUMP_TYPE = MiniDumpNormal | MiniDumpWithThreadInfo | MiniDumpWithIndirectlyReferencedMemory | MiniDumpWithModuleHeaders | MiniDumpWithAvxXStateContext;
 
@@ -36,7 +38,7 @@ namespace rml::exception_filter
 	public:
 		CrashDumper();
 
-		~CrashDumper();
+		~CrashDumper() override;
 
 		CrashDumper(const CrashDumper&) = delete;
 
@@ -46,18 +48,22 @@ namespace rml::exception_filter
 
 		CrashDumper& operator=(CrashDumper&&) = delete;
 
-		void enable();
+		void enable() override;
 
-		void disable();
+		void disable() override;
 
-		void set_full_memory_dump(bool enabled);
+		void set_full_memory_dump(bool enabled) override;
 
-		[[nodiscard]] bool is_enabled() const
+		[[nodiscard]] bool is_enabled() const override
 		{
 			return m_enabled;
 		}
 
 	private:
+		// Self-pointer for the static SEH/VEH callbacks, which need the concrete instance (the portable
+		// g_crash_dumper is typed as the interface).
+		static inline CrashDumper* s_instance = nullptr;
+
 		static LONG WINAPI exception_handler(PEXCEPTION_POINTERS exception_pointers);
 
 		static LONG WINAPI vectored_exception_handler(PEXCEPTION_POINTERS exception_pointers);
@@ -75,5 +81,3 @@ namespace rml::exception_filter
 		static void log_stack_trace();
 	};
 }
-
-inline rml::exception_filter::CrashDumper* g_crash_dumper{};

@@ -3,9 +3,9 @@
 #include "RobloxModLoader/rml_export.hpp"
 #include "RobloxModLoader/roblox/job_types.hpp"
 #include "detour_hook.hpp"
+#include "i_hook_engine.hpp"
 #include "vtable_hook.hpp"
 
-#include <MinHook.h>
 #include <functional>
 #include <memory>
 #include <string>
@@ -15,20 +15,6 @@
 namespace rml
 {
 	struct Hooks;
-
-	class MinHookKeepAlive
-	{
-	public:
-		MinHookKeepAlive()
-		{
-			MH_Initialize();
-		}
-
-		~MinHookKeepAlive()
-		{
-			MH_Uninitialize();
-		}
-	};
 
 	class Hooking
 	{
@@ -65,7 +51,7 @@ namespace rml
 			template<auto detour_function>
 			static void add(const std::string& name, void* target)
 			{
-				hook_to_detour_hook_helper<detour_function>::m_detour_hook.set_instance(name, target, detour_function);
+				hook_to_detour_hook_helper<detour_function>::m_detour_hook.set_instance(name, target, reinterpret_cast<void*>(detour_function));
 
 				DetourHookHelper d{};
 				d.m_detour_hook = &hook_to_detour_hook_helper<detour_function>::m_detour_hook;
@@ -78,7 +64,7 @@ namespace rml
 			template<auto detour_function>
 			static void* add_lazy(const std::string& name, DetourHookHelper::ret_ptr_fn on_hooking_available)
 			{
-				hook_to_detour_hook_helper<detour_function>::m_detour_hook.set_instance(name, detour_function);
+				hook_to_detour_hook_helper<detour_function>::m_detour_hook.set_instance(name, reinterpret_cast<void*>(detour_function));
 
 				DetourHookHelper d{};
 				d.m_detour_hook = &hook_to_detour_hook_helper<detour_function>::m_detour_hook;
@@ -97,12 +83,12 @@ namespace rml
 		template<auto detour_function>
 		static auto get_original()
 		{
-			return DetourHookHelper::hook_to_detour_hook_helper<detour_function>::m_detour_hook.get_original<decltype(detour_function)>();
+			return DetourHookHelper::hook_to_detour_hook_helper<detour_function>::m_detour_hook.template get_original<decltype(detour_function)>();
 		}
 
 	private:
 		bool m_enabled{};
-		MinHookKeepAlive m_minhook_keepalive;
+		std::unique_ptr<IHookEngine> m_hook_engine;
 		std::unordered_map<rml::JobKind, std::unique_ptr<vtable_hook> > m_jobs_hook;
 
 		static inline std::vector<DetourHookHelper> m_detour_hook_helpers;

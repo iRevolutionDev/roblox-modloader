@@ -8,7 +8,11 @@ if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     endif ()
 
     if (ROBLOX_MODLOADER_BUILD_DUMPER)
-        add_subdirectory(code/tools/dumper)
+        if (WIN32)
+            add_subdirectory(code/tools/dumper)
+        else ()
+            message(STATUS "Skipping dumper: only supported on Windows")
+        endif ()
     endif ()
 
     if (ROBLOX_MODLOADER_BUILD_PROXY_DLL AND ROBLOX_MODLOADER_BUILD_PROXY_GENERATOR)

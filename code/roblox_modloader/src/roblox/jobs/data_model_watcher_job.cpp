@@ -2,13 +2,15 @@
 
 #include "../../mod/mod_manager.hpp"
 #include "RobloxModLoader/internal/common.hpp"
-#include "RobloxModLoader/luau/script_manager.hpp"
+#if RML_ENABLE_LUAU
+	#include "RobloxModLoader/luau/script_manager.hpp"
+#endif
 #include "RobloxModLoader/roblox/data_model.hpp"
 #include "RobloxModLoader/roblox/script_context.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
 #include "RobloxModLoader/roblox/waiting_hybrid_scripts_job.hpp"
-#include "pointers.hpp"
 #include "dotnet/dotnet_mod_loader.hpp"
+#include "pointers.hpp"
 
 namespace rml::jobs
 {
@@ -25,9 +27,9 @@ namespace rml::jobs
 			return false;
 		}
 
-		const auto type = data_model->get_type();
+		const auto type = data_model->type;
 
-		m_data_models[type]                  = data_model;
+		m_data_models[type] = data_model;
 		m_data_model_last_time_stepped[type] = std::chrono::high_resolution_clock::now();
 
 		return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - m_last_check)
@@ -39,14 +41,14 @@ namespace rml::jobs
 	{
 		m_last_check = std::chrono::high_resolution_clock::now();
 
-		const auto job            = context.job_as<RBX::ScriptContextFacets::WaitingHybridScriptsJob>();
+		const auto job = context.job_as<RBX::ScriptContextFacets::WaitingHybridScriptsJob>();
 		const auto new_data_model = RBX::DataModel::from_job(job);
 		if (!new_data_model)
 		{
 			return;
 		}
 
-		const auto old_data_model = rml::task_scheduler().get_data_model_by_type(new_data_model->get_type());
+		const auto old_data_model = task_scheduler().get_data_model_by_type(new_data_model->type);
 		if (old_data_model == new_data_model)
 		{
 			return;
@@ -63,7 +65,7 @@ namespace rml::jobs
 
 	void DataModelWatcherJob::on_data_model_changed(const RBX::DataModel* old_data_model, RBX::DataModel* new_data_model, RBX::ScriptContext* script_context)
 	{
-		if (!rml::has_task_scheduler())
+		if (!has_task_scheduler())
 		{
 			LOG_ERROR("TaskScheduler is null, cannot set new DataModel.");
 			return;
@@ -77,25 +79,25 @@ namespace rml::jobs
 		LOG_INFO("DataModel changed from 0x{:X} to 0x{:X} by {}",
 		    old_data_model ? reinterpret_cast<uintptr_t>(old_data_model) : 0,
 		    new_data_model ? reinterpret_cast<uintptr_t>(new_data_model) : 0,
-		    new_data_model ? std::to_underlying(new_data_model->get_type()) : 0);
+		    new_data_model ? std::to_underlying(new_data_model->type) : 0);
 
-		rml::task_scheduler().set_data_model(new_data_model->get_type(), new_data_model, script_context);
+		task_scheduler().set_data_model(new_data_model->type, new_data_model, script_context);
 
-		const auto data_model_type = new_data_model->get_type();
+		const auto data_model_type = new_data_model->type;
 
 		LOG_INFO("New DataModel type: {}, notifying mods and scripts", static_cast<int>(data_model_type));
 
-		events::DataModelChangedEvent ev(reinterpret_cast<uint64_t>(old_data_model), reinterpret_cast<uint64_t>(new_data_model), static_cast<int>(data_model_type));
+		events::DataModelChangedEvent ev(reinterpret_cast<u64>(old_data_model), reinterpret_cast<u64>(new_data_model), static_cast<int>(data_model_type));
 		events::event_manager().emit(ev);
 
 		// Notify managed (.NET) mods about the change if the bridge is initialized
-		if (rml::dotnet::g_dotnet_mod_loader)
+		if (dotnet::g_dotnet_mod_loader)
 		{
 			try
 			{
-				rml::dotnet::g_dotnet_mod_loader->notify_data_model_changed(reinterpret_cast<uint64_t>(old_data_model), reinterpret_cast<uint64_t>(new_data_model), static_cast<int>(data_model_type));
+				dotnet::g_dotnet_mod_loader->notify_data_model_changed(reinterpret_cast<u64>(old_data_model), reinterpret_cast<u64>(new_data_model), static_cast<int>(data_model_type));
 			}
-			catch (const std::exception &e)
+			catch (const std::exception& e)
 			{
 				LOG_WARN("Failed to notify managed mods of DataModel change: {}", e.what());
 			}
@@ -132,7 +134,7 @@ namespace rml::jobs
 
 	void DataModelWatcherJob::check_and_cleanup_stale_data_models()
 	{
-		const auto now                 = std::chrono::high_resolution_clock::now();
+		const auto now = std::chrono::high_resolution_clock::now();
 		constexpr auto stale_threshold = std::chrono::seconds{5};
 
 		std::vector<RBX::DataModelType> stale_types;
@@ -146,7 +148,7 @@ namespace rml::jobs
 				continue;
 			}
 
-			const auto current_data_model = rml::task_scheduler().get_data_model_by_type(data_model_type);
+			const auto current_data_model = task_scheduler().get_data_model_by_type(data_model_type);
 			const auto tracked_data_model = m_data_models.find(data_model_type);
 
 			bool should_cleanup = false;
@@ -178,7 +180,7 @@ namespace rml::jobs
 
 		for (const auto& stale_type : stale_types)
 		{
-			rml::task_scheduler().cleanup_data_model(stale_type);
+			task_scheduler().cleanup_data_model(stale_type);
 		}
 	}
 }

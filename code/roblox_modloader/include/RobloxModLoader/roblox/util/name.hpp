@@ -1,7 +1,5 @@
 #pragma once
 
-#include "rbx_str.hpp"
-
 #include <atomic>
 #include <cstdint>
 #include <mutex>
@@ -16,7 +14,7 @@ namespace RBX
 	class Name
 	{
 	public:
-		rbx_str const str;
+		std::string const str;
 
 		static std::size_t size();
 		static std::size_t approximate_memory_usage();
@@ -46,7 +44,7 @@ namespace RBX
 
 		[[nodiscard]] std::string_view to_string() const noexcept
 		{
-			return str.sv();
+			return std::string_view{str};
 		}
 		[[nodiscard]] const char* c_str() const
 		{

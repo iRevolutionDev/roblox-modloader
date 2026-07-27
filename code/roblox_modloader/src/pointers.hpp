@@ -30,7 +30,7 @@ namespace rml
 		~Pointers();
 
 	public:
-		HWND m_hwnd{};
+		void* m_main_window{};
 
 	public:
 		RobloxPointers m_roblox_pointers;

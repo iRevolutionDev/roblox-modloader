@@ -137,7 +137,7 @@ namespace rml::luau::environment {
 
         bool register_globals(lua_State *L) noexcept override;
 
-        RML_EXPORT [[nodiscard]] BridgeResult<void> register_native_function(
+        [[nodiscard]] RML_EXPORT BridgeResult<void> register_native_function(
             std::string_view mod_name,
             std::string_view function_name,
             NativeFunctionCallback callback) override;
@@ -147,7 +147,7 @@ namespace rml::luau::environment {
             std::string_view function_name,
             const LuaParameters &parameters) const override;
 
-        RML_EXPORT [[nodiscard]] BridgeResult<void> set_shared_data(
+        [[nodiscard]] RML_EXPORT BridgeResult<void> set_shared_data(
             std::string_view key,
             const LuaValue &value) override;
 
@@ -158,7 +158,7 @@ namespace rml::luau::environment {
             std::string_view event_name,
             EventCallback callback) override;
 
-        RML_EXPORT [[nodiscard]] BridgeResult<void> trigger_event(
+        [[nodiscard]] RML_EXPORT BridgeResult<void> trigger_event(
             std::string_view event_name,
             const LuaParameters &data) override;
 

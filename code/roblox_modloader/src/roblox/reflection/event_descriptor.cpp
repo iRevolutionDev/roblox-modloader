@@ -1,6 +1,7 @@
 #include "RobloxModLoader/roblox/reflection/event_descriptor.hpp"
 
 #include "RobloxModLoader/internal/common.hpp"
+#include "RobloxModLoader/platform/threading/engine_mutex.hpp"
 #include "RobloxModLoader/roblox/reflection/event.hpp"
 #include "pointers.hpp"
 
@@ -13,8 +14,7 @@ namespace RBX::Reflection
 			return;
 
 		void* mtx = g_pointers && g_pointers->m_roblox_pointers.signal_mutex_get ? g_pointers->m_roblox_pointers.signal_mutex_get() : nullptr;
-		if (mtx)
-			_Mtx_lock(static_cast<_Mtx_t>(mtx));
+		const bool locked = rml::platform::lock_engine_mutex(mtx);
 
 		for (auto* slot = signal->head; slot; slot = slot->next)
 		{
@@ -22,8 +22,8 @@ namespace RBX::Reflection
 				fn(slot);
 		}
 
-		if (mtx)
-			_Mtx_unlock(static_cast<_Mtx_t>(mtx));
+		if (locked)
+			rml::platform::unlock_engine_mutex(mtx);
 	}
 
 	Signals::Signal* EventDescriptor::get_signal(EventSource* source) const

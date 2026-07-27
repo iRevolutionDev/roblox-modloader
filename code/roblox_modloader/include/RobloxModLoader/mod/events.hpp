@@ -78,5 +78,5 @@ namespace rml::events {
         std::shared_mutex m_mutex;
     };
 
-    RML_EXPORT [[nodiscard]] EventManager &event_manager();
+    [[nodiscard]] RML_EXPORT EventManager &event_manager();
 }

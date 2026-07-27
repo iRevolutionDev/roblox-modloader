@@ -11,8 +11,11 @@ RML_LOG_SCOPE("Hooking");
 
 namespace rml
 {
-	Hooking::Hooking()
+	Hooking::Hooking() :
+	    m_hook_engine(create_hook_engine())
 	{
+		g_hook_engine = m_hook_engine.get();
+
 		RML_INFO("Initializing hooking");
 
 		for (const auto kind : {rml::JobKind::Heartbeat, rml::JobKind::Physics, rml::JobKind::WaitingHybridScripts, rml::JobKind::Render})
@@ -26,7 +29,7 @@ namespace rml
 			}
 
 			auto job_hook = std::make_unique<vtable_hook>(*vtable, rml::JobVtable::kSlotCount);
-			job_hook->hook(rml::JobVtable::kStepIndex, &Hooks::on_job_step);
+			job_hook->hook(rml::JobVtable::kStepIndex, reinterpret_cast<void*>(&Hooks::on_job_step));
 			m_jobs_hook[kind] = std::move(job_hook);
 			RML_DEBUG("Hooked job kind {} with vtable 0x{:X}", std::to_underlying(kind), reinterpret_cast<std::uintptr_t>(*vtable));
 		}
@@ -42,9 +45,9 @@ namespace rml
 		// detour_hook_helper::add<hooks::render_perform>("RENDER_PERFORM", g_pointers->m_roblox_pointers.m_render_perform);
 		// detour_hook_helper::add<hooks::render_view>("RENDER_VIEW", g_pointers->m_roblox_pointers.m_render_view);
 #if RML_ENABLE_LUAU
-		DetourHookHelper::add<Hooks::luau_load>("LUAU_LOAD", g_pointers->m_roblox_pointers.luau_load);
+		DetourHookHelper::add<Hooks::luau_load>("LUAU_LOAD", reinterpret_cast<void*>(g_pointers->m_roblox_pointers.luau_load));
 #endif
-		DetourHookHelper::add<Hooks::build_menu_bar_from_dom>("MENU_BUILD_FROM_DOM", g_pointers->m_roblox_pointers.build_menu_bar_from_dom);
+		DetourHookHelper::add<Hooks::build_menu_bar_from_dom>("MENU_BUILD_FROM_DOM", reinterpret_cast<void*>(g_pointers->m_roblox_pointers.build_menu_bar_from_dom));
 
 		g_hooking = this;
 	}
@@ -57,6 +60,7 @@ namespace rml
 		}
 
 		g_hooking = nullptr;
+		g_hook_engine = nullptr;
 	}
 
 	void Hooking::enable()
@@ -76,7 +80,7 @@ namespace rml
 				RML_ERROR("Failed to enable detour hook: {}", result.error().describe());
 		}
 
-		MH_ApplyQueued();
+		m_hook_engine->apply_queued();
 
 		m_enabled = true;
 	}
@@ -100,7 +104,8 @@ namespace rml
 				RML_WARN("Failed to disable detour hook: {}", result.error().describe());
 		}
 
-		MH_ApplyQueued();
+		if (m_hook_engine)
+			m_hook_engine->apply_queued();
 
 		m_detour_hook_helpers.clear();
 	}
@@ -121,7 +126,8 @@ namespace rml
 			if (const auto result = m_detour_hook->enable(); !result)
 				RML_ERROR("Failed to enable late-registered detour hook: {}", result.error().describe());
 
-			MH_ApplyQueued();
+			if (g_hook_engine)
+				g_hook_engine->apply_queued();
 		}
 	}
 

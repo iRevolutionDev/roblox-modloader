@@ -132,8 +132,8 @@ namespace RBX::Reflection
 		virtual int get_raw_data_size(const DescribedBase* instance) const = 0;
 		virtual bool is_xml_serializable() const = 0;
 		virtual bool has_string_value() const = 0;
-		virtual Name get_string_value(const DescribedBase* instance) const;
-		virtual bool set_string_value(DescribedBase* instance, const std::string& text) const;
+		virtual Name get_string_value(const DescribedBase* instance) const = 0;
+		virtual bool set_string_value(DescribedBase* instance, const std::string& text) const = 0;
 		virtual bool is_type(const Type& type) const = 0;
 
 		virtual void notify_xml_change(const DescribedBase* instance) const = 0;
@@ -328,22 +328,6 @@ namespace RBX::Reflection
 		virtual DescribedBase* get_ref_value(const DescribedBase* instance) const = 0;
 		virtual void set_ref_value(DescribedBase* instance, DescribedBase* value) const = 0;
 		virtual void set_ref_value_unsafe(DescribedBase* instance, DescribedBase* value) const = 0;
-
-		static bool has_string_value()
-		{
-			return false;
-		}
-
-		Name get_string_value(const DescribedBase* instance) const
-		{
-			return Super::get_string_value(instance);
-		}
-
-		bool set_string_value(DescribedBase* instance, const std::string& text) const
-		{
-			return Super::set_string_value(instance, text);
-		}
-
 
 		static bool is_ref_property_descriptor(const Type& type)
 		{

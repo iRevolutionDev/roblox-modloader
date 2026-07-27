@@ -17,11 +17,18 @@ if (NOT RML_ENABLE_LUAU)
     list(FILTER MODLOADER_SUBDIRS EXCLUDE REGEX "/roblox/jobs/scripting/")
 endif ()
 
+foreach (platform_dir "windows" "macos" "linux")
+    if (NOT platform_dir STREQUAL RML_PLATFORM_ID)
+        list(FILTER MODLOADER_SUBDIRS EXCLUDE REGEX "/platform/${platform_dir}/")
+    endif ()
+endforeach ()
+
 list(APPEND MODLOADER_SOURCES ${MODLOADER_SUBDIRS})
 
 file(GLOB_RECURSE MODLOADER_VENDOR_SOURCES CONFIGURE_DEPENDS
         "${RML_THIRDPARTY_G3D_SRC_DIR}/*.cpp"
 )
+
 list(APPEND MODLOADER_SOURCES ${MODLOADER_VENDOR_SOURCES})
 
 set(RML_VERSION_SCRIPT "${PROJECT_SOURCE_DIR}/cmake/generate-version.cmake")
@@ -72,6 +79,7 @@ endif ()
 target_include_directories(roblox_modloader PRIVATE
         "${ROBLOX_MODLOADER_SOURCE_DIR}"
         "${ROBLOX_MODLOADER_INCLUDE_DIR}"
+        "${ROBLOX_MODLOADER_SOURCE_DIR}/platform/${RML_PLATFORM_ID}"
 )
 
 set_target_properties(roblox_modloader PROPERTIES
@@ -109,20 +117,16 @@ target_include_directories(RobloxModLoader INTERFACE
         "$<BUILD_INTERFACE:${spdlog_SOURCE_DIR}/include>"
         "$<BUILD_INTERFACE:${tomlplusplus_SOURCE_DIR}/include>"
         "$<BUILD_INTERFACE:${nlohmann_json_SOURCE_DIR}/include>"
-        "$<BUILD_INTERFACE:${minhook_SOURCE_DIR}/include>"
         "$<BUILD_INTERFACE:${LUAU_SOURCE_DIR}/Compiler/include>"
         "$<BUILD_INTERFACE:${LUAU_SOURCE_DIR}/Ast/include>"
         "$<BUILD_INTERFACE:${LUAU_SOURCE_DIR}/VM/include>"
         "$<BUILD_INTERFACE:${LUAU_SOURCE_DIR}/Common/include>"
-        "$<BUILD_INTERFACE:${polyhook2_SOURCE_DIR}>"
 )
 
 target_link_libraries(RobloxModLoader INTERFACE
         spdlog::spdlog
         nlohmann_json::nlohmann_json
         tomlplusplus::tomlplusplus
-        minhook
-        PolyHook_2
         Luau.Compiler
         Luau.Ast
         Luau.VM
@@ -130,6 +134,18 @@ target_link_libraries(RobloxModLoader INTERFACE
         Luau.CodeGen
         $<$<TARGET_EXISTS:roblox_modloader>:roblox_modloader>
 )
+
+if (RML_PLATFORM_WINDOWS)
+    target_include_directories(RobloxModLoader INTERFACE
+            "$<BUILD_INTERFACE:${minhook_SOURCE_DIR}/include>"
+            "$<BUILD_INTERFACE:${polyhook2_SOURCE_DIR}>"
+    )
+
+    target_link_libraries(RobloxModLoader INTERFACE
+            minhook
+            PolyHook_2
+    )
+endif ()
 
 target_compile_features(RobloxModLoader INTERFACE cxx_std_23)
 
@@ -141,6 +157,17 @@ target_compile_definitions(RobloxModLoader INTERFACE
         TOML_EXCEPTIONS=0
         $<$<CONFIG:Debug>:DEBUG>
 )
+
+if (NOT RML_PLATFORM_WINDOWS)
+    target_compile_definitions(RobloxModLoader INTERFACE SPDLOG_USE_STD_FORMAT)
+endif ()
+
+if (MSVC)
+    target_compile_definitions(RobloxModLoader INTERFACE
+            _ITERATOR_DEBUG_LEVEL=0
+            _HAS_ITERATOR_DEBUGGING=0
+    )
+endif ()
 
 setup_dotnet_hosting(RobloxModLoader INTERFACE)
 
@@ -203,4 +230,29 @@ if (WIN32 AND TARGET roblox_modloader AND DEFINED ENV{ROBLOX_STUDIO_PATH} AND NO
             COMMENT "Copying built roblox_modloader DLL to RobloxModLoader root"
             VERBATIM
     )
+endif ()
+
+if (APPLE AND TARGET roblox_modloader AND DEFINED ENV{ROBLOX_STUDIO_PATH} AND NOT "$ENV{ROBLOX_STUDIO_PATH}" STREQUAL "")
+    set(_rml_studio "$ENV{ROBLOX_STUDIO_PATH}")
+    if (_rml_studio MATCHES "Contents/MacOS/?$")
+        set(_rml_macos_dir "${_rml_studio}")
+    else ()
+        set(_rml_macos_dir "${_rml_studio}/Contents/MacOS")
+    endif ()
+
+    set(_rml_deployed_dylib "${_rml_macos_dir}/roblox_modloader.dylib")
+
+    add_custom_command(TARGET roblox_modloader POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E make_directory "${_rml_macos_dir}"
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            $<TARGET_FILE:roblox_modloader>
+            "${_rml_deployed_dylib}"
+            COMMAND codesign --force --sign - "${_rml_deployed_dylib}"
+            COMMENT "Deploying roblox_modloader.dylib into Studio (Contents/MacOS) and ad-hoc signing it"
+            VERBATIM
+    )
+
+    unset(_rml_studio)
+    unset(_rml_macos_dir)
+    unset(_rml_deployed_dylib)
 endif ()

@@ -1,0 +1,282 @@
+name: Build & Package
+
+on:
+  workflow_call:
+    inputs:
+      platform:
+        required: true
+        type: string
+      retention_days:
+        required: false
+        type: number
+        default: 14
+
+jobs:
+  build:
+    name: ${{ inputs.platform }}
+    runs-on: ${{ inputs.platform == 'windows' && 'windows-latest' || 'macos-latest' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Setup Ninja
+        uses: seanmiddleditch/gha-setup-ninja@master
+
+      - name: Setup MSVC
+        if: inputs.platform == 'windows'
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
+      - name: Setup sccache
+        uses: mozilla-actions/sccache-action@v0.0.9
+
+      - name: Cache CMake dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            build/_deps
+            build/_dotnet_hosting_cache
+          key: cmake-deps-${{ runner.os }}-${{ hashFiles('CMakeLists.txt', 'cmake/**/*.cmake', '.gitmodules') }}
+          restore-keys: |
+            cmake-deps-${{ runner.os }}-
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: nuget-${{ runner.os }}-${{ hashFiles('**/*.csproj', '**/*.slnx') }}
+          restore-keys: |
+            nuget-${{ runner.os }}-
+
+      - name: Build (Windows)
+        if: inputs.platform == 'windows'
+        shell: pwsh
+        env:
+          ROBLOX_STUDIO_PATH: ${{ github.workspace }}/stage
+          SCCACHE_GHA_ENABLED: 'true'
+        run: |
+          cmake -B build -G Ninja `
+            -DCMAKE_BUILD_TYPE=RelWithDebInfo `
+            -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl `
+            -DCMAKE_C_COMPILER_LAUNCHER=sccache `
+            -DCMAKE_CXX_COMPILER_LAUNCHER=sccache `
+            -DCMAKE_C_FLAGS_RELWITHDEBINFO="/O2 /Ob1 /DNDEBUG /Z7" `
+            -DCMAKE_CXX_FLAGS_RELWITHDEBINFO="/O2 /Ob1 /DNDEBUG /Z7"
+          cmake --build build --parallel
+          sccache --show-stats
+
+      - name: Build (macOS)
+        if: inputs.platform == 'macos'
+        env:
+          SCCACHE_GHA_ENABLED: 'true'
+        run: |
+          cmake -B build -G Ninja \
+            -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+            -DCMAKE_OSX_ARCHITECTURES=arm64 \
+            -DCMAKE_C_COMPILER_LAUNCHER=sccache \
+            -DCMAKE_CXX_COMPILER_LAUNCHER=sccache
+          cmake --build build --parallel
+          sccache --show-stats
+
+      - name: Verify loader dylib
+        if: inputs.platform == 'macos'
+        run: |
+          dylib="build/code/roblox_modloader/libroblox_modloader.dylib"
+          if [ ! -f "$dylib" ]; then
+            echo "Loader dylib not found at $dylib"
+            exit 1
+          fi
+          if ! lipo -archs "$dylib" | grep -q arm64; then
+            echo "Loader dylib is not arm64: $(lipo -archs "$dylib")"
+            exit 1
+          fi
+          echo "OK: $dylib ($(lipo -archs "$dylib"))"
+
+      - name: Verify native example mods
+        if: inputs.platform == 'macos'
+        run: |
+          missing=0
+          for mod in basic-mod internal_developer menu_showcase script_editor_background; do
+            if [ -f "build/examples/lib${mod}.so" ]; then
+              echo "OK: ${mod}"
+            else
+              echo "MISSING: ${mod}"
+              missing=1
+            fi
+          done
+          exit $missing
+
+      - name: Verify mod ABI exports
+        if: inputs.platform == 'macos'
+        run: |
+          for symbol in _start_mod _uninstall_mod _rml_abi_version; do
+            if ! nm -gU build/examples/libinternal_developer.so | grep -q " ${symbol}$"; then
+              echo "Missing exported symbol: ${symbol}"
+              exit 1
+            fi
+          done
+          echo "OK: mod ABI exports present"
+
+      - name: Assemble package (Windows)
+        if: inputs.platform == 'windows'
+        shell: pwsh
+        run: |
+          $stage   = "${{ github.workspace }}/stage"
+          $rml     = Join-Path $stage "RobloxModLoader"
+          $runtime = Join-Path $rml "runtime"
+          New-Item -ItemType Directory -Force -Path $runtime, (Join-Path $rml "mods") | Out-Null
+
+          Copy-Item "build/code/roblox_modloader/roblox_modloader.dll" (Join-Path $stage "roblox_modloader.dll") -Force
+          if (Test-Path "build/code/roblox_modloader/roblox_modloader.pdb") {
+            Copy-Item "build/code/roblox_modloader/roblox_modloader.pdb" (Join-Path $stage "roblox_modloader.pdb") -Force
+          }
+
+          dotnet publish code/dotnet/Runtime/src/RML.Core/RML.Core.csproj `
+            -c Release -o $runtime --nologo
+          dotnet publish code/dotnet/Runtime/src/RML.NativeHost/RML.NativeHost.csproj `
+            -c Release -o $runtime --nologo
+
+          $nethostDest = Join-Path $runtime "nethost.dll"
+          if (-not (Test-Path $nethostDest)) {
+            $searchRoots = @("build", (Join-Path $runtime "dotnet"))
+            if ($env:DOTNET_ROOT -and (Test-Path $env:DOTNET_ROOT)) { $searchRoots += $env:DOTNET_ROOT }
+            $found = foreach ($root in $searchRoots) {
+              Get-ChildItem $root -Recurse -Filter nethost.dll -ErrorAction SilentlyContinue
+            }
+            $nethost = $found | Where-Object { $_.FullName -match 'win-x64' } | Select-Object -First 1
+            if (-not $nethost) { $nethost = $found | Select-Object -First 1 }
+            if (-not $nethost) {
+              Write-Error "nethost.dll not found. It ships with the .NET host (Microsoft.NETCore.App.Host.win-x64 pack)."
+              exit 1
+            }
+            Copy-Item $nethost.FullName $nethostDest -Force
+            Write-Host "nethost.dll <- $($nethost.FullName)"
+          }
+
+          $globalCfg = Join-Path $runtime "RobloxModLoader.runtimeconfig.json"
+          if (Test-Path $globalCfg) {
+            Copy-Item $globalCfg (Join-Path $runtime "RML.runtimeconfig.json") -Force
+          }
+
+          Copy-Item "build/dwmapi.dll" (Join-Path $stage "dwmapi.dll") -Force
+          Copy-Item "tools/packaging/config.default.toml" (Join-Path $rml "config.toml") -Force
+
+          $bundledRuntime = Join-Path $runtime "dotnet"
+          if (Test-Path $bundledRuntime) { Remove-Item $bundledRuntime -Recurse -Force }
+
+          foreach ($junk in @("crashes", "generated", (Join-Path "runtime" "managed"))) {
+            $p = Join-Path $rml $junk
+            if (Test-Path $p) { Remove-Item $p -Recurse -Force }
+          }
+
+          $mods = Join-Path $rml "mods"
+          Remove-Item $mods -Recurse -Force -ErrorAction SilentlyContinue
+          New-Item -ItemType Directory -Force -Path $mods | Out-Null
+
+      - name: Assemble package (macOS)
+        if: inputs.platform == 'macos'
+        run: |
+          set -euo pipefail
+          stage="${{ github.workspace }}/stage"
+          rml="$stage/RobloxModLoader"
+          runtime="$rml/runtime"
+          mkdir -p "$runtime" "$rml/mods"
+
+          cp -f build/code/roblox_modloader/libroblox_modloader.dylib "$stage/roblox_modloader.dylib"
+          cp -f tools/packaging/config.default.toml "$rml/config.toml"
+
+          dotnet publish code/dotnet/Runtime/src/RML.Core/RML.Core.csproj \
+            -c Release -o "$runtime" --nologo
+          dotnet publish code/dotnet/Runtime/src/RML.NativeHost/RML.NativeHost.csproj \
+            -c Release -o "$runtime" --nologo
+
+          if [ ! -f "$runtime/libnethost.dylib" ]; then
+            nethost=$(find "$HOME/.nuget/packages" build -name libnethost.dylib -print -quit 2>/dev/null || true)
+            if [ -z "$nethost" ]; then
+              echo "libnethost.dylib not found. It ships with Microsoft.NETCore.App.Host.osx-arm64."
+              exit 1
+            fi
+            cp -f "$nethost" "$runtime/libnethost.dylib"
+            echo "libnethost.dylib <- $nethost"
+          fi
+
+          cp -f build/RobloxModLoader.runtimeconfig.json "$runtime/RobloxModLoader.runtimeconfig.json"
+          cp -f "$runtime/RobloxModLoader.runtimeconfig.json" "$runtime/RML.runtimeconfig.json"
+
+          rm -rf "$runtime/dotnet" "$rml/crashes" "$rml/generated" "$runtime/managed"
+
+          rm -rf "$rml/mods"
+          mkdir -p "$rml/mods"
+
+      - name: Validate package (Windows)
+        if: inputs.platform == 'windows'
+        shell: pwsh
+        run: |
+          $stage   = "${{ github.workspace }}/stage"
+          $rml     = Join-Path $stage "RobloxModLoader"
+          $runtime = Join-Path $rml "runtime"
+          $required = @(
+            (Join-Path $stage "dwmapi.dll"),
+            (Join-Path $stage "roblox_modloader.dll"),
+            (Join-Path $rml "config.toml"),
+            (Join-Path $runtime "nethost.dll"),
+            (Join-Path $runtime "RML.NativeHost.dll"),
+            (Join-Path $runtime "Roblox.dll"),
+            (Join-Path $runtime "RML.runtimeconfig.json"),
+            (Join-Path $runtime "RobloxModLoader.runtimeconfig.json")
+          )
+          $missing = $required | Where-Object { -not (Test-Path $_) }
+          if ($missing) {
+            Write-Error "Package is missing required files:`n$($missing -join "`n")"
+            exit 1
+          }
+          Write-Host "Package assembled. Runtime size:" (
+            "{0:N0} MB" -f ((Get-ChildItem $runtime -Recurse -File | Measure-Object Length -Sum).Sum / 1MB))
+
+      - name: Validate package (macOS)
+        if: inputs.platform == 'macos'
+        run: |
+          set -euo pipefail
+          stage="${{ github.workspace }}/stage"
+          rml="$stage/RobloxModLoader"
+          runtime="$rml/runtime"
+          missing=0
+          for f in "$stage/roblox_modloader.dylib" \
+                   "$rml/config.toml" \
+                   "$runtime/libnethost.dylib" \
+                   "$runtime/RML.NativeHost.dll" \
+                   "$runtime/Roblox.dll" \
+                   "$runtime/RML.runtimeconfig.json" \
+                   "$runtime/RobloxModLoader.runtimeconfig.json"; do
+            [ -f "$f" ] || { echo "MISSING: $f"; missing=1; }
+          done
+          [ "$missing" -eq 0 ] || exit 1
+          echo "Package assembled. Runtime size: $(du -sh "$runtime" | cut -f1)"
+
+      - name: Create archive (Windows)
+        if: inputs.platform == 'windows'
+        shell: pwsh
+        run: |
+          Compress-Archive -Path "${{ github.workspace }}/stage/*" `
+            -DestinationPath "${{ github.workspace }}/package-windows.zip" -CompressionLevel Optimal
+
+      - name: Create archive (macOS)
+        if: inputs.platform == 'macos'
+        run: |
+          cd "${{ github.workspace }}/stage"
+          zip -qry "${{ github.workspace }}/package-macos.zip" .
+
+      - name: Upload package
+        uses: actions/upload-artifact@v4
+        with:
+          name: package-${{ inputs.platform }}
+          path: package-${{ inputs.platform }}.zip
+          if-no-files-found: error
+          retention-days: ${{ inputs.retention_days }}

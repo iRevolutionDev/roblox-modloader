@@ -1,5 +1,6 @@
 #pragma once
 
+#include "RobloxModLoader/internal/engine_abi.hpp"
 #include "RobloxModLoader/util/intrusive_weak_ptr.hpp"
 #include "RobloxModLoader/util/layout_assert.hpp"
 
@@ -9,13 +10,13 @@ namespace RBX::Signals
 {
 	struct Slot
 	{
-		volatile long strong;
-		volatile long weak;
+		i32 strong;
+		i32 weak;
 		void* fire_fn;
 		Slot* next;
 		std::uint64_t flags;
 		void* source;
-		void(__fastcall* destroy_fn)(Slot*);
+		void(RML_ENGINE_CALL* destroy_fn)(Slot*);
 		void* wrapper_ptr;
 		void* wrapper_rep;
 
@@ -36,8 +37,8 @@ namespace RBX::Signals
 
 	struct Signal
 	{
-		volatile long strong;
-		volatile long weak;
+		i32 strong;
+		i32 weak;
 		Slot* head;
 
 	private:
@@ -74,7 +75,7 @@ namespace RBX::Signals
 		[[nodiscard]] static Connection observe(Slot* slot) noexcept
 		{
 			if (slot)
-				_InterlockedIncrement(&slot->weak);
+				std::atomic_ref(slot->weak).fetch_add(1, std::memory_order_seq_cst);
 			return Connection(slot);
 		}
 

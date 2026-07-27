@@ -1,42 +1,70 @@
 #pragma once
 
-#include <memory>
-
-#include "instance.hpp"
-#include "job_types.hpp"
-
 #include "RobloxModLoader/util/layout_assert.hpp"
+#include "data_model_serialize.hpp"
+#include "service_provider.hpp"
+#include "verb_container.hpp"
+#include "workspace.hpp"
 
-namespace RBX {
-    class DataModelJob;
-}
+#include <cstddef>
+#include <cstdint>
+#include <map>
+#include <memory>
+#include <string>
 
-namespace RBX {
-    enum class DataModelType : std::int32_t {
-        Edit = 0,
-        Client = 1,
-        Server = 2,
-        Standalone = 3,
-        Null = 4,
-    };
+namespace RBX
+{
+	class DataModelJob;
 
-    class DataModel : public Instance {
-        char m_pad_0[0x26C];
-        DataModelType m_type;
-        char m_pad_1[0x299];
-        bool m_initialized;
+	enum class DataModelType : std::int32_t
+	{
+		Edit = 0,
+		Client = 1,
+		Server = 2,
+		Standalone = 3,
+		Null = 4,
+	};
 
-    public:
-        DataModelType get_type() const;
+	class DataModel : public ServiceProvider
+	{
+		std::byte pad_before_provider_map[0x10];
+		std::map<std::uintptr_t, std::uintptr_t> provider_map;
+		std::byte pad_after_provider_map[0x20];
+		void* named_base_vftable;
+		std::string reserved_string_0;
+		std::string reserved_string_1;
+		std::string reserved_string_2;
 
-        bool is_initialized() const;
+	public:
+		std::shared_ptr<Workspace> workspace;
 
-        static DataModel *from_job(const DataModelJob *job);
+	private:
+		std::byte pad_before_reserved_string_3[0x128];
+		std::string reserved_string_3;
 
-    private:
-        RML_LAYOUT_GUARD_BEGIN()
-            RML_ASSERT_LAYOUT_OFFSET(DataModel, m_type, 0x324);
-            RML_ASSERT_LAYOUT_OFFSET(DataModel, m_initialized, 0x5C1);
-        RML_LAYOUT_GUARD_END()
-    };
+	public:
+		std::shared_ptr<DataModelSerialize> data_model_serialize;
+
+	private:
+		std::byte pad_before_type[0x14];
+
+	public:
+		DataModelType type;
+
+	private:
+		std::byte pad_before_verb_container[0x38];
+
+	public:
+		VerbContainer* verb_container;
+
+		static DataModel* from_job(const DataModelJob* job);
+
+	private:
+		RML_LAYOUT_GUARD_BEGIN()
+		RML_ASSERT_LAYOUT_OFFSET(DataModel, workspace, 0x160);
+		RML_ASSERT_LAYOUT_OFFSET(DataModel, data_model_serialize, 0x2B8);
+		RML_ASSERT_LAYOUT_OFFSET(DataModel, type, 0x2DC);
+		RML_ASSERT_LAYOUT_OFFSET(DataModel, verb_container, 0x318);
+		RML_LAYOUT_GUARD_END()
+	};
 }

@@ -7,7 +7,7 @@ namespace rml::qt
 {
 	QLabel* QLabel::create(const std::string_view text, QWidget* parent)
 	{
-		static const auto construct = detail::widgets<void* (*)(void*, const void*, void*, int)>("??0QLabel@@QEAA@AEBVQString@@PEAVQWidget@@V?$QFlags@W4WindowType@Qt@@@@@Z");
+		static const auto construct = detail::widgets<void* (*)(void*, const void*, void*, int)>("QLabel::QLabel(QString const&, QWidget*, QFlags<Qt::WindowType>)");
 		if (!construct)
 			return nullptr;
 
@@ -22,13 +22,13 @@ namespace rml::qt
 
 	void QLabel::destroy(QLabel* label)
 	{
-		static const auto dtor = detail::widgets<void (*)(void*)>("??1QLabel@@UEAA@XZ");
+		static const auto dtor = detail::widgets<void (*)(void*)>("QLabel::~QLabel()");
 		detail::heap_destroy(dtor, label);
 	}
 
 	void QLabel::setText(const std::string_view text)
 	{
-		static const auto fn = detail::widgets<void (*)(void*, const void*)>("?setText@QLabel@@QEAAXAEBVQString@@@Z");
+		static const auto fn = detail::widgets<void (*)(void*, const void*)>("QLabel::setText(QString const&)");
 		if (fn)
 		{
 			const QString value(text);
@@ -38,7 +38,7 @@ namespace rml::qt
 
 	void QLabel::setAlignment(const int alignment)
 	{
-		static const auto fn = detail::widgets<void (*)(void*, int)>("?setAlignment@QLabel@@QEAAXV?$QFlags@W4AlignmentFlag@Qt@@@@@Z");
+		static const auto fn = detail::widgets<void (*)(void*, int)>("QLabel::setAlignment(QFlags<Qt::AlignmentFlag>)");
 		if (fn)
 			fn(this, alignment);
 	}

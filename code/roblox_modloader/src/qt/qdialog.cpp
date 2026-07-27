@@ -6,7 +6,7 @@ namespace rml::qt
 {
 	QDialog* QDialog::create(QWidget* parent)
 	{
-		static const auto construct = detail::widgets<void* (*)(void*, void*, int)>("??0QDialog@@QEAA@PEAVQWidget@@V?$QFlags@W4WindowType@Qt@@@@@Z");
+		static const auto construct = detail::widgets<void* (*)(void*, void*, int)>("QDialog::QDialog(QWidget*, QFlags<Qt::WindowType>)");
 		return detail::heap_construct<QDialog>(detail::WIDGET_INSTANCE_SIZE, construct, parent, 0);
 	}
 
@@ -17,20 +17,20 @@ namespace rml::qt
 
 	void QDialog::destroy(QDialog* dialog)
 	{
-		static const auto dtor = detail::widgets<void (*)(void*)>("??1QDialog@@UEAA@XZ");
+		static const auto dtor = detail::widgets<void (*)(void*)>("QDialog::~QDialog()");
 		detail::heap_destroy(dtor, dialog);
 	}
 
 	void QDialog::setModal(const bool modal)
 	{
-		static const auto fn = detail::widgets<void (*)(void*, bool)>("?setModal@QDialog@@QEAAX_N@Z");
+		static const auto fn = detail::widgets<void (*)(void*, bool)>("QDialog::setModal(bool)");
 		if (fn)
 			fn(this, modal);
 	}
 
 	int QDialog::exec()
 	{
-		static const auto fn = detail::widgets<int (*)(void*)>("?exec@QDialog@@UEAAHXZ");
+		static const auto fn = detail::widgets<int (*)(void*)>("QDialog::exec()");
 		return fn ? fn(this) : -1;
 	}
 }

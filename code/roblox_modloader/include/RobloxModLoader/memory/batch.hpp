@@ -1,5 +1,7 @@
 #pragma once
 
+#include "RobloxModLoader/internal/platform.hpp"
+
 #ifndef NOMINMAX
 	#define NOMINMAX
 #endif
@@ -8,7 +10,7 @@
 	#define WIN32_LEAN_AND_MEAN
 #endif
 
-#if defined(_WIN32)
+#if defined(RML_WINDOWS)
 	#include <Windows.h>
 #endif
 
@@ -58,20 +60,15 @@ namespace rml::memory
 		template<signature sig>
 		static inline constexpr uint32_t compute_hash(uint32_t hash)
 		{
-			hash = fnv1a_32(sig.m_ida, hash);
+			hash = fnv1a_32(sig.m_ida.c_str(), hash);
 
 			return hash;
 		}
 
-		template<signature sig, signature... rest_sigs>
+		template<signature... sigs>
 		static inline constexpr uint32_t add(uint32_t hash = FNV_OFFSET_32)
 		{
-			hash = compute_hash<sig>(hash);
-
-			if constexpr (sizeof...(rest_sigs) > 0)
-			{
-				hash = add<rest_sigs...>(hash);
-			}
+			((hash = compute_hash<sigs>(hash)), ...);
 
 			return hash;
 		}
@@ -116,7 +113,7 @@ namespace rml::memory
 
 		inline static bool scan_pattern_and_execute_callback(range region, signature entry)
 		{
-			if (auto result = region.scan(entry.m_ida); result.has_value())
+			if (auto result = region.scan(entry.m_ida.c_str()); result.has_value())
 			{
 				if (entry.m_on_signature_found)
 				{
@@ -125,14 +122,14 @@ namespace rml::memory
 					std::invoke(std::move(entry.m_on_signature_found), result.value());
 
 					LOG_INFO("Found '{}' RobloxStudioBeta.exe+0x{:X}",
-					    entry.m_name,
-					    result.value().as<DWORD64>() - region.begin().as<DWORD64>());
+					    entry.m_name.c_str(),
+					    result.value().as<std::uintptr_t>() - region.begin().as<std::uintptr_t>());
 
 					return true;
 				}
 			}
 
-			LOG_INFO("Failed to find '{}'.", entry.m_name);
+			LOG_INFO("Failed to find '{}'.", entry.m_name.c_str());
 
 			return false;
 		}

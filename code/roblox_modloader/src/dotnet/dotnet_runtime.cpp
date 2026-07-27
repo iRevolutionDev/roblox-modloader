@@ -1,9 +1,11 @@
 #include "dotnet_runtime.hpp"
 
+#include "RobloxModLoader/internal/platform.hpp"
+
 #include "RobloxModLoader/internal/common.hpp"
 #include "utils/directory.hpp"
 
-#ifdef _WIN32
+#if defined(RML_WINDOWS)
 	#include <Windows.h>
 	#define RML_LOAD_LIB(p) LoadLibraryW(p)
 	#define RML_GET_PROC(h, s) GetProcAddress(static_cast<HMODULE>(h), s)
@@ -55,18 +57,30 @@ namespace rml::dotnet
 
 		auto runtime_path = utils::directory::get_runtime_directory();
 
+#if !defined(RML_WINDOWS)
+		const auto bundled_dotnet_root = runtime_path / "dotnet";
+		if (std::filesystem::exists(bundled_dotnet_root))
+			setenv("DOTNET_ROOT", bundled_dotnet_root.c_str(), 1);
+		const auto dotnet_root_str = bundled_dotnet_root.native();
+		const get_hostfxr_parameters params{
+		    .size = sizeof(get_hostfxr_parameters),
+		    .assembly_path = nullptr,
+		    .dotnet_root = std::filesystem::exists(bundled_dotnet_root) ? dotnet_root_str.c_str() : nullptr,
+		};
+#else
 		constexpr get_hostfxr_parameters params{
 		    .size = sizeof(get_hostfxr_parameters),
 		    .assembly_path = nullptr,
 		    .dotnet_root = nullptr,
 		};
+#endif
 
 		using get_hostfxr_path_fn = int (*)(char_t*, size_t*, const get_hostfxr_parameters*);
 
 		void* nethost_lib = nullptr;
-#ifdef _WIN32
+#if defined(RML_WINDOWS)
 		nethost_lib = RML_LOAD_LIB((runtime_path / "nethost.dll").c_str());
-#elif defined(__APPLE__)
+#elif defined(RML_MACOS)
 		nethost_lib = RML_LOAD_LIB((runtime_path / "libnethost.dylib").c_str());
 #else
 		nethost_lib = RML_LOAD_LIB((runtime_path / "libnethost.so").c_str());

@@ -1,6 +1,7 @@
 #include "qt_connect.hpp"
 
 #include "RobloxModLoader/internal/common.hpp"
+#include "RobloxModLoader/memory/foreign_call.hpp"
 #include "RobloxModLoader/qt/qt_module.hpp"
 
 #include <cstdint>
@@ -37,8 +38,6 @@ namespace rml::qt::detail
 			}
 		}
 
-		using connect_impl_fn = void* (*)(void* ret_connection, const void* sender, void** signal, const void* receiver, void** slot, void* slot_obj, int type, const int* types, const void* sender_meta);
-
 		struct MemberFnPtr
 		{
 			void* code;
@@ -51,7 +50,7 @@ namespace rml::qt::detail
 		if (!sender || !signal_addr || !sender_meta)
 			return false;
 
-		static const auto connect = reinterpret_cast<connect_impl_fn>(core_export("?connectImpl@QObject@@CA?AVConnection@QMetaObject@@PEBV1@PEAPEAX01PEAVQSlotObjectBase@QtPrivate@@W4ConnectionType@Qt@@PEBHPEBU3@@Z"));
+		static void* const connect = core_export("QObject::connectImpl(QObject const*, void**, QObject const*, void**, QtPrivate::QSlotObjectBase*, Qt::ConnectionType, int const*, QMetaObject const*)");
 		if (!connect)
 			return false;
 
@@ -60,9 +59,17 @@ namespace rml::qt::detail
 		MemberFnPtr signal_pmf{signal_addr, 0};
 		const auto signal = reinterpret_cast<void**>(&signal_pmf);
 
-		alignas(void*) unsigned char connection[16]{};
-
-		connect(connection, sender, signal, sender, nullptr, function, 0, nullptr, sender_meta);
+		void* result = nullptr;
+		memory::call_returning<void*>(connect,
+		    result,
+		    sender,
+		    signal,
+		    sender,
+		    static_cast<void**>(nullptr),
+		    static_cast<void*>(function),
+		    0,
+		    static_cast<const int*>(nullptr),
+		    sender_meta);
 		return true;
 	}
 }

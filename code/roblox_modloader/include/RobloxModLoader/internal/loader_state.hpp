@@ -1,5 +1,7 @@
 #pragma once
 
+#include "RobloxModLoader/internal/platform.hpp"
+
 #ifndef NOMINMAX
 	#define NOMINMAX
 #endif
@@ -8,13 +10,13 @@
 	#define WIN32_LEAN_AND_MEAN
 #endif
 
-#if defined(_WIN32)
+#if defined(RML_WINDOWS)
 	#include <Windows.h>
 #endif
 
 #include <atomic>
 
-#if defined(_WIN32)
+#if defined(RML_WINDOWS)
 inline HINSTANCE g_hinstance{};
 inline HANDLE g_main_thread{};
 #else

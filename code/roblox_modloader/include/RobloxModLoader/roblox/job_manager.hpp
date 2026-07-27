@@ -122,7 +122,7 @@ namespace rml::jobs {
         ITaskScheduler &m_task_scheduler;
     };
 
-    RML_EXPORT [[nodiscard]] JobManager &job_manager();
+    [[nodiscard]] RML_EXPORT JobManager &job_manager();
 
-    RML_EXPORT [[nodiscard]] bool has_job_manager() noexcept;
+    [[nodiscard]] RML_EXPORT bool has_job_manager() noexcept;
 }

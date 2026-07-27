@@ -5,36 +5,14 @@
 
 // clang-format off
 
-#if defined(_WIN32)
-#define RML_WINDOWS
-#elif defined(__linux__)
-#define RML_LINUX
-#elif defined(__APPLE__)
-#define RML_MACOS
-#endif
+#include "RobloxModLoader/internal/platform.hpp"
 
-#ifndef NOMINMAX
-    #define NOMINMAX
-#endif
-
-#ifndef WIN32_LEAN_AND_MEAN
-    #define WIN32_LEAN_AND_MEAN
-#endif
-
-#if defined(_WIN32)
-	#include <winsock2.h>
-	#include <Windows.h>
-#else
-	#include <dlfcn.h>
-	#include <limits.h>
-	#include <unistd.h>
-#  if defined(__linux__)
-#    include <link.h>
-#    include <elf.h>
-#  elif defined(__APPLE__)
-#    include <mach-o/dyld.h>
-#    include <mach-o/loader.h>
-#  endif
+#if defined(RML_WINDOWS)
+    #include "RobloxModLoader/platform/pch/windows_pch.hpp"
+#elif defined(RML_MACOS)
+    #include "RobloxModLoader/platform/pch/macos_pch.hpp"
+#elif defined(RML_LINUX)
+    #include "RobloxModLoader/platform/pch/linux_pch.hpp"
 #endif
 
 #include <cinttypes>
@@ -96,18 +74,6 @@
 #include <cstdio>
 
 
-// Platform specific GUI / debugging / process APIs
-#if defined(_WIN32)
-#  include <dwmapi.h>
-#  include <tchar.h>
-#  include <uxtheme.h>
-
-#  include <dbghelp.h>
-#  include <Psapi.h>
-
-#  include <tlhelp32.h>
-#endif
-
 #include "spdlog/spdlog.h"
 #include "spdlog/cfg/env.h"
 
@@ -115,13 +81,17 @@
 
 #include "RobloxModLoader/logger/logger.hpp"
 
-// Luau
 #include <lua.h>
 #include <lualib.h>
-#include <luau/Compiler.h>
-#include <luau/CodeGen.h>
 
 #include "RobloxModLoader/rml_export.hpp"
+
+using u32 = uint32_t;
+using u64 = uint64_t;
+using i32 = int32_t;
+using i64 = int64_t;
+using f32 = float;
+using f64 = double;
 
 // clang-format on
 

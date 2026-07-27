@@ -9,8 +9,7 @@
 #include "spdlog/formatter.h"
 #include "spdlog/sinks/base_sink.h"
 #include "spdlog/sinks/daily_file_sink.h"
-#include "spdlog/sinks/msvc_sink.h"
-#include "spdlog/sinks/stdout_sinks.h"
+#include "RobloxModLoader/logger/platform_console.hpp"
 #include "utils/directory.hpp"
 
 #include <atomic>
@@ -23,16 +22,20 @@ namespace
 {
 	struct global_logger_holder
 	{
-		static std::atomic<std::shared_ptr<spdlog::logger> > logger;
+		static std::shared_ptr<spdlog::logger> logger;
+		static std::mutex logger_mutex;
+		static std::unique_ptr<rml::logger::IPlatformConsole> console;
 		static std::shared_ptr<spdlog::sinks::sink> console_sink;
 		static std::shared_ptr<spdlog::sinks::daily_file_sink_mt> file_sink;
-		static std::shared_ptr<spdlog::sinks::msvc_sink_mt> msvc_sink;
+		static std::vector<spdlog::sink_ptr> diagnostic_sinks;
 	};
 
-	std::atomic<std::shared_ptr<spdlog::logger> > global_logger_holder::logger;
+	std::shared_ptr<spdlog::logger> global_logger_holder::logger;
+	std::mutex global_logger_holder::logger_mutex;
+	std::unique_ptr<rml::logger::IPlatformConsole> global_logger_holder::console;
 	std::shared_ptr<spdlog::sinks::sink> global_logger_holder::console_sink;
 	std::shared_ptr<spdlog::sinks::daily_file_sink_mt> global_logger_holder::file_sink;
-	std::shared_ptr<spdlog::sinks::msvc_sink_mt> global_logger_holder::msvc_sink;
+	std::vector<spdlog::sink_ptr> global_logger_holder::diagnostic_sinks;
 
 	namespace ansi
 	{
@@ -87,7 +90,7 @@ namespace
 		for (size_t i = 0; i < name.size(); ++i)
 			hash = (hash ^ static_cast<unsigned char>(name.data()[i])) * 16777619u;
 		const int code = palette[hash % std::size(palette)];
-		return fmt::format("\x1b[1;38;5;{}m", code);
+		return spdlog::fmt_lib::format("\x1b[1;38;5;{}m", code);
 	}
 
 	class rml_console_formatter final : public spdlog::formatter
@@ -102,7 +105,7 @@ namespace
 
 			const std::time_t t = std::chrono::system_clock::to_time_t(msg.time);
 			std::tm tm_buf{};
-			localtime_s(&tm_buf, &t);
+			tm_buf = rml::logger::local_time(t);
 			const auto secs = std::chrono::time_point_cast<std::chrono::seconds>(msg.time);
 			const auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(msg.time - secs).count();
 
@@ -151,62 +154,6 @@ namespace
 		}
 	};
 
-	class console_handle_sink final : public spdlog::sinks::base_sink<std::mutex>
-	{
-	protected:
-		void sink_it_(const spdlog::details::log_msg& msg) override
-		{
-			spdlog::memory_buf_t formatted;
-			formatter_->format(msg, formatted);
-
-			if (m_handle == INVALID_HANDLE_VALUE)
-			{
-				acquire_handle();
-
-				if (m_handle == INVALID_HANDLE_VALUE)
-				{
-					if (m_pending.size() < k_max_pending)
-						m_pending.emplace_back(formatted.data(), formatted.size());
-					return;
-				}
-
-				for (const auto& entry : m_pending)
-					write(entry.data(), entry.size());
-
-				m_pending.clear();
-				m_pending.shrink_to_fit();
-			}
-
-			write(formatted.data(), formatted.size());
-		}
-
-		void flush_() override
-		{
-		}
-
-	private:
-		static constexpr std::size_t k_max_pending = 4096;
-
-		void write(const char* data, const std::size_t size) const
-		{
-			DWORD written = 0;
-			WriteFile(m_handle, data, static_cast<DWORD>(size), &written, nullptr);
-		}
-
-		void acquire_handle()
-		{
-			m_handle = CreateFileW(L"CONOUT$", GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, OPEN_EXISTING, 0, nullptr);
-
-			if (m_handle == INVALID_HANDLE_VALUE)
-				return;
-
-			if (DWORD mode = 0; GetConsoleMode(m_handle, &mode))
-				SetConsoleMode(m_handle, mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
-		}
-
-		HANDLE m_handle{INVALID_HANDLE_VALUE};
-		std::vector<std::string> m_pending;
-	};
 
 	void ensure_log_directory()
 	{
@@ -223,67 +170,47 @@ namespace
 
 			const auto log_file = root / "RobloxModLoader" / "logs" / "roblox_modloader.log";
 
-			global_logger_holder::console_sink = std::make_shared<console_handle_sink>();
+			global_logger_holder::console = rml::logger::create_platform_console();
+			global_logger_holder::console_sink = global_logger_holder::console->make_console_sink();
+			global_logger_holder::diagnostic_sinks = global_logger_holder::console->make_diagnostic_sinks();
 			global_logger_holder::file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>(log_file.string(), 0, 0);
-			global_logger_holder::msvc_sink = std::make_shared<spdlog::sinks::msvc_sink_mt>();
 
 			global_logger_holder::console_sink->set_formatter(std::make_unique<rml_console_formatter>());
 			global_logger_holder::file_sink->set_pattern("[%H:%M:%S.%e] [%l] [%n] %v");
-			global_logger_holder::msvc_sink->set_pattern("[%H:%M:%S.%e] [%l] [%n] %v");
 		}
 	}
 
 	std::vector<spdlog::sink_ptr> get_shared_sinks()
 	{
 		init_sinks();
-		return {global_logger_holder::console_sink, global_logger_holder::file_sink, global_logger_holder::msvc_sink};
+
+		std::vector<spdlog::sink_ptr> sinks{global_logger_holder::console_sink, global_logger_holder::file_sink};
+		sinks.insert(sinks.end(), global_logger_holder::diagnostic_sinks.begin(), global_logger_holder::diagnostic_sinks.end());
+
+		return sinks;
 	}
 }
 
 std::shared_ptr<spdlog::logger> global_logger()
 {
-	auto logger = global_logger_holder::logger.load();
-	if (!logger)
 	{
-		rml::Logger::init();
-		logger = global_logger_holder::logger.load();
+		std::scoped_lock lock(global_logger_holder::logger_mutex);
+		if (global_logger_holder::logger)
+			return global_logger_holder::logger;
 	}
-	return logger;
+
+	rml::Logger::init();
+
+	std::scoped_lock lock(global_logger_holder::logger_mutex);
+	return global_logger_holder::logger;
 }
 
 namespace rml
 {
 	void Logger::open_console()
 	{
-		static bool console_allocated = false;
-
-		if (console_allocated)
-		{
-			return;
-		}
-
-		if (const auto& config = rml::config::get_config_manager().get_core_config(); !config.logging.enable_console)
-		{
-			return;
-		}
-
-		if (AllocConsole())
-		{
-			console_allocated = true;
-			freopen_s(reinterpret_cast<FILE**>(stdout), "CONOUT$", "w", stdout);
-			freopen_s(reinterpret_cast<FILE**>(stdin), "CONIN$", "r", stdin);
-			freopen_s(reinterpret_cast<FILE**>(stderr), "CONOUT$", "w", stderr);
-
-			SetConsoleOutputCP(CP_UTF8);
-
-			if (const HANDLE std_out = GetStdHandle(STD_OUTPUT_HANDLE); std_out != INVALID_HANDLE_VALUE)
-			{
-				if (DWORD mode = 0; GetConsoleMode(std_out, &mode))
-				{
-					SetConsoleMode(std_out, mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
-				}
-			}
-		}
+		init_sinks();
+		global_logger_holder::console->open();
 	}
 
 	void Logger::init()
@@ -329,7 +256,10 @@ namespace rml
 			new_logger->flush_on(spdlog::level::debug);
 		}
 
-		global_logger_holder::logger.store(new_logger);
+		{
+			std::scoped_lock lock(global_logger_holder::logger_mutex);
+			global_logger_holder::logger = new_logger;
+		}
 		logger_initialized = true;
 	}
 

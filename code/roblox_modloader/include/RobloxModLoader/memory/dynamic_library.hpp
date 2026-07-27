@@ -1,5 +1,7 @@
 #pragma once
 
+#include "RobloxModLoader/internal/platform.hpp"
+
 #ifndef NOMINMAX
 	#define NOMINMAX
 #endif
@@ -8,7 +10,7 @@
 	#define WIN32_LEAN_AND_MEAN
 #endif
 
-#if defined(_WIN32)
+#if defined(RML_WINDOWS)
 	#include <Windows.h>
 #else
 	#include <dlfcn.h>
@@ -21,7 +23,7 @@ namespace rml::memory
 {
 	struct DynamicLibrary
 	{
-#if defined(_WIN32)
+#if defined(RML_WINDOWS)
 		HMODULE handle{nullptr};
 #else
 		void* handle{nullptr};
@@ -53,7 +55,7 @@ namespace rml::memory
 
 		[[nodiscard]] bool load(const std::filesystem::path& path)
 		{
-#if defined(_WIN32)
+#if defined(RML_WINDOWS)
 			handle = LoadLibraryW(path.c_str());
 #else
 			handle = dlopen(path.c_str(), RTLD_LOCAL | RTLD_LAZY);
@@ -68,7 +70,7 @@ namespace rml::memory
 				return nullptr;
 			}
 
-#if defined(_WIN32)
+#if defined(RML_WINDOWS)
 			return reinterpret_cast<void*>(GetProcAddress(handle, name));
 #else
 			return dlsym(handle, name);
@@ -82,7 +84,7 @@ namespace rml::memory
 				return;
 			}
 
-#if defined(_WIN32)
+#if defined(RML_WINDOWS)
 			FreeLibrary(handle);
 #else
 			dlclose(handle);

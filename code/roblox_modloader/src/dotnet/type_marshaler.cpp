@@ -10,6 +10,7 @@
 #include "RobloxModLoader/util/memory.hpp"
 #include "pointers.hpp"
 
+#include <array>
 #include <cstring>
 #include <memory>
 #include <new>
@@ -20,12 +21,6 @@ RML_LOG_SCOPE("Interop");
 
 namespace rml::dotnet
 {
-	template<size_t N>
-	struct blittable_blob
-	{
-		std::byte data[N];
-	};
-
 	namespace
 	{
 		RML_ASSERT_LAYOUT_SIZE(RBX::Vector2, 8);
@@ -347,7 +342,7 @@ namespace rml::dotnet
 			header.capacity = header.end;
 
 			RBX::Property property(*descriptor, instance);
-			property.set(*reinterpret_cast<const blittable_blob<sizeof(engine_vector_header)>*>(&header));
+			property.set(*reinterpret_cast<const std::array<std::byte, sizeof(engine_vector_header)>*>(&header));
 			return true;
 		}
 
@@ -361,13 +356,13 @@ namespace rml::dotnet
 
 			switch (plan.byte_size)
 			{
-			case 4: property.set(*static_cast<const blittable_blob<4>*>(bytes)); return true;
-			case 8: property.set(*static_cast<const blittable_blob<8>*>(bytes)); return true;
-			case 12: property.set(*static_cast<const blittable_blob<12>*>(bytes)); return true;
-			case 16: property.set(*static_cast<const blittable_blob<16>*>(bytes)); return true;
-			case 24: property.set(*static_cast<const blittable_blob<24>*>(bytes)); return true;
-			case 48: property.set(*static_cast<const blittable_blob<48>*>(bytes)); return true;
-			case 60: property.set(*static_cast<const blittable_blob<60>*>(bytes)); return true;
+			case 4: property.set(*static_cast<const std::array<std::byte, 4>*>(bytes)); return true;
+			case 8: property.set(*static_cast<const std::array<std::byte, 8>*>(bytes)); return true;
+			case 12: property.set(*static_cast<const std::array<std::byte, 12>*>(bytes)); return true;
+			case 16: property.set(*static_cast<const std::array<std::byte, 16>*>(bytes)); return true;
+			case 24: property.set(*static_cast<const std::array<std::byte, 24>*>(bytes)); return true;
+			case 48: property.set(*static_cast<const std::array<std::byte, 48>*>(bytes)); return true;
+			case 60: property.set(*static_cast<const std::array<std::byte, 60>*>(bytes)); return true;
 			default: return false;
 			}
 		}
@@ -464,6 +459,23 @@ namespace rml::dotnet
 			return true;
 		}
 
+		default: return false;
+		}
+	}
+
+	bool TypeMarshaler::returns_indirectly(const RBX::Reflection::Type* type) noexcept
+	{
+		if (!type)
+			return false;
+
+		switch (classify(*type).kind)
+		{
+		case MarshalKind::Tuple:
+		case MarshalKind::InstanceArray:
+		case MarshalKind::RefInstance:
+		case MarshalKind::Instance:
+		case MarshalKind::String:
+		case MarshalKind::Blittable: return true;
 		default: return false;
 		}
 	}

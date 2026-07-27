@@ -1,33 +1,74 @@
 #pragma once
 
 #include <cstddef>
+#include <initializer_list>
 #include <new>
 #include <utility>
 
 namespace rml::qt::detail
 {
-	[[nodiscard]] void* core_export(const char* mangled);
-
-	[[nodiscard]] void* widgets_export(const char* mangled);
-
-	[[nodiscard]] void* gui_export(const char* mangled);
+	[[nodiscard]] void* core_export(const char* signature);
+	[[nodiscard]] void* widgets_export(const char* signature);
+	[[nodiscard]] void* gui_export(const char* signature);
+	[[nodiscard]] void* core_export_optional(const char* signature);
+	[[nodiscard]] void* widgets_export_optional(const char* signature);
+	[[nodiscard]] void* gui_export_optional(const char* signature);
+	[[nodiscard]] void* core_export(std::initializer_list<const char*> signatures);
+	[[nodiscard]] void* widgets_export(std::initializer_list<const char*> signatures);
+	[[nodiscard]] void* gui_export(std::initializer_list<const char*> signatures);
 
 	template<typename Fn>
-	[[nodiscard]] Fn core(const char* mangled)
+	[[nodiscard]] Fn core(const char* signature)
 	{
-		return reinterpret_cast<Fn>(core_export(mangled));
+		return reinterpret_cast<Fn>(core_export(signature));
 	}
 
 	template<typename Fn>
-	[[nodiscard]] Fn widgets(const char* mangled)
+	[[nodiscard]] Fn widgets(const char* signature)
 	{
-		return reinterpret_cast<Fn>(widgets_export(mangled));
+		return reinterpret_cast<Fn>(widgets_export(signature));
 	}
 
 	template<typename Fn>
-	[[nodiscard]] Fn gui(const char* mangled)
+	[[nodiscard]] Fn gui(const char* signature)
 	{
-		return reinterpret_cast<Fn>(gui_export(mangled));
+		return reinterpret_cast<Fn>(gui_export(signature));
+	}
+
+	template<typename Fn>
+	[[nodiscard]] Fn core_optional(const char* signature)
+	{
+		return reinterpret_cast<Fn>(core_export_optional(signature));
+	}
+
+	template<typename Fn>
+	[[nodiscard]] Fn widgets_optional(const char* signature)
+	{
+		return reinterpret_cast<Fn>(widgets_export_optional(signature));
+	}
+
+	template<typename Fn>
+	[[nodiscard]] Fn gui_optional(const char* signature)
+	{
+		return reinterpret_cast<Fn>(gui_export_optional(signature));
+	}
+
+	template<typename Fn>
+	[[nodiscard]] Fn core(std::initializer_list<const char*> signatures)
+	{
+		return reinterpret_cast<Fn>(core_export(signatures));
+	}
+
+	template<typename Fn>
+	[[nodiscard]] Fn widgets(std::initializer_list<const char*> signatures)
+	{
+		return reinterpret_cast<Fn>(widgets_export(signatures));
+	}
+
+	template<typename Fn>
+	[[nodiscard]] Fn gui(std::initializer_list<const char*> signatures)
+	{
+		return reinterpret_cast<Fn>(gui_export(signatures));
 	}
 
 	inline constexpr std::size_t WIDGET_INSTANCE_SIZE = 128;

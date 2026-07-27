@@ -1,11 +1,21 @@
 #pragma once
 
+#include "RobloxModLoader/internal/platform.hpp"
+
 #include <coreclr_delegates.h>
 #include <hostfxr.h>
 #include <nethost.h>
 
+#if defined(RML_WINDOWS)
+	#define RML_HOST_STR(s) L##s
+#else
+	#define RML_HOST_STR(s) s
+#endif
+
 namespace rml::dotnet
 {
+	using host_string_view = std::basic_string_view<char_t>;
+
 	class DotnetRuntime
 	{
 	public:
@@ -27,7 +37,7 @@ namespace rml::dotnet
 		}
 
 		template<typename FnT>
-		[[nodiscard]] std::expected<FnT, std::string> get_function(const std::filesystem::path& assembly, const std::wstring_view type_name, const std::wstring_view method_name) const
+		[[nodiscard]] std::expected<FnT, std::string> get_function(const std::filesystem::path& assembly, const host_string_view type_name, const host_string_view method_name) const
 		{
 			if (!m_initialized)
 				return std::unexpected("DotnetRuntime not initialized");

@@ -1,12 +1,6 @@
 #pragma once
 
-#if defined(_WIN32)
-	#define RML_WINDOWS
-#elif defined(__linux__)
-	#define RML_LINUX
-#elif defined(__APPLE__)
-	#define RML_MACOS
-#endif
+#include "RobloxModLoader/internal/platform.hpp"
 
 #include "RobloxModLoader/rml_export.hpp"
 #include "range.hpp"
@@ -19,6 +13,7 @@
 #include <optional>
 #include <string>
 #include <string_view>
+#include <unordered_map>
 
 namespace rml::memory
 {
@@ -49,6 +44,7 @@ namespace rml::memory
 		}
 
 		[[nodiscard]] handle get_export(std::string_view symbol_name) const;
+		[[nodiscard]] handle find_export(std::string_view signature) const;
 
 		/// Spin-wait until the module appears in the process.
 		bool wait_for_module(std::optional<std::chrono::steady_clock::duration> timeout = std::nullopt);
@@ -64,6 +60,7 @@ namespace rml::memory
 	private:
 		bool try_get_module_locked();
 		void reset_state_locked() noexcept;
+		void build_export_index_locked() const;
 
 #if defined(RML_LINUX)
 		struct PhdrSearchCtx
@@ -79,6 +76,9 @@ namespace rml::memory
 
 		std::string m_name;                          // base name for lookups
 		std::optional<std::filesystem::path> m_path; // full path (by-path mode)
+		
+		mutable std::unordered_map<std::string, void*> m_export_index;
+		mutable bool m_export_index_built = false;
 
 		bool m_loaded = false;
 

@@ -26,7 +26,13 @@ namespace rml::native
 		std::expected<void, std::string> reload(const std::filesystem::path& path) override;
 		[[nodiscard]] std::vector<std::filesystem::path> extensions() const override
 		{
+#if defined(RML_WINDOWS)
 			return {".dll"};
+#elif defined(RML_MACOS)
+			return {".dylib", ".so"};
+#else
+			return {".so"};
+#endif
 		}
 		void unload_all() override;
 

@@ -1,4 +1,5 @@
 
+#include "RobloxModLoader/memory/foreign_call.hpp"
 #include "roblox_interop_provider.hpp"
 
 #include "RobloxModLoader/logger/logger.hpp"
@@ -70,11 +71,15 @@ namespace rml::dotnet
 
 	void invoke_reflection_function(RBX::Reflection::DescribedBase* instance, const RBX::Reflection::FunctionDescriptor& descriptor, const InteropVariant* args, const uint32_t arg_count, InteropVariant& out)
 	{
-		DotNetArguments arguments{args, arg_count};
+
+		DotNetArguments arguments{args, arg_count, &descriptor.get_signature()};
 
 		const auto function = RBX::Function(descriptor, instance);
-		const auto ret = function.invoke(arguments);
+
 		const auto type = descriptor.get_signature().first_result_type();
+		const bool indirect_result = TypeMarshaler::returns_indirectly(type);
+
+		const auto ret = function.invoke(arguments, indirect_result);
 
 		TypeMarshaler::encode_return_value(type, ret, reinterpret_cast<uintptr_t>(&arguments.return_value), out);
 	}
@@ -126,14 +131,19 @@ namespace rml::dotnet
 			{
 				auto* instance = as_instance(instance_ptr);
 				if (!instance || !function_name)
+				{
 					return;
+				}
 
 				const auto* descriptor = instance->get_descriptor().find_function(function_name);
+
 				if (!descriptor)
 					return;
 
 				InteropVariant local_result{};
-				invoke_reflection_function(instance, *descriptor, args, arg_count, out_result ? *out_result : local_result);
+				auto& result = out_result ? *out_result : local_result;
+				invoke_reflection_function(instance, *descriptor, args, arg_count, result);
+
 			}
 			catch (const std::exception& e)
 			{
@@ -228,10 +238,12 @@ namespace rml::dotnet
 					return;
 
 				const auto property_descriptor = instance->get_descriptor().find_property(property_name);
+
 				if (!property_descriptor)
 					return;
 
 				(void)TypeMarshaler::decode_property(property_descriptor, instance, *value);
+
 			}
 			catch (const std::exception& e)
 			{
@@ -246,6 +258,7 @@ namespace rml::dotnet
 		table.reflection_event_connect = [](const uintptr_t instance_ptr, const char* event_name, const ManagedEventCallback callback, void* state) -> uintptr_t {
 			try
 			{
+
 				if (!callback)
 					return 0;
 
@@ -306,9 +319,21 @@ namespace rml::dotnet
 			{
 				const auto atom = g_pointers->m_roblox_pointers.get_string_atom(class_name);
 
-				uintptr_t out{};
-				g_pointers->m_roblox_pointers.object_create_by_name(&out, 0, atom, creator_role);
+				struct CreatedInstance
+				{
+					uintptr_t instance;
+					uintptr_t control_block;
+				};
 
+				CreatedInstance created{};
+				memory::call_returning<CreatedInstance>(
+				    reinterpret_cast<void*>(g_pointers->m_roblox_pointers.object_create_by_name),
+				    created,
+				    uintptr_t{0},
+				    static_cast<uintptr_t>(atom),
+				    static_cast<uint32_t>(creator_role));
+
+				const auto out = created.instance;
 				if (!out)
 				{
 					RML_ERROR("creator_create_by_name('{}') failed: null instance", class_name);

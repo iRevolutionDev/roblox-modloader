@@ -1,4 +1,6 @@
 #pragma once
+
+#include <cstdlib>
 #include "RobloxModLoader/logger/logger.hpp"
 #include "RobloxModLoader/roblox/reflection/event_descriptor.hpp"
 #include "RobloxModLoader/roblox/signals.hpp"

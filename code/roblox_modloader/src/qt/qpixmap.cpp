@@ -1,5 +1,6 @@
 #include "RobloxModLoader/qt/qpixmap.hpp"
 
+#include "RobloxModLoader/memory/foreign_call.hpp"
 #include "RobloxModLoader/qt/qcolor.hpp"
 #include "RobloxModLoader/qt/qstring.hpp"
 #include "RobloxModLoader/qt/qt_module.hpp"
@@ -8,7 +9,7 @@ namespace rml::qt
 {
 	QPixmap::QPixmap(const std::string_view file_path)
 	{
-		static const auto ctor = detail::gui<void (*)(void*, const void*, const char*, int)>("??0QPixmap@@QEAA@AEBVQString@@PEBDV?$QFlags@W4ImageConversionFlag@Qt@@@@@Z");
+		static const auto ctor = detail::gui<void (*)(void*, const void*, const char*, int)>("QPixmap::QPixmap(QString const&, char const*, QFlags<Qt::ImageConversionFlag>)");
 		if (!ctor)
 			return;
 
@@ -19,7 +20,7 @@ namespace rml::qt
 
 	QPixmap::QPixmap(const int width, const int height)
 	{
-		static const auto ctor = detail::gui<void (*)(void*, int, int)>("??0QPixmap@@QEAA@HH@Z");
+		static const auto ctor = detail::gui<void (*)(void*, int, int)>("QPixmap::QPixmap(int, int)");
 		if (!ctor)
 			return;
 		ctor(m_storage, width, height);
@@ -31,7 +32,7 @@ namespace rml::qt
 		if (!other.owned())
 			return;
 
-		static const auto copy_ctor = detail::gui<void (*)(void*, const void*)>("??0QPixmap@@QEAA@AEBV0@@Z");
+		static const auto copy_ctor = detail::gui<void (*)(void*, const void*)>("QPixmap::QPixmap(QPixmap const&)");
 		if (!copy_ctor)
 			return;
 
@@ -56,7 +57,7 @@ namespace rml::qt
 
 		if (other.owned())
 		{
-			static const auto copy_ctor = detail::gui<void (*)(void*, const void*)>("??0QPixmap@@QEAA@AEBV0@@Z");
+			static const auto copy_ctor = detail::gui<void (*)(void*, const void*)>("QPixmap::QPixmap(QPixmap const&)");
 			if (copy_ctor)
 			{
 				copy_ctor(m_storage, other.m_storage);
@@ -90,7 +91,7 @@ namespace rml::qt
 		if (!owned())
 			return;
 
-		static const auto dtor = detail::gui<void (*)(void*)>("??1QPixmap@@UEAA@XZ");
+		static const auto dtor = detail::gui<void (*)(void*)>("QPixmap::~QPixmap()");
 		if (dtor)
 			dtor(m_storage);
 		set_owned(false);
@@ -98,26 +99,26 @@ namespace rml::qt
 
 	int QPixmap::width() const
 	{
-		static const auto fn = detail::gui<int (*)(const void*)>("?width@QPixmap@@QEBAHXZ");
+		static const auto fn = detail::gui<int (*)(const void*)>("QPixmap::width() const");
 		return fn ? fn(m_storage) : 0;
 	}
 
 	int QPixmap::height() const
 	{
-		static const auto fn = detail::gui<int (*)(const void*)>("?height@QPixmap@@QEBAHXZ");
+		static const auto fn = detail::gui<int (*)(const void*)>("QPixmap::height() const");
 		return fn ? fn(m_storage) : 0;
 	}
 
 	void QPixmap::fill(const QColor& color) const
 	{
-		static const auto fn = detail::gui<void (*)(const void*, const void*)>("?fill@QPixmap@@QEAAXAEBVQColor@@@Z");
+		static const auto fn = detail::gui<void (*)(const void*, const void*)>("QPixmap::fill(QColor const&)");
 		if (fn)
 			fn(m_storage, color.data());
 	}
 
 	bool QPixmap::save(const std::string_view file_path) const
 	{
-		static const auto fn = detail::gui<bool (*)(const void*, const void*, const char*, int)>("?save@QPixmap@@QEBA_NAEBVQString@@PEBDH@Z");
+		static const auto fn = detail::gui<bool (*)(const void*, const void*, const char*, int)>("QPixmap::save(QString const&, char const*, int) const");
 		if (!fn)
 			return false;
 		const QString path(file_path);
@@ -126,32 +127,34 @@ namespace rml::qt
 
 	QPixmap QPixmap::scaled(const int width, const int height, const AspectMode aspect, const TransformMode transform) const
 	{
-		static const auto fn = detail::gui<void (*)(const void* self, void* sret, int, int, int, int)>("?scaled@QPixmap@@QEBA?AV1@HHW4AspectRatioMode@Qt@@W4TransformationMode@3@@Z");
+		static void* const fn = detail::gui_export("QPixmap::scaled(QSize const&, Qt::AspectRatioMode, Qt::TransformationMode) const");
 
 		QPixmap result;
 		if (!fn || !owned() || width <= 0 || height <= 0)
 			return result;
 
-		fn(m_storage, result.m_storage, width, height, static_cast<int>(aspect), static_cast<int>(transform));
+		const int size[2]{width, height};
+		memory::call_returning_member(fn, result.m_storage, static_cast<const void*>(m_storage),
+		    static_cast<const void*>(size), static_cast<int>(aspect), static_cast<int>(transform));
 		result.set_owned(true);
 		return result;
 	}
 
 	QPixmap QPixmap::blurred(const double radius) const
 	{
-		static const auto to_image = detail::gui<void (*)(const void* self, void* sret)>("?toImage@QPixmap@@QEBA?AVQImage@@XZ");
-		static const auto blur = detail::widgets<void (*)(void* image, double radius, bool quality, int transposed)>("?qt_blurImage@@YAXAEAVQImage@@N_NH@Z");
-		static const auto from_image = detail::gui<void (*)(void* sret, const void* image, int flags)>("?fromImage@QPixmap@@SA?AV1@AEBVQImage@@V?$QFlags@W4ImageConversionFlag@Qt@@@@@Z");
-		static const auto image_dtor = detail::gui<void (*)(void*)>("??1QImage@@UEAA@XZ");
+		static void* const to_image = detail::gui_export("QPixmap::toImage() const");
+		static const auto blur = detail::widgets<void (*)(void* image, double radius, bool quality, int transposed)>("qt_blurImage(QImage&, double, bool, int)");
+		static void* const from_image = detail::gui_export("QPixmap::fromImage(QImage const&, QFlags<Qt::ImageConversionFlag>)");
+		static const auto image_dtor = detail::gui<void (*)(void*)>("QImage::~QImage()");
 
 		QPixmap result;
 		if (!to_image || !blur || !from_image || !owned() || radius <= 0.0)
 			return result;
 
 		alignas(void*) unsigned char image_storage[32]{};
-		to_image(m_storage, image_storage);
+		memory::call_returning_member(to_image, image_storage, static_cast<const void*>(m_storage));
 		blur(image_storage, radius, true, 0);
-		from_image(result.m_storage, image_storage, 0);
+		memory::call_returning(from_image, result.m_storage, static_cast<const void*>(image_storage), 0);
 		result.set_owned(true);
 
 		if (image_dtor)

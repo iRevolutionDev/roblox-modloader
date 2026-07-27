@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  managed:
+    name: Managed (${{ matrix.config }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        config: [ Debug, Release ]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: nuget-${{ runner.os }}-${{ hashFiles('**/*.csproj', '**/*.slnx') }}
+          restore-keys: |
+            nuget-${{ runner.os }}-
+
+      - name: Build all managed solutions
+        shell: bash
+        run: |
+          set -euo pipefail
+          solutions=(
+            "code/dotnet/Runtime/Runtime.slnx"
+            "code/dotnet/Roblox/Roblox.slnx"
+            "examples/example_dotnet/ExampleMod.slnx"
+            "examples/discord_rpc_dotnet/RobloxDiscord.RPC.slnx"
+          )
+          for sln in "${solutions[@]}"; do
+            echo "::group::dotnet build $sln (${{ matrix.config }})"
+            dotnet build "$sln" -c "${{ matrix.config }}" --nologo
+            echo "::endgroup::"
+          done
+
+      - name: Test managed
+        shell: bash
+        run: |
+          set -euo pipefail
+          dotnet test code/dotnet/Runtime/Runtime.slnx -c "${{ matrix.config }}" --nologo
+          dotnet test code/dotnet/Roblox/Roblox.slnx   -c "${{ matrix.config }}" --nologo
+
+  native:
+    name: Native
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [ windows, macos ]
+    uses: ./.github/workflows/_build-package.yml
+    with:
+      platform: ${{ matrix.platform }}
+      retention_days: 14

@@ -1,20 +1,9 @@
 #include "RobloxModLoader/roblox/data_model.hpp"
 
-#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/roblox/data_model_job.hpp"
 
 namespace RBX
 {
-	DataModelType DataModel::get_type() const
-	{
-		return m_type;
-	}
-
-	bool DataModel::is_initialized() const
-	{
-		return m_initialized;
-	}
-
 	DataModel* DataModel::from_job(const DataModelJob* job)
 	{
 		if (job == nullptr)

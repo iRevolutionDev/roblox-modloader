@@ -5,20 +5,18 @@
 #include <string>
 #include <system_error>
 
-#include <MinHook.h>
-
 namespace rml
 {
 	struct HookError
 	{
 		std::string context;
 		std::uintptr_t address{};
-		MH_STATUS minhook_status{MH_UNKNOWN};
+		std::string status_message;
 		std::error_code system_error{};
 
 		[[nodiscard]] std::string describe() const;
 
-		[[nodiscard]] static HookError from_minhook(std::string context, std::uintptr_t address, MH_STATUS status);
+		[[nodiscard]] static HookError from_status(std::string context, std::uintptr_t address, std::string status_message);
 
 		[[nodiscard]] static HookError from_system_error(std::string context, std::uintptr_t address, std::error_code error);
 	};

@@ -1,6 +1,7 @@
 #include "application.hpp"
 
 #include "RobloxModLoader/internal/common.hpp"
+#include "RobloxModLoader/version.hpp"
 #include "RobloxModLoader/qt/qt_integration.hpp"
 #include "subsystems/config_subsystem.hpp"
 #include "subsystems/logger_subsystem.hpp"
@@ -33,6 +34,8 @@ namespace rml
 
 	std::expected<void, SubsystemError> Application::initialize()
 	{
+		RML_INFO("Initializing Roblox Mod Loader {}...", version::string());
+
 		auto event_manager_subsystem = std::make_unique<EventManagerSubsystem>();
 		auto& event_manager_subsystem_ref = *event_manager_subsystem;
 

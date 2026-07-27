@@ -1,4 +1,16 @@
-find_program(DOTNET_EXECUTABLE dotnet REQUIRED)
+find_program(DOTNET_EXECUTABLE dotnet
+        HINTS
+        ENV DOTNET_ROOT
+        /opt/homebrew/bin
+        /usr/local/bin
+        /usr/local/share/dotnet
+        /usr/share/dotnet
+)
+
+if (NOT DOTNET_EXECUTABLE)
+    message(WARNING "[RML] dotnet CLI not found; skipping managed (.NET) projects. Install the .NET SDK or add it to PATH to build them.")
+    return()
+endif ()
 
 if (NOT DEFINED RML_DOTNET_CONFIGURATION)
     if (CMAKE_CONFIGURATION_TYPES)

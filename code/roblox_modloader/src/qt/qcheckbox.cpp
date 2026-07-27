@@ -7,7 +7,7 @@ namespace rml::qt
 {
 	QCheckBox* QCheckBox::create(const std::string_view text, QWidget* parent)
 	{
-		static const auto construct = detail::widgets<void* (*)(void*, const void*, void*)>("??0QCheckBox@@QEAA@AEBVQString@@PEAVQWidget@@@Z");
+		static const auto construct = detail::widgets<void* (*)(void*, const void*, void*)>("QCheckBox::QCheckBox(QString const&, QWidget*)");
 		if (!construct)
 			return nullptr;
 
@@ -22,7 +22,7 @@ namespace rml::qt
 
 	void QCheckBox::destroy(QCheckBox* box)
 	{
-		static const auto dtor = detail::widgets<void (*)(void*)>("??1QCheckBox@@UEAA@XZ");
+		static const auto dtor = detail::widgets<void (*)(void*)>("QCheckBox::~QCheckBox()");
 		detail::heap_destroy(dtor, box);
 	}
 }

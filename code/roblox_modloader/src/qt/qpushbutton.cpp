@@ -7,7 +7,7 @@ namespace rml::qt
 {
 	QPushButton* QPushButton::create(const std::string_view text, QWidget* parent)
 	{
-		static const auto construct = detail::widgets<void* (*)(void*, const void*, void*)>("??0QPushButton@@QEAA@AEBVQString@@PEAVQWidget@@@Z");
+		static const auto construct = detail::widgets<void* (*)(void*, const void*, void*)>("QPushButton::QPushButton(QString const&, QWidget*)");
 		if (!construct)
 			return nullptr;
 
@@ -22,7 +22,7 @@ namespace rml::qt
 
 	void QPushButton::destroy(QPushButton* button)
 	{
-		static const auto dtor = detail::widgets<void (*)(void*)>("??1QPushButton@@UEAA@XZ");
+		static const auto dtor = detail::widgets<void (*)(void*)>("QPushButton::~QPushButton()");
 		detail::heap_destroy(dtor, button);
 	}
 }
