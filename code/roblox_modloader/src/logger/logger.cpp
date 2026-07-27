@@ -10,7 +10,7 @@
 #include "spdlog/sinks/base_sink.h"
 #include "spdlog/sinks/daily_file_sink.h"
 #include "RobloxModLoader/logger/platform_console.hpp"
-#include "utils/directory.hpp"
+#include "filesystem/directory.hpp"
 
 #include <atomic>
 #include <filesystem>
@@ -157,7 +157,7 @@ namespace
 
 	void ensure_log_directory()
 	{
-		const auto root = rml::utils::directory::get_module_directory();
+		const auto root = rml::filesystem::directory::get_module_directory();
 
 		std::filesystem::create_directories(root / "RobloxModLoader" / "logs");
 	}
@@ -166,7 +166,7 @@ namespace
 	{
 		if (!global_logger_holder::console_sink)
 		{
-			const auto root = rml::utils::directory::get_module_directory();
+			const auto root = rml::filesystem::directory::get_module_directory();
 
 			const auto log_file = root / "RobloxModLoader" / "logs" / "roblox_modloader.log";
 

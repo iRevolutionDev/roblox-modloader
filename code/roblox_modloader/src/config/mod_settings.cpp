@@ -1,12 +1,12 @@
 #include "RobloxModLoader/config/mod_settings.hpp"
 
 #include "RobloxModLoader/internal/common.hpp"
-
-#include "utils/file_watcher.hpp"
+#include "filesystem/file.hpp"
+#include "filesystem/file_watcher.hpp"
 
 #include <chrono>
-#include <fstream>
 #include <shared_mutex>
+#include <sstream>
 #include <toml++/toml.hpp>
 #include <utility>
 
@@ -27,7 +27,7 @@ namespace rml::config
 		toml::table table;
 
 		std::function<void()> on_change;
-		utils::FileWatcher watcher;
+		filesystem::FileWatcher watcher;
 	};
 
 	ModSettings::ModSettings(std::filesystem::path config_path) :
@@ -54,13 +54,13 @@ namespace rml::config
 
 	bool ModSettings::load() const
 	{
-		auto result = toml::parse_file(m_impl->config_path.string());
+		auto result = filesystem::File(m_impl->config_path).read_toml();
 		if (!result)
 			return false;
 
 		std::unique_lock lock(m_impl->mutex);
-		m_impl->table = std::move(result).table();
-		m_impl->watcher.acknowledge(utils::read_last_write_time(m_impl->config_path));
+		m_impl->table = std::move(*result);
+		m_impl->watcher.acknowledge(filesystem::File(m_impl->config_path).last_write_time());
 		return true;
 	}
 
@@ -68,25 +68,16 @@ namespace rml::config
 	{
 		try
 		{
-			if (const auto parent = m_impl->config_path.parent_path(); !parent.empty())
-			{
-				std::error_code ec;
-				std::filesystem::create_directories(parent, ec);
-			}
-
+			std::ostringstream serialized;
 			{
 				std::shared_lock lock(m_impl->mutex);
-
-				std::ofstream file(m_impl->config_path, std::ios::trunc);
-				if (!file.is_open())
-					return false;
-
-				file << m_impl->table;
-				if (!file.good())
-					return false;
+				serialized << m_impl->table;
 			}
 
-			m_impl->watcher.acknowledge(utils::read_last_write_time(m_impl->config_path));
+			if (!filesystem::File(m_impl->config_path).write_text(serialized.str()))
+				return false;
+
+			m_impl->watcher.acknowledge(filesystem::File(m_impl->config_path).last_write_time());
 			return true;
 		}
 		catch (const std::exception&)
@@ -102,18 +93,7 @@ namespace rml::config
 
 		try
 		{
-			if (const auto parent = m_impl->config_path.parent_path(); !parent.empty())
-			{
-				std::error_code ec;
-				std::filesystem::create_directories(parent, ec);
-			}
-
-			std::ofstream file(m_impl->config_path, std::ios::trunc);
-			if (!file.is_open())
-				return false;
-
-			file << contents;
-			return file.good();
+			return filesystem::File(m_impl->config_path).write_text(contents).has_value();
 		}
 		catch (const std::exception&)
 		{
@@ -128,8 +108,7 @@ namespace rml::config
 
 	bool ModSettings::exists_on_disk() const
 	{
-		std::error_code ec;
-		return std::filesystem::exists(m_impl->config_path, ec);
+		return filesystem::File(m_impl->config_path).exists();
 	}
 
 	bool ModSettings::get_bool(const std::string_view key, const bool fallback) const

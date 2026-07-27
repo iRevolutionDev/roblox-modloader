@@ -7,7 +7,7 @@
 #include "lstate.h"
 #include "ltable.h"
 #include "pointers.hpp"
-#include "utils/directory.hpp"
+#include "filesystem/directory.hpp"
 #include <Luau/CodeGen.h>
 #include <Luau/Compiler.h>
 
@@ -257,7 +257,7 @@ namespace rml::luau::environment
 	{
 		try
 		{
-			const auto exe_dir = utils::directory::get_executable_directory();
+			const auto exe_dir = filesystem::directory::get_executable_directory();
 			const auto rml_dir = exe_dir / "RobloxModLoader" / "libraries";
 
 			for (const std::vector<std::string> extensions = {".lua", ".luau"}; const auto& ext : extensions)

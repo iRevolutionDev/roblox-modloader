@@ -5,6 +5,7 @@
 #include "RobloxModLoader/config/config_serialization.hpp"
 #include "RobloxModLoader/luau/environment/environment.hpp"
 #include "config/config.hpp"
+#include "filesystem/file.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
 #include "lobject.h"
 
@@ -299,14 +300,13 @@ namespace rml::luau {
                 return std::nullopt;
             }
 
-            auto parse_result = toml::parse_file(config_path.string());
+            const auto parse_result = filesystem::File(config_path).read_toml();
             if (!parse_result) {
-                LOG_ERROR("Failed to parse mod config '{}': {}", config_path.string(),
-                          parse_result.error().description());
+                LOG_ERROR("Failed to read mod config '{}': {}", config_path.string(), parse_result.error());
                 return std::nullopt;
             }
 
-            auto mod_config_result = config::serialization::mod_config_from_toml(parse_result.table());
+            auto mod_config_result = config::serialization::mod_config_from_toml(*parse_result);
             if (!mod_config_result) {
                 LOG_ERROR("Failed to deserialize mod config: {}", config_path.string());
                 return std::nullopt;

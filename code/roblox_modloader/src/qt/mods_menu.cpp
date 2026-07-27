@@ -10,7 +10,7 @@
 #include "RobloxModLoader/qt/qstring.hpp"
 #include "RobloxModLoader/version.hpp"
 #include "logo.hpp"
-#include "utils/directory.hpp"
+#include "filesystem/directory.hpp"
 #include "utils/shell.hpp"
 
 namespace rml::qt
@@ -28,7 +28,7 @@ namespace rml::qt
 			return;
 		}
 
-		const auto logo_path = utils::directory::get_mod_loader_directory() / "assets" / "logo.png";
+		const auto logo_path = filesystem::directory::get_mod_loader_directory() / "assets" / "logo.png";
 		std::error_code ec;
 		std::filesystem::create_directories(logo_path.parent_path(), ec);
 		if (std::ofstream out{logo_path, std::ios::binary | std::ios::trunc})
@@ -371,13 +371,13 @@ namespace rml::qt
 		};
 
 		emit_builtin("Open Mods Folder", [] {
-			utils::shell::open_folder(utils::directory::get_mod_loader_directory() / "mods");
+			utils::shell::open_folder(filesystem::directory::get_mod_loader_directory() / "mods");
 		});
 		emit_builtin("Open Logs Folder", [] {
-			utils::shell::open_folder(utils::directory::get_mod_loader_directory() / "logs");
+			utils::shell::open_folder(filesystem::directory::get_mod_loader_directory() / "logs");
 		});
 		emit_builtin("Open Config", [] {
-			utils::shell::open(utils::directory::get_mod_loader_directory() / "config.toml");
+			utils::shell::open(filesystem::directory::get_mod_loader_directory() / "config.toml");
 		});
 
 		if (!root_children.empty())

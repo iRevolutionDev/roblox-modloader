@@ -7,10 +7,8 @@
 #include <stop_token>
 #include <thread>
 
-namespace rml::utils
+namespace rml::filesystem
 {
-	std::filesystem::file_time_type read_last_write_time(const std::filesystem::path& path);
-
 	class FileWatcher
 	{
 	public:

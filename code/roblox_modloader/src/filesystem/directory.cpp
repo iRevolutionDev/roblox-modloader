@@ -3,7 +3,7 @@
 #include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/platform/memory/host_image.hpp"
 
-namespace rml::utils
+namespace rml::filesystem
 {
 	std::filesystem::path directory::get_module_directory()
 	{

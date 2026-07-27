@@ -1,15 +1,10 @@
 #include "file_watcher.hpp"
 
-namespace rml::utils
+#include "file.hpp"
+
+namespace rml::filesystem
 {
 	using namespace std::chrono_literals;
-
-	std::filesystem::file_time_type read_last_write_time(const std::filesystem::path& path)
-	{
-		std::error_code ec;
-		const auto time = std::filesystem::last_write_time(path, ec);
-		return ec ? std::filesystem::file_time_type{} : time;
-	}
 
 	FileWatcher::~FileWatcher()
 	{
@@ -22,7 +17,7 @@ namespace rml::utils
 
 		{
 			std::lock_guard lock(m_baseline_mutex);
-			m_baseline = read_last_write_time(path);
+			m_baseline = File(path).last_write_time();
 		}
 
 		m_thread = std::jthread([this, path = std::move(path), poll_interval, on_changed = std::move(on_changed)](const std::stop_token& stop_token) {
@@ -57,7 +52,7 @@ namespace rml::utils
 			if (stop_token.stop_requested())
 				break;
 
-			const auto current = read_last_write_time(path);
+			const auto current = File(path).last_write_time();
 
 			std::filesystem::file_time_type baseline;
 			{

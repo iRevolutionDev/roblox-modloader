@@ -1,7 +1,7 @@
 #pragma once
 
 #include "RobloxModLoader/config/config_types.hpp"
-#include "utils/file_watcher.hpp"
+#include "filesystem/file_watcher.hpp"
 
 #include <functional>
 #include <shared_mutex>
@@ -25,6 +25,8 @@ namespace rml::config {
 
         ConfigResult<void> load_config(const std::filesystem::path &config_path);
 
+        ConfigResult<void> load_or_create(const std::filesystem::path &config_path);
+
         ConfigResult<void> save_config(const std::filesystem::path &config_path) const;
 
         [[nodiscard]] const CoreConfig &get_core_config() const;
@@ -38,17 +40,19 @@ namespace rml::config {
 
         void stop_watching();
 
-        static ConfigResult<void> create_default_config(const std::filesystem::path &config_path);
-
     private:
         mutable std::shared_mutex m_config_mutex;
         CoreConfig m_core_config;
 
-        utils::FileWatcher m_watcher;
+        filesystem::FileWatcher m_watcher;
 
         ConfigResult<void> load_core_config(const toml::table &table);
 
         [[nodiscard]] toml::table core_config_to_toml() const;
+
+        static void backup_broken_config(const std::filesystem::path &config_path);
+
+        ConfigResult<void> write_defaults(const std::filesystem::path &config_path);
     };
 
     ConfigManager &get_config_manager();

@@ -3,7 +3,7 @@
 #include "RobloxModLoader/internal/platform.hpp"
 
 #include "RobloxModLoader/internal/common.hpp"
-#include "utils/directory.hpp"
+#include "filesystem/directory.hpp"
 
 #if defined(RML_WINDOWS)
 	#include <Windows.h>
@@ -55,7 +55,7 @@ namespace rml::dotnet
 		char_t buf[2048]{};
 		size_t buf_size = sizeof(buf) / sizeof(char_t);
 
-		auto runtime_path = utils::directory::get_runtime_directory();
+		auto runtime_path = filesystem::directory::get_runtime_directory();
 
 #if !defined(RML_WINDOWS)
 		const auto bundled_dotnet_root = runtime_path / "dotnet";

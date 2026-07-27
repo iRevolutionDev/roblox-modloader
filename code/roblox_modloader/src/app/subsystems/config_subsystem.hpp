@@ -2,7 +2,7 @@
 
 #include "../isubsystem.hpp"
 #include "config/config.hpp"
-#include "utils/directory.hpp"
+#include "filesystem/directory.hpp"
 
 namespace rml
 {
@@ -11,7 +11,7 @@ namespace rml
 	public:
 		std::expected<void, SubsystemError> initialize() override
 		{
-			const auto config_path = utils::directory::get_mod_loader_directory() / "config.toml";
+			const auto config_path = filesystem::directory::get_mod_loader_directory() / "config.toml";
 			if (const auto config_result = config::initialize(config_path, true); !config_result)
 			{
 				return std::unexpected(SubsystemError{std::string(name()), "Failed to initialize configuration system"});

@@ -8,13 +8,11 @@ namespace rml::config {
                                          const bool create_default = true) {
         auto &config_mgr = get_config_manager();
 
-        if (!std::filesystem::exists(config_path) && create_default) {
-            if (auto result = ConfigManager::create_default_config(config_path); !result) {
-                return result;
-            }
+        if (!create_default) {
+            return config_mgr.load_config(config_path);
         }
 
-        return config_mgr.load_config(config_path);
+        return config_mgr.load_or_create(config_path);
     }
 
     inline void shutdown() {

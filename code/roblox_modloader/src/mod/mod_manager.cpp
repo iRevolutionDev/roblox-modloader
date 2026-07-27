@@ -3,7 +3,7 @@
 #include "RobloxModLoader/internal/common.hpp"
 #include "dotnet/dotnet_mod_loader.hpp"
 #include "native/native_mod_loader.hpp"
-#include "utils/directory.hpp"
+#include "filesystem/directory.hpp"
 
 #include <algorithm>
 #include <cctype>
@@ -21,7 +21,7 @@ namespace rml
 			return std::unexpected(ModManagerError(ModManagerError::Type::DirectoryNotFound, mods_path.error()));
 		}
 
-		const auto runtime_path = utils::directory::get_runtime_directory();
+		const auto runtime_path = filesystem::directory::get_runtime_directory();
 
 		register_loader(std::make_unique<native::NativeModLoader>(event_manager), ModKind::Native);
 		register_loader(std::make_unique<dotnet::DotnetModLoader>(runtime_path,
@@ -163,7 +163,7 @@ namespace rml
 
 	std::expected<std::filesystem::path, std::string> ModManager::get_mods_dir() noexcept
 	{
-		auto mod_loader_dir = utils::directory::get_mod_loader_directory() / "mods";
+		auto mod_loader_dir = filesystem::directory::get_mod_loader_directory() / "mods";
 		if (!std::filesystem::exists(mod_loader_dir))
 		{
 			if (std::error_code ec; !std::filesystem::create_directories(mod_loader_dir, ec))
