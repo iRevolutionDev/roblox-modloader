@@ -26,6 +26,7 @@ namespace rml::dumper::target
 	    {Anchor::lua_getinfo, "48 89 5C 24 ? 55 56 57 41 56 41 57 48 83 EC 20 33 ED 4C 63 DA"},
     {Anchor::lua_pushcclosurek,
      "48 89 5C 24 ? 48 89 6C 24 ? 48 89 74 24 ? 57 48 83 EC 20 48 8B D9 49 63 F9"},
+    {Anchor::luaC_enumheap, "40 53 48 83 EC 40 48 89 54 24 ? 48 8B D9"},
 	}};
 
 	const TargetProfile& windows_x64_profile()

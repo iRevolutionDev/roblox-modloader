@@ -174,6 +174,161 @@ check("a hook can keep the original and wrap it", function()
 	assert(target("world") == "hello world!", "the wrapper gave " .. target("world"))
 end)
 
+check("getgc walks the heap", function()
+	local objects = getgc()
+
+	assert(type(objects) == "table", "getgc gave back a " .. type(objects))
+	assert(#objects > 0, "the heap came back empty")
+
+	local kinds = {}
+	for _, value in ipairs(objects) do
+		kinds[type(value)] = true
+	end
+
+	assert(kinds["function"], "no function turned up on the heap")
+	assert(not kinds["table"], "tables came back without being asked for")
+	assert(#getgc(true) > #objects, "asking for tables added nothing")
+end)
+
+check("getgc finds an object we just made", function()
+	local needle = function() end
+
+	local found = false
+	for _, value in ipairs(getgc()) do
+		if value == needle then
+			found = true
+			break
+		end
+	end
+
+	assert(found, "a closure created moments ago is not on the heap")
+end)
+
+check("the userdata getgc returns is still a real engine object", function()
+	local seen = 0
+
+	for _, value in ipairs(getgc()) do
+		if type(value) == "userdata" then
+			assert(type(typeof(value)) == "string", "typeof refused a heap userdata")
+			seen += 1
+		end
+	end
+
+	say(("probe getgc returned %d userdata"):format(seen))
+end)
+
+check("getinfo survives every function the heap holds", function()
+	local seen = 0
+
+	for _, value in ipairs(getgc()) do
+		if type(value) == "function" then
+			debug.getinfo(value)
+			seen += 1
+		end
+	end
+
+	assert(seen > 0, "the heap held no functions at all")
+	say(("probe getinfo answered for %d heap functions"):format(seen))
+end)
+
+check("getinfo answers for a c closure", function()
+	local info = debug.getinfo(print)
+
+	assert(type(info) == "table", "a c closure gave back a " .. type(info))
+	assert(info.what == "C", "what = " .. tostring(info.what))
+end)
+
+check("iscclosure and islclosure tell the two apart", function()
+	local function written_in_luau()
+	end
+
+	assert(islclosure(written_in_luau), "a luau function is not reported as one")
+	assert(not iscclosure(written_in_luau), "a luau function is reported as a c closure")
+	assert(iscclosure(print), "print is not reported as a c closure")
+	assert(not islclosure(print), "print is reported as a luau closure")
+end)
+
+check("clonefunction makes a copy that stands on its own", function()
+	local function speaker()
+		return "the original line"
+	end
+
+	local copy = clonefunction(speaker)
+
+	assert(copy ~= speaker, "the clone is the very same object")
+	assert(copy() == "the original line", "the clone does not behave like the original")
+end)
+
+check("hookfunction swaps a luau function and hands back the original", function()
+	local function target(a, b)
+		return a + b
+	end
+
+	local function replacement(a, b)
+		return a * b
+	end
+
+	assert(target(2, 3) == 5, "target is not adding to begin with")
+
+	local original = hookfunction(target, replacement)
+
+	assert(target(2, 3) == 6, "the hook never took")
+	assert(original(2, 3) == 5, "the original handed back does not add")
+end)
+
+check("newlclosure wraps a function without capturing anything", function()
+	local wrapped = newlclosure(function(a, b)
+		return a * b
+	end)
+
+	assert(islclosure(wrapped), "the wrapper is not a luau closure")
+	assert(debug.getinfo(wrapped).nups == 0, "the wrapper captured " .. debug.getinfo(wrapped).nups .. " values")
+	assert(wrapped(2, 3) == 6, "the wrapper does not forward to what it wraps")
+end)
+
+check("hookfunction wraps a replacement that captures too much", function()
+	local function target(a, b)
+		return a + b
+	end
+
+	local captured = tonumber("10")
+	local function replacement(a, b)
+		return a * b + captured
+	end
+
+	assert(debug.getinfo(target).nups == 0, "the target was supposed to capture nothing")
+	assert(debug.getinfo(replacement).nups > 0, "the replacement was supposed to capture something")
+
+	hookfunction(target, replacement)
+
+	assert(target(2, 3) == 16, "the hook gave " .. tostring(target(2, 3)))
+end)
+
+check("hookfunction takes a c closure as the replacement", function()
+	local function target(...)
+		return "not hooked"
+	end
+
+	hookfunction(target, print)
+	assert(target ~= nil, "the target went missing")
+end)
+
+check("restorefunction puts a hooked function back", function()
+	local function target(a, b)
+		return a + b
+	end
+
+	local function replacement(a, b)
+		return a * b
+	end
+
+	hookfunction(target, replacement)
+	assert(target(2, 3) == 6, "the hook never took")
+
+	restorefunction(target)
+	assert(target(2, 3) == 5, "the function was not put back")
+end)
+
 local function probe(name, body)
 	local ok, err = pcall(body)
 	if not ok then

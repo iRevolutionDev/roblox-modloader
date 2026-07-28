@@ -64,7 +64,7 @@ static std::string_view describe(const disasm::ConstantKind kind)
 TEST_CASE("dump an anchor trace")
 {
 	const auto anchors_wanted = requested_anchors();
-	if (anchors_wanted.empty())
+	if (anchors_wanted.empty() && std::getenv("RML_DUMP_RVA") == nullptr)
 		return;
 
 	const auto path = tests::StudioBinary::windows();
@@ -82,6 +82,14 @@ TEST_CASE("dump an anchor trace")
 	REQUIRE(decoder.has_value());
 
 	std::vector<std::pair<std::string, Rva>> functions;
+
+	if (const char* wanted_rva = std::getenv("RML_DUMP_RVA"); wanted_rva != nullptr)
+	{
+		const auto address = static_cast<Rva>(std::strtoull(wanted_rva, nullptr, 16));
+		const auto bounds = image->functions().at(address);
+
+		functions.emplace_back(std::format("rva 0x{:X}", address), bounds ? bounds->begin : address);
+	}
 
 	const char* wanted_path = std::getenv("RML_DUMP_CALLEE");
 

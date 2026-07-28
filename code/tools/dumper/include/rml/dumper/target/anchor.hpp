@@ -26,6 +26,7 @@ namespace rml::dumper::target
 		luau_precall,
 		lua_getinfo,
 		lua_pushcclosurek,
+		luaC_enumheap,
 		count,
 	};
 
@@ -52,6 +53,7 @@ namespace rml::dumper::target
 		case Anchor::luau_precall: return "luau_precall";
 		case Anchor::lua_getinfo: return "lua_getinfo";
 		case Anchor::lua_pushcclosurek: return "lua_pushcclosurek";
+		case Anchor::luaC_enumheap: return "luaC_enumheap";
 		case Anchor::count: return "count";
 		}
 		return "unknown";

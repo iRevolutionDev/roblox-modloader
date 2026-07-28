@@ -10,13 +10,13 @@
 namespace rml::luau::mirror
 {
 	struct CallInfo;
+	struct GlobalState;
 	struct LocVar;
 	struct LuaTable;
 	struct Proto;
 	struct TString;
 	struct TValue;
 	struct UpVal;
-	struct global_State;
 
 	struct CallInfo
 	{
@@ -128,6 +128,16 @@ namespace rml::luau::mirror
 	static_assert(sizeof(TValue) >= 0x10);
 	inline constexpr std::size_t tvalue_size = 0x10;
 
+	struct GlobalState
+	{
+		std::byte reserved_0[0x44];
+		std::uint8_t currentwhite;
+	};
+
+	static_assert(offsetof(GlobalState, currentwhite) == 0x44);
+	static_assert(sizeof(GlobalState) >= 0x45);
+	inline constexpr std::size_t globalstate_size = 0x45;
+
 	struct LuaDebug
 	{
 		const char* short_src;
@@ -175,7 +185,7 @@ namespace rml::luau::mirror
 		TValue* stack_last;
 		CallInfo* ci;
 		TValue* stack;
-		global_State* global;
+		GlobalState* global;
 		TValue* top;
 		TValue* base;
 		std::byte reserved_78[0x8];

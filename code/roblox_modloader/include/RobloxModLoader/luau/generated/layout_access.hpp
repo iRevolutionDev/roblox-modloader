@@ -14,6 +14,31 @@ namespace rml::luau::access
 	[[nodiscard]] inline TValue* value(void* slot) { return static_cast<TValue*>(slot); }
 	[[nodiscard]] inline CallInfo* frame(void* info) { return static_cast<CallInfo*>(info); }
 	[[nodiscard]] inline LuaDebug* debug_record(void* storage) { return static_cast<LuaDebug*>(storage); }
+	[[nodiscard]] inline const GcHeader* gc_header(const void* object)
+	{
+		return static_cast<const GcHeader*>(object);
+	}
+
+	inline constexpr std::uint8_t white_bits = 3;
+	inline constexpr std::uint8_t black_bit = 4;
+	inline constexpr std::size_t userdata_payload = 0x10;
+
+	[[nodiscard]] inline void* object_behind_payload(void* payload)
+	{
+		return reinterpret_cast<std::byte*>(payload) - userdata_payload;
+	}
+
+	[[nodiscard]] inline bool swept_away(const GlobalState* collector, const void* object)
+	{
+		const auto other = static_cast<std::uint8_t>(collector->currentwhite ^ white_bits) & white_bits;
+
+		return (gc_header(object)->marked & other) != 0;
+	}
+
+	[[nodiscard]] inline bool needs_barrier(const void* owner, const void* value)
+	{
+		return (gc_header(owner)->marked & black_bit) != 0 && (gc_header(value)->marked & white_bits) != 0;
+	}
 
 	[[nodiscard]] inline const Closure* closure(const void* function)
 	{
