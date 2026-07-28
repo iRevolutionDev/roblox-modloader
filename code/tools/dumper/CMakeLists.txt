@@ -1,48 +1,63 @@
-cmake_minimum_required(VERSION 3.25)
-
-# Use Zydis from PolyHook2 if available, otherwise fetch it
-if(NOT TARGET Zydis)
-    include(FetchContent)
-    FetchContent_Declare(
-        Zydis
-        GIT_REPOSITORY https://github.com/zyantific/zydis.git
-        GIT_TAG v4.1.0
-    )
-    FetchContent_MakeAvailable(Zydis)
-endif()
-
-file(GLOB_RECURSE DUMPER_SOURCES
+file(GLOB_RECURSE DUMPER_CORE_SOURCES CONFIGURE_DEPENDS
         "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
 )
+list(FILTER DUMPER_CORE_SOURCES EXCLUDE REGEX "/src/cli/main\\.cpp$")
+list(FILTER DUMPER_CORE_SOURCES EXCLUDE REGEX "/src/fetch/")
 
-add_executable(dumper ${DUMPER_SOURCES})
+add_library(dumper_core STATIC ${DUMPER_CORE_SOURCES})
 
-target_compile_features(dumper PRIVATE cxx_std_23)
+target_compile_features(dumper_core PUBLIC cxx_std_23)
 
-target_link_libraries(dumper PRIVATE
+target_include_directories(dumper_core PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}/include"
+)
+target_include_directories(dumper_core PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/src"
+)
+
+target_link_libraries(dumper_core PUBLIC
         spdlog::spdlog
-        imagehlp
+        nlohmann_json::nlohmann_json
+)
+target_link_libraries(dumper_core PRIVATE
         Zydis
+        capstone
+        ZLIB::ZLIB
 )
 
-target_compile_definitions(dumper PRIVATE
-        WIN32_LEAN_AND_MEAN
-        NOMINMAX
-        _CRT_SECURE_NO_WARNINGS
-)
+if (RML_PLATFORM_WINDOWS)
+    target_link_libraries(dumper_core PRIVATE winhttp)
+else ()
+    find_package(CURL REQUIRED)
+    target_link_libraries(dumper_core PRIVATE CURL::libcurl)
+endif ()
+
+set_target_properties(dumper_core PROPERTIES FOLDER "Tools")
+
+add_executable(dumper "${CMAKE_CURRENT_SOURCE_DIR}/src/cli/main.cpp")
+
+target_include_directories(dumper PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src")
+target_link_libraries(dumper PRIVATE dumper_core)
 
 set_target_properties(dumper PROPERTIES
-        CXX_STANDARD 23
-        CXX_STANDARD_REQUIRED ON
         OUTPUT_NAME "dumper"
         FOLDER "Tools"
 )
 
-target_include_directories(dumper PRIVATE
-        "${CMAKE_CURRENT_SOURCE_DIR}/include"
-        "${CMAKE_CURRENT_SOURCE_DIR}/src"
-)
+if (ROBLOX_MODLOADER_BUILD_DUMPER_TESTS)
+    file(GLOB_RECURSE DUMPER_TEST_SOURCES CONFIGURE_DEPENDS
+            "${CMAKE_CURRENT_SOURCE_DIR}/tests/*.cpp"
+    )
 
-target_precompile_headers(dumper PRIVATE
-        "${CMAKE_CURRENT_SOURCE_DIR}/include/dumper/common.hpp"
-)
+    add_executable(dumper_tests ${DUMPER_TEST_SOURCES})
+
+    target_include_directories(dumper_tests PRIVATE
+            "${CMAKE_CURRENT_SOURCE_DIR}/src"
+            "${CMAKE_CURRENT_SOURCE_DIR}/tests"
+    )
+    target_link_libraries(dumper_tests PRIVATE dumper_core doctest::doctest)
+
+    set_target_properties(dumper_tests PROPERTIES FOLDER "Tools")
+
+    add_test(NAME dumper_tests COMMAND dumper_tests)
+endif ()
