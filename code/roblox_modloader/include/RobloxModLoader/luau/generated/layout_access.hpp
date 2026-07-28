@@ -54,7 +54,10 @@ namespace rml::luau::access
 
 	[[nodiscard]] inline TValue* upvalues_of(const Closure* function)
 	{
-		return function->isC != 0 ? function->upvals : function->uprefs;
+		const auto start = function->isC != 0 ? offsetof(Closure, upvals) : offsetof(Closure, uprefs);
+		auto* bytes = reinterpret_cast<std::byte*>(const_cast<Closure*>(function));
+
+		return reinterpret_cast<TValue*>(bytes + start);
 	}
 
 	inline void copy_value(TValue* destination, const TValue* source)

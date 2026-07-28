@@ -61,11 +61,23 @@ namespace rml::dumper::recover
 			    closure_writes.end())
 				table_writes.push_back(write);
 
-		if (table_writes.size() != header_field_count)
+		if (table_writes.size() > header_field_count)
+			table_writes.resize(header_field_count);
+
+		const auto starts_the_object = [&table_writes] {
+			for (std::size_t i = 0; i < table_writes.size(); ++i)
+				if (table_writes[i].displacement != static_cast<std::int64_t>(i))
+					return false;
+
+			return true;
+		};
+
+		if (table_writes.size() != header_field_count || !starts_the_object())
 		{
 			context.report().record_failure(
 			    "CommonHeader", "tt",
-			    std::format("luaH_new and luaF_newLclosure share {} small byte writes, expected {}",
+			    std::format("luaH_new and luaF_newLclosure share {} byte writes at the head of the object, "
+			                "expected the first {}",
 			                table_writes.size(), header_field_count));
 			layout.size = header_field_count;
 			return layout;
