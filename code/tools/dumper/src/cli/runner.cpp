@@ -5,17 +5,53 @@
 #include "rml/dumper/target/target_profile.hpp"
 #include "target/pattern_anchor_resolver.hpp"
 
+#include <cstdlib>
 #include <fstream>
 #include <sstream>
+#include <vector>
 
 #include <spdlog/spdlog.h>
 
 namespace rml::dumper::cli
 {
+	static std::optional<std::filesystem::path> studio_beside_the_loader(const std::string_view target)
+	{
+		const char* root = std::getenv("ROBLOX_STUDIO_PATH");
+		if (root == nullptr || *root == '\0')
+			return std::nullopt;
+
+		const std::filesystem::path base(root);
+		std::vector<std::filesystem::path> candidates;
+
+		if (target.starts_with("macos"))
+		{
+			candidates.push_back(base / "Contents" / "MacOS" / "RobloxStudio");
+			candidates.push_back(base / "RobloxStudio");
+		}
+		else
+		{
+			candidates.push_back(base / "RobloxStudioBeta.exe");
+		}
+
+		candidates.push_back(base);
+
+		for (const auto& candidate : candidates)
+			if (std::error_code ec; std::filesystem::is_regular_file(candidate, ec))
+				return candidate;
+
+		return std::nullopt;
+	}
+
 	std::expected<fetch::ResolvedStudio, Error> Runner::resolve_studio(const Options& options)
 	{
 		if (options.input)
 			return fetch::LocalStudioProvider(*options.input).resolve();
+
+		if (const auto deployed = studio_beside_the_loader(options.target))
+		{
+			spdlog::info("studio taken from ROBLOX_STUDIO_PATH, {}", deployed->string());
+			return fetch::LocalStudioProvider(*deployed).resolve();
+		}
 
 		const auto* deployment = fetch::deployment_for(options.target);
 		if (deployment == nullptr)

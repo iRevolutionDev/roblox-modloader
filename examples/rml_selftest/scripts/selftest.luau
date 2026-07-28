@@ -61,10 +61,16 @@ check("getinfo answers for a function and for a level", function()
 	assert(type(byValue) == "table", "a function gave back a " .. type(byValue))
 	assert(byValue.numparams == 2, "numparams = " .. tostring(byValue.numparams))
 	assert(byValue.nups == 0, "nups = " .. tostring(byValue.nups))
+	assert(byValue.what == "Lua", "what = " .. tostring(byValue.what))
+	assert(byValue.linedefined > 0, "linedefined = " .. tostring(byValue.linedefined))
+
+	assert(string.find(tostring(byValue.short_src), "selftest", 1, true) ~= nil,
+		"short_src holds " .. tostring(byValue.short_src) .. ", which looks like the name")
+	assert(byValue.name == "sample", "name = " .. tostring(byValue.name))
 
 	local byLevel = debug.getinfo(1)
 	assert(type(byLevel) == "table", "a level gave back a " .. type(byLevel))
-	assert(type(byLevel.currentline) == "number", "currentline is missing")
+	assert(byLevel.currentline > 0, "currentline = " .. tostring(byLevel.currentline))
 end)
 
 check("getconstants and getconstant tell the same story", function()
@@ -174,20 +180,6 @@ local function probe(name, body)
 		say("probe " .. name .. " raised " .. tostring(err))
 	end
 end
-
-probe("getinfo fields", function()
-	local function sample(a, b)
-		return a + b
-	end
-
-	local seen = {}
-	for key, value in pairs(debug.getinfo(sample)) do
-		table.insert(seen, ("%s=%s(%s)"):format(tostring(key), tostring(value), type(value)))
-	end
-	table.sort(seen)
-
-	say("probe getinfo -> " .. table.concat(seen, "  "))
-end)
 
 probe("frame alignment", function()
 	local aaa = tonumber("111111")
