@@ -1,0 +1,125 @@
+name: Luau layout
+
+on:
+  schedule:
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+    inputs:
+      target:
+        description: Which studio build to analyse
+        default: windows-x64
+        type: choice
+        options: [ windows-x64, macos-x64, macos-arm64 ]
+      channel:
+        description: Deployment channel
+        default: LIVE
+
+concurrency:
+  group: luau-layout
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  dump:
+    name: Dump the luau layout
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build libcurl4-openssl-dev
+
+      - name: Cache fetched packages
+        uses: actions/cache@v4
+        with:
+          path: build/_cpm_cache
+          key: cpm-dumper-${{ hashFiles('cmake/*.cmake') }}
+          restore-keys: cpm-dumper-
+
+      - name: Configure
+        run: >
+          cmake -B build -S . -G Ninja
+          -DCMAKE_BUILD_TYPE=Release
+          -DROBLOX_MODLOADER_BUILD_DUMPER=ON
+          -DROBLOX_MODLOADER_BUILD_PROXY_GENERATOR=OFF
+          -DROBLOX_MODLOADER_BUILD_PROXY_DLL=OFF
+          -DROBLOX_MODLOADER_BUILD_EXAMPLES=OFF
+          -DROBLOX_MODLOADER_BUILD_MANAGED_PROJECTS=OFF
+
+      - name: Build
+        run: cmake --build build --target dumper dumper_tests
+
+      - name: Unit tests
+        run: ./build/code/tools/dumper/dumper_tests
+
+      - name: Cache the studio build
+        uses: actions/cache@v4
+        with:
+          path: .studio-cache
+          key: studio-${{ inputs.target || 'windows-x64' }}-${{ github.run_id }}
+          restore-keys: studio-${{ inputs.target || 'windows-x64' }}-
+
+      - name: Dump
+        id: dump
+        continue-on-error: true
+        run: |
+          set +e
+          ./build/code/tools/dumper/dumper \
+            --target "${{ inputs.target || 'windows-x64' }}" \
+            --channel "${{ inputs.channel || 'LIVE' }}" \
+            --cache .studio-cache \
+            --out dumper_output 2>&1 | tee dump.log
+          status=${PIPESTATUS[0]}
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          exit "$status"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: luau-layout-${{ inputs.target || 'windows-x64' }}
+          path: |
+            dumper_output/
+            dump.log
+
+      - name: Summarise
+        if: always()
+        run: |
+          {
+            echo '## Dump'
+            echo '```'
+            cat dump.log 2>/dev/null || echo 'the dumper produced no output'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Fail on anything worse than an incomplete recovery
+        if: steps.dump.outcome == 'failure' && steps.dump.outputs.status != '5'
+        run: |
+          echo "the dumper exited ${{ steps.dump.outputs.status }}, which is not an incomplete recovery"
+          exit 1
+
+      - name: Compare against the committed layout
+        id: diff
+        if: hashFiles('dumper_output/luau_shuffle_layout.h') != ''
+        run: |
+          committed=libs/third_party/luau/VM/src/luau_shuffle_layout.h
+          if cmp -s dumper_output/luau_shuffle_layout.h "$committed"; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            cp dumper_output/luau_shuffle_layout.h "$committed"
+          fi
+
+      - name: Open a pull request
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: luau-layout-${{ inputs.target || 'windows-x64' }}
+          title: Update the luau shuffle layout
+          commit-message: update the luau shuffle layout
+          body-path: dumper_output/report.txt
+          add-paths: libs/third_party/luau/VM/src/luau_shuffle_layout.h

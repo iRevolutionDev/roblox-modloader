@@ -2,7 +2,9 @@
 
 #include <curl/curl.h>
 
+#include <cstring>
 #include <format>
+#include <memory>
 #include <mutex>
 #include <string>
 

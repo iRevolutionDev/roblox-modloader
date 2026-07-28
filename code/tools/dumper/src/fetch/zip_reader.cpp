@@ -3,6 +3,8 @@
 #include "rml/dumper/core/byte_reader.hpp"
 
 #include <algorithm>
+#include <optional>
+
 #include <zlib.h>
 
 namespace rml::dumper::fetch
