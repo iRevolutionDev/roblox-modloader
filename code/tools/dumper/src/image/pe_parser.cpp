@@ -155,6 +155,43 @@ namespace rml::dumper::image
 		return memory;
 	}
 
+	index::FunctionIndex PeParser::read_functions(const std::span<const std::byte> mapped, const Directory& directory,
+	                                              const std::span<const Section> sections)
+	{
+		constexpr std::size_t runtime_function_size = 12;
+
+		if (directory.size < runtime_function_size)
+			return {};
+
+		const ByteReader reader(mapped);
+
+		const auto executable = [sections](const Rva address) {
+			return std::ranges::any_of(sections, [address](const Section& section) {
+				return section.executable && section.contains(address);
+			});
+		};
+
+		std::vector<index::FunctionBounds> functions;
+		functions.reserve(directory.size / runtime_function_size);
+
+		for (std::uint32_t offset = 0; offset + runtime_function_size <= directory.size;
+		     offset += runtime_function_size)
+		{
+			const auto entry = directory.address + offset;
+			const auto begin = reader.read_le<std::uint32_t>(entry + 0);
+			const auto end = reader.read_le<std::uint32_t>(entry + 4);
+			if (!begin || !end)
+				break;
+
+			if (*end <= *begin || !executable(*begin))
+				continue;
+
+			functions.push_back({*begin, *end});
+		}
+
+		return index::FunctionIndex(std::move(functions));
+	}
+
 	std::expected<Image, Error> PeParser::parse(std::vector<std::byte> file, const Architecture architecture) const
 	{
 		const ByteReader reader(file);
@@ -174,7 +211,9 @@ namespace rml::dumper::image
 		for (const auto& raw : *raw_sections)
 			sections.push_back(raw.section);
 
+		auto functions = read_functions(memory, headers->exception_directory, sections);
+
 		return Image(ImageFormat::pe, Architecture::x86_64, headers->image_base, std::move(memory),
-		             std::move(sections), index::FunctionIndex());
+		             std::move(sections), std::move(functions));
 	}
 }

@@ -44,5 +44,8 @@ namespace rml::dumper::image
 		                                                                                 const Headers& headers);
 		[[nodiscard]] static std::vector<std::byte> map_sections(const ByteReader& reader, const Headers& headers,
 		                                                         std::span<const RawSection> sections);
+		[[nodiscard]] static index::FunctionIndex read_functions(std::span<const std::byte> mapped,
+		                                                         const Directory& directory,
+		                                                         std::span<const Section> sections);
 	};
 }
