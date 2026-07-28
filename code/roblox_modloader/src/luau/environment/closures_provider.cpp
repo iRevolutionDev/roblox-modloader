@@ -52,7 +52,10 @@ namespace rml::luau::environment
 			slot->value = reinterpret_cast<std::uint64_t>(object);
 			slot->tt = tag;
 
-			luaC_barriertable(L, holder, static_cast<GCObject*>(object));
+			if (access::needs_barrier(holder, object))
+			{
+				luaC_barriertable(L, holder, static_cast<GCObject*>(object));
+			}
 		}
 
 		static void unwrap_holder(lua_State* L)
@@ -263,7 +266,10 @@ namespace rml::luau::environment
 			target->p = replacement->p;
 			copy_upvalues(target, replacement);
 
-			luaC_barrierf(L, reinterpret_cast<GCObject*>(target), reinterpret_cast<GCObject*>(replacement));
+			if (access::needs_barrier(target, replacement))
+			{
+				luaC_barrierf(L, reinterpret_cast<GCObject*>(target), reinterpret_cast<GCObject*>(replacement));
+			}
 
 			return 1;
 		}
@@ -301,8 +307,11 @@ namespace rml::luau::environment
 			target->p = source->p;
 			copy_upvalues(target, source);
 
-			luaC_barrierf(L, reinterpret_cast<GCObject*>(target),
-			              reinterpret_cast<GCObject*>(const_cast<access::Closure*>(source)));
+			if (access::needs_barrier(target, source))
+			{
+				luaC_barrierf(L, reinterpret_cast<GCObject*>(target),
+				              reinterpret_cast<GCObject*>(const_cast<access::Closure*>(source)));
+			}
 
 			context->unregister_hook(reinterpret_cast<Closure*>(target));
 
