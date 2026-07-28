@@ -446,7 +446,7 @@ namespace rml::luau::environment
 				auto* stackFrame = access::frame_at(state->ci, -static_cast<int>(level));
 				const auto stackSize = (reinterpret_cast<std::byte*>(stackFrame->top) -
 				                        reinterpret_cast<std::byte*>(stackFrame->base)) /
-				                       static_cast<std::ptrdiff_t>(rml::luau::tvalue_size);
+				                       static_cast<std::ptrdiff_t>(rml::luau::access::tvalue_size);
 
 				if (access::closure_in(stackFrame->func)->isC != 0)
 				{
@@ -506,7 +506,7 @@ namespace rml::luau::environment
 				const auto stackFrameSize =
 				    static_cast<int>((reinterpret_cast<std::byte*>(frame->top) -
 				                      reinterpret_cast<std::byte*>(frame->base)) /
-				                     static_cast<std::ptrdiff_t>(rml::luau::tvalue_size));
+				                     static_cast<std::ptrdiff_t>(rml::luau::access::tvalue_size));
 
 				if (access::closure_in(frame->func)->isC != 0)
 				{

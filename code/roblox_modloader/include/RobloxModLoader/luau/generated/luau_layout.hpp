@@ -7,7 +7,7 @@
 #include <cstddef>
 #include <cstdint>
 
-namespace rml::luau
+namespace rml::luau::mirror
 {
 	struct CallInfo;
 	struct LocVar;
@@ -56,18 +56,18 @@ namespace rml::luau
 	static_assert(sizeof(Closure) >= 0x38);
 	inline constexpr std::size_t closure_size = 0x38;
 
-	struct CommonHeader
+	struct GcHeader
 	{
 		std::uint8_t tt;
 		std::uint8_t marked;
 		std::uint8_t memcat;
 	};
 
-	static_assert(offsetof(CommonHeader, tt) == 0x0);
-	static_assert(offsetof(CommonHeader, marked) == 0x1);
-	static_assert(offsetof(CommonHeader, memcat) == 0x2);
-	static_assert(sizeof(CommonHeader) >= 0x3);
-	inline constexpr std::size_t commonheader_size = 0x3;
+	static_assert(offsetof(GcHeader, tt) == 0x0);
+	static_assert(offsetof(GcHeader, marked) == 0x1);
+	static_assert(offsetof(GcHeader, memcat) == 0x2);
+	static_assert(sizeof(GcHeader) >= 0x3);
+	inline constexpr std::size_t gcheader_size = 0x3;
 
 	struct Proto
 	{

@@ -6,6 +6,8 @@
 
 namespace rml::luau::access
 {
+	using namespace mirror;
+
 	[[nodiscard]] inline LuaState* state(void* thread) { return static_cast<LuaState*>(thread); }
 	[[nodiscard]] inline Closure* closure(void* function) { return static_cast<Closure*>(function); }
 	[[nodiscard]] inline Proto* proto(void* prototype) { return static_cast<Proto*>(prototype); }
