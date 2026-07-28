@@ -9,11 +9,8 @@ FetchContent_Declare(
         URL ${DISCORD_SDK_URL}
 )
 
-FetchContent_GetProperties(discord_game_sdk_${CURRENT_MOD_NAME})
-if (NOT discord_game_sdk_${CURRENT_MOD_NAME}_POPULATED)
-    message(STATUS "Downloading Discord Game SDK for ${CURRENT_MOD_NAME}...")
-    FetchContent_Populate(discord_game_sdk_${CURRENT_MOD_NAME})
-endif ()
+message(STATUS "Downloading Discord Game SDK for ${CURRENT_MOD_NAME}...")
+FetchContent_MakeAvailable(discord_game_sdk_${CURRENT_MOD_NAME})
 
 if (CMAKE_SIZEOF_VOID_P EQUAL 8)
     set(DISCORD_SDK_LIB_DIR "${discord_game_sdk_${CURRENT_MOD_NAME}_SOURCE_DIR}/lib/x86_64")
