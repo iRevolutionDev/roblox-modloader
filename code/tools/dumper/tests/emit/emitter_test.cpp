@@ -52,8 +52,9 @@ TEST_CASE("the registry exposes every emitter by id")
 	CHECK(registry.create("shuffle") != nullptr);
 	CHECK(registry.create("report") != nullptr);
 	CHECK(registry.create("genny") == nullptr);
-	CHECK(emit::EmitterRegistry::ids().size() == 3);
-	CHECK(registry.create_all().size() == 3);
+	CHECK(registry.create("mirror") != nullptr);
+	CHECK(emit::EmitterRegistry::ids().size() == 4);
+	CHECK(registry.create_all().size() == 4);
 }
 
 TEST_CASE("the json emitter writes structs fields and provenance")

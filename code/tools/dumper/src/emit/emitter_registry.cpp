@@ -1,6 +1,7 @@
 #include "rml/dumper/emit/emitter.hpp"
 
 #include "emit/json_emitter.hpp"
+#include "emit/mirror_emitter.hpp"
 #include "emit/report_emitter.hpp"
 #include "emit/shuffle_layout_emitter.hpp"
 
@@ -23,13 +24,15 @@ namespace rml::dumper::emit
 
 	std::vector<std::string_view> EmitterRegistry::ids()
 	{
-		return {"json", "report", "shuffle"};
+		return {"json", "mirror", "report", "shuffle"};
 	}
 
 	std::unique_ptr<Emitter> EmitterRegistry::create(const std::string_view id) const
 	{
 		if (id == "json")
 			return std::make_unique<JsonEmitter>();
+		if (id == "mirror")
+			return std::make_unique<MirrorEmitter>();
 		if (id == "report")
 			return std::make_unique<ReportEmitter>();
 		if (id == "shuffle")
