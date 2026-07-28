@@ -127,6 +127,50 @@ namespace rml::dumper::recover
 		       offset_of(write_from(**lua_trace, lua_object, context.abi().argument(3), 8)),
 		       "qword taken from the proto argument");
 
+		if (const auto* proto = layout.find("p"); proto != nullptr)
+		{
+			const auto probe = "the value array of a lua closure starts right after its proto";
+
+			context.report().record_recovered("Closure", "uprefs", probe);
+			layout.add({.name = "uprefs",
+			            .type = "TValue*",
+			            .size = 8,
+			            .offset = proto->end(),
+			            .provenance = schema::Provenance::recovered("luaF_newLclosure", probe)});
+		}
+
+		std::vector<std::int64_t> c_slots;
+		for (const auto& access : (*c_trace)->accesses)
+		{
+			if (!access.is_write || access.base != c_object || access.width != 8 || access.displacement < 0)
+				continue;
+			if (std::ranges::find(c_slots, access.displacement) == c_slots.end())
+				c_slots.push_back(access.displacement);
+		}
+
+		std::ranges::sort(c_slots);
+
+		if (const auto* env = layout.find("env"); env != nullptr && c_slots.size() >= 2)
+		{
+			const auto after_env = std::ranges::find_if(c_slots, [env](const std::int64_t offset) {
+				return static_cast<std::size_t>(offset) > env->offset;
+			});
+
+			if (after_env != c_slots.end())
+			{
+				const auto probe = std::format(
+				    "the value array of a c closure starts after the {} slots it initialises from 0x{:X}",
+				    std::distance(after_env, c_slots.end()), *after_env);
+
+				context.report().record_recovered("Closure", "upvals", probe);
+				layout.add({.name = "upvals",
+				            .type = "TValue*",
+				            .size = 8,
+				            .offset = static_cast<std::size_t>(c_slots.back()) + 8,
+				            .provenance = schema::Provenance::recovered("luaF_newCclosure", probe)});
+			}
+		}
+
 		layout.size = layout.fields.empty() ? 0 : layout.fields.back().end();
 
 		return layout;
