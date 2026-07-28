@@ -26,7 +26,7 @@ TEST_CASE("dump an anchor trace" * doctest::skip(true))
 	const auto decoder = disasm::Decoder::create(profile->architecture);
 	REQUIRE(decoder.has_value());
 
-	for (const auto anchor : {target::Anchor::luaH_new})
+	for (const auto anchor : {target::Anchor::luaE_newthread})
 	{
 		const auto entry = anchors->at(anchor);
 		const auto bounds = image->functions().at(entry);
@@ -47,7 +47,7 @@ TEST_CASE("dump an anchor trace" * doctest::skip(true))
 
 		for (const auto& access : trace->accesses)
 		{
-			if (!access.is_write || access.width != 1)
+			if (!access.is_write || access.base != query.dominant_base())
 				continue;
 			MESSAGE("   seq ", access.sequence, " ", access.is_write ? "write" : "read ", " base ",
 			        to_string(access.base), " disp ", std::format("0x{:X}", access.displacement), " width ",

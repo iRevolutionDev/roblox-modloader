@@ -13,7 +13,7 @@ using namespace rml::dumper;
 using namespace rml::dumper::recover;
 
 static const std::map<std::string, std::size_t> lua_state_offsets_2026_07_08{
-    {"status", 0x00},     {"activememcat", 0x01}, {"singlestep", 0x02}, {"isactive", 0x03},
+    {"status", 0x03},     {"activememcat", 0x04}, {"singlestep", 0x05}, {"isactive", 0x06},
     {"namecall", 0x08},   {"openupval", 0x10},    {"ci", 0x18},         {"global", 0x20},
     {"base", 0x28},       {"stack_last", 0x30},   {"stack", 0x38},      {"top", 0x40},
     {"gclist", 0x48},     {"userdata", 0x50},     {"gt", 0x58},         {"stacksize", 0x60},

@@ -96,7 +96,7 @@ namespace rml::dumper::recover
 		           target::Anchor::lua_resume, "second word write");
 
 		const disasm::TraceQuery settop(**settop_trace);
-		const auto settop_state = settop.dominant_base();
+		const auto settop_state = context.abi().argument(0);
 
 		probe.confirm("top", settop.nth_read(settop_state, 0, 8), "lua_settop reads top at");
 		probe.confirm("base", settop.nth_read(settop_state, 1, 8), "lua_settop reads base at");
