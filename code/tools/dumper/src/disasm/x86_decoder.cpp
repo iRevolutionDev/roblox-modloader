@@ -2,6 +2,8 @@
 
 #include <Zydis/Zydis.h>
 
+#include <array>
+
 namespace rml::dumper::disasm
 {
 	static Register to_register(const ZydisRegister value)
@@ -28,6 +30,37 @@ namespace rml::dumper::disasm
 		default: return Register::none;
 		}
 	}
+
+	class ValueOrigins
+	{
+	public:
+		ValueOrigins()
+		{
+			for (std::size_t i = 0; i < m_origins.size(); ++i)
+				m_origins[i] = static_cast<Register>(i);
+		}
+
+		[[nodiscard]] Register of(const Register value) const
+		{
+			const auto index = static_cast<std::size_t>(value);
+			return index < m_origins.size() ? m_origins[index] : value;
+		}
+
+		void alias(const Register destination, const Register source)
+		{
+			if (const auto index = static_cast<std::size_t>(destination); index < m_origins.size())
+				m_origins[index] = of(source);
+		}
+
+		void forget(const Register destination)
+		{
+			if (const auto index = static_cast<std::size_t>(destination); index < m_origins.size())
+				m_origins[index] = destination;
+		}
+
+	private:
+		std::array<Register, static_cast<std::size_t>(Register::rip) + 1> m_origins{};
+	};
 
 	static bool stops_the_trace(const ZydisMnemonic mnemonic)
 	{
@@ -69,6 +102,7 @@ namespace rml::dumper::disasm
 		trace.begin = begin;
 		trace.end = begin;
 
+		ValueOrigins origins;
 		std::size_t sequence = 0;
 		std::size_t offset = 0;
 
@@ -124,10 +158,23 @@ namespace rml::dumper::disasm
 				access.width = static_cast<std::uint8_t>(operand.size / 8);
 				access.displacement = operand.mem.disp.has_displacement ? operand.mem.disp.value : 0;
 				access.is_write = (operand.actions & ZYDIS_OPERAND_ACTION_MASK_WRITE) != 0;
-				access.value_register = companion_register(instruction, operands, i);
+				access.value_register = origins.of(companion_register(instruction, operands, i));
 				access.immediate = first_immediate(instruction, operands);
 
 				trace.accesses.push_back(access);
+			}
+
+			if (instruction.mnemonic == ZYDIS_MNEMONIC_MOV && instruction.operand_count_visible == 2 &&
+			    operands[0].type == ZYDIS_OPERAND_TYPE_REGISTER && operands[1].type == ZYDIS_OPERAND_TYPE_REGISTER)
+			{
+				origins.alias(to_register(operands[0].reg.value), to_register(operands[1].reg.value));
+			}
+			else
+			{
+				for (std::uint8_t i = 0; i < instruction.operand_count_visible; ++i)
+					if (operands[i].type == ZYDIS_OPERAND_TYPE_REGISTER &&
+					    (operands[i].actions & ZYDIS_OPERAND_ACTION_MASK_WRITE) != 0)
+						origins.forget(to_register(operands[i].reg.value));
 			}
 
 			offset += instruction.length;

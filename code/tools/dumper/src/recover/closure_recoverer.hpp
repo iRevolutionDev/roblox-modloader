@@ -1,0 +1,29 @@
+#pragma once
+
+#include "rml/dumper/recover/recoverer.hpp"
+
+namespace rml::dumper::recover
+{
+	class ClosureRecoverer final : public Recoverer
+	{
+	public:
+		[[nodiscard]] std::string_view struct_name() const override { return "Closure"; }
+		[[nodiscard]] std::span<const std::string_view> depends_on() const override { return m_dependencies; }
+
+		[[nodiscard]] std::expected<schema::StructLayout, Error> recover(
+		    const RecoveryContext& context) const override;
+
+		[[nodiscard]] static const disasm::MemoryAccess* write_from(const disasm::Trace& trace,
+		                                                            disasm::Register object,
+		                                                            disasm::Register value, std::uint8_t width);
+		[[nodiscard]] static std::optional<std::int64_t> differing_constant(const disasm::Trace& first,
+		                                                                    const disasm::Trace& second,
+		                                                                    disasm::Register first_object,
+		                                                                    disasm::Register second_object);
+
+	private:
+		static constexpr std::array<std::string_view, 1> m_dependencies{"CommonHeader"};
+
+		[[nodiscard]] static disasm::Register allocated_object(const disasm::Trace& trace);
+	};
+}
