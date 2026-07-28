@@ -123,6 +123,10 @@ namespace rml::dumper::recover
 		       offset_of(write_from(**lua_trace, lua_object, context.abi().argument(2), 8)),
 		       "qword taken from the environment argument");
 
+		record("p", "Proto*", 8,
+		       offset_of(write_from(**lua_trace, lua_object, context.abi().argument(3), 8)),
+		       "qword taken from the proto argument");
+
 		layout.size = layout.fields.empty() ? 0 : layout.fields.back().end();
 
 		return layout;
