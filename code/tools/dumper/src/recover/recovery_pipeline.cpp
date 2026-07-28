@@ -3,6 +3,7 @@
 #include "recover/closure_recoverer.hpp"
 #include "recover/common_header_recoverer.hpp"
 #include "recover/lua_state_recoverer.hpp"
+#include "recover/proto_recoverer.hpp"
 
 #include <algorithm>
 #include <format>
@@ -96,6 +97,7 @@ namespace rml::dumper::recover
 		recoverers.push_back(std::make_unique<CommonHeaderRecoverer>());
 		recoverers.push_back(std::make_unique<LuaStateRecoverer>());
 		recoverers.push_back(std::make_unique<ClosureRecoverer>());
+		recoverers.push_back(std::make_unique<ProtoRecoverer>());
 
 		return RecoveryPipeline(std::move(recoverers));
 	}
