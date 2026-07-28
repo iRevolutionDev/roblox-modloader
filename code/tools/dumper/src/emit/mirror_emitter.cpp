@@ -144,7 +144,14 @@ namespace rml::dumper::emit
 				                   slot.offset);
 			}
 
-			out << std::format("\tstatic_assert(sizeof({}) >= 0x{:X});\n\n", mirror, layout.size);
+			out << std::format("\tstatic_assert(sizeof({}) >= 0x{:X});\n", mirror, layout.size);
+
+			std::string constant;
+			for (const auto character : name)
+				if (character != '_')
+					constant.push_back(static_cast<char>(std::tolower(character)));
+
+			out << std::format("\tinline constexpr std::size_t {}_size = 0x{:X};\n\n", constant, layout.size);
 		}
 
 		out << "}\n";
