@@ -38,12 +38,19 @@ namespace rml::dumper::disasm
 	{
 		Register base{Register::none};
 		std::int64_t offset{};
+		Object object{no_object};
 	};
 
 	class Arm64Folds
 	{
 	public:
 		static constexpr std::size_t slots = 31;
+
+		Arm64Folds()
+		{
+			for (std::uint8_t number = 0; number < slots; ++number)
+				forget(arm64_general_register(number));
+		}
 
 		[[nodiscard]] static std::size_t index_of(const Register value)
 		{
@@ -59,7 +66,13 @@ namespace rml::dumper::disasm
 		void forget(const Register value)
 		{
 			if (const auto index = index_of(value); index < slots)
-				m_folds[index].reset();
+				m_folds[index] = {value, 0, m_started ? m_next++ : entry_object(value)};
+		}
+
+		void forget_volatiles()
+		{
+			for (std::uint8_t number = 0; number <= 17; ++number)
+				forget(arm64_general_register(number));
 		}
 
 		void remember(const Register destination, const FoldedBase& fold)
@@ -70,14 +83,18 @@ namespace rml::dumper::disasm
 
 		[[nodiscard]] FoldedBase resolve(const Register value) const
 		{
-			if (const auto index = index_of(value); index < slots && m_folds[index])
-				return *m_folds[index];
+			if (const auto index = index_of(value); index < slots)
+				return m_folds[index];
 
-			return {value, 0};
+			return {value, 0, entry_object(value)};
 		}
 
+		void start() { m_started = true; }
+
 	private:
-		std::array<std::optional<FoldedBase>, slots> m_folds;
+		std::array<FoldedBase, slots> m_folds{};
+		Object m_next{first_derived_object};
+		bool m_started{false};
 	};
 
 	static Register to_register(const arm64_reg value)
@@ -218,6 +235,8 @@ namespace rml::dumper::disasm
 		trace.end = begin;
 
 		Arm64Folds folds;
+		folds.start();
+
 		std::size_t sequence = 0;
 
 		const auto* cursor = reinterpret_cast<const std::uint8_t*>(code.data());
@@ -246,6 +265,7 @@ namespace rml::dumper::disasm
 					call.target = static_cast<Rva>(detail.operands[0].imm);
 
 				trace.calls.push_back(call);
+				folds.forget_volatiles();
 			}
 
 			if (is_memory_instruction(instruction->id))
@@ -277,6 +297,7 @@ namespace rml::dumper::disasm
 						MemoryAccess access;
 						access.sequence = sequence++;
 						access.address = here;
+						access.object = fold.object;
 						access.base = fold.base;
 						access.index = to_register(static_cast<arm64_reg>(operand.mem.index));
 						access.width = width;
@@ -310,7 +331,7 @@ namespace rml::dumper::disasm
 
 				const auto source = folds.resolve(to_register(static_cast<arm64_reg>(detail.operands[1].reg)));
 				folds.remember(to_register(static_cast<arm64_reg>(detail.operands[0].reg)),
-				               {source.base, source.offset + amount});
+				               {source.base, source.offset + amount, source.object});
 			}
 			else if (instruction->id == ARM64_INS_MOV && detail.op_count == 2 &&
 			         detail.operands[0].type == ARM64_OP_REG && detail.operands[1].type == ARM64_OP_REG)

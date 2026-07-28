@@ -14,16 +14,16 @@ namespace rml::dumper::recover
 		    const RecoveryContext& context) const override;
 
 		[[nodiscard]] static const disasm::MemoryAccess* write_from(const disasm::Trace& trace,
-		                                                            disasm::Register object,
-		                                                            disasm::Register value, std::uint8_t width);
+		                                                            disasm::Object object, disasm::Register value,
+		                                                            std::uint8_t width);
 		[[nodiscard]] static std::optional<std::int64_t> differing_constant(const disasm::Trace& first,
 		                                                                    const disasm::Trace& second,
-		                                                                    disasm::Register first_object,
-		                                                                    disasm::Register second_object);
+		                                                                    disasm::Object first_object,
+		                                                                    disasm::Object second_object);
 
 	private:
 		static constexpr std::array<std::string_view, 1> m_dependencies{"CommonHeader"};
 
-		[[nodiscard]] static disasm::Register allocated_object(const disasm::Trace& trace);
+		[[nodiscard]] static disasm::Object allocated_object(const disasm::Trace& trace);
 	};
 }

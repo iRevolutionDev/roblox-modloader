@@ -37,7 +37,10 @@ namespace rml::dumper::disasm
 		ValueOrigins()
 		{
 			for (std::size_t i = 0; i < m_origins.size(); ++i)
+			{
 				m_origins[i] = static_cast<Register>(i);
+				m_objects[i] = entry_object(static_cast<Register>(i));
+			}
 		}
 
 		[[nodiscard]] Register of(const Register value) const
@@ -46,20 +49,43 @@ namespace rml::dumper::disasm
 			return index < m_origins.size() ? m_origins[index] : value;
 		}
 
+		[[nodiscard]] Object object_of(const Register value) const
+		{
+			const auto index = static_cast<std::size_t>(value);
+			return index < m_objects.size() ? m_objects[index] : no_object;
+		}
+
 		void alias(const Register destination, const Register source)
 		{
 			if (const auto index = static_cast<std::size_t>(destination); index < m_origins.size())
+			{
 				m_origins[index] = of(source);
+				m_objects[index] = object_of(source);
+			}
 		}
 
-		void forget(const Register destination)
+		void redefine(const Register destination)
 		{
 			if (const auto index = static_cast<std::size_t>(destination); index < m_origins.size())
+			{
 				m_origins[index] = destination;
+				m_objects[index] = m_next++;
+			}
+		}
+
+		void redefine_volatiles()
+		{
+			for (const auto scratch : {Register::rax, Register::rcx, Register::rdx, Register::r8, Register::r9,
+			                           Register::r10, Register::r11})
+				redefine(scratch);
 		}
 
 	private:
-		std::array<Register, static_cast<std::size_t>(Register::rip) + 1> m_origins{};
+		static constexpr std::size_t slots = static_cast<std::size_t>(Register::rip) + 1;
+
+		std::array<Register, slots> m_origins{};
+		std::array<Object, slots> m_objects{};
+		Object m_next{first_derived_object};
 	};
 
 	static bool stops_the_trace(const ZydisMnemonic mnemonic)
@@ -189,6 +215,7 @@ namespace rml::dumper::disasm
 				}
 
 				trace.calls.push_back(call);
+				origins.redefine_volatiles();
 			}
 
 			for (std::uint8_t i = 0; i < instruction.operand_count_visible; ++i)
@@ -197,15 +224,17 @@ namespace rml::dumper::disasm
 				if (operand.type != ZYDIS_OPERAND_TYPE_MEMORY)
 					continue;
 
-				const auto base = to_register(operand.mem.base);
+				const auto raw_base = to_register(operand.mem.base);
+				const auto base = origins.of(raw_base);
 				if (base == Register::none || base == Register::rsp)
 					continue;
 
 				MemoryAccess access;
 				access.sequence = sequence++;
 				access.address = address;
+				access.object = origins.object_of(raw_base);
 				access.base = base;
-				access.index = to_register(operand.mem.index);
+				access.index = origins.of(to_register(operand.mem.index));
 				access.scale = operand.mem.scale != 0 ? operand.mem.scale : 1;
 				access.width = static_cast<std::uint8_t>(operand.size / 8);
 				access.displacement = operand.mem.disp.has_displacement ? operand.mem.disp.value : 0;
@@ -228,7 +257,7 @@ namespace rml::dumper::disasm
 				for (std::uint8_t i = 0; i < instruction.operand_count_visible; ++i)
 					if (operands[i].type == ZYDIS_OPERAND_TYPE_REGISTER &&
 					    (operands[i].actions & ZYDIS_OPERAND_ACTION_MASK_WRITE) != 0)
-						origins.forget(to_register(operands[i].reg.value));
+						origins.redefine(to_register(operands[i].reg.value));
 			}
 
 			offset += instruction.length;

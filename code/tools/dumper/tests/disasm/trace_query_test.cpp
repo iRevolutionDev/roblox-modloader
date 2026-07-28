@@ -6,36 +6,40 @@
 using namespace rml::dumper;
 using namespace rml::dumper::disasm;
 
+static constexpr Object state = entry_object(Register::rcx);
+static constexpr Object other = entry_object(Register::rbx);
+
 static Trace sample_trace()
 {
 	Trace trace;
 	trace.accesses = {
-	    {.sequence = 0, .base = Register::rcx, .value_register = Register::rax, .width = 8, .displacement = 0x38,
+	    {.sequence = 0, .object = state, .base = Register::rcx, .value_register = Register::rax, .width = 8,
+	     .displacement = 0x38, .is_write = true},
+	    {.sequence = 1, .object = state, .base = Register::rcx, .value_register = Register::rdx, .width = 8,
+	     .displacement = 0x30, .is_write = true},
+	    {.sequence = 3, .object = state, .base = Register::rcx, .width = 4, .displacement = 0x60, .is_write = true},
+	    {.sequence = 4, .object = other, .base = Register::rbx, .value_register = Register::r8, .width = 8,
+	     .displacement = 0x10, .is_write = false},
+	    {.sequence = 5, .object = state, .base = Register::rcx, .width = 1, .displacement = 0x06, .immediate = 1,
 	     .is_write = true},
-	    {.sequence = 1, .base = Register::rcx, .value_register = Register::rdx, .width = 8, .displacement = 0x30,
-	     .is_write = true},
-	    {.sequence = 3, .base = Register::rcx, .width = 4, .displacement = 0x60, .is_write = true},
-	    {.sequence = 4, .base = Register::rbx, .value_register = Register::r8, .width = 8, .displacement = 0x10,
-	     .is_write = false},
-	    {.sequence = 5, .base = Register::rcx, .width = 1, .displacement = 0x06, .immediate = 1, .is_write = true},
-	    {.sequence = 6, .base = Register::rcx, .index = Register::rdx, .scale = 8, .width = 8, .displacement = 0x20,
-	     .is_write = true},
+	    {.sequence = 6, .object = state, .base = Register::rcx, .index = Register::rdx, .scale = 8, .width = 8,
+	     .displacement = 0x20, .is_write = true},
 	};
 	trace.calls = {{.sequence = 2, .address = 0x1020, .target = Rva{0x5000}},
 	               {.sequence = 7, .address = 0x1040, .target = Rva{0x5000}}};
 	return trace;
 }
 
-TEST_CASE("nth write filters by base register and width")
+TEST_CASE("nth write filters by object and width")
 {
 	const Trace trace = sample_trace();
 	const TraceQuery query(trace);
 
-	CHECK(query.nth_write(Register::rcx, 0, 8)->displacement == 0x38);
-	CHECK(query.nth_write(Register::rcx, 1, 8)->displacement == 0x30);
-	CHECK(query.nth_write(Register::rcx, 2, 8)->displacement == 0x20);
-	CHECK(query.nth_write(Register::rcx, 3, 8) == nullptr);
-	CHECK(query.nth_write(Register::rcx, 0, 4)->displacement == 0x60);
+	CHECK(query.nth_write(state, 0, 8)->displacement == 0x38);
+	CHECK(query.nth_write(state, 1, 8)->displacement == 0x30);
+	CHECK(query.nth_write(state, 2, 8)->displacement == 0x20);
+	CHECK(query.nth_write(state, 3, 8) == nullptr);
+	CHECK(query.nth_write(state, 0, 4)->displacement == 0x60);
 }
 
 TEST_CASE("nth write can start after a sequence number")
@@ -43,8 +47,8 @@ TEST_CASE("nth write can start after a sequence number")
 	const Trace trace = sample_trace();
 	const TraceQuery query(trace);
 
-	CHECK(query.nth_write(Register::rcx, 0, 8, 0)->displacement == 0x30);
-	CHECK(query.nth_write(Register::rcx, 0, 8, 3)->displacement == 0x20);
+	CHECK(query.nth_write(state, 0, 8, 0)->displacement == 0x30);
+	CHECK(query.nth_write(state, 0, 8, 3)->displacement == 0x20);
 }
 
 TEST_CASE("nth write can filter by the stored register")
@@ -52,17 +56,49 @@ TEST_CASE("nth write can filter by the stored register")
 	const Trace trace = sample_trace();
 	const TraceQuery query(trace);
 
-	CHECK(query.nth_write(Register::rcx, 0, 8, std::nullopt, Register::rdx)->displacement == 0x30);
-	CHECK(query.nth_write(Register::rcx, 0, 8, std::nullopt, Register::r15) == nullptr);
+	CHECK(query.nth_write(state, 0, 8, std::nullopt, Register::rdx)->displacement == 0x30);
+	CHECK(query.nth_write(state, 0, 8, std::nullopt, Register::r15) == nullptr);
 }
 
-TEST_CASE("nth read filters by base register")
+TEST_CASE("nth read filters by object")
 {
 	const Trace trace = sample_trace();
 	const TraceQuery query(trace);
 
-	CHECK(query.nth_read(Register::rbx, 0, 8)->displacement == 0x10);
-	CHECK(query.nth_read(Register::rcx, 0, 8) == nullptr);
+	CHECK(query.nth_read(other, 0, 8)->displacement == 0x10);
+	CHECK(query.nth_read(state, 0, 8) == nullptr);
+}
+
+TEST_CASE("nth distinct write skips a field written more than once")
+{
+	Trace trace;
+	trace.accesses = {
+	    {.sequence = 0, .object = state, .base = Register::rcx, .width = 2, .displacement = 0x78, .is_write = true},
+	    {.sequence = 1, .object = state, .base = Register::rcx, .width = 2, .displacement = 0x78, .is_write = true},
+	    {.sequence = 2, .object = state, .base = Register::rcx, .width = 2, .displacement = 0x7A, .is_write = true},
+	};
+
+	const TraceQuery query(trace);
+
+	CHECK(query.nth_distinct_write(state, 0, 2)->displacement == 0x78);
+	CHECK(query.nth_distinct_write(state, 1, 2)->displacement == 0x7A);
+	CHECK(query.nth_write(state, 1, 2)->displacement == 0x78);
+}
+
+TEST_CASE("two values living in one register stay apart")
+{
+	Trace trace;
+	trace.accesses = {
+	    {.sequence = 0, .object = state, .base = Register::rcx, .width = 8, .displacement = 0x50, .is_write = true},
+	    {.sequence = 1, .object = first_derived_object, .base = Register::rcx, .width = 8, .displacement = 0x8,
+	     .is_write = true},
+	};
+
+	const TraceQuery query(trace);
+
+	CHECK(query.nth_write(state, 0, 8)->displacement == 0x50);
+	CHECK(query.nth_write(state, 1, 8) == nullptr);
+	CHECK(query.nth_write(first_derived_object, 0, 8)->displacement == 0x8);
 }
 
 TEST_CASE("first immediate write matches on the stored value")
@@ -70,8 +106,8 @@ TEST_CASE("first immediate write matches on the stored value")
 	const Trace trace = sample_trace();
 	const TraceQuery query(trace);
 
-	CHECK(query.first_immediate_write(Register::rcx, 1)->displacement == 0x06);
-	CHECK(query.first_immediate_write(Register::rcx, 9) == nullptr);
+	CHECK(query.first_immediate_write(state, 1)->displacement == 0x06);
+	CHECK(query.first_immediate_write(state, 9) == nullptr);
 }
 
 TEST_CASE("first indexed finds a scaled access")
@@ -79,26 +115,26 @@ TEST_CASE("first indexed finds a scaled access")
 	const Trace trace = sample_trace();
 	const TraceQuery query(trace);
 
-	const auto* indexed = query.first_indexed(Register::rcx, true);
+	const auto* indexed = query.first_indexed(state, true);
 	REQUIRE(indexed != nullptr);
 	CHECK(indexed->index == Register::rdx);
 	CHECK(indexed->scale == 8);
 }
 
-TEST_CASE("dominant base is the register written through most often")
+TEST_CASE("dominant object is the one written through most often")
 {
 	const Trace trace = sample_trace();
 	const TraceQuery query(trace);
 
-	CHECK(query.dominant_base() == Register::rcx);
+	CHECK(query.dominant_object() == state);
 }
 
-TEST_CASE("dominant base of an empty trace is none")
+TEST_CASE("dominant object of an empty trace is none")
 {
 	const Trace empty;
 	const TraceQuery query(empty);
 
-	CHECK(query.dominant_base() == Register::none);
+	CHECK(query.dominant_object() == no_object);
 }
 
 TEST_CASE("call sequence locates the nth call to a target")

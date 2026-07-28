@@ -12,15 +12,15 @@ namespace rml::dumper::recover
 		if (!trace)
 			return std::unexpected(trace.error());
 
-		std::map<disasm::Register, std::vector<const disasm::MemoryAccess*>> by_base;
+		std::map<disasm::Object, std::vector<const disasm::MemoryAccess*>> by_object;
 
 		for (const auto& access : (*trace)->accesses)
 		{
-			if (!access.is_write || access.base == disasm::Register::none ||
+			if (!access.is_write || access.object == disasm::no_object ||
 			    access.index != disasm::Register::none || access.displacement < 0 || access.displacement >= 0x20)
 				continue;
 
-			by_base[access.base].push_back(&access);
+			by_object[access.object].push_back(&access);
 		}
 
 		schema::StructLayout layout{.name = "TValue"};
@@ -28,7 +28,7 @@ namespace rml::dumper::recover
 		const disasm::MemoryAccess* value = nullptr;
 		const disasm::MemoryAccess* tag = nullptr;
 
-		for (const auto& [base, writes] : by_base)
+		for (const auto& [object, writes] : by_object)
 		{
 			const auto stored = std::ranges::find_if(writes, [](const disasm::MemoryAccess* access) {
 				return access->width == 8 && access->value_register == disasm::Register::none &&

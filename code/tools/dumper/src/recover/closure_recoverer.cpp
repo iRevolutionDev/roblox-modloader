@@ -6,35 +6,34 @@
 
 namespace rml::dumper::recover
 {
-	disasm::Register ClosureRecoverer::allocated_object(const disasm::Trace& trace)
+	disasm::Object ClosureRecoverer::allocated_object(const disasm::Trace& trace)
 	{
-		std::map<disasm::Register, std::size_t> writes;
+		std::map<disasm::Object, std::size_t> writes;
 
 		for (const auto& access : trace.accesses)
-			if (access.is_write && access.base != disasm::Register::none &&
+			if (access.is_write && access.object != disasm::no_object &&
 			    access.index == disasm::Register::none && access.displacement >= 0 &&
 			    access.displacement < 0x40)
-				++writes[access.base];
+				++writes[access.object];
 
-		disasm::Register best = disasm::Register::none;
+		disasm::Object best = disasm::no_object;
 		std::size_t most = 0;
 
-		for (const auto& [base, count] : writes)
+		for (const auto& [object, count] : writes)
 			if (count > most)
 			{
 				most = count;
-				best = base;
+				best = object;
 			}
 
 		return best;
 	}
 
-	const disasm::MemoryAccess* ClosureRecoverer::write_from(const disasm::Trace& trace,
-	                                                         const disasm::Register object,
+	const disasm::MemoryAccess* ClosureRecoverer::write_from(const disasm::Trace& trace, const disasm::Object object,
 	                                                         const disasm::Register value, const std::uint8_t width)
 	{
 		const auto found = std::ranges::find_if(trace.accesses, [&](const disasm::MemoryAccess& access) {
-			return access.is_write && access.base == object && access.value_register == value &&
+			return access.is_write && access.object == object && access.value_register == value &&
 			       access.width == width && access.displacement >= 0;
 		});
 
@@ -42,13 +41,13 @@ namespace rml::dumper::recover
 	}
 
 	static std::map<std::int64_t, std::uint8_t> constant_bytes(const disasm::Trace& trace,
-	                                                           const disasm::Register object)
+	                                                           const disasm::Object object)
 	{
 		std::map<std::int64_t, std::uint8_t> bytes;
 
 		for (const auto& access : trace.accesses)
 		{
-			if (!access.is_write || access.base != object || !access.immediate || access.displacement < 0)
+			if (!access.is_write || access.object != object || !access.immediate || access.displacement < 0)
 				continue;
 			if (access.width == 0 || access.width > 8)
 				continue;
@@ -62,8 +61,8 @@ namespace rml::dumper::recover
 
 	std::optional<std::int64_t> ClosureRecoverer::differing_constant(const disasm::Trace& first,
 	                                                                 const disasm::Trace& second,
-	                                                                 const disasm::Register first_object,
-	                                                                 const disasm::Register second_object)
+	                                                                 const disasm::Object first_object,
+	                                                                 const disasm::Object second_object)
 	{
 		const auto left = constant_bytes(first, first_object);
 		const auto right = constant_bytes(second, second_object);
@@ -142,7 +141,7 @@ namespace rml::dumper::recover
 		std::vector<std::int64_t> c_slots;
 		for (const auto& access : (*c_trace)->accesses)
 		{
-			if (!access.is_write || access.base != c_object || access.width != 8 || access.displacement < 0)
+			if (!access.is_write || access.object != c_object || access.width != 8 || access.displacement < 0)
 				continue;
 			if (std::ranges::find(c_slots, access.displacement) == c_slots.end())
 				c_slots.push_back(access.displacement);

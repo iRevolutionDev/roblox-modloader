@@ -8,21 +8,18 @@ namespace rml::dumper::recover
 {
 	std::vector<disasm::MemoryAccess> CommonHeaderRecoverer::header_writes(const disasm::Trace& trace)
 	{
-		std::map<disasm::Register, std::vector<disasm::MemoryAccess>> header_by_base;
-		std::map<disasm::Register, std::size_t> writes_by_base;
+		std::map<disasm::Object, std::vector<disasm::MemoryAccess>> header_by_object;
 
 		for (const auto& access : trace.accesses)
 		{
-			if (!access.is_write || access.base == disasm::Register::none ||
+			if (!access.is_write || access.object == disasm::no_object ||
 			    access.index != disasm::Register::none)
 				continue;
-
-			++writes_by_base[access.base];
 
 			if (access.width != 1 || access.displacement < 0 || access.displacement >= plausible_header_span)
 				continue;
 
-			auto& writes = header_by_base[access.base];
+			auto& writes = header_by_object[access.object];
 			const auto seen = std::ranges::find(writes, access.displacement,
 			                                    &disasm::MemoryAccess::displacement) != writes.end();
 			if (!seen)
@@ -31,7 +28,7 @@ namespace rml::dumper::recover
 
 		std::vector<disasm::MemoryAccess> best;
 
-		for (auto& [base, writes] : header_by_base)
+		for (auto& [object, writes] : header_by_object)
 		{
 			if (writes.size() < header_field_count)
 				continue;

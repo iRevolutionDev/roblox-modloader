@@ -1,10 +1,12 @@
 #include "rml/dumper/disasm/trace_query.hpp"
 
-#include <array>
+#include <algorithm>
+#include <map>
+#include <vector>
 
 namespace rml::dumper::disasm
 {
-	const MemoryAccess* TraceQuery::nth(const bool is_write, const Register base, const std::size_t n,
+	const MemoryAccess* TraceQuery::nth(const bool is_write, const Object object, const std::size_t n,
 	                                    const std::uint8_t width, const std::optional<std::size_t> after,
 	                                    const Register value) const
 	{
@@ -12,7 +14,7 @@ namespace rml::dumper::disasm
 
 		for (const auto& access : m_trace.accesses)
 		{
-			if (access.is_write != is_write || access.base != base)
+			if (access.is_write != is_write || access.object != object)
 				continue;
 			if (width != 0 && access.width != width)
 				continue;
@@ -28,24 +30,50 @@ namespace rml::dumper::disasm
 		return nullptr;
 	}
 
-	const MemoryAccess* TraceQuery::nth_write(const Register base, const std::size_t n, const std::uint8_t width,
+	const MemoryAccess* TraceQuery::nth_write(const Object object, const std::size_t n, const std::uint8_t width,
 	                                          const std::optional<std::size_t> after, const Register value) const
 	{
-		return nth(true, base, n, width, after, value);
+		return nth(true, object, n, width, after, value);
 	}
 
-	const MemoryAccess* TraceQuery::nth_read(const Register base, const std::size_t n, const std::uint8_t width,
+	const MemoryAccess* TraceQuery::nth_distinct_write(const Object object, const std::size_t n,
+	                                                   const std::uint8_t width,
+	                                                   const std::optional<std::size_t> after) const
+	{
+		std::vector<std::int64_t> seen;
+
+		for (const auto& access : m_trace.accesses)
+		{
+			if (!access.is_write || access.object != object)
+				continue;
+			if (width != 0 && access.width != width)
+				continue;
+			if (after && access.sequence <= *after)
+				continue;
+			if (std::ranges::find(seen, access.displacement) != seen.end())
+				continue;
+
+			if (seen.size() == n)
+				return &access;
+
+			seen.push_back(access.displacement);
+		}
+
+		return nullptr;
+	}
+
+	const MemoryAccess* TraceQuery::nth_read(const Object object, const std::size_t n, const std::uint8_t width,
 	                                         const std::optional<std::size_t> after, const Register value) const
 	{
-		return nth(false, base, n, width, after, value);
+		return nth(false, object, n, width, after, value);
 	}
 
-	const MemoryAccess* TraceQuery::first_immediate_write(const Register base, const std::uint64_t value,
+	const MemoryAccess* TraceQuery::first_immediate_write(const Object object, const std::uint64_t value,
 	                                                      const std::optional<std::size_t> after) const
 	{
 		for (const auto& access : m_trace.accesses)
 		{
-			if (!access.is_write || access.base != base || access.immediate != value)
+			if (!access.is_write || access.object != object || access.immediate != value)
 				continue;
 			if (after && access.sequence <= *after)
 				continue;
@@ -56,12 +84,12 @@ namespace rml::dumper::disasm
 		return nullptr;
 	}
 
-	const MemoryAccess* TraceQuery::first_indexed(const Register base, const bool is_write,
+	const MemoryAccess* TraceQuery::first_indexed(const Object object, const bool is_write,
 	                                              const std::optional<std::size_t> after) const
 	{
 		for (const auto& access : m_trace.accesses)
 		{
-			if (access.is_write != is_write || access.base != base || access.index == Register::none)
+			if (access.is_write != is_write || access.object != object || access.index == Register::none)
 				continue;
 			if (after && access.sequence <= *after)
 				continue;
@@ -72,22 +100,22 @@ namespace rml::dumper::disasm
 		return nullptr;
 	}
 
-	Register TraceQuery::dominant_base() const
+	Object TraceQuery::dominant_object() const
 	{
-		std::array<std::size_t, 64> counts{};
+		std::map<Object, std::size_t> counts;
 
 		for (const auto& access : m_trace.accesses)
-			if (access.is_write && access.base != Register::none)
-				++counts[static_cast<std::size_t>(access.base)];
+			if (access.is_write && access.object != no_object)
+				++counts[access.object];
 
 		std::size_t best = 0;
-		Register winner = Register::none;
+		Object winner = no_object;
 
-		for (std::size_t i = 0; i < counts.size(); ++i)
-			if (counts[i] > best)
+		for (const auto& [object, count] : counts)
+			if (count > best)
 			{
-				best = counts[i];
-				winner = static_cast<Register>(i);
+				best = count;
+				winner = object;
 			}
 
 		return winner;
