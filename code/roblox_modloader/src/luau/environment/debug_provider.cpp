@@ -17,6 +17,21 @@ namespace rml::luau::environment
 {
 	namespace debug_impl
 	{
+		static void barrier_into(lua_State* L, void* owner, const access::TValue* value)
+		{
+			if (value->tt < LUA_TSTRING)
+			{
+				return;
+			}
+
+			auto* object = reinterpret_cast<void*>(value->value);
+
+			if (access::needs_barrier(owner, object))
+			{
+				luaC_barrierf(L, static_cast<GCObject*>(owner), static_cast<GCObject*>(object));
+			}
+		}
+
 		static void normalize_stack(lua_State* L, const int count)
 		{
 			if (const int top = lua_gettop(L); top < count)
@@ -84,10 +99,7 @@ namespace rml::luau::environment
 					}
 					else
 					{
-						if (tval->tt >= LUA_TSTRING)
-						{
-							luaC_threadbarrier(L);
-						}
+						barrier_into(L, L, tval);
 						access::copy_value(state->top, tval);
 						access::advance_top(state);
 					}
@@ -160,10 +172,7 @@ namespace rml::luau::environment
 				}
 				else
 				{
-					if (tValue->tt >= LUA_TSTRING)
-					{
-						luaC_threadbarrier(L);
-					}
+					barrier_into(L, L, tValue);
 
 					auto* state = access::state(L);
 					access::copy_value(state->top, tValue);
@@ -245,10 +254,7 @@ namespace rml::luau::environment
 					luaL_argerror(L, 3, "cannot replace constant when the element you want to replace it with is not of the same type.");
 				}
 
-				if (newConstant->tt >= LUA_TSTRING)
-				{
-					luaC_threadbarrier(L);
-				}
+				barrier_into(L, const_cast<access::Proto*>(p), newConstant);
 
 				access::copy_value(constant, newConstant);
 
@@ -475,10 +481,7 @@ namespace rml::luau::environment
 
 				const auto* replacement = access::value(luaA_toobject(L, 3));
 
-				if (replacement->tt >= LUA_TSTRING)
-				{
-					luaC_threadbarrier(L);
-				}
+				barrier_into(L, L, replacement);
 
 				access::copy_value(slot, replacement);
 				return 0;
@@ -602,14 +605,9 @@ namespace rml::luau::environment
 
 				auto* upvalue = access::value_at(upvalue_table, index - 1);
 
-				if (value->tt >= LUA_TSTRING)
-				{
-					luaC_threadbarrier(L);
-				}
+				barrier_into(L, raw, value);
 
 				access::copy_value(upvalue, value);
-
-				luaC_barrier(L, raw, luaA_toobject(L, 3));
 
 				lua_pushboolean(L, true);
 				return 1;
@@ -664,10 +662,7 @@ namespace rml::luau::environment
 
 				const auto* upval = access::value_at(upvalue_table, index - 1);
 
-				if (upval->tt >= LUA_TSTRING)
-				{
-					luaC_threadbarrier(L);
-				}
+				barrier_into(L, L, upval);
 
 				if (upval->tt == LUA_TTABLE)
 				{
@@ -724,10 +719,7 @@ namespace rml::luau::environment
 				{
 					const auto* upval = access::value_at(upvalueTable, i);
 
-					if (upval->tt >= LUA_TSTRING)
-					{
-						luaC_threadbarrier(L);
-					}
+					barrier_into(L, L, upval);
 
 					if (upval->tt == LUA_TFUNCTION || upval->tt == LUA_TTABLE)
 					{
