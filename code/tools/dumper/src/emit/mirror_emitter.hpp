@@ -21,9 +21,8 @@ namespace rml::dumper::emit
 			bool reserved{};
 		};
 
-		[[nodiscard]] static std::vector<Slot> pack(const schema::StructLayout& layout);
-
-	private:
+		[[nodiscard]] static std::vector<Slot> pack(const schema::StructLayout& layout,
+		                                            const schema::LayoutSet& layouts);
 		[[nodiscard]] static std::string mirror_name(std::string_view struct_name);
 	};
 }

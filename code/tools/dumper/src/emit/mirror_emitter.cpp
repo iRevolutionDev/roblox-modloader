@@ -67,7 +67,32 @@ namespace rml::dumper::emit
 		return prefix + core + suffix;
 	}
 
-	std::vector<MirrorEmitter::Slot> MirrorEmitter::pack(const schema::StructLayout& layout)
+	static std::string under_its_mirror_name(const std::string& type, const schema::LayoutSet& layouts)
+	{
+		std::string core = type;
+		std::string suffix;
+
+		while (!core.empty() && core.back() == '*')
+		{
+			suffix.push_back('*');
+			core.pop_back();
+		}
+
+		std::string prefix;
+		if (core.starts_with("const "))
+		{
+			prefix = "const ";
+			core.erase(0, 6);
+		}
+
+		if (layouts.find(core) == nullptr)
+			return type;
+
+		return prefix + MirrorEmitter::mirror_name(core) + suffix;
+	}
+
+	std::vector<MirrorEmitter::Slot> MirrorEmitter::pack(const schema::StructLayout& layout,
+	                                                     const schema::LayoutSet& layouts)
 	{
 		std::vector<Slot> slots;
 		std::size_t cursor = 0;
@@ -78,7 +103,8 @@ namespace rml::dumper::emit
 				slots.push_back({std::format("reserved_{:x}", cursor), "std::byte", cursor,
 				                 field.offset - cursor, true});
 
-			slots.push_back({field.name, self_contained(field.type), field.offset, field.size, false});
+			slots.push_back({field.name, self_contained(under_its_mirror_name(field.type, layouts)), field.offset,
+			                 field.size, false});
 			cursor = field.end();
 		}
 
@@ -101,7 +127,7 @@ namespace rml::dumper::emit
 		for (const auto& [name, layout] : layouts.structs)
 			for (const auto& field : layout.fields)
 			{
-				auto pointee = self_contained(field.type);
+				auto pointee = self_contained(under_its_mirror_name(field.type, layouts));
 				while (!pointee.empty() && pointee.back() == '*')
 					pointee.pop_back();
 
@@ -129,7 +155,7 @@ namespace rml::dumper::emit
 				continue;
 
 			const auto mirror = mirror_name(name);
-			const auto slots = pack(layout);
+			const auto slots = pack(layout, layouts);
 
 			out << std::format("\tstruct {}\n\t{{\n", mirror);
 
