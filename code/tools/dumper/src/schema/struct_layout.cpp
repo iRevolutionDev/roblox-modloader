@@ -18,6 +18,13 @@ namespace rml::dumper::schema
 		return found != fields.end() ? &*found : nullptr;
 	}
 
+	bool StructLayout::covers(const std::size_t offset) const
+	{
+		return std::ranges::any_of(fields, [offset](const Field& field) {
+			return offset >= field.offset && offset < field.end();
+		});
+	}
+
 	std::size_t StructLayout::recovered_count() const
 	{
 		return static_cast<std::size_t>(

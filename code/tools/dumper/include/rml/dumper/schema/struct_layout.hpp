@@ -18,6 +18,7 @@ namespace rml::dumper::schema
 		void add(Field field);
 
 		[[nodiscard]] const Field* find(std::string_view field_name) const;
+		[[nodiscard]] bool covers(std::size_t offset) const;
 		[[nodiscard]] std::size_t recovered_count() const;
 	};
 

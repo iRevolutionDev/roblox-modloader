@@ -14,10 +14,8 @@ namespace rml::dumper::recover
 		    const RecoveryContext& context) const override;
 
 		[[nodiscard]] static std::optional<std::int64_t> copied_from_parent(const disasm::Trace& trace,
-		                                                                    disasm::Register parent,
-		                                                                    std::uint8_t width);
-		[[nodiscard]] static std::optional<std::int64_t> only_byte_left(const disasm::Trace& trace,
-		                                                                const schema::StructLayout& layout);
+		                                                                    disasm::Object parent, std::uint8_t width,
+		                                                                    const schema::StructLayout& claimed);
 
 	private:
 		class Probe

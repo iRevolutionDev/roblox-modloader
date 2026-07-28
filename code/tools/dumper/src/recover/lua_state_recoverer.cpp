@@ -57,49 +57,26 @@ namespace rml::dumper::recover
 	}
 
 	std::optional<std::int64_t> LuaStateRecoverer::copied_from_parent(const disasm::Trace& trace,
-	                                                                  const disasm::Register parent,
-	                                                                  const std::uint8_t width)
+	                                                                  const disasm::Object parent,
+	                                                                  const std::uint8_t width,
+	                                                                  const schema::StructLayout& claimed)
 	{
 		for (const auto& read : trace.accesses)
 		{
-			if (read.is_write || read.base != parent || read.width != width)
+			if (read.is_write || read.object != parent || read.width != width || read.displacement < 0)
+				continue;
+			if (claimed.covers(static_cast<std::size_t>(read.displacement)))
 				continue;
 
 			for (const auto& write : trace.accesses)
 			{
-				if (!write.is_write || write.base == parent || write.width != width)
+				if (!write.is_write || write.object == parent || write.width != width)
 					continue;
 				if (write.displacement != read.displacement || write.sequence <= read.sequence)
 					continue;
 
 				return read.displacement;
 			}
-		}
-
-		return std::nullopt;
-	}
-
-	std::optional<std::int64_t> LuaStateRecoverer::only_byte_left(const disasm::Trace& trace,
-	                                                              const schema::StructLayout& layout)
-	{
-		for (const auto& access : trace.accesses)
-		{
-			if (!access.is_write || access.width != 4 || access.displacement < 0 || access.displacement > 8)
-				continue;
-
-			std::vector<std::int64_t> free_slots;
-			for (std::int64_t offset = access.displacement; offset < access.displacement + 4; ++offset)
-			{
-				const auto taken = std::ranges::any_of(layout.fields, [offset](const schema::Field& field) {
-					return static_cast<std::int64_t>(field.offset) == offset;
-				});
-
-				if (!taken)
-					free_slots.push_back(offset);
-			}
-
-			if (free_slots.size() == 1)
-				return free_slots.front();
 		}
 
 		return std::nullopt;
@@ -121,7 +98,7 @@ namespace rml::dumper::recover
 		Probe probe(context, layout);
 
 		const disasm::TraceQuery stack(**stack_trace);
-		const auto state = stack.dominant_base();
+		const auto state = stack.dominant_object();
 		const auto after_alloc = stack.first_call_sequence();
 
 		probe.take("stack", "StkId", 8, stack.nth_write(state, 0, 8, after_alloc),
@@ -136,7 +113,7 @@ namespace rml::dumper::recover
 		           target::Anchor::luaD_reallocstack, "first dword write after the reallocation");
 
 		const disasm::TraceQuery calls(**call_trace);
-		const auto call_state = calls.dominant_base();
+		const auto call_state = calls.dominant_object();
 
 		probe.take("base_ci", "CallInfo*", 8, calls.nth_write(call_state, 0, 8), target::Anchor::luaD_reallocCI,
 		           "first qword write");
@@ -147,21 +124,23 @@ namespace rml::dumper::recover
 		probe.take("size_ci", "int", 4, calls.nth_write(call_state, 0, 4), target::Anchor::luaD_reallocCI,
 		           "first dword write");
 
+		const auto argument = disasm::entry_object(context.abi().argument(0));
+
 		const disasm::TraceQuery frees(**free_trace);
-		probe.take("global", "global_State*", 8, frees.nth_read(context.abi().argument(0), 0, 8),
-		           target::Anchor::luaM_free, "first qword read through the state argument");
+		probe.take("global", "global_State*", 8, frees.nth_read(argument, 0, 8), target::Anchor::luaM_free,
+		           "first qword read through the state argument");
 
 		const disasm::TraceQuery resume(**resume_trace);
-		const auto resume_state = resume.dominant_base();
+		const auto resume_state = resume.dominant_object();
 
-		probe.take("status", "uint8_t", 1, resume.nth_read(context.abi().argument(0), 0, 1),
-		           target::Anchor::lua_resume, "first byte read through the state argument");
+		probe.take("status", "uint8_t", 1, resume.nth_read(argument, 0, 1), target::Anchor::lua_resume,
+		           "first byte read through the state argument");
 		probe.take("isactive", "bool", 1, resume.first_immediate_write(resume_state, 1),
 		           target::Anchor::lua_resume, "byte set to one");
-		probe.take("nCcalls", "unsigned short", 2, resume.nth_write(resume_state, 0, 2),
-		           target::Anchor::lua_resume, "first word write");
-		probe.take("baseCcalls", "unsigned short", 2, resume.nth_write(resume_state, 1, 2),
-		           target::Anchor::lua_resume, "second word write");
+		probe.take("nCcalls", "unsigned short", 2, resume.nth_distinct_write(resume_state, 0, 2),
+		           target::Anchor::lua_resume, "first word the resume counter touches");
+		probe.take("baseCcalls", "unsigned short", 2, resume.nth_distinct_write(resume_state, 1, 2),
+		           target::Anchor::lua_resume, "the word it copies the counter into");
 
 		const auto thread_trace = context.trace(target::Anchor::luaE_newthread);
 		const auto upval_trace = context.trace(target::Anchor::luaF_findupval);
@@ -170,19 +149,19 @@ namespace rml::dumper::recover
 		if (!upval_trace)
 			return std::unexpected(upval_trace.error());
 
-		const auto parent = context.abi().argument(0);
+		const auto parent = argument;
 
-		probe.take_offset("activememcat", "uint8_t", 1, copied_from_parent(**thread_trace, parent, 1),
-		                  target::Anchor::luaE_newthread, "byte copied from the parent state at the same offset");
-		probe.take_offset("gt", "LuaTable*", 8, copied_from_parent(**thread_trace, parent, 8),
+		probe.take_offset("activememcat", "uint8_t", 1, copied_from_parent(**thread_trace, parent, 1, layout),
+		                  target::Anchor::luaE_newthread, "first byte copied from the parent state");
+		probe.take_offset("gt", "LuaTable*", 8, copied_from_parent(**thread_trace, parent, 8, layout),
 		                  target::Anchor::luaE_newthread,
-		                  "qword copied from the parent state at the same offset");
+		                  "the qword copied from the parent state that is not the global one");
 
 		const auto* known_global = layout.find("global");
 
 		for (const auto& access : (*upval_trace)->accesses)
 		{
-			if (access.base != parent || access.width != 8 || access.is_write)
+			if (access.object != parent || access.width != 8 || access.is_write)
 				continue;
 			if (known_global != nullptr && static_cast<std::size_t>(access.displacement) == known_global->offset)
 				continue;
@@ -196,15 +175,14 @@ namespace rml::dumper::recover
 			context.report().record_failure("lua_State", "openupval",
 			                                "luaF_findupval reaches no qword through the state besides global");
 
-		probe.take_offset("singlestep", "bool", 1, only_byte_left(**thread_trace, layout),
+		probe.take_offset("singlestep", "bool", 1, copied_from_parent(**thread_trace, parent, 1, layout),
 		                  target::Anchor::luaE_newthread,
-		                  "the one byte left in the block that luaE_newthread clears in a single store");
+		                  "the byte copied from the parent state that is not the memory category");
 
 		const disasm::TraceQuery settop(**settop_trace);
-		const auto settop_state = context.abi().argument(0);
 
-		probe.confirm("top", settop.nth_read(settop_state, 0, 8), "lua_settop reads top at");
-		probe.confirm("base", settop.nth_read(settop_state, 1, 8), "lua_settop reads base at");
+		probe.confirm("top", settop.nth_read(argument, 0, 8), "lua_settop reads top at");
+		probe.confirm("base", settop.nth_read(argument, 1, 8), "lua_settop reads base at");
 
 		const auto allocation = context.abi().argument(1);
 		const auto smallest = layout.fields.empty() ? 0 : layout.fields.back().end();
