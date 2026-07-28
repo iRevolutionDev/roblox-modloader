@@ -2,7 +2,6 @@ file(GLOB_RECURSE DUMPER_CORE_SOURCES CONFIGURE_DEPENDS
         "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
 )
 list(FILTER DUMPER_CORE_SOURCES EXCLUDE REGEX "/src/cli/main\\.cpp$")
-list(FILTER DUMPER_CORE_SOURCES EXCLUDE REGEX "/src/fetch/")
 
 add_library(dumper_core STATIC ${DUMPER_CORE_SOURCES})
 
@@ -55,7 +54,7 @@ if (ROBLOX_MODLOADER_BUILD_DUMPER_TESTS)
             "${CMAKE_CURRENT_SOURCE_DIR}/src"
             "${CMAKE_CURRENT_SOURCE_DIR}/tests"
     )
-    target_link_libraries(dumper_tests PRIVATE dumper_core doctest::doctest)
+    target_link_libraries(dumper_tests PRIVATE dumper_core doctest::doctest ZLIB::ZLIB)
 
     set_target_properties(dumper_tests PROPERTIES FOLDER "Tools")
 
