@@ -19,6 +19,11 @@ namespace rml::dumper::schema
 		m_failures.push_back({std::move(struct_name), std::move(field_name), std::move(reason)});
 	}
 
+	void Report::record_note(std::string struct_name, std::string reason)
+	{
+		m_notes.push_back({std::move(struct_name), {}, std::move(reason)});
+	}
+
 	std::string Report::summary() const
 	{
 		std::string text = std::format("{} recovered, {} fixed, {} failed", recovered_count(), fixed_count(),
@@ -26,6 +31,9 @@ namespace rml::dumper::schema
 
 		for (const auto& failure : m_failures)
 			text += std::format("\n  {}.{}: {}", failure.struct_name, failure.field_name, failure.reason);
+
+		for (const auto& note : m_notes)
+			text += std::format("\n  {}: {}", note.struct_name, note.reason);
 
 		return text;
 	}

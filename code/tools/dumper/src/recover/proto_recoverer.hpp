@@ -17,10 +17,11 @@ namespace rml::dumper::recover
 		{
 			std::int64_t pointer{};
 			std::int64_t size{};
+			std::int64_t element{};
 		};
 
 		[[nodiscard]] static std::vector<FreedArray> freed_arrays(const disasm::Trace& trace, Rva free_function,
-		                                                          disasm::Register proto);
+		                                                          disasm::Object proto);
 
 	private:
 		static constexpr std::array<std::string_view, 1> m_dependencies{"CommonHeader"};

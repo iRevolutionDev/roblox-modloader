@@ -9,7 +9,7 @@ namespace rml::dumper::recover
 {
 	std::vector<ProtoRecoverer::FreedArray> ProtoRecoverer::freed_arrays(const disasm::Trace& trace,
 	                                                                     const Rva free_function,
-	                                                                     const disasm::Register proto)
+	                                                                     const disasm::Object proto)
 	{
 		std::vector<FreedArray> arrays;
 		std::size_t previous = 0;
@@ -19,11 +19,11 @@ namespace rml::dumper::recover
 			if (call.target != free_function)
 				continue;
 
-			FreedArray array{.pointer = -1, .size = -1};
+			FreedArray array{.pointer = -1, .size = -1, .element = 1};
 
 			for (const auto& access : trace.accesses)
 			{
-				if (access.is_write || access.base != proto || access.sequence >= call.sequence ||
+				if (access.is_write || access.object != proto || access.sequence >= call.sequence ||
 				    access.sequence < previous || access.displacement < 0)
 					continue;
 
@@ -32,6 +32,11 @@ namespace rml::dumper::recover
 				else if (access.width == 4)
 					array.size = access.displacement;
 			}
+
+			for (const auto& constant : trace.constants)
+				if (constant.kind == disasm::ConstantKind::scale && constant.sequence < call.sequence &&
+				    constant.sequence >= previous)
+					array.element *= constant.value;
 
 			previous = call.sequence;
 
@@ -50,16 +55,16 @@ namespace rml::dumper::recover
 
 		const auto free_function = context.anchors().at(target::Anchor::luaM_free);
 
-		disasm::Register proto = disasm::Register::none;
+		disasm::Object proto = disasm::no_object;
 		std::size_t most = 0;
-		std::map<disasm::Register, std::size_t> reads;
+		std::map<disasm::Object, std::size_t> reads;
 
 		for (const auto& access : (*trace)->accesses)
-			if (!access.is_write && access.base != disasm::Register::none && access.displacement >= 0)
-				if (const auto count = ++reads[access.base]; count > most)
+			if (!access.is_write && access.object != disasm::no_object && access.displacement >= 0)
+				if (const auto count = ++reads[access.object]; count > most)
 				{
 					most = count;
-					proto = access.base;
+					proto = access.object;
 				}
 
 		const auto arrays = freed_arrays(**trace, free_function, proto);
@@ -84,16 +89,22 @@ namespace rml::dumper::recover
 
 		schema::StructLayout layout{.name = "Proto"};
 
-		if (arrays.size() != freed_in_order.size())
+		if (arrays.size() < freed_in_order.size())
 		{
 			context.report().record_failure(
 			    "Proto", "code",
-			    std::format("luaF_freeproto releases {} arrays through luaM_free, expected {}", arrays.size(),
-			                freed_in_order.size()));
+			    std::format("luaF_freeproto releases {} arrays through luaM_free, expected at least {}",
+			                arrays.size(), freed_in_order.size()));
 			return layout;
 		}
 
-		for (std::size_t i = 0; i < arrays.size(); ++i)
+		if (arrays.size() > freed_in_order.size())
+			context.report().record_note(
+			    "Proto", std::format("luaF_freeproto releases {} arrays, the {} beyond the ones luau declares stay "
+			                         "unnamed",
+			                         arrays.size(), arrays.size() - freed_in_order.size()));
+
+		for (std::size_t i = 0; i < freed_in_order.size(); ++i)
 		{
 			const auto& freed = freed_in_order[i];
 			const auto probe = std::format("array {} released by luaF_freeproto", i);
@@ -125,6 +136,26 @@ namespace rml::dumper::recover
 			            .size = 4,
 			            .offset = static_cast<std::size_t>(arrays[i].size),
 			            .provenance = schema::Provenance::recovered("luaF_freeproto", std::move(size_probe))});
+		}
+
+		static constexpr std::array<std::pair<std::string_view, std::int64_t>, 3> element_sizes{
+		    {{"code", 4}, {"p", 8}, {"k", 16}}};
+
+		for (const auto& [name, expected] : element_sizes)
+		{
+			const auto* field = layout.find(name);
+			if (field == nullptr)
+				continue;
+
+			const auto freed = std::ranges::find(arrays, static_cast<std::int64_t>(field->offset),
+			                                     &FreedArray::pointer);
+			if (freed == arrays.end() || freed->element == expected)
+				continue;
+
+			context.report().record_failure(
+			    "Proto", std::string(name),
+			    std::format("luaF_freeproto walks it in steps of {} bytes, not the {} an element takes",
+			                freed->element, expected));
 		}
 
 		layout.size = layout.fields.empty() ? 0 : layout.fields.back().end();
