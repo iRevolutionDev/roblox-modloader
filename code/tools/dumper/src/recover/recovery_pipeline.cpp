@@ -1,6 +1,7 @@
 #include "rml/dumper/recover/recovery_pipeline.hpp"
 
 #include "recover/common_header_recoverer.hpp"
+#include "recover/lua_state_recoverer.hpp"
 
 #include <algorithm>
 #include <format>
@@ -96,6 +97,7 @@ namespace rml::dumper::recover
 	{
 		std::vector<std::unique_ptr<Recoverer>> recoverers;
 		recoverers.push_back(std::make_unique<CommonHeaderRecoverer>());
+		recoverers.push_back(std::make_unique<LuaStateRecoverer>());
 
 		return RecoveryPipeline(std::move(recoverers));
 	}

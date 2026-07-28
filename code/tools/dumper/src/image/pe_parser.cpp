@@ -155,6 +155,37 @@ namespace rml::dumper::image
 		return memory;
 	}
 
+	Rva PeParser::primary_of(const ByteReader& reader, const Rva begin, const Rva unwind_info)
+	{
+		constexpr std::uint8_t chain_info_flag = 0x04;
+		constexpr std::size_t maximum_chain_depth = 8;
+
+		Rva current = begin;
+		Rva info = unwind_info;
+
+		for (std::size_t depth = 0; depth < maximum_chain_depth; ++depth)
+		{
+			const auto header = reader.read_le<std::uint8_t>(info + 0);
+			const auto code_count = reader.read_le<std::uint8_t>(info + 2);
+			if (!header || !code_count)
+				return current;
+
+			if (((*header >> 3) & chain_info_flag) == 0)
+				return current;
+
+			const auto chained = info + 4 + 2 * ((*code_count + 1) & ~1u);
+			const auto chained_begin = reader.read_le<std::uint32_t>(chained + 0);
+			const auto chained_info = reader.read_le<std::uint32_t>(chained + 8);
+			if (!chained_begin || !chained_info || *chained_begin == current)
+				return current;
+
+			current = *chained_begin;
+			info = *chained_info;
+		}
+
+		return current;
+	}
+
 	index::FunctionIndex PeParser::read_functions(const std::span<const std::byte> mapped, const Directory& directory,
 	                                              const std::span<const Section> sections)
 	{
@@ -171,8 +202,8 @@ namespace rml::dumper::image
 			});
 		};
 
-		std::vector<index::FunctionBounds> functions;
-		functions.reserve(directory.size / runtime_function_size);
+		std::vector<Chunk> chunks;
+		chunks.reserve(directory.size / runtime_function_size);
 
 		for (std::uint32_t offset = 0; offset + runtime_function_size <= directory.size;
 		     offset += runtime_function_size)
@@ -180,13 +211,30 @@ namespace rml::dumper::image
 			const auto entry = directory.address + offset;
 			const auto begin = reader.read_le<std::uint32_t>(entry + 0);
 			const auto end = reader.read_le<std::uint32_t>(entry + 4);
-			if (!begin || !end)
+			const auto unwind = reader.read_le<std::uint32_t>(entry + 8);
+			if (!begin || !end || !unwind)
 				break;
 
 			if (*end <= *begin || !executable(*begin))
 				continue;
 
-			functions.push_back({*begin, *end});
+			chunks.push_back({*begin, *end, primary_of(reader, *begin, *unwind)});
+		}
+
+		std::ranges::sort(chunks, {}, &Chunk::begin);
+
+		std::vector<index::FunctionBounds> functions;
+		functions.reserve(chunks.size());
+
+		for (const auto& chunk : chunks)
+		{
+			const bool continues = !functions.empty() && functions.back().end == chunk.begin &&
+			                       chunk.primary != chunk.begin;
+
+			if (continues)
+				functions.back().end = chunk.end;
+			else
+				functions.push_back({chunk.begin, chunk.end});
 		}
 
 		return index::FunctionIndex(std::move(functions));

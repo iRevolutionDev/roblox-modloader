@@ -17,6 +17,6 @@ namespace rml::dumper::recover
 
 	private:
 		static constexpr std::size_t header_field_count = 3;
-		static constexpr std::int64_t plausible_header_span = 16;
+		static constexpr std::int64_t plausible_header_span = 4;
 	};
 }

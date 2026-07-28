@@ -8,39 +8,41 @@ namespace rml::dumper::recover
 {
 	std::vector<disasm::MemoryAccess> CommonHeaderRecoverer::header_writes(const disasm::Trace& trace)
 	{
-		if (trace.calls.empty())
-			return {};
+		std::map<disasm::Register, std::vector<disasm::MemoryAccess>> header_by_base;
+		std::map<disasm::Register, std::size_t> writes_by_base;
 
-		const auto allocation = trace.calls.front().sequence;
-
-		std::map<disasm::Register, std::vector<disasm::MemoryAccess>> by_base;
 		for (const auto& access : trace.accesses)
 		{
-			if (!access.is_write || access.width != 1 || access.sequence <= allocation)
-				continue;
-			if (access.index != disasm::Register::none || access.displacement < 0 ||
-			    access.displacement >= plausible_header_span)
+			if (!access.is_write || access.base == disasm::Register::none ||
+			    access.index != disasm::Register::none)
 				continue;
 
-			by_base[access.base].push_back(access);
+			++writes_by_base[access.base];
+
+			if (access.width != 1 || access.displacement < 0 || access.displacement >= plausible_header_span)
+				continue;
+
+			auto& writes = header_by_base[access.base];
+			const auto seen = std::ranges::find(writes, access.displacement,
+			                                    &disasm::MemoryAccess::displacement) != writes.end();
+			if (!seen)
+				writes.push_back(access);
 		}
 
-		for (auto& [base, writes] : by_base)
+		std::vector<disasm::MemoryAccess> best;
+
+		for (auto& [base, writes] : header_by_base)
 		{
 			if (writes.size() < header_field_count)
 				continue;
 
-			writes.resize(header_field_count);
-
-			const auto distinct = std::ranges::all_of(writes, [&writes](const disasm::MemoryAccess& access) {
-				return std::ranges::count(writes, access.displacement, &disasm::MemoryAccess::displacement) == 1;
-			});
-
-			if (distinct)
-				return writes;
+			if (writes.size() > best.size())
+				best = writes;
 		}
 
-		return {};
+		std::ranges::sort(best, {}, &disasm::MemoryAccess::displacement);
+
+		return best;
 	}
 
 	std::expected<schema::StructLayout, Error> CommonHeaderRecoverer::recover(const RecoveryContext& context) const
@@ -54,16 +56,20 @@ namespace rml::dumper::recover
 		if (!closure)
 			return std::unexpected(closure.error());
 
-		const auto table_writes = header_writes(**table);
 		const auto closure_writes = header_writes(**closure);
 
-		if (table_writes.size() != header_field_count || closure_writes.size() != header_field_count)
+		std::vector<disasm::MemoryAccess> table_writes;
+		for (const auto& write : header_writes(**table))
+			if (std::ranges::find(closure_writes, write.displacement, &disasm::MemoryAccess::displacement) !=
+			    closure_writes.end())
+				table_writes.push_back(write);
+
+		if (table_writes.size() != header_field_count)
 		{
-			context.report().record_failure("CommonHeader", "tt",
-			                                std::format("luaH_new produced {} byte writes and luaF_newLclosure {}, "
-			                                            "expected {} each",
-			                                            table_writes.size(), closure_writes.size(),
-			                                            header_field_count));
+			context.report().record_failure(
+			    "CommonHeader", "tt",
+			    std::format("luaH_new and luaF_newLclosure share {} small byte writes, expected {}",
+			                table_writes.size(), header_field_count));
 			layout.size = header_field_count;
 			return layout;
 		}
