@@ -44,6 +44,28 @@ static schema::LayoutSet call_info_layouts()
 	return layouts;
 }
 
+TEST_CASE("the mirror keeps clear of the names luau claims for macros")
+{
+	schema::LayoutSet layouts;
+	layouts.target = "windows-x64";
+
+	schema::StructLayout header{.name = "CommonHeader", .size = 3};
+	header.add({.name = "tt", .type = "uint8_t", .size = 1, .offset = 0});
+	header.add({.name = "marked", .type = "uint8_t", .size = 1, .offset = 1});
+	header.add({.name = "memcat", .type = "uint8_t", .size = 1, .offset = 2});
+	layouts.structs.emplace("CommonHeader", std::move(header));
+
+	std::ostringstream out;
+	REQUIRE(emit::EmitterRegistry().create("mirror")->emit(layouts, out).has_value());
+
+	const auto text = out.str();
+
+	CHECK(text.find("struct CommonHeader") == std::string::npos);
+	CHECK(text.find("struct GcHeader") != std::string::npos);
+	CHECK(text.find("gcheader_size") != std::string::npos);
+	CHECK(text.find("namespace rml::luau::mirror") != std::string::npos);
+}
+
 TEST_CASE("the registry exposes every emitter by id")
 {
 	const emit::EmitterRegistry registry;

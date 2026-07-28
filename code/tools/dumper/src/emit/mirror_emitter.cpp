@@ -5,8 +5,15 @@
 
 namespace rml::dumper::emit
 {
-	std::string MirrorEmitter::mirror_name(const std::string_view struct_name)
+	static std::string_view free_of_luau_macros(const std::string_view struct_name)
 	{
+		return struct_name == "CommonHeader" ? "GcHeader" : struct_name;
+	}
+
+	std::string MirrorEmitter::mirror_name(const std::string_view name_in_luau)
+	{
+		const auto struct_name = free_of_luau_macros(name_in_luau);
+
 		std::string name;
 		bool capitalise = true;
 
@@ -88,7 +95,7 @@ namespace rml::dumper::emit
 
 		out << "#pragma once\n\n";
 		out << "#include <cstddef>\n#include <cstdint>\n\n";
-		out << "namespace rml::luau\n{\n";
+		out << "namespace rml::luau::mirror\n{\n";
 
 		std::set<std::string> referenced;
 		for (const auto& [name, layout] : layouts.structs)
@@ -149,9 +156,8 @@ namespace rml::dumper::emit
 			out << std::format("\tstatic_assert(sizeof({}) >= 0x{:X});\n", mirror, layout.size);
 
 			std::string constant;
-			for (const auto character : name)
-				if (character != '_')
-					constant.push_back(static_cast<char>(std::tolower(character)));
+			for (const auto character : mirror)
+				constant.push_back(static_cast<char>(std::tolower(character)));
 
 			out << std::format("\tinline constexpr std::size_t {}_size = 0x{:X};\n\n", constant, layout.size);
 		}
