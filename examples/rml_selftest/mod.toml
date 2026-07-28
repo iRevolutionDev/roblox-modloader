@@ -1,0 +1,8 @@
+name = "RML Self Test"
+version = "1.0.0"
+author = "Revolution"
+description = "Exercises the debug library the loader installs, including constant and upvalue hooking."
+
+[datamodel.context]
+standalone = []
+edit = ["selftest.luau"]
