@@ -1,5 +1,6 @@
 #include "rml/dumper/image/image.hpp"
 
+#include "image/macho_parser.hpp"
 #include "image/pe_parser.hpp"
 
 #include <algorithm>
@@ -87,7 +88,8 @@ namespace rml::dumper::image
 
 	std::expected<Image, Error> ImageLoader::parse(std::vector<std::byte> file, const Architecture architecture)
 	{
-		std::array<std::unique_ptr<ImageParser>, 1> parsers{std::make_unique<PeParser>()};
+		std::array<std::unique_ptr<ImageParser>, 2> parsers{std::make_unique<PeParser>(),
+		                                                    std::make_unique<MachOParser>()};
 
 		for (const auto& parser : parsers)
 			if (parser->matches(file))
