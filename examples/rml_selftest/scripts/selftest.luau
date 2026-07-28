@@ -119,7 +119,7 @@ check("setconstant refuses to change a constant's type", function()
 end)
 
 check("getupvalue reads what a closure captured", function()
-	local secret = 4321
+	local secret = tonumber("4321")
 	local function reader()
 		return secret
 	end
@@ -189,25 +189,23 @@ probe("getinfo fields", function()
 	say("probe getinfo -> " .. table.concat(seen, "  "))
 end)
 
-probe("getstack contents", function()
-	local marker = 1337
+probe("frame alignment", function()
+	local aaa = tonumber("111111")
+	local bbb = tonumber("222222")
+	local ccc = tonumber("333333")
 	local frame = debug.getstack(1)
 
-	local count, shown = 0, {}
-	for slot, value in pairs(frame) do
-		count += 1
-		if count <= 10 then
-			table.insert(shown, ("[%s]=%s(%s)"):format(tostring(slot), tostring(value), type(value)))
-		end
+	local shown = {}
+	for i = 1, 8 do
+		table.insert(shown, ("[%d]=%s"):format(i, tostring(rawget(frame, i))))
 	end
 
-	say(("probe getstack(1) -> %d entries, marker still %s"):format(count, tostring(marker)))
-	say("probe getstack(1) shows " .. table.concat(shown, " "))
-	say("probe getstack(1, 1) -> " .. tostring(debug.getstack(1, 1)))
+	say("probe align " .. table.concat(shown, " "))
+	say(("probe locals were %d %d %d"):format(aaa, bbb, ccc))
 end)
 
 check("getstack sees the live frame and setstack writes into it", function()
-	local marker = 1337
+	local marker = tonumber("1337")
 	local frame = debug.getstack(1)
 	assert(type(frame) == "table", "getstack gave back a " .. type(frame))
 
@@ -225,7 +223,7 @@ check("getstack sees the live frame and setstack writes into it", function()
 end)
 
 check("setstack refuses to change a register's type", function()
-	local marker = 1337
+	local marker = tonumber("1337")
 	local slot
 
 	for i, v in pairs(debug.getstack(1)) do
@@ -245,7 +243,7 @@ check("getstack walks further than one frame up", function()
 	end
 
 	local function outer()
-		local mine = 24680
+		local mine = tonumber("24680")
 		local frame = inner()
 		assert(mine == 24680, "the local moved under us")
 		return frame
