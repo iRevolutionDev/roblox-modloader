@@ -3,6 +3,12 @@ file(GLOB_RECURSE DUMPER_CORE_SOURCES CONFIGURE_DEPENDS
 )
 list(FILTER DUMPER_CORE_SOURCES EXCLUDE REGEX "/src/cli/main\\.cpp$")
 
+if (RML_PLATFORM_WINDOWS)
+    list(FILTER DUMPER_CORE_SOURCES EXCLUDE REGEX "/src/fetch/curl_http_client\\.cpp$")
+else ()
+    list(FILTER DUMPER_CORE_SOURCES EXCLUDE REGEX "/src/fetch/win_http_client\\.cpp$")
+endif ()
+
 add_library(dumper_core STATIC ${DUMPER_CORE_SOURCES})
 
 target_compile_features(dumper_core PUBLIC cxx_std_23)
@@ -26,6 +32,7 @@ target_link_libraries(dumper_core PRIVATE
 
 if (RML_PLATFORM_WINDOWS)
     target_link_libraries(dumper_core PRIVATE winhttp)
+    target_compile_definitions(dumper_core PRIVATE WIN32_LEAN_AND_MEAN NOMINMAX)
 else ()
     find_package(CURL REQUIRED)
     target_link_libraries(dumper_core PRIVATE CURL::libcurl)
