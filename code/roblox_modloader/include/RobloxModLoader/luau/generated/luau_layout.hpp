@@ -35,7 +35,9 @@ namespace rml::luau::mirror
 
 	struct Closure
 	{
-		std::byte reserved_0[0x5];
+		std::byte reserved_0[0x3];
+		std::uint8_t preload;
+		std::uint8_t stacksize;
 		std::uint8_t nupvalues;
 		std::uint8_t isC;
 		std::byte reserved_7[0x9];
@@ -46,6 +48,8 @@ namespace rml::luau::mirror
 		TValue* upvals;
 	};
 
+	static_assert(offsetof(Closure, preload) == 0x3);
+	static_assert(offsetof(Closure, stacksize) == 0x4);
 	static_assert(offsetof(Closure, nupvalues) == 0x5);
 	static_assert(offsetof(Closure, isC) == 0x6);
 	static_assert(offsetof(Closure, env) == 0x10);

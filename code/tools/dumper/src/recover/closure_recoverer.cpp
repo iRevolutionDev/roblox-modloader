@@ -77,6 +77,51 @@ namespace rml::dumper::recover
 		return std::nullopt;
 	}
 
+	std::optional<std::int64_t> ClosureRecoverer::matching_constant(const disasm::Trace& first,
+	                                                                const disasm::Trace& second,
+	                                                                const disasm::Object first_object,
+	                                                                const disasm::Object second_object,
+	                                                                const std::int64_t below,
+	                                                                const std::int64_t skip)
+	{
+		const auto left = constant_bytes(first, first_object);
+		const auto right = constant_bytes(second, second_object);
+
+		for (const auto& [offset, value] : left)
+		{
+			if (offset < below || offset == skip)
+				continue;
+
+			if (const auto twin = right.find(offset); twin != right.end() && twin->second == value)
+				return offset;
+		}
+
+		return std::nullopt;
+	}
+
+	std::optional<std::int64_t> ClosureRecoverer::taken_from(const disasm::Trace& trace, const disasm::Object source,
+	                                                         const disasm::Object destination,
+	                                                         const std::uint8_t width)
+	{
+		for (const auto& read : trace.accesses)
+		{
+			if (read.is_write || read.object != source || read.width != width || read.displacement < 0)
+				continue;
+
+			for (const auto& write : trace.accesses)
+			{
+				if (!write.is_write || write.object != destination || write.width != width)
+					continue;
+				if (write.value_register != read.value_register || write.sequence <= read.sequence)
+					continue;
+
+				return write.displacement;
+			}
+		}
+
+		return std::nullopt;
+	}
+
 	std::expected<schema::StructLayout, Error> ClosureRecoverer::recover(const RecoveryContext& context) const
 	{
 		const auto lua_trace = context.trace(target::Anchor::luaF_newLclosure);
@@ -111,8 +156,19 @@ namespace rml::dumper::recover
 			return access != nullptr ? std::optional{access->displacement} : std::nullopt;
 		};
 
-		record("isC", "uint8_t", 1, differing_constant(**lua_trace, **c_trace, lua_object, c_object),
+		const auto tag = differing_constant(**lua_trace, **c_trace, lua_object, c_object);
+
+		record("isC", "uint8_t", 1, tag,
 		       "byte constant that differs between the lua and the c closure constructor");
+
+		record("preload", "uint8_t", 1,
+		       matching_constant(**lua_trace, **c_trace, lua_object, c_object, collectable_header_size,
+		                         tag.value_or(-1)),
+		       "the other byte constant both closure constructors agree on");
+
+		record("stacksize", "uint8_t", 1,
+		       taken_from(**lua_trace, disasm::entry_object(context.abi().argument(3)), lua_object, 1),
+		       "byte the lua closure takes from the proto it is built for");
 
 		record("nupvalues", "uint8_t", 1,
 		       offset_of(write_from(**lua_trace, lua_object, context.abi().argument(1), 1)),

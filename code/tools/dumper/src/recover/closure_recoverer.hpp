@@ -20,6 +20,15 @@ namespace rml::dumper::recover
 		                                                                    const disasm::Trace& second,
 		                                                                    disasm::Object first_object,
 		                                                                    disasm::Object second_object);
+		[[nodiscard]] static std::optional<std::int64_t> matching_constant(const disasm::Trace& first,
+		                                                                   const disasm::Trace& second,
+		                                                                   disasm::Object first_object,
+		                                                                   disasm::Object second_object,
+		                                                                   std::int64_t below, std::int64_t skip);
+		[[nodiscard]] static std::optional<std::int64_t> taken_from(const disasm::Trace& trace, disasm::Object source,
+		                                                            disasm::Object destination, std::uint8_t width);
+
+		static constexpr std::int64_t collectable_header_size = 3;
 
 	private:
 		static constexpr std::array<std::string_view, 1> m_dependencies{"CommonHeader"};
