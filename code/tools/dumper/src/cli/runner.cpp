@@ -6,6 +6,8 @@
 #include "target/pattern_anchor_resolver.hpp"
 
 #include <fstream>
+#include <sstream>
+
 #include <spdlog/spdlog.h>
 
 namespace rml::dumper::cli
@@ -41,13 +43,18 @@ namespace rml::dumper::cli
 		{
 			const auto path = options.out / emitter->default_filename();
 
+			std::ostringstream buffer;
+			if (const auto emitted = emitter->emit(layouts, buffer); !emitted)
+			{
+				spdlog::warn("skipping {}: {}", emitter->default_filename(), emitted.error().message());
+				continue;
+			}
+
 			std::ofstream file(path, std::ios::binary | std::ios::trunc);
 			if (!file)
 				return std::unexpected(Error::make(ErrorCode::usage, "cannot write {}", path.string()));
 
-			if (const auto emitted = emitter->emit(layouts, file); !emitted)
-				return std::unexpected(emitted.error());
-
+			file << buffer.str();
 			spdlog::info("wrote {}", path.string());
 		}
 
@@ -92,10 +99,7 @@ namespace rml::dumper::cli
 
 		auto layouts = recover::RecoveryPipeline::make_default().run(context);
 		if (!layouts)
-		{
-			spdlog::error("{}", layouts.error().message());
 			return std::unexpected(layouts.error());
-		}
 
 		layouts->target = profile->name;
 
@@ -103,6 +107,10 @@ namespace rml::dumper::cli
 			return std::unexpected(written.error());
 
 		spdlog::info("{}", layouts->report.summary());
+
+		if (layouts->report.has_failures())
+			return std::unexpected(Error::make(ErrorCode::recovery, "{} fields could not be recovered",
+			                                   layouts->report.failures().size()));
 
 		return {};
 	}

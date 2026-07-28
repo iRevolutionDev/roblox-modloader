@@ -86,10 +86,6 @@ namespace rml::dumper::recover
 
 		layouts.report = context.report();
 
-		if (layouts.report.has_failures())
-			return std::unexpected(
-			    Error::make(ErrorCode::recovery, "recovery incomplete\n{}", layouts.report.summary()));
-
 		return layouts;
 	}
 

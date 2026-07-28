@@ -138,7 +138,7 @@ TEST_CASE("the pipeline reports an unknown dependency")
 	CHECK(layouts.error().message().find("Missing") != std::string::npos);
 }
 
-TEST_CASE("the pipeline fails when a field could not be recovered")
+TEST_CASE("the pipeline carries failures out so a report can still be written")
 {
 	std::vector<std::unique_ptr<Recoverer>> recoverers;
 	recoverers.push_back(std::make_unique<FailingRecoverer>());
@@ -146,10 +146,12 @@ TEST_CASE("the pipeline fails when a field could not be recovered")
 	const PipelineFixture fixture;
 	const auto layouts = RecoveryPipeline(std::move(recoverers)).run(fixture.context());
 
-	REQUIRE_FALSE(layouts.has_value());
-	CHECK(layouts.error().code() == ErrorCode::recovery);
-	CHECK(layouts.error().message().find("Broken.field") != std::string::npos);
-	CHECK(layouts.error().message().find("the probe found nothing") != std::string::npos);
+	REQUIRE(layouts.has_value());
+	CHECK(layouts->report.has_failures());
+	REQUIRE(layouts->report.failures().size() == 1);
+	CHECK(layouts->report.failures()[0].struct_name == "Broken");
+	CHECK(layouts->report.failures()[0].field_name == "field");
+	CHECK(layouts->report.summary().find("the probe found nothing") != std::string::npos);
 }
 
 TEST_CASE("the pipeline refuses a layout that does not validate")

@@ -13,6 +13,10 @@ namespace rml::dumper::recover
 		[[nodiscard]] std::expected<schema::StructLayout, Error> recover(
 		    const RecoveryContext& context) const override;
 
+		[[nodiscard]] static std::optional<std::int64_t> copied_from_parent(const disasm::Trace& trace,
+		                                                                    disasm::Register parent,
+		                                                                    std::uint8_t width);
+
 	private:
 		class Probe
 		{
@@ -26,6 +30,8 @@ namespace rml::dumper::recover
 			void take(std::string name, std::string type, std::size_t size, const disasm::MemoryAccess* access,
 			          target::Anchor anchor, std::string description);
 			void confirm(std::string_view name, const disasm::MemoryAccess* access, std::string description) const;
+			void take_offset(std::string name, std::string type, std::size_t size, std::optional<std::int64_t> offset,
+			                 target::Anchor anchor, std::string description);
 
 		private:
 			const RecoveryContext& m_context;
