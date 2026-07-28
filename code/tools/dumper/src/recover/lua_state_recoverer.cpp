@@ -79,6 +79,32 @@ namespace rml::dumper::recover
 		return std::nullopt;
 	}
 
+	std::optional<std::int64_t> LuaStateRecoverer::only_byte_left(const disasm::Trace& trace,
+	                                                              const schema::StructLayout& layout)
+	{
+		for (const auto& access : trace.accesses)
+		{
+			if (!access.is_write || access.width != 4 || access.displacement < 0 || access.displacement > 8)
+				continue;
+
+			std::vector<std::int64_t> free_slots;
+			for (std::int64_t offset = access.displacement; offset < access.displacement + 4; ++offset)
+			{
+				const auto taken = std::ranges::any_of(layout.fields, [offset](const schema::Field& field) {
+					return static_cast<std::int64_t>(field.offset) == offset;
+				});
+
+				if (!taken)
+					free_slots.push_back(offset);
+			}
+
+			if (free_slots.size() == 1)
+				return free_slots.front();
+		}
+
+		return std::nullopt;
+	}
+
 	std::expected<schema::StructLayout, Error> LuaStateRecoverer::recover(const RecoveryContext& context) const
 	{
 		const auto stack_trace = context.trace(target::Anchor::luaD_reallocstack);
@@ -169,6 +195,10 @@ namespace rml::dumper::recover
 		if (layout.find("openupval") == nullptr)
 			context.report().record_failure("lua_State", "openupval",
 			                                "luaF_findupval reaches no qword through the state besides global");
+
+		probe.take_offset("singlestep", "bool", 1, only_byte_left(**thread_trace, layout),
+		                  target::Anchor::luaE_newthread,
+		                  "the one byte left in the block that luaE_newthread clears in a single store");
 
 		const disasm::TraceQuery settop(**settop_trace);
 		const auto settop_state = context.abi().argument(0);

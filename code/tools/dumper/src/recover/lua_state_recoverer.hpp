@@ -16,6 +16,8 @@ namespace rml::dumper::recover
 		[[nodiscard]] static std::optional<std::int64_t> copied_from_parent(const disasm::Trace& trace,
 		                                                                    disasm::Register parent,
 		                                                                    std::uint8_t width);
+		[[nodiscard]] static std::optional<std::int64_t> only_byte_left(const disasm::Trace& trace,
+		                                                                const schema::StructLayout& layout);
 
 	private:
 		class Probe
