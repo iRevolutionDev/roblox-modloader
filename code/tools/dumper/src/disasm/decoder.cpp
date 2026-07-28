@@ -1,5 +1,6 @@
 #include "rml/dumper/disasm/decoder.hpp"
 
+#include "disasm/arm64_decoder.hpp"
 #include "disasm/x86_decoder.hpp"
 
 namespace rml::dumper::disasm
@@ -26,7 +27,7 @@ namespace rml::dumper::disasm
 		case Architecture::x86_64:
 			return std::make_unique<X86Decoder>();
 		case Architecture::arm64:
-			return std::unexpected(Error::make(ErrorCode::usage, "the arm64 decoder is not wired up yet"));
+			return std::make_unique<Arm64Decoder>();
 		}
 
 		return std::unexpected(Error::make(ErrorCode::usage, "unknown architecture"));

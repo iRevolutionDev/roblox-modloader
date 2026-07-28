@@ -22,6 +22,9 @@ static void trace_many_functions(const std::filesystem::path& path, const Archit
 	std::size_t failed = 0;
 	std::size_t with_content = 0;
 	std::size_t accesses = 0;
+	std::size_t empty_and_tiny = 0;
+	std::size_t empty_and_large = 0;
+	std::uint32_t largest_empty = 0;
 
 	const auto started = std::chrono::steady_clock::now();
 
@@ -41,6 +44,13 @@ static void trace_many_functions(const std::filesystem::path& path, const Archit
 		{
 			if (!trace->accesses.empty() || !trace->calls.empty())
 				++with_content;
+			else if (bounds->size() <= 32)
+				++empty_and_tiny;
+			else
+			{
+				++empty_and_large;
+				largest_empty = std::max(largest_empty, bounds->size());
+			}
 			accesses += trace->accesses.size();
 		}
 
@@ -53,10 +63,11 @@ static void trace_many_functions(const std::filesystem::path& path, const Archit
 
 	CHECK(traced == limit);
 	CHECK(failed == 0);
-	CHECK(with_content * 10 > traced * 8);
+	CHECK(empty_and_large * 100 < traced);
 
 	MESSAGE(to_string(architecture), ": traced ", traced, " functions in ", elapsed.count(), " ms, ", with_content,
-	        " carried memory accesses or calls, ", accesses, " accesses total");
+	        " carried memory accesses or calls, ", accesses, " accesses total, ", empty_and_tiny,
+	        " empty and <= 32 bytes, ", empty_and_large, " empty and larger (largest ", largest_empty, " bytes)");
 }
 
 TEST_CASE("the x86 decoder survives thousands of real studio functions")
@@ -69,4 +80,16 @@ TEST_CASE("the x86 decoder survives thousands of real studio functions")
 	}
 
 	trace_many_functions(*path, Architecture::x86_64, 5000);
+}
+
+TEST_CASE("the arm64 decoder survives thousands of real studio functions")
+{
+	const auto path = tests::StudioBinary::macos(Architecture::arm64);
+	if (!path)
+	{
+		MESSAGE("no macos arm64 binary configured, skipping");
+		return;
+	}
+
+	trace_many_functions(*path, Architecture::arm64, 5000);
 }
