@@ -12,17 +12,26 @@
 
 namespace rml::dumper::cli
 {
-	std::expected<std::filesystem::path, Error> Runner::resolve_studio(const Options& options)
+	std::expected<fetch::ResolvedStudio, Error> Runner::resolve_studio(const Options& options)
 	{
-		if (!options.input)
-			return std::unexpected(Error::make(
-			    ErrorCode::fetch, "fetching a studio build is not wired up yet, pass --input for now"));
+		if (options.input)
+			return fetch::LocalStudioProvider(*options.input).resolve();
 
-		std::error_code ec;
-		if (!std::filesystem::exists(*options.input, ec))
-			return std::unexpected(Error::make(ErrorCode::fetch, "no such file: {}", options.input->string()));
+		const auto* deployment = fetch::deployment_for(options.target);
+		if (deployment == nullptr)
+			return std::unexpected(
+			    Error::make(ErrorCode::fetch, "no deployment is known for {}", options.target));
 
-		return *options.input;
+		auto client = fetch::HttpClient::create();
+		if (!client)
+			return std::unexpected(Error::make(ErrorCode::fetch, "cannot create an http client"));
+
+		const auto cache = options.cache.value_or(std::filesystem::temp_directory_path() / "rml_dumper_cache");
+
+		fetch::DeployClient deploy(*client, options.channel, *deployment);
+		fetch::RemoteStudioProvider provider(*client, std::move(deploy), *deployment, cache);
+
+		return provider.resolve();
 	}
 
 	std::expected<void, Error> Runner::write_outputs(const Options& options, const schema::LayoutSet& layouts)
@@ -75,9 +84,9 @@ namespace rml::dumper::cli
 		if (!studio)
 			return std::unexpected(studio.error());
 
-		spdlog::info("target {}, studio {}", profile->name, studio->string());
+		spdlog::info("target {}, studio {}", profile->name, studio->executable.string());
 
-		const auto image = image::ImageLoader::load(*studio, profile->architecture);
+		const auto image = image::ImageLoader::load(studio->executable, profile->architecture);
 		if (!image)
 			return std::unexpected(image.error());
 
@@ -102,6 +111,8 @@ namespace rml::dumper::cli
 			return std::unexpected(layouts.error());
 
 		layouts->target = profile->name;
+		layouts->studio_version = studio->version.version;
+		layouts->studio_guid = studio->version.guid;
 
 		if (const auto written = write_outputs(options, *layouts); !written)
 			return std::unexpected(written.error());
