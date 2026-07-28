@@ -107,12 +107,11 @@ namespace rml::dumper::emit
 
 				if (pointee == field.type || pointee.empty())
 					continue;
-				if (pointee.starts_with("std::") || pointee == "void" || pointee == "char" || pointee == "bool")
-					continue;
 
 				if (pointee.starts_with("const "))
 					pointee.erase(0, 6);
-				if (pointee.starts_with("std::"))
+
+				if (pointee.starts_with("std::") || pointee == "void" || pointee == "char" || pointee == "bool")
 					continue;
 
 				referenced.insert(pointee);

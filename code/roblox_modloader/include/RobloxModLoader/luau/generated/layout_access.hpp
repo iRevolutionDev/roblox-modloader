@@ -13,6 +13,7 @@ namespace rml::luau::access
 	[[nodiscard]] inline Proto* proto(void* prototype) { return static_cast<Proto*>(prototype); }
 	[[nodiscard]] inline TValue* value(void* slot) { return static_cast<TValue*>(slot); }
 	[[nodiscard]] inline CallInfo* frame(void* info) { return static_cast<CallInfo*>(info); }
+	[[nodiscard]] inline LuaDebug* debug_record(void* storage) { return static_cast<LuaDebug*>(storage); }
 
 	[[nodiscard]] inline const Closure* closure(const void* function)
 	{

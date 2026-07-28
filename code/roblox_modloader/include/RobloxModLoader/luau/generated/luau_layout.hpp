@@ -124,6 +124,32 @@ namespace rml::luau::mirror
 	static_assert(sizeof(TValue) >= 0x10);
 	inline constexpr std::size_t tvalue_size = 0x10;
 
+	struct LuaDebug
+	{
+		const char* short_src;
+		const char* what;
+		const char* source;
+		const char* name;
+		std::byte reserved_20[0x8];
+		std::int32_t linedefined;
+		std::int32_t currentline;
+		std::uint8_t nupvals;
+		std::uint8_t isvararg;
+		std::uint8_t nparams;
+	};
+
+	static_assert(offsetof(LuaDebug, short_src) == 0x0);
+	static_assert(offsetof(LuaDebug, what) == 0x8);
+	static_assert(offsetof(LuaDebug, source) == 0x10);
+	static_assert(offsetof(LuaDebug, name) == 0x18);
+	static_assert(offsetof(LuaDebug, linedefined) == 0x28);
+	static_assert(offsetof(LuaDebug, currentline) == 0x2C);
+	static_assert(offsetof(LuaDebug, nupvals) == 0x30);
+	static_assert(offsetof(LuaDebug, isvararg) == 0x31);
+	static_assert(offsetof(LuaDebug, nparams) == 0x32);
+	static_assert(sizeof(LuaDebug) >= 0x33);
+	inline constexpr std::size_t luadebug_size = 0x33;
+
 	struct LuaState
 	{
 		std::byte reserved_0[0x3];
