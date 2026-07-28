@@ -42,7 +42,7 @@ namespace rml::dumper::recover
 		const auto stack_trace = context.trace(target::Anchor::luaD_reallocstack);
 		const auto call_trace = context.trace(target::Anchor::luaD_reallocCI);
 		const auto free_trace = context.trace(target::Anchor::luaM_free);
-		const auto resume_trace = context.trace(target::Anchor::lua_resume);
+		const auto resume_trace = context.trace_callee(target::Anchor::lua_resume, 0);
 		const auto settop_trace = context.trace(target::Anchor::lua_settop);
 
 		for (const auto* traced : {&stack_trace, &call_trace, &free_trace, &resume_trace, &settop_trace})

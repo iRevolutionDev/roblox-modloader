@@ -23,6 +23,8 @@ namespace rml::dumper::recover
 		[[nodiscard]] schema::Report& report() const { return m_report; }
 
 		[[nodiscard]] std::expected<const disasm::Trace*, Error> trace(target::Anchor anchor) const;
+		[[nodiscard]] std::expected<const disasm::Trace*, Error> trace_callee(target::Anchor anchor,
+		                                                                      std::size_t call_index) const;
 		[[nodiscard]] const schema::StructLayout* layout(std::string_view name) const;
 
 		void publish(schema::StructLayout layout);
@@ -35,6 +37,7 @@ namespace rml::dumper::recover
 		schema::Report& m_report;
 
 		mutable std::map<target::Anchor, disasm::Trace> m_traces;
+		mutable std::map<Rva, disasm::Trace> m_callee_traces;
 		std::map<std::string, schema::StructLayout, std::less<>> m_layouts;
 	};
 }
