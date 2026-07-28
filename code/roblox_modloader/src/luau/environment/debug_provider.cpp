@@ -2,6 +2,7 @@
 
 #include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/luau/extensions/luau_extensions.hpp"
+#include "RobloxModLoader/luau/generated/layout_access.hpp"
 #include "lapi.h"
 #include "ldebug.h"
 #include "lfunc.h"
@@ -61,15 +62,19 @@ namespace rml::luau::environment
 					luaL_argerror(L, 1, "Lua function expected.");
 				}
 
-				const auto* closure   = luau_to_closure(L, -1);
-				const auto constCount = closure->l.p->sizek;
-				const auto consts     = closure->l.p->k;
+				namespace access = rml::luau::access;
+
+				const auto* closure   = access::closure(luau_to_closure(L, -1));
+				const auto* proto     = access::proto(closure->p);
+				const auto constCount = proto->sizek;
+				const auto* consts    = access::value(proto->k);
+				auto* state           = access::state(L);
 
 				lua_newtable(L);
 
 				for (int i = 0; i < constCount; i++)
 				{
-					const TValue* tval = &consts[i];
+					const auto* tval = access::value_at(consts, i);
 
 					if (tval->tt == LUA_TFUNCTION)
 					{
@@ -77,13 +82,12 @@ namespace rml::luau::environment
 					}
 					else
 					{
-						if (iscollectable(tval))
+						if (tval->tt >= LUA_TSTRING)
 						{
 							luaC_threadbarrier(L);
 						}
-						L->top->value = tval->value;
-						L->top->tt    = tval->tt;
-						L->top++;
+						access::copy_value(state->top, tval);
+						access::advance_top(state);
 					}
 
 					lua_rawseti(L, -2, i + 1);
@@ -130,20 +134,23 @@ namespace rml::luau::environment
 					luaL_argerror(L, 1, "Lua function expected.");
 				}
 
-				const auto* closure = luau_to_closure(L, -1);
-				const auto constants = closure->l.p->k;
+				namespace access = rml::luau::access;
+
+				const auto* closure   = access::closure(luau_to_closure(L, -1));
+				const auto* proto     = access::proto(closure->p);
+				const auto* constants = access::value(proto->k);
 
 				if (constantIndex < 1)
 				{
 					luaL_argerror(L, 2, "constant index starts at 1");
 				}
 
-				if (constantIndex > closure->l.p->sizek)
+				if (constantIndex > proto->sizek)
 				{
 					luaL_argerror(L, 2, "constant index is out of range");
 				}
 
-				const auto* tValue = &constants[constantIndex - 1];
+				const auto* tValue = access::value_at(constants, constantIndex - 1);
 
 				if (tValue->tt == LUA_TFUNCTION)
 				{
@@ -151,14 +158,14 @@ namespace rml::luau::environment
 				}
 				else
 				{
-					if (iscollectable(tValue))
+					if (tValue->tt >= LUA_TSTRING)
 					{
 						luaC_threadbarrier(L);
 					}
-					L->top->tt    = tValue->tt;
-					L->top->value = tValue->value;
-					L->top++;
-					checkliveness(L->global, tValue);
+
+					auto* state = access::state(L);
+					access::copy_value(state->top, tValue);
+					access::advance_top(state);
 				}
 
 				return 1;
@@ -206,9 +213,11 @@ namespace rml::luau::environment
 					luaL_argerror(L, 1, "Lua function expected.");
 				}
 
-				const auto cl = luau_to_closure(L, -1);
-				const auto* p = cl->l.p;
-				auto* k       = p->k;
+				namespace access = rml::luau::access;
+
+				const auto* cl = access::closure(luau_to_closure(L, -1));
+				const auto* p  = access::proto(cl->p);
+				auto* k        = access::value(p->k);
 
 				if (index < 1)
 				{
@@ -220,27 +229,26 @@ namespace rml::luau::environment
 					luaL_argerror(L, 2, "constant index out of range");
 				}
 
-				auto* constant = &k[index - 1];
+				auto* constant = access::value_at(k, index - 1);
 
 				if (constant->tt == LUA_TFUNCTION)
 				{
 					return 0;
 				}
 
-				const TValue* newConstant = luaA_toobject(L, 3);
+				const auto* newConstant = access::value(luaA_toobject(L, 3));
 
 				if (newConstant->tt != constant->tt)
 				{
 					luaL_argerror(L, 3, "cannot replace constant when the element you want to replace it with is not of the same type.");
 				}
 
-				if (iscollectable(newConstant))
+				if (newConstant->tt >= LUA_TSTRING)
 				{
 					luaC_threadbarrier(L);
 				}
 
-				constant->tt    = newConstant->tt;
-				constant->value = newConstant->value;
+				access::copy_value(constant, newConstant);
 
 				return 0;
 			}
@@ -359,20 +367,7 @@ namespace rml::luau::environment
 					luaL_argerrorL(L, 1, "Lua function expected.");
 				}
 
-				const auto closure = clvalue(luaA_toobject(L, -1));
-				const auto index   = static_cast<int>(lua_tointeger(L, 2));
-
-				if (index < 1 || index > closure->l.p->sizep)
-				{
-					luaL_argerror(L, 2, "proto index out of range");
-				}
-
-				const auto proto = closure->l.p->p[index - 1];
-
-				lua_newtable(L);
-				setclvalue(L, L->top, luaF_newLclosure(L, proto->nups, closure->env, proto));
-				L->top++;
-				lua_rawseti(L, -2, 1);
+				luaL_error(L, "debug.getproto needs Proto.nups, which the dumper has not recovered yet");
 
 				return 1;
 			}
@@ -416,20 +411,7 @@ namespace rml::luau::environment
 					luaL_argerrorL(L, 1, "Lua function expected.");
 				}
 
-				const auto* cl = luau_to_closure(L, -1);
-				lua_newtable(L);
-
-				const auto* mProto = cl->l.p;
-
-				for (int i = 0; i < mProto->sizep; i++)
-				{
-					Proto* proto      = mProto->p[i];
-					Closure* lclosure = luaF_newLclosure(L, proto->nups, cl->env, proto);
-
-					setclvalue(L, L->top, lclosure);
-					L->top++;
-					lua_rawseti(L, -2, i + 1);
-				}
+				luaL_error(L, "debug.getprotos needs Proto.nups, which the dumper has not recovered yet");
 
 				return 1;
 			}
@@ -452,15 +434,21 @@ namespace rml::luau::environment
 				const auto level = lua_tointeger(L, 1);
 				const auto index = lua_tointeger(L, 2);
 
-				if (level >= L->ci - L->base_ci || level < 0)
+				namespace access = rml::luau::access;
+
+				auto* state = access::state(L);
+
+				if (level >= access::frames_between(state->ci, state->base_ci) || level < 0)
 				{
 					luaL_argerror(L, 1, "level out of range");
 				}
 
-				const auto stackFrame = L->ci - level;
-				const auto stackSize  = stackFrame->top - stackFrame->base;
+				auto* stackFrame = access::frame_at(state->ci, -static_cast<int>(level));
+				const auto stackSize = (reinterpret_cast<std::byte*>(stackFrame->top) -
+				                        reinterpret_cast<std::byte*>(stackFrame->base)) /
+				                       static_cast<std::ptrdiff_t>(rml::luau::tvalue_size);
 
-				if (clvalue(stackFrame->func)->isC)
+				if (access::closure_in(stackFrame->func)->isC != 0)
 				{
 					luaL_argerror(L, 1, "Lua function expected.");
 				}
@@ -470,17 +458,21 @@ namespace rml::luau::environment
 					luaL_argerror(L, 2, "stack index out of range");
 				}
 
-				if (stackFrame->base[index - 1].tt != lua_type(L, 3))
+				auto* slot = access::value_at(stackFrame->base, static_cast<int>(index) - 1);
+
+				if (slot->tt != lua_type(L, 3))
 				{
 					luaL_argerror(L, 2, "type on the stack is different than that you are trying to set!");
 				}
 
-				if (iscollectable(luaA_toobject(L, 3)))
+				const auto* replacement = access::value(luaA_toobject(L, 3));
+
+				if (replacement->tt >= LUA_TSTRING)
 				{
 					luaC_threadbarrier(L);
 				}
 
-				setobj2s(L, &stackFrame->base[index - 1], luaA_toobject(L, 3));
+				access::copy_value(slot, replacement);
 				return 0;
 			}
 			catch (const std::exception& e)
@@ -501,15 +493,22 @@ namespace rml::luau::environment
 				const auto index = luaL_optinteger(L, 2, 69420);
 				normalize_stack(L, 2);
 
-				if (level >= L->ci - L->base_ci || level < 0)
+				namespace access = rml::luau::access;
+
+				auto* state = access::state(L);
+
+				if (level >= access::frames_between(state->ci, state->base_ci) || level < 0)
 				{
 					luaL_argerror(L, 1, "level out of range");
 				}
 
-				const auto frame          = L->ci - level;
-				const auto stackFrameSize = static_cast<int>(frame->top - frame->base);
+				auto* frame = access::frame_at(state->ci, -static_cast<int>(level));
+				const auto stackFrameSize =
+				    static_cast<int>((reinterpret_cast<std::byte*>(frame->top) -
+				                      reinterpret_cast<std::byte*>(frame->base)) /
+				                     static_cast<std::ptrdiff_t>(rml::luau::tvalue_size));
 
-				if (clvalue(frame->func)->isC)
+				if (access::closure_in(frame->func)->isC != 0)
 				{
 					luaL_argerror(L, 1, "Lua function expected.");
 				}
@@ -520,8 +519,8 @@ namespace rml::luau::environment
 
 					for (int i = 0; i < stackFrameSize; i++)
 					{
-						setobj2s(L, L->top, &frame->base[i]);
-						L->top++;
+						access::copy_value(state->top, access::value_at(frame->base, i));
+						access::advance_top(state);
 						lua_rawseti(L, -2, i + 1);
 					}
 				}
@@ -532,8 +531,8 @@ namespace rml::luau::environment
 						luaL_argerror(L, 2, "index out of range");
 					}
 
-					setobj2s(L, L->top, &frame->base[index - 1]);
-					L->top++;
+					access::copy_value(state->top, access::value_at(frame->base, static_cast<int>(index) - 1));
+					access::advance_top(state);
 				}
 
 				return 1;
@@ -576,9 +575,12 @@ namespace rml::luau::environment
 					luaL_argerror(L, 1, "Lua function expected.");
 				}
 
-				auto* cl            = clvalue(luaA_toobject(L, -1));
-				const TValue* value = luaA_toobject(L, 3);
-				auto* upvalue_table = cl->l.uprefs;
+				namespace access = rml::luau::access;
+
+				auto* raw           = clvalue(luaA_toobject(L, -1));
+				auto* cl            = access::closure(raw);
+				const auto* value   = access::value(luaA_toobject(L, 3));
+				auto* upvalue_table = access::upvalues_of(cl);
 
 				if (index < 1)
 				{
@@ -590,17 +592,16 @@ namespace rml::luau::environment
 					luaL_argerror(L, 2, "upvalue index out of range");
 				}
 
-				TValue* upvalue = &upvalue_table[index - 1];
+				auto* upvalue = access::value_at(upvalue_table, index - 1);
 
-				if (iscollectable(value))
+				if (value->tt >= LUA_TSTRING)
 				{
 					luaC_threadbarrier(L);
 				}
 
-				upvalue->value = value->value;
-				upvalue->tt    = value->tt;
+				access::copy_value(upvalue, value);
 
-				luaC_barrier(L, cl, value);
+				luaC_barrier(L, raw, luaA_toobject(L, 3));
 
 				lua_pushboolean(L, true);
 				return 1;
@@ -638,17 +639,10 @@ namespace rml::luau::environment
 				}
 
 				const int index = luaL_checkinteger(L, 2);
-				const auto* cl = clvalue(luaA_toobject(L, -1));
-				const TValue* upvalue_table = nullptr;
+				namespace access = rml::luau::access;
 
-				if (!cl->isC)
-				{
-					upvalue_table = cl->l.uprefs;
-				}
-				else if (cl->isC)
-				{
-					upvalue_table = cl->c.upvals;
-				}
+				const auto* cl              = access::closure(clvalue(luaA_toobject(L, -1)));
+				const auto* upvalue_table   = access::upvalues_of(cl);
 
 				if (!index)
 				{
@@ -660,10 +654,9 @@ namespace rml::luau::environment
 					luaL_argerror(L, 2, "upvalue index is out of range");
 				}
 
-				const auto* upval = &upvalue_table[index - 1];
-				auto* top = L->top;
+				const auto* upval = access::value_at(upvalue_table, index - 1);
 
-				if (iscollectable(upval))
+				if (upval->tt >= LUA_TSTRING)
 				{
 					luaC_threadbarrier(L);
 				}
@@ -674,9 +667,9 @@ namespace rml::luau::environment
 					return 1;
 				}
 
-				top->value = upval->value;
-				top->tt    = upval->tt;
-				L->top++;
+				auto* state = access::state(L);
+				access::copy_value(state->top, upval);
+				access::advance_top(state);
 
 				return 1;
 			}
@@ -711,26 +704,19 @@ namespace rml::luau::environment
 					lua_pushvalue(L, 1);
 				}
 
-				const auto* cl = clvalue(luaA_toobject(L, -1));
-				const TValue* upvalueTable = nullptr;
+				namespace access = rml::luau::access;
+
+				const auto* cl           = access::closure(clvalue(luaA_toobject(L, -1)));
+				const auto* upvalueTable = access::upvalues_of(cl);
+				auto* state              = access::state(L);
 
 				lua_newtable(L);
 
-				if (!cl->isC)
-				{
-					upvalueTable = cl->l.uprefs;
-				}
-				else if (cl->isC)
-				{
-					upvalueTable = cl->c.upvals;
-				}
-
 				for (int i = 0; i < cl->nupvalues; i++)
 				{
-					const auto* upval = &upvalueTable[i];
-					auto* top         = L->top;
+					const auto* upval = access::value_at(upvalueTable, i);
 
-					if (iscollectable(upval))
+					if (upval->tt >= LUA_TSTRING)
 					{
 						luaC_threadbarrier(L);
 					}
@@ -741,9 +727,8 @@ namespace rml::luau::environment
 					}
 					else
 					{
-						top->value = upval->value;
-						top->tt    = upval->tt;
-						L->top++;
+						access::copy_value(state->top, upval);
+						access::advance_top(state);
 					}
 
 					lua_rawseti(L, -2, (i + 1));

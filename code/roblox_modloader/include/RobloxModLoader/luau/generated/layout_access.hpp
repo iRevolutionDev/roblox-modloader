@@ -12,6 +12,23 @@ namespace rml::luau::access
 	[[nodiscard]] inline TValue* value(void* slot) { return static_cast<TValue*>(slot); }
 	[[nodiscard]] inline CallInfo* frame(void* info) { return static_cast<CallInfo*>(info); }
 
+	[[nodiscard]] inline const Closure* closure(const void* function)
+	{
+		return static_cast<const Closure*>(function);
+	}
+
+	[[nodiscard]] inline const Proto* proto(const void* prototype)
+	{
+		return static_cast<const Proto*>(prototype);
+	}
+
+	[[nodiscard]] inline const TValue* value(const void* slot) { return static_cast<const TValue*>(slot); }
+
+	[[nodiscard]] inline const TValue* value_at(const TValue* first, const int index)
+	{
+		return reinterpret_cast<const TValue*>(reinterpret_cast<const std::byte*>(first) + index * tvalue_size);
+	}
+
 	[[nodiscard]] inline TValue* value_at(TValue* first, const int index)
 	{
 		return reinterpret_cast<TValue*>(reinterpret_cast<std::byte*>(first) + index * tvalue_size);

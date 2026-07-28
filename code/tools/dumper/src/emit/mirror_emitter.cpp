@@ -46,7 +46,9 @@ namespace rml::dumper::emit
 			core.erase(0, 6);
 		}
 
-		if (core == "Instruction" || core == "unsigned")
+		if (core == "Value")
+			core = "std::uint64_t";
+		else if (core == "Instruction" || core == "unsigned")
 			core = "std::uint32_t";
 		else if (core == "unsigned short")
 			core = "std::uint16_t";

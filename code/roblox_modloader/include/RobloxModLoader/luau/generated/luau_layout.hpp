@@ -116,7 +116,7 @@ namespace rml::luau
 
 	struct TValue
 	{
-		double value;
+		std::uint64_t value;
 		std::byte reserved_8[0x4];
 		std::int32_t tt;
 	};

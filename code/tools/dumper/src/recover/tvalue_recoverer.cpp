@@ -58,7 +58,7 @@ namespace rml::dumper::recover
 		const auto value_probe = "the floating point store lua_pushnumber makes through the stack top";
 		context.report().record_recovered("TValue", "value", value_probe);
 		layout.add({.name = "value",
-		            .type = "double",
+		            .type = "Value",
 		            .size = 8,
 		            .offset = static_cast<std::size_t>(value->displacement),
 		            .provenance = schema::Provenance::recovered("lua_pushnumber", value_probe)});
