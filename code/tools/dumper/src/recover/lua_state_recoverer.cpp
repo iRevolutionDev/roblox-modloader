@@ -206,7 +206,41 @@ namespace rml::dumper::recover
 		probe.confirm("top", settop.nth_read(settop_state, 0, 8), "lua_settop reads top at");
 		probe.confirm("base", settop.nth_read(settop_state, 1, 8), "lua_settop reads base at");
 
-		layout.size = layout.fields.empty() ? 0 : layout.fields.back().end();
+		const auto allocation = context.abi().argument(1);
+		const auto smallest = layout.fields.empty() ? 0 : layout.fields.back().end();
+
+		std::optional<std::int64_t> size;
+		for (const auto& constant : (*thread_trace)->constants)
+		{
+			if (constant.kind != disasm::ConstantKind::literal || constant.destination != allocation)
+				continue;
+			if (constant.value < static_cast<std::int64_t>(smallest) || constant.value % 8 != 0)
+				continue;
+			if (!size || constant.value < *size)
+				size = constant.value;
+		}
+
+		if (!size)
+		{
+			layout.size = smallest;
+			return layout;
+		}
+
+		context.report().record_recovered(
+		    "lua_State", "sizeof", std::format("0x{:X}, the size luaE_newthread asks the collector for", *size));
+		layout.size = static_cast<std::size_t>(*size);
+
+		if (const auto tail = layout.size - smallest; tail == 4 && smallest % 4 == 0)
+		{
+			const auto probe = std::format("the only four byte slot left between 0x{:X} and the end", smallest);
+
+			context.report().record_recovered("lua_State", "cachedslot", probe);
+			layout.add({.name = "cachedslot",
+			            .type = "int",
+			            .size = 4,
+			            .offset = smallest,
+			            .provenance = schema::Provenance::recovered("luaE_newthread", probe)});
+		}
 
 		return layout;
 	}

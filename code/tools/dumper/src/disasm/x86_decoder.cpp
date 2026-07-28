@@ -127,6 +127,12 @@ namespace rml::dumper::disasm
 				push(operands[1].imm.value.s, ConstantKind::step);
 			break;
 
+		case ZYDIS_MNEMONIC_MOV:
+			if (instruction.operand_count_visible >= 2 && operands[0].type == ZYDIS_OPERAND_TYPE_REGISTER &&
+			    operands[1].type == ZYDIS_OPERAND_TYPE_IMMEDIATE)
+				push(operands[1].imm.value.s, ConstantKind::literal);
+			break;
+
 		case ZYDIS_MNEMONIC_LEA:
 			if (instruction.operand_count_visible >= 2 && operands[1].type == ZYDIS_OPERAND_TYPE_MEMORY &&
 			    operands[1].mem.index != ZYDIS_REGISTER_NONE && operands[1].mem.scale > 1)

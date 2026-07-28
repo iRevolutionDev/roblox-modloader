@@ -34,6 +34,7 @@ namespace rml::dumper::disasm
 	{
 		scale,
 		step,
+		literal,
 	};
 
 	struct ConstantUse
