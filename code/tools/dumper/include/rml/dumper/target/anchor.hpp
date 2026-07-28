@@ -23,6 +23,7 @@ namespace rml::dumper::target
 		luaU_load,
 		lua_pushnumber,
 		lua_toboolean,
+		luau_precall,
 		count,
 	};
 
@@ -46,6 +47,7 @@ namespace rml::dumper::target
 		case Anchor::luaU_load: return "luaU_load";
 		case Anchor::lua_pushnumber: return "lua_pushnumber";
 		case Anchor::lua_toboolean: return "lua_toboolean";
+		case Anchor::luau_precall: return "luau_precall";
 		case Anchor::count: return "count";
 		}
 		return "unknown";

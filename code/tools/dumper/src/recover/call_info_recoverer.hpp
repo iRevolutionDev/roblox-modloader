@@ -14,9 +14,17 @@ namespace rml::dumper::recover
 		    const RecoveryContext& context) const override;
 
 		[[nodiscard]] static std::vector<std::int64_t> relocated_slots(const disasm::Trace& trace,
-		                                                               disasm::Register state);
+		                                                               disasm::Object state);
+		[[nodiscard]] static const disasm::MemoryAccess* taken_from_argument(const disasm::Trace& trace,
+		                                                                     disasm::Register argument);
+		[[nodiscard]] static std::optional<std::int64_t> handed_to_state(const disasm::Trace& trace,
+		                                                                 disasm::Object frame, disasm::Object state,
+		                                                                 std::size_t slot);
+		[[nodiscard]] static std::optional<std::int64_t> stride(const disasm::Trace& trace, disasm::Register frame,
+		                                                        std::size_t before, std::int64_t smallest);
 
 	private:
+		static constexpr std::size_t relocated_count = 3;
 		static constexpr std::array<std::string_view, 1> m_dependencies{"lua_State"};
 	};
 }

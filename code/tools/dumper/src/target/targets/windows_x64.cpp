@@ -21,6 +21,8 @@ namespace rml::dumper::target
 	    {Anchor::lua_pushnumber, "40 53 48 83 EC 30 80 3D ? ? ? ? ? 48 8B D9 0F 29 74 24 ? 0F 28 F1 74 ? 48 8B 41"},
 	    {Anchor::lua_toboolean,
 	     "48 83 EC 28 85 D2 7E ? 4C 8B 41 ? 48 8D 05 ? ? ? ? 49 83 C0 F0 48 63 D2 48 C1 E2 04 4C 03 C2 4C 3B 41 ? 49 0F 42 C0 EB ? 81 FA F0 D8 FF FF 7E ? 48 63 C2 48 C1 E0 04 48 03 41 ? EB ? E8 ? ? ? ? 8B 48 ? 85 C9"},
+	    {Anchor::luau_precall,
+	     "48 89 5C 24 ? 48 89 6C 24 ? 48 89 74 24 ? 57 41 56 41 57 48 83 EC 20 83 7A ? ? 41 8B D8 4C 8B F2 48 8B F9"},
 	}};
 
 	const TargetProfile& windows_x64_profile()
