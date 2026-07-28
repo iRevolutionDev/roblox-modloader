@@ -11,6 +11,8 @@
 #include "lobject.h"
 #include "lstate.h"
 
+#include <array>
+
 namespace rml::luau::environment
 {
 	namespace debug_impl
@@ -282,40 +284,46 @@ namespace rml::luau::environment
 					luaL_argerror(L, 1, "function or level expected");
 				}
 
-				lua_Debug lDebug{};
+				alignas(16) std::array<std::byte, 1024> storage{};
+				const auto* record = rml::luau::access::debug_record(storage.data());
 
-				if (!lua_getinfo(L, infoLevel, "fulasn", &lDebug))
+				if (!lua_getinfo(L, infoLevel, "fulasn", reinterpret_cast<lua_Debug*>(storage.data())))
 				{
 					luaL_argerror(L, 1, "invalid level");
 				}
 
+				const auto text = [](const char* value) { return value != nullptr ? value : ""; };
+
 				lua_newtable(L);
 
-				lua_pushstring(L, lDebug.source);
+				lua_pushstring(L, text(record->source));
 				lua_setfield(L, -2, "source");
 
-				lua_pushstring(L, lDebug.short_src);
+				lua_pushstring(L, text(record->short_src));
 				lua_setfield(L, -2, "short_src");
 
 				lua_pushvalue(L, 1);
 				lua_setfield(L, -2, "func");
 
-				lua_pushstring(L, lDebug.what);
+				lua_pushstring(L, text(record->what));
 				lua_setfield(L, -2, "what");
 
-				lua_pushinteger(L, lDebug.currentline);
+				lua_pushinteger(L, record->currentline);
 				lua_setfield(L, -2, "currentline");
 
-				lua_pushstring(L, lDebug.name);
+				lua_pushinteger(L, record->linedefined);
+				lua_setfield(L, -2, "linedefined");
+
+				lua_pushstring(L, text(record->name));
 				lua_setfield(L, -2, "name");
 
-				lua_pushinteger(L, lDebug.nupvals);
+				lua_pushinteger(L, record->nupvals);
 				lua_setfield(L, -2, "nups");
 
-				lua_pushinteger(L, lDebug.nparams);
+				lua_pushinteger(L, record->nparams);
 				lua_setfield(L, -2, "numparams");
 
-				lua_pushinteger(L, lDebug.isvararg);
+				lua_pushinteger(L, record->isvararg);
 				lua_setfield(L, -2, "is_vararg");
 
 				return 1;
