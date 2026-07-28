@@ -9,21 +9,27 @@ namespace rml::dumper::target
 {
 	enum class Anchor : std::uint8_t
 	{
+		luaD_reallocstack,
+		luaD_reallocCI,
+		luaE_newthread,
+		lua_settop,
+		lua_resume,
+		luaM_free,
+		luaM_visitgco,
+		luaC_enumheap,
+		luaH_new,
+		luaH_setnum,
+		setnodevector,
+		lua_setmetatable,
+		lua_getreadonly,
+		lua_objlen,
 		luaF_newLclosure,
 		luaF_newCclosure,
-		luaF_newproto,
 		luaF_freeproto,
 		luaF_findupval,
 		luaU_load,
-		luaM_free,
-		luaD_reallocstack,
-		luaD_reallocCI,
-		luaH_new,
-		setnodevector,
-		propagatemark,
-		traversetable,
-		lua_resume,
-		index2addr,
+		lua_pushnumber,
+		lua_toboolean,
 		count,
 	};
 
@@ -33,21 +39,27 @@ namespace rml::dumper::target
 	{
 		switch (value)
 		{
+		case Anchor::luaD_reallocstack: return "luaD_reallocstack";
+		case Anchor::luaD_reallocCI: return "luaD_reallocCI";
+		case Anchor::luaE_newthread: return "luaE_newthread";
+		case Anchor::lua_settop: return "lua_settop";
+		case Anchor::lua_resume: return "lua_resume";
+		case Anchor::luaM_free: return "luaM_free";
+		case Anchor::luaM_visitgco: return "luaM_visitgco";
+		case Anchor::luaC_enumheap: return "luaC_enumheap";
+		case Anchor::luaH_new: return "luaH_new";
+		case Anchor::luaH_setnum: return "luaH_setnum";
+		case Anchor::setnodevector: return "setnodevector";
+		case Anchor::lua_setmetatable: return "lua_setmetatable";
+		case Anchor::lua_getreadonly: return "lua_getreadonly";
+		case Anchor::lua_objlen: return "lua_objlen";
 		case Anchor::luaF_newLclosure: return "luaF_newLclosure";
 		case Anchor::luaF_newCclosure: return "luaF_newCclosure";
-		case Anchor::luaF_newproto: return "luaF_newproto";
 		case Anchor::luaF_freeproto: return "luaF_freeproto";
 		case Anchor::luaF_findupval: return "luaF_findupval";
 		case Anchor::luaU_load: return "luaU_load";
-		case Anchor::luaM_free: return "luaM_free";
-		case Anchor::luaD_reallocstack: return "luaD_reallocstack";
-		case Anchor::luaD_reallocCI: return "luaD_reallocCI";
-		case Anchor::luaH_new: return "luaH_new";
-		case Anchor::setnodevector: return "setnodevector";
-		case Anchor::propagatemark: return "propagatemark";
-		case Anchor::traversetable: return "traversetable";
-		case Anchor::lua_resume: return "lua_resume";
-		case Anchor::index2addr: return "index2addr";
+		case Anchor::lua_pushnumber: return "lua_pushnumber";
+		case Anchor::lua_toboolean: return "lua_toboolean";
 		case Anchor::count: return "count";
 		}
 		return "unknown";

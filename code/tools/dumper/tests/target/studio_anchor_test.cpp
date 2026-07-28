@@ -9,8 +9,7 @@
 using namespace rml::dumper;
 using namespace rml::dumper::target;
 
-static const std::array unresolved_on_this_build{Anchor::luaF_newproto, Anchor::propagatemark,
-                                                 Anchor::traversetable, Anchor::index2addr};
+static const std::array<Anchor, 0> unresolved_on_this_build{};
 
 TEST_CASE("the windows anchors are scanned for in one fast pass")
 {
