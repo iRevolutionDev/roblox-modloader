@@ -92,6 +92,52 @@ namespace rml::dumper::disasm
 		return Register::none;
 	}
 
+	static void record_constant(Trace& trace, const ZydisDecodedInstruction& instruction,
+	                            const ZydisDecodedOperand* operands, const Rva address, std::size_t& sequence)
+	{
+		const auto destination = operands[0].type == ZYDIS_OPERAND_TYPE_REGISTER
+		                             ? to_register(operands[0].reg.value)
+		                             : Register::none;
+
+		const auto push = [&](const std::int64_t value, const ConstantKind kind) {
+			if (value <= 1 || value > 0x10000)
+				return;
+
+			trace.constants.push_back({sequence++, address, destination, value, kind});
+		};
+
+		switch (instruction.mnemonic)
+		{
+		case ZYDIS_MNEMONIC_IMUL:
+			for (std::uint8_t i = 0; i < instruction.operand_count_visible; ++i)
+				if (operands[i].type == ZYDIS_OPERAND_TYPE_IMMEDIATE)
+					push(operands[i].imm.value.s, ConstantKind::scale);
+			break;
+
+		case ZYDIS_MNEMONIC_SHL:
+			if (instruction.operand_count_visible >= 2 && operands[1].type == ZYDIS_OPERAND_TYPE_IMMEDIATE &&
+			    operands[1].imm.value.u < 16)
+				push(static_cast<std::int64_t>(1) << operands[1].imm.value.u, ConstantKind::scale);
+			break;
+
+		case ZYDIS_MNEMONIC_ADD:
+		case ZYDIS_MNEMONIC_SUB:
+			if (instruction.operand_count_visible >= 2 && operands[1].type == ZYDIS_OPERAND_TYPE_IMMEDIATE &&
+			    destination != Register::rsp)
+				push(operands[1].imm.value.s, ConstantKind::step);
+			break;
+
+		case ZYDIS_MNEMONIC_LEA:
+			if (instruction.operand_count_visible >= 2 && operands[1].type == ZYDIS_OPERAND_TYPE_MEMORY &&
+			    operands[1].mem.index != ZYDIS_REGISTER_NONE && operands[1].mem.scale > 1)
+				push(operands[1].mem.scale, ConstantKind::scale);
+			break;
+
+		default:
+			break;
+		}
+	}
+
 	std::expected<Trace, Error> X86Decoder::trace(const std::span<const std::byte> code, const Rva begin) const
 	{
 		ZydisDecoder decoder;
@@ -163,6 +209,8 @@ namespace rml::dumper::disasm
 
 				trace.accesses.push_back(access);
 			}
+
+			record_constant(trace, instruction, operands, address, sequence);
 
 			if (instruction.mnemonic == ZYDIS_MNEMONIC_MOV && instruction.operand_count_visible == 2 &&
 			    operands[0].type == ZYDIS_OPERAND_TYPE_REGISTER && operands[1].type == ZYDIS_OPERAND_TYPE_REGISTER)

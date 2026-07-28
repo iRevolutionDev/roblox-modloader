@@ -30,11 +30,27 @@ namespace rml::dumper::disasm
 		std::optional<Rva> target;
 	};
 
+	enum class ConstantKind : std::uint8_t
+	{
+		scale,
+		step,
+	};
+
+	struct ConstantUse
+	{
+		std::size_t sequence{};
+		Rva address{};
+		Register destination{Register::none};
+		std::int64_t value{};
+		ConstantKind kind{};
+	};
+
 	struct Trace
 	{
 		Rva begin{};
 		Rva end{};
 		std::vector<MemoryAccess> accesses;
 		std::vector<CallSite> calls;
+		std::vector<ConstantUse> constants;
 	};
 }

@@ -29,20 +29,33 @@ namespace rml::dumper::emit
 	{
 		if (type == "StkId")
 			return "TValue*";
-		if (type == "Instruction*")
-			return "std::uint32_t*";
-		if (type == "const Instruction*")
-			return "const std::uint32_t*";
-		if (type == "unsigned")
-			return "std::uint32_t";
-		if (type == "unsigned short")
-			return "std::uint16_t";
-		if (type == "uint8_t")
-			return "std::uint8_t";
-		if (type == "int")
-			return "std::int32_t";
 
-		return type;
+		std::string core = type;
+		std::string suffix;
+
+		while (!core.empty() && core.back() == '*')
+		{
+			suffix.push_back('*');
+			core.pop_back();
+		}
+
+		std::string prefix;
+		if (core.starts_with("const "))
+		{
+			prefix = "const ";
+			core.erase(0, 6);
+		}
+
+		if (core == "Instruction" || core == "unsigned")
+			core = "std::uint32_t";
+		else if (core == "unsigned short")
+			core = "std::uint16_t";
+		else if (core == "uint8_t")
+			core = "std::uint8_t";
+		else if (core == "int")
+			core = "std::int32_t";
+
+		return prefix + core + suffix;
 	}
 
 	std::vector<MirrorEmitter::Slot> MirrorEmitter::pack(const schema::StructLayout& layout)

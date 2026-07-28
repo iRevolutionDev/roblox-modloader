@@ -26,7 +26,7 @@ TEST_CASE("dump an anchor trace" * doctest::skip(true))
 	const auto decoder = disasm::Decoder::create(profile->architecture);
 	REQUIRE(decoder.has_value());
 
-	for (const auto anchor : {target::Anchor::luaF_newCclosure})
+	for (const auto anchor : {target::Anchor::luaD_reallocstack, target::Anchor::luaD_reallocCI})
 	{
 		const auto entry = anchors->at(anchor);
 		const auto bounds = image->functions().at(entry);
@@ -45,13 +45,9 @@ TEST_CASE("dump an anchor trace" * doctest::skip(true))
 		MESSAGE("   accesses ", trace->accesses.size(), " calls ", trace->calls.size(), " dominant base ",
 		        to_string(query.dominant_base()));
 
-		for (const auto& access : trace->accesses)
-		{
-			if (!access.is_write)
-				continue;
-			MESSAGE("   seq ", access.sequence, " ", access.is_write ? "write" : "read ", " base ",
-			        to_string(access.base), " disp ", std::format("0x{:X}", access.displacement), " width ",
-			        static_cast<int>(access.width), " value ", to_string(access.value_register));
-		}
+		for (const auto& constant : trace->constants)
+			MESSAGE("   const 0x", std::format("{:X}", constant.value), " ",
+			        constant.kind == disasm::ConstantKind::step ? "step" : "scale", " into ",
+			        to_string(constant.destination));
 	}
 }

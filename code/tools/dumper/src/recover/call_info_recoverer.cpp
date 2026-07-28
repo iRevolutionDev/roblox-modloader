@@ -64,7 +64,37 @@ namespace rml::dumper::recover
 			            .provenance = schema::Provenance::recovered("luaD_reallocstack", probe)});
 		}
 
-		layout.size = layout.fields.back().end();
+		const auto stride = context.trace(target::Anchor::luaD_reallocCI);
+		if (!stride)
+			return std::unexpected(stride.error());
+
+		std::map<disasm::Register, std::int64_t> scaled;
+		for (const auto& constant : (*stride)->constants)
+			if (constant.kind == disasm::ConstantKind::scale && constant.destination != disasm::Register::none)
+			{
+				auto& product = scaled[constant.destination];
+				product = product == 0 ? constant.value : product * constant.value;
+			}
+
+		const auto smallest = static_cast<std::int64_t>(layout.fields.back().end());
+
+		std::optional<std::int64_t> size;
+		for (const auto& [destination, product] : scaled)
+			if (product >= smallest && product % 8 == 0 && (!size || product < *size))
+				size = product;
+
+		if (!size)
+		{
+			context.report().record_failure(
+			    "CallInfo", "sizeof",
+			    std::format("luaD_reallocCI scales its allocation by nothing that reaches 0x{:X}", smallest));
+			layout.size = static_cast<std::size_t>(smallest);
+			return layout;
+		}
+
+		context.report().record_recovered(
+		    "CallInfo", "sizeof", std::format("0x{:X}, the factor luaD_reallocCI scales its allocation by", *size));
+		layout.size = static_cast<std::size_t>(*size);
 
 		return layout;
 	}
