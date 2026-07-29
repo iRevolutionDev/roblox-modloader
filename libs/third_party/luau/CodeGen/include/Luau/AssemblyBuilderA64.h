@@ -5,7 +5,6 @@
 #include "Luau/AddressA64.h"
 #include "Luau/ConditionA64.h"
 #include "Luau/Label.h"
-#include "Luau/LogBuilder.h"
 
 #include <string>
 #include <vector>
@@ -26,7 +25,7 @@ enum FeaturesA64
 class AssemblyBuilderA64
 {
 public:
-    explicit AssemblyBuilderA64(LogBuilder* logger, bool logText_DEPRECATED, unsigned int features);
+    explicit AssemblyBuilderA64(bool logText, unsigned int features = 0);
     ~AssemblyBuilderA64();
 
     // Moves
@@ -44,12 +43,6 @@ public:
     void sub(RegisterA64 dst, RegisterA64 src1, RegisterA64 src2, int shift = 0);
     void sub(RegisterA64 dst, RegisterA64 src1, uint16_t src2);
     void neg(RegisterA64 dst, RegisterA64 src);
-    void mul(RegisterA64 dst, RegisterA64 src1, RegisterA64 src2);
-    void msub(RegisterA64 dst, RegisterA64 src1, RegisterA64 src2, RegisterA64 src3);
-    void sdiv(RegisterA64 dst, RegisterA64 src1, RegisterA64 src2);
-    void udiv(RegisterA64 dst, RegisterA64 src1, RegisterA64 src2);
-    // predicate: dst is the result of an sdiv/udiv (quotient); src1 is the dividend, src2 is the divisor; dst != src1
-    void rem(RegisterA64 dst, RegisterA64 src1, RegisterA64 src2);
 
     // Prevent implicit conversions from happening
     template<typename T>
@@ -64,11 +57,6 @@ public:
 
     template<typename T>
     void cmp(RegisterA64 src1, T src2) = delete; // Prevent implicit conversions from happening
-
-    void ccmp(RegisterA64 src1, RegisterA64 src2, ConditionA64 cond, uint8_t nzcv);
-    void ccmn(RegisterA64 src1, RegisterA64 src2, ConditionA64 cond, uint8_t nzcv);
-    void ccmn(RegisterA64 src1, uint8_t src2, ConditionA64 cond, uint8_t nzcv);
-    void cmn(RegisterA64 src1, uint16_t src2);
 
     void csel(RegisterA64 dst, RegisterA64 src1, RegisterA64 src2, ConditionA64 cond);
     void cset(RegisterA64 dst, ConditionA64 cond);
@@ -204,8 +192,6 @@ public:
 
     void udf();
 
-    void nop(uint32_t bytes = 4);
-
     // Run final checks
     bool finalize();
 
@@ -222,7 +208,6 @@ public:
         return label.location * 4;
     }
 
-    // Make private with FFlagLuauCodegenSharedLog removal
     void logAppend(const char* fmt, ...) LUAU_PRINTF_ATTR(2, 3);
 
     // Code size is measured in 'code' array units - uint8_t on x64 and uint32_t on arm64
@@ -235,12 +220,9 @@ public:
     std::vector<uint8_t> data;
     std::vector<uint32_t> code;
 
-    // Remove with FFlagLuauCodegenSharedLog
     std::string text;
 
-    // Make private with FFlagLuauCodegenSharedLog removal
     const bool logText = false;
-
     const unsigned int features = 0;
 
     // Maximum immediate argument to functions like add/sub/cmp
@@ -255,7 +237,7 @@ public:
 
 private:
     // Instruction archetypes
-    void place0(const char* name, uint32_t op);
+    void place0(const char* name, uint32_t word);
     void placeSR3(const char* name, RegisterA64 dst, RegisterA64 src1, RegisterA64 src2, uint8_t op, int shift = 0, int N = 0);
     void placeSR2(const char* name, RegisterA64 dst, RegisterA64 src, uint8_t op, uint8_t op2 = 0);
     void placeR3(const char* name, RegisterA64 dst, RegisterA64 src1, RegisterA64 src2, uint8_t op, uint8_t op2);
@@ -268,9 +250,9 @@ private:
     void placeBCR(const char* name, Label& label, uint8_t op, RegisterA64 cond);
     void placeBR(const char* name, RegisterA64 src, uint32_t op);
     void placeBTR(const char* name, Label& label, uint8_t op, RegisterA64 cond, uint8_t bit);
-    void placeADR(const char* name, RegisterA64 dst, uint8_t op);
-    void placeADR(const char* name, RegisterA64 dst, uint8_t op, Label& label);
-    void placeP(const char* name, RegisterA64 src1, RegisterA64 src2, AddressA64 dst, uint8_t op, uint8_t opc, int sizelog);
+    void placeADR(const char* name, RegisterA64 src, uint8_t op);
+    void placeADR(const char* name, RegisterA64 src, uint8_t op, Label& label);
+    void placeP(const char* name, RegisterA64 dst1, RegisterA64 dst2, AddressA64 src, uint8_t op, uint8_t opc, int sizelog);
     void placeCS(const char* name, RegisterA64 dst, RegisterA64 src1, RegisterA64 src2, ConditionA64 cond, uint8_t op, uint8_t opc, int invert = 0);
     void placeFCMP(const char* name, RegisterA64 src1, RegisterA64 src2, uint8_t op, uint8_t opc);
     void placeFMOV(const char* name, RegisterA64 dst, double src, uint32_t op);
@@ -320,8 +302,6 @@ private:
     LUAU_NOINLINE void log(Label label);
     LUAU_NOINLINE void log(RegisterA64 reg);
     LUAU_NOINLINE void log(AddressA64 addr);
-
-    LogBuilder* logger = nullptr;
 
     uint32_t nextLabel = 1;
     std::vector<Patch> pendingLabels;

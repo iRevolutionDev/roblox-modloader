@@ -13,8 +13,6 @@
 
 #include <stddef.h>
 
-LUAU_FASTFLAG(LuauCodegenA64ExitUseCheck)
-
 namespace Luau
 {
 namespace CodeGen
@@ -54,22 +52,6 @@ void updateUseCounts(IrFunction& function)
     }
 }
 
-static void updateLastUseForOp(IrFunction& function, uint32_t instIdx, IrOp op)
-{
-    if (op.kind == IrOpKind::Inst)
-    {
-        function.instructions[op.index].lastUse = uint32_t(instIdx);
-    }
-    else if (op.kind == IrOpKind::Block && function.blockOp(op).kind == IrBlockKind::ExitSync)
-    {
-        if (VmExitSyncInfo* syncInfo = function.vmExitInfo.find(instIdx))
-        {
-            for (auto argOp : syncInfo->argOps)
-                updateLastUseForOp(function, instIdx, argOp);
-        }
-    }
-}
-
 void updateLastUseLocations(IrFunction& function, const std::vector<uint32_t>& sortedBlocks)
 {
     std::vector<IrInst>& instructions = function.instructions;
@@ -88,16 +70,6 @@ void updateLastUseLocations(IrFunction& function, const std::vector<uint32_t>& s
         if (block.kind == IrBlockKind::Dead)
             continue;
 
-        VmExitSyncInfo* syncInfo = nullptr;
-
-        if (block.kind == IrBlockKind::ExitSync)
-        {
-            if (const uint32_t* key = function.blockToVmExitMap.find(blockIndex))
-                syncInfo = function.vmExitInfo.find(*key);
-
-            CODEGEN_ASSERT(syncInfo);
-        }
-
         CODEGEN_ASSERT(block.start != ~0u);
         CODEGEN_ASSERT(block.finish != ~0u);
 
@@ -106,90 +78,22 @@ void updateLastUseLocations(IrFunction& function, const std::vector<uint32_t>& s
             CODEGEN_ASSERT(instIdx < function.instructions.size());
             IrInst& inst = instructions[instIdx];
 
+            auto checkOp = [&](IrOp op)
+            {
+                if (op.kind == IrOpKind::Inst)
+                    instructions[op.index].lastUse = uint32_t(instIdx);
+            };
+
             if (isPseudo(inst.cmd))
                 continue;
 
             for (IrOp& op : inst.ops)
-            {
-                if (syncInfo)
-                {
-                    if (std::find(syncInfo->argOps.begin(), syncInfo->argOps.end(), op) != syncInfo->argOps.end())
-                        continue;
-                }
-
-                updateLastUseForOp(function, instIdx, op);
-            }
+                checkOp(op);
         }
     }
 }
 
-void updateLastUseLocationsInBlock(IrFunction& function, uint32_t blockIdx)
-{
-    IrBlock& block = function.blocks[blockIdx];
-
-    for (uint32_t instIdx = block.start; instIdx <= block.finish; instIdx++)
-    {
-        IrInst& inst = function.instructions[instIdx];
-
-        for (auto& op : inst.ops)
-        {
-            if (op.kind == IrOpKind::Inst)
-                function.instructions[op.index].lastUse = instIdx;
-        }
-    }
-}
-
-bool isUsedInVmExitSync(IrFunction& function, uint32_t instIdx, uint32_t targetInstIdx)
-{
-    if (VmExitSyncInfo* syncInfo = function.vmExitInfo.find(instIdx))
-    {
-        for (auto argOp : syncInfo->argOps)
-        {
-            CODEGEN_ASSERT(argOp.kind == IrOpKind::Inst);
-
-            if (argOp.index == targetInstIdx)
-                return true;
-        }
-    }
-
-    return false;
-}
-
-static bool isInstUseForOp(IrFunction& function, uint32_t instIdx, uint32_t targetInstIdx, IrOp op, bool& inVmExitSync)
-{
-    if (op.kind == IrOpKind::Inst)
-    {
-        return op.index == targetInstIdx;
-    }
-
-    if (op.kind == IrOpKind::Block && function.blockOp(op).kind == IrBlockKind::ExitSync)
-    {
-        if (FFlag::LuauCodegenA64ExitUseCheck)
-        {
-            return inVmExitSync = isUsedInVmExitSync(function, instIdx, targetInstIdx);
-        }
-        else
-        {
-            if (VmExitSyncInfo* syncInfo = function.vmExitInfo.find(instIdx))
-            {
-                for (auto argOp : syncInfo->argOps)
-                {
-                    CODEGEN_ASSERT(argOp.kind == IrOpKind::Inst);
-
-                    if (argOp.index == targetInstIdx)
-                    {
-                        inVmExitSync = true;
-                        return true;
-                    }
-                }
-            }
-        }
-    }
-
-    return false;
-}
-
-uint32_t getNextInstUse(IrFunction& function, uint32_t targetInstIdx, uint32_t startInstIdx, bool& inVmExitSync)
+uint32_t getNextInstUse(IrFunction& function, uint32_t targetInstIdx, uint32_t startInstIdx)
 {
     CODEGEN_ASSERT(startInstIdx < function.instructions.size());
     IrInst& targetInst = function.instructions[targetInstIdx];
@@ -202,10 +106,8 @@ uint32_t getNextInstUse(IrFunction& function, uint32_t targetInstIdx, uint32_t s
             continue;
 
         for (IrOp& op : inst.ops)
-        {
-            if (isInstUseForOp(function, i, targetInstIdx, op, inVmExitSync))
+            if (op.kind == IrOpKind::Inst && op.index == targetInstIdx)
                 return i;
-        }
     }
 
     // There must be a next use since there is the last use location

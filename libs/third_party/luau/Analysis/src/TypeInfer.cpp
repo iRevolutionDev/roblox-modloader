@@ -2,6 +2,7 @@
 #include "Luau/TypeInfer.h"
 
 #include "Luau/ApplyTypeFunction.h"
+#include "Luau/Cancellation.h"
 #include "Luau/Common.h"
 #include "Luau/Instantiation.h"
 #include "Luau/ModuleResolver.h"
@@ -28,11 +29,10 @@ LUAU_FASTINTVARIABLE(LuauTypeInferTypePackLoopLimit, 5000)
 LUAU_FASTINTVARIABLE(LuauCheckRecursionLimit, 300)
 LUAU_FASTINTVARIABLE(LuauVisitRecursionLimit, 500)
 LUAU_FASTFLAG(LuauKnowsTheDataModel3)
+LUAU_FASTFLAG(LuauExplicitTypeInstantiationSyntax)
+LUAU_FASTFLAGVARIABLE(LuauExplicitTypeInstantiationSupport)
 LUAU_FASTFLAGVARIABLE(DebugLuauFreezeDuringUnification)
 LUAU_FASTFLAG(LuauInstantiateInSubtyping)
-LUAU_FASTFLAG(LuauExportValueSyntax)
-LUAU_FASTFLAG(LuauExportValueTypecheck)
-LUAU_FASTFLAG(DebugLuauUserDefinedClasses)
 
 namespace Luau
 {
@@ -212,7 +212,6 @@ TypeChecker::TypeChecker(const ScopePtr& globalScope, ModuleResolver* resolver, 
     , reusableInstantiation(TxnLog::empty(), nullptr, builtinTypes, {}, nullptr)
     , nilType(builtinTypes->nilType)
     , numberType(builtinTypes->numberType)
-    , integerType(builtinTypes->integerType)
     , stringType(builtinTypes->stringType)
     , booleanType(builtinTypes->booleanType)
     , threadType(builtinTypes->threadType)
@@ -246,10 +245,10 @@ ModulePtr TypeChecker::checkWithoutRecursionCheck(const SourceModule& module, Mo
     LUAU_TIMETRACE_ARGUMENT("module", module.name.c_str());
     LUAU_TIMETRACE_ARGUMENT("name", module.humanReadableName.c_str());
 
-    currentModule = std::make_shared<Module>(std::make_shared<TypeArena>());
+    currentModule.reset(new Module);
     currentModule->name = module.name;
     currentModule->humanReadableName = module.humanReadableName;
-    currentModule->internalTypes->owningModule = currentModule.get();
+    currentModule->internalTypes.owningModule = currentModule.get();
     currentModule->interfaceTypes.owningModule = currentModule.get();
     currentModule->type = module.type;
     currentModule->allocator = module.allocator;
@@ -257,7 +256,7 @@ ModulePtr TypeChecker::checkWithoutRecursionCheck(const SourceModule& module, Mo
     currentModule->root = module.root;
 
     iceHandler->moduleName = module.name;
-    normalizer.arena = currentModule->internalTypes.get();
+    normalizer.arena = &currentModule->internalTypes;
 
     unifierState.counters.recursionLimit = FInt::LuauTypeInferRecursionLimit;
     unifierState.counters.iterationLimit = unifierIterationLimit ? *unifierIterationLimit : FInt::LuauTypeInferIterationLimit;
@@ -287,9 +286,6 @@ ModulePtr TypeChecker::checkWithoutRecursionCheck(const SourceModule& module, Mo
         currentModule->cancelled = true;
     }
 
-    if (FFlag::LuauExportValueSyntax && FFlag::LuauExportValueTypecheck && !currentModule->timeout && !currentModule->cancelled)
-        synthesizeExportReturn(builtinTypes, NotNull{currentModule.get()});
-
     if (get<FreeTypePack>(follow(moduleScope->returnType)))
         moduleScope->returnType = addTypePack(TypePack{{}, std::nullopt});
     else
@@ -308,7 +304,7 @@ ModulePtr TypeChecker::checkWithoutRecursionCheck(const SourceModule& module, Mo
 
     currentModule->clonePublicInterface(builtinTypes, *iceHandler, SolverMode::Old);
 
-    freeze(*currentModule->internalTypes);
+    freeze(currentModule->internalTypes);
     freeze(currentModule->interfaceTypes);
 
     // Clear unifier cache since it's keyed off internal typeArguments that get deallocated
@@ -399,11 +395,6 @@ ControlFlow TypeChecker::check(const ScopePtr& scope, const AstStat& program)
         // we don't think the type errors will be useful most of the time.
         currentModule->errors.resize(oldSize);
 
-        return ControlFlow::None;
-    }
-    else if (FFlag::DebugLuauUserDefinedClasses && program.is<AstStatClass>())
-    {
-        reportError(program.as<AstStatClass>()->name->location, GenericError{"class keyword is illegal here"});
         return ControlFlow::None;
     }
     else
@@ -850,7 +841,7 @@ ControlFlow TypeChecker::check(const ScopePtr& scope, const AstStatReturn& retur
         }
     }
 
-    Demoter demoter{currentModule->internalTypes.get(), builtinTypes};
+    Demoter demoter{&currentModule->internalTypes, builtinTypes};
     demoter.demote(expectedTypes);
 
     TypePackId retPack = checkExprList(scope, return_.location, return_.list, false, {}, expectedTypes).type;
@@ -878,12 +869,12 @@ ErrorVec TypeChecker::tryUnify_(Id subTy, Id superTy, const ScopePtr& scope, con
     Unifier state = mkUnifier(scope, location);
 
     if (FFlag::DebugLuauFreezeDuringUnification)
-        freeze(*currentModule->internalTypes);
+        freeze(currentModule->internalTypes);
 
     state.tryUnify(subTy, superTy);
 
     if (FFlag::DebugLuauFreezeDuringUnification)
-        unfreeze(*currentModule->internalTypes);
+        unfreeze(currentModule->internalTypes);
 
     if (state.errors.empty())
         state.log.commit();
@@ -1454,7 +1445,7 @@ ControlFlow TypeChecker::check(const ScopePtr& scope, TypeId ty, const ScopePtr&
 
         checkFunctionBody(funScope, ty, *function.func);
 
-        InplaceDemoter demoter{funScope->level, currentModule->internalTypes.get()};
+        InplaceDemoter demoter{funScope->level, &currentModule->internalTypes};
         demoter.traverse(ty);
 
         if (ttv && ttv->state != TableState::Sealed)
@@ -1538,7 +1529,7 @@ ControlFlow TypeChecker::check(const ScopePtr& scope, const AstStatTypeAlias& ty
     {
         // If the table is already named and we want to rename the type function, we have to bind new alias to a copy
         // Additionally, we can't modify typeArguments that come from other modules
-        if (ttv->name || follow(ty)->owningArena != currentModule->internalTypes.get())
+        if (ttv->name || follow(ty)->owningArena != &currentModule->internalTypes)
         {
             bool sameTys = std::equal(
                 ttv->instantiatedTypeParams.begin(),
@@ -1595,7 +1586,7 @@ ControlFlow TypeChecker::check(const ScopePtr& scope, const AstStatTypeAlias& ty
     else if (auto mtv = getMutable<MetatableType>(follow(ty)))
     {
         // We can't modify typeArguments that come from other modules
-        if (follow(ty)->owningArena == currentModule->internalTypes.get())
+        if (follow(ty)->owningArena == &currentModule->internalTypes)
             mtv->syntheticName = name;
     }
 
@@ -1904,8 +1895,6 @@ WithPredicate<TypeId> TypeChecker::checkExpr(const ScopePtr& scope, const AstExp
     }
     else if (expr.is<AstExprConstantNumber>())
         result = WithPredicate{numberType};
-    else if (expr.is<AstExprConstantInteger>())
-        result = WithPredicate{integerType};
     else if (auto a = expr.as<AstExprLocal>())
         result = checkExpr(scope, *a);
     else if (auto a = expr.as<AstExprGlobal>())
@@ -1935,7 +1924,10 @@ WithPredicate<TypeId> TypeChecker::checkExpr(const ScopePtr& scope, const AstExp
     else if (auto a = expr.as<AstExprInterpString>())
         result = checkExpr(scope, *a);
     else if (auto a = expr.as<AstExprInstantiate>())
+    {
+        LUAU_ASSERT(FFlag::LuauExplicitTypeInstantiationSyntax);
         result = checkExpr(scope, *a);
+    }
     else
         ice("Unhandled AstExpr?");
 
@@ -2323,7 +2315,7 @@ TypeId TypeChecker::checkExprTable(
 
         auto [keyType, valueType] = fieldTypes[i];
 
-        if (item.kind == AstExprTable::Item::Kind::List)
+        if (item.kind == AstExprTable::Item::List)
         {
             if (expectedTable && !indexer)
                 indexer = expectedTable->indexer;
@@ -2336,7 +2328,7 @@ TypeId TypeChecker::checkExprTable(
             else
                 indexer = TableIndexer{numberType, anyIfNonstrict(valueType)};
         }
-        else if (item.kind == AstExprTable::Item::Kind::Record || item.kind == AstExprTable::Item::Kind::General)
+        else if (item.kind == AstExprTable::Item::Record || item.kind == AstExprTable::Item::General)
         {
             if (auto key = k->as<AstExprConstantString>())
             {
@@ -2434,12 +2426,12 @@ WithPredicate<TypeId> TypeChecker::checkExpr(const ScopePtr& scope, const AstExp
         std::optional<TypeId> expectedResultType;
         bool isIndexedItem = false;
 
-        if (item.kind == AstExprTable::Item::Kind::List)
+        if (item.kind == AstExprTable::Item::List)
         {
             expectedResultType = expectedIndexResultType;
             isIndexedItem = true;
         }
-        else if (item.kind == AstExprTable::Item::Kind::Record || item.kind == AstExprTable::Item::Kind::General)
+        else if (item.kind == AstExprTable::Item::Record || item.kind == AstExprTable::Item::General)
         {
             if (auto key = item.key->as<AstExprConstantString>())
             {
@@ -2496,9 +2488,9 @@ WithPredicate<TypeId> TypeChecker::checkExpr(const ScopePtr& scope, const AstExp
 
     switch (expr.op)
     {
-    case AstExprUnary::Op::Not:
+    case AstExprUnary::Not:
         return {booleanType, {NotPredicate{std::move(result.predicates)}}};
-    case AstExprUnary::Op::Minus:
+    case AstExprUnary::Minus:
     {
         const bool operandIsAny = get<AnyType>(operandType) || get<ErrorType>(operandType) || get<NeverType>(operandType);
 
@@ -2537,7 +2529,7 @@ WithPredicate<TypeId> TypeChecker::checkExpr(const ScopePtr& scope, const AstExp
         reportErrors(tryUnify(operandType, numberType, scope, expr.location));
         return WithPredicate{numberType};
     }
-    case AstExprUnary::Op::Len:
+    case AstExprUnary::Len:
     {
         tablify(operandType);
 
@@ -2788,7 +2780,7 @@ TypeId TypeChecker::checkRelationalOperation(
             //
             // eg it is okay to compare string? == number? because the two typeArguments
             // have nil in common, but string == number is not allowed.
-            std::optional<bool> eqTestResult = areEqComparable(NotNull{currentModule->internalTypes.get()}, NotNull{&normalizer}, lhsType, rhsType);
+            std::optional<bool> eqTestResult = areEqComparable(NotNull{&currentModule->internalTypes}, NotNull{&normalizer}, lhsType, rhsType);
             if (!eqTestResult)
             {
                 reportErrorCodeTooComplex(expr.location);
@@ -3288,6 +3280,9 @@ WithPredicate<TypeId> TypeChecker::checkExpr(const ScopePtr& scope, const AstExp
 
 WithPredicate<TypeId> TypeChecker::checkExpr(const ScopePtr& scope, const AstExprInstantiate& explicitTypeInstantiation)
 {
+    if (!FFlag::LuauExplicitTypeInstantiationSupport)
+        return WithPredicate{errorRecoveryType(scope)};
+
     WithPredicate<TypeId> baseType = checkExpr(scope, *explicitTypeInstantiation.expr);
 
     return WithPredicate{instantiateTypeParameters(
@@ -4487,7 +4482,9 @@ WithPredicate<TypePackId> TypeChecker::checkExprPackHelper(const ScopePtr& scope
             functionType = *propTy;
             actualFunctionType = instantiate(
                 scope,
-                expr.typeArguments.size ? instantiateTypeParameters(scope, functionType, expr.typeArguments, expr.func, expr.location) : functionType,
+                FFlag::LuauExplicitTypeInstantiationSupport && expr.typeArguments.size
+                    ? instantiateTypeParameters(scope, functionType, expr.typeArguments, expr.func, expr.location)
+                    : functionType,
                 expr.func->location
             );
         }
@@ -4636,7 +4633,7 @@ std::vector<std::optional<TypeId>> TypeChecker::getExpectedTypesForCall(const st
         }
     }
 
-    Demoter demoter{currentModule->internalTypes.get(), builtinTypes};
+    Demoter demoter{&currentModule->internalTypes, builtinTypes};
     demoter.demote(expectedTypes);
 
     return expectedTypes;
@@ -4963,7 +4960,7 @@ WithPredicate<TypePackId> TypeChecker::checkExprList(
     const Location& location,
     const AstArray<AstExpr*>& exprs,
     bool substituteFreeForNil,
-    const std::vector<bool>& annotatedTypeArguments,
+    const std::vector<bool>& instantiateGenerics,
     const std::vector<std::optional<TypeId>>& expectedTypes
 )
 {
@@ -5034,7 +5031,7 @@ WithPredicate<TypePackId> TypeChecker::checkExprList(
 
             if (!FFlag::LuauInstantiateInSubtyping)
             {
-                if (annotatedTypeArguments.size() > i && annotatedTypeArguments[i])
+                if (instantiateGenerics.size() > i && instantiateGenerics[i])
                     actualType = instantiate(scope, actualType, expr->location);
             }
 
@@ -5257,7 +5254,7 @@ TypeId TypeChecker::instantiate(const ScopePtr& scope, TypeId ty, Location locat
 
     std::optional<TypeId> instantiated;
 
-    reusableInstantiation.resetState(log, currentModule->internalTypes.get(), builtinTypes, scope->level, /*scope*/ nullptr);
+    reusableInstantiation.resetState(log, &currentModule->internalTypes, builtinTypes, scope->level, /*scope*/ nullptr);
 
     if (instantiationChildLimit)
         reusableInstantiation.childLimit = *instantiationChildLimit;
@@ -5275,7 +5272,7 @@ TypeId TypeChecker::instantiate(const ScopePtr& scope, TypeId ty, Location locat
 
 TypeId TypeChecker::anyify(const ScopePtr& scope, TypeId ty, Location location)
 {
-    Anyification anyification{currentModule->internalTypes.get(), scope, builtinTypes, iceHandler, anyType, anyTypePack};
+    Anyification anyification{&currentModule->internalTypes, scope, builtinTypes, iceHandler, anyType, anyTypePack};
     std::optional<TypeId> any = anyification.substitute(ty);
     if (anyification.normalizationTooComplex)
         reportError(location, NormalizationTooComplex{});
@@ -5290,7 +5287,7 @@ TypeId TypeChecker::anyify(const ScopePtr& scope, TypeId ty, Location location)
 
 TypePackId TypeChecker::anyify(const ScopePtr& scope, TypePackId ty, Location location)
 {
-    Anyification anyification{currentModule->internalTypes.get(), scope, builtinTypes, iceHandler, anyType, anyTypePack};
+    Anyification anyification{&currentModule->internalTypes, scope, builtinTypes, iceHandler, anyType, anyTypePack};
     std::optional<TypePackId> any = anyification.substitute(ty);
     if (any.has_value())
         return *any;
@@ -5497,7 +5494,7 @@ TypeId TypeChecker::freshType(const ScopePtr& scope)
 
 TypeId TypeChecker::freshType(TypeLevel level)
 {
-    return currentModule->internalTypes->freshType(builtinTypes, level);
+    return currentModule->internalTypes.freshType(builtinTypes, level);
 }
 
 TypeId TypeChecker::singletonType(bool value)
@@ -5508,7 +5505,7 @@ TypeId TypeChecker::singletonType(bool value)
 TypeId TypeChecker::singletonType(std::string value)
 {
     // TODO: cache singleton typeArguments
-    return currentModule->internalTypes->addType(Type(SingletonType(StringSingleton{std::move(value)})));
+    return currentModule->internalTypes.addType(Type(SingletonType(StringSingleton{std::move(value)})));
 }
 
 TypeId TypeChecker::errorRecoveryType(const ScopePtr& scope)
@@ -5577,12 +5574,12 @@ std::pair<std::optional<TypeId>, bool> TypeChecker::pickTypesFromSense(TypeId ty
 
 TypeId TypeChecker::addTV(Type&& tv)
 {
-    return currentModule->internalTypes->addType(std::move(tv));
+    return currentModule->internalTypes.addType(std::move(tv));
 }
 
 TypePackId TypeChecker::addTypePack(TypePackVar&& tv)
 {
-    return currentModule->internalTypes->addTypePack(std::move(tv));
+    return currentModule->internalTypes.addTypePack(std::move(tv));
 }
 
 TypePackId TypeChecker::addTypePack(TypePack&& tp)
@@ -5753,7 +5750,7 @@ TypeId TypeChecker::resolveTypeWorker(const ScopePtr& scope, const AstType& anno
         if (notEnoughParameters && hasDefaultParameters)
         {
             // 'applyTypeFunction' is used to substitute default typeArguments that reference previous generic typeArguments
-            ApplyTypeFunction applyTypeFunction{currentModule->internalTypes.get()};
+            ApplyTypeFunction applyTypeFunction{&currentModule->internalTypes};
 
             for (size_t i = 0; i < typesProvided; ++i)
                 applyTypeFunction.typeArguments[tf->typeParams[i].ty] = typeParams[i];
@@ -6069,7 +6066,7 @@ TypeId TypeChecker::instantiateTypeFun(
     if (tf.typeParams.empty() && tf.typePackParams.empty())
         return tf.type;
 
-    ApplyTypeFunction applyTypeFunction{currentModule->internalTypes.get()};
+    ApplyTypeFunction applyTypeFunction{&currentModule->internalTypes};
 
     for (size_t i = 0; i < tf.typeParams.size(); ++i)
         applyTypeFunction.typeArguments[tf.typeParams[i].ty] = typeParams[i];
@@ -6542,8 +6539,6 @@ void TypeChecker::resolve(const TypeGuardPredicate& typeguardP, RefinementMap& r
         return refine(isString, stringType);
     else if (typeguardP.kind == "number")
         return refine(isNumber, numberType);
-    else if (typeguardP.kind == "integer")
-        return refine(isInteger, integerType);
     else if (typeguardP.kind == "boolean")
         return refine(isBoolean, booleanType);
     else if (typeguardP.kind == "thread")

@@ -2,6 +2,7 @@
 
 #include "RobloxModLoader/internal/common.hpp"
 #include "bridge_provider.hpp"
+#include "closures_provider.hpp"
 #include "debug_provider.hpp"
 #include "globals_registry.hpp"
 #include "require_provider.hpp"
@@ -17,6 +18,7 @@ namespace rml::luau::environment
 		RML_REGISTER_GLOBAL_PROVIDER(RMLProvider);
 		RML_REGISTER_GLOBAL_PROVIDER(BridgeProvider);
 		RML_REGISTER_GLOBAL_PROVIDER(DebugProvider);
+		RML_REGISTER_GLOBAL_PROVIDER(ClosuresProvider);
 
 		const auto stats = GlobalsRegistry::instance().get_statistics();
 		LOG_INFO("Initialized {} global providers", stats.total_providers);
@@ -51,6 +53,6 @@ namespace rml::luau::environment
 
 		lua_settop(L, old_top); // Reset the stack to its original state
 
-		return success;
+		return true;
 	}
 }

@@ -129,9 +129,9 @@ target_link_libraries(RobloxModLoader INTERFACE
         tomlplusplus::tomlplusplus
         Luau.Compiler
         Luau.Ast
-        Luau.VM
-        Luau.VM.Internals
-        Luau.CodeGen
+        $<$<NOT:$<BOOL:${RML_ENABLE_LUAU}>>:Luau.VM>
+        $<$<NOT:$<BOOL:${RML_ENABLE_LUAU}>>:Luau.VM.Internals>
+        $<$<NOT:$<BOOL:${RML_ENABLE_LUAU}>>:Luau.CodeGen>
         $<$<TARGET_EXISTS:roblox_modloader>:roblox_modloader>
 )
 

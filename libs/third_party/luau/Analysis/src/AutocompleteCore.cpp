@@ -26,22 +26,10 @@
 LUAU_FASTINT(LuauTypeInferIterationLimit)
 LUAU_FASTINT(LuauTypeInferRecursionLimit)
 LUAU_FASTFLAGVARIABLE(DebugLuauMagicVariableNames)
-LUAU_FASTFLAGVARIABLE(LuauAutocompleteConst)
-LUAU_FASTFLAGVARIABLE(LuauAutocompleteExport)
-LUAU_FASTFLAG(LuauExportValueSyntax)
-LUAU_FASTFLAGVARIABLE(LuauAutocompleteFunctionArglistSuggestion)
-LUAU_FASTFLAGVARIABLE(LuauAutocompleteMetatableInheritance)
-LUAU_FASTFLAGVARIABLE(LuauAutocompleteSkipErrorTypeInUnion)
-LUAU_FASTFLAGVARIABLE(LuauCheckTypeForDeprecated)
+LUAU_FASTFLAGVARIABLE(LuauAutocompleteSingletonsInIndexer)
 
-static constexpr std::array<std::string_view, 12> kStatementStartingKeywords_DEPRECATED =
+static constexpr std::array<std::string_view, 12> kStatementStartingKeywords =
     {"while", "if", "local", "repeat", "function", "do", "for", "return", "break", "continue", "type", "export"};
-
-static constexpr std::array<std::string_view, 13> kStatementStartingKeywords_CONST =
-    {"while", "if", "local", "repeat", "function", "do", "for", "return", "break", "continue", "type", "export", "const"};
-
-static constexpr std::array<std::string_view, 14> kStatementStartingKeywords_EXPORT =
-    {"while", "if", "local", "repeat", "function", "do", "for", "return", "break", "continue", "type", "export", "const", "export"};
 
 static constexpr std::array<std::string_view, 6> kHotComments = {"nolint", "nocheck", "nonstrict", "strict", "optimize", "native"};
 
@@ -136,8 +124,7 @@ static std::optional<TypeId> findExpectedTypeAt(const Module& module, AstNode* n
     // When we don't have anything inside () yet, we also don't have an AST node to base our lookup
     if (AstExprCall* exprCall = expr->as<AstExprCall>())
     {
-        if ((exprCall->args.size == 0 && exprCall->argLocation.contains(position)) ||
-            (exprCall->args.size > 0 && (*exprCall->args.begin())->as<AstExprError>()))
+        if (exprCall->args.size == 0 && exprCall->argLocation.contains(position))
         {
             auto it = module.astTypes.find(exprCall->func);
 
@@ -154,8 +141,6 @@ static std::optional<TypeId> findExpectedTypeAt(const Module& module, AstNode* n
 
             if (index < head.size())
                 return head[index];
-            else if (index == head.size() && tail.has_value() && isVariadic(*tail))
-                return first(*tail);
 
             return std::nullopt;
         }
@@ -260,45 +245,12 @@ static TypeCorrectKind checkTypeCorrectKind(
     return checkTypeMatch(module, ty, expectedType, moduleScope, typeArena, builtinTypes) ? TypeCorrectKind::Correct : TypeCorrectKind::None;
 }
 
-static bool isTypeDeprecated(TypeId ty)
-{
-    LUAU_ASSERT(FFlag::LuauCheckTypeForDeprecated);
-    ty = follow(ty);
-
-    if (const auto ftv = get<FunctionType>(ty); ftv && ftv->isDeprecatedFunction)
-        return true;
-
-    if (const auto itv = get<IntersectionType>(ty))
-        return std::all_of(itv->parts.begin(), itv->parts.end(), isTypeDeprecated);
-
-    return false;
-}
-
 enum class PropIndexType
 {
     Point,
     Colon,
     Key,
 };
-
-/**
- * When we perform autocomplete on a type, if we encounter a union we often
- * need to provide the intersection of the union's options. However, for UX
- * reasons we skip over types like `nil` and `never`. If we didn't, then
- * something like ...
- *
- *  local function foobar(tbl: { prop: number }?)
- *      return tbl.|
- *  end
- *
- * ... would never provide autocomplete options, even though `prop` is a
- * reasonable option, even in strict mode.
- */
-static bool isSkippableTypeInUnion(TypeId ty)
-{
-    ty = follow(ty);
-    return isNil(ty) || is<ErrorType>(ty) || is<NeverType>(ty);
-}
 
 static void autocompleteProps(
     const Module& module,
@@ -408,10 +360,10 @@ static void autocompleteProps(
             if (result.count(name) == 0 && name != kParseNameError)
             {
                 Luau::TypeId type;
-                if (auto ty = prop.readTy)
-                    type = follow(*ty);
-                else
-                    continue;
+                    if (auto ty = prop.readTy)
+                        type = follow(*ty);
+                    else
+                        continue;
 
                 TypeCorrectKind typeCorrect = indexType == PropIndexType::Key
                                                   ? TypeCorrectKind::Correct
@@ -423,7 +375,7 @@ static void autocompleteProps(
                 result[name] = AutocompleteEntry{
                     AutocompleteEntryKind::Property,
                     type,
-                    prop.deprecated || (FFlag::LuauCheckTypeForDeprecated && isTypeDeprecated(type)),
+                    prop.deprecated,
                     isWrongIndexer(type),
                     typeCorrect,
                     containingExternType,
@@ -443,12 +395,11 @@ static void autocompleteProps(
         auto indexIt = mtable->props.find("__index");
         if (indexIt != mtable->props.end())
         {
-            TypeId followed = indexIt->second.readTy.value_or(nullptr);
-            if (followed == nullptr)
-                return;
-            followed = follow(followed);
-            LUAU_ASSERT(followed);
-
+            TypeId followed;
+            if (auto propTy = indexIt->second.readTy)
+            {
+                followed = follow(*propTy);
+            }
             if (get<TableType>(followed) || get<MetatableType>(followed))
             {
                 autocompleteProps(module, typeArena, builtinTypes, rootTy, followed, indexType, nodes, result, seen);
@@ -472,7 +423,7 @@ static void autocompleteProps(
     else if (auto tbl = get<TableType>(ty))
     {
         fillProps(tbl->props);
-        if (tbl->indexer && indexType == PropIndexType::Point)
+        if (FFlag::LuauAutocompleteSingletonsInIndexer && tbl->indexer && indexType == PropIndexType::Point)
         {
             auto indexerTy = follow(tbl->indexer->indexType);
             if (auto utv = get<UnionType>(indexerTy))
@@ -488,9 +439,7 @@ static void autocompleteProps(
     {
         autocompleteProps(module, typeArena, builtinTypes, rootTy, mt->table, indexType, nodes, result, seen);
 
-        const TableType* mtable =
-            FFlag::LuauAutocompleteMetatableInheritance ? getTableType(follow(mt->metatable)) : get<TableType>(follow(mt->metatable));
-        if (mtable)
+        if (auto mtable = get<TableType>(follow(mt->metatable)))
             fillMetatableProps(mtable);
     }
     else if (auto i = get<IntersectionType>(ty))
@@ -513,20 +462,12 @@ static void autocompleteProps(
         auto iter = begin(u);
         auto endIter = end(u);
 
-        if (FFlag::LuauAutocompleteSkipErrorTypeInUnion)
+        while (iter != endIter)
         {
-            while (iter != endIter && isSkippableTypeInUnion(*iter))
+            if (isNil(*iter))
                 ++iter;
-        }
-        else
-        {
-            while (iter != endIter)
-            {
-                if (isNil(*iter))
-                    ++iter;
-                else
-                    break;
-            }
+            else
+                break;
         }
 
         if (iter == endIter)
@@ -553,21 +494,10 @@ static void autocompleteProps(
                     innerSeen.insert(ty);
             }
 
-            if (FFlag::LuauAutocompleteSkipErrorTypeInUnion)
+            if (isNil(*iter))
             {
-                if (isSkippableTypeInUnion(*iter))
-                {
-                    ++iter;
-                    continue;
-                }
-            }
-            else
-            {
-                if (isNil(*iter))
-                {
-                    ++iter;
-                    continue;
-                }
+                ++iter;
+                continue;
             }
 
             autocompleteProps(module, typeArena, builtinTypes, rootTy, *iter, indexType, nodes, inner, innerSeen);
@@ -704,11 +634,6 @@ static void autocompleteStringSingleton(TypeId ty, bool addQuotes, AstNode* node
                 );
             }
         }
-    }
-    else if (auto ity = get<IntersectionType>(ty))
-    {
-        for (auto el : ity->parts)
-            autocompleteStringSingleton(el, addQuotes, node, position, result);
     }
 };
 
@@ -1384,11 +1309,10 @@ static AutocompleteEntryMap autocompleteStatement(
 
             std::string n = toString(name);
             if (!result.count(n))
-            {
                 result[n] = {
                     AutocompleteEntryKind::Binding,
                     binding.typeId,
-                    binding.deprecated || (FFlag::LuauCheckTypeForDeprecated && isTypeDeprecated(binding.typeId)),
+                    binding.deprecated,
                     false,
                     TypeCorrectKind::None,
                     std::nullopt,
@@ -1397,37 +1321,16 @@ static AutocompleteEntryMap autocompleteStatement(
                     {},
                     getParenRecommendation(binding.typeId, ancestry, TypeCorrectKind::None)
                 };
-            }
         }
 
         scope = scope->parent;
     }
 
     bool shouldIncludeBreakAndContinue = isValidBreakContinueContext(ancestry, position);
-
-    if (FFlag::LuauExportValueSyntax && FFlag::LuauAutocompleteExport)
+    for (const std::string_view kw : kStatementStartingKeywords)
     {
-        for (const std::string_view kw : kStatementStartingKeywords_EXPORT)
-        {
-            if ((kw != "break" && kw != "continue") || shouldIncludeBreakAndContinue)
-                result.emplace(kw, AutocompleteEntry{AutocompleteEntryKind::Keyword});
-        }
-    }
-    else if (FFlag::LuauAutocompleteConst)
-    {
-        for (const std::string_view kw : kStatementStartingKeywords_CONST)
-        {
-            if ((kw != "break" && kw != "continue") || shouldIncludeBreakAndContinue)
-                result.emplace(kw, AutocompleteEntry{AutocompleteEntryKind::Keyword});
-        }
-    }
-    else
-    {
-        for (const std::string_view kw : kStatementStartingKeywords_DEPRECATED)
-        {
-            if ((kw != "break" && kw != "continue") || shouldIncludeBreakAndContinue)
-                result.emplace(kw, AutocompleteEntry{AutocompleteEntryKind::Keyword});
-        }
+        if ((kw != "break" && kw != "continue") || shouldIncludeBreakAndContinue)
+            result.emplace(kw, AutocompleteEntry{AutocompleteEntryKind::Keyword});
     }
 
     for (auto it = ancestry.rbegin(); it != ancestry.rend(); ++it)
@@ -1589,7 +1492,7 @@ static AutocompleteContext autocompleteExpression(
                     result[n] = {
                         AutocompleteEntryKind::Binding,
                         binding.typeId,
-                        binding.deprecated || (FFlag::LuauCheckTypeForDeprecated && isTypeDeprecated(binding.typeId)),
+                        binding.deprecated,
                         false,
                         typeCorrect,
                         std::nullopt,
@@ -1829,15 +1732,14 @@ static AutocompleteResult autocompleteWhileLoopKeywords(std::vector<AstNode*> an
     return {std::move(ret), std::move(ancestry), AutocompleteContext::Keyword};
 }
 
-// Builds the argument parameter list string (what goes between the parentheses of a function expression).
-// e.g. for (number, string) -> () returns "a0: number, a1: string"
-static std::string makeAnonymousArgList(const ScopePtr& scope, const FunctionType& funcTy)
+static std::string makeAnonymous(const ScopePtr& scope, const FunctionType& funcTy)
 {
-    std::string result;
+    std::string result = "function(";
 
     auto [args, tail] = Luau::flatten(funcTy.argTypes);
 
     bool first = true;
+    // Skip the implicit 'self' argument if call is indexed with ':'
     for (size_t argIdx = 0; argIdx < args.size(); ++argIdx)
     {
         if (!first)
@@ -1873,61 +1775,6 @@ static std::string makeAnonymousArgList(const ScopePtr& scope, const FunctionTyp
             result += "...: " + *varArgType;
         else
             result += "...";
-    }
-
-    return result;
-}
-
-static std::string makeAnonymous(const ScopePtr& scope, const FunctionType& funcTy)
-{
-    std::string result = "function(";
-
-    if (FFlag::LuauAutocompleteFunctionArglistSuggestion)
-    {
-        result += makeAnonymousArgList(scope, funcTy);
-    }
-    else
-    {
-        auto [args, tail] = Luau::flatten(funcTy.argTypes);
-
-        bool first = true;
-        // Skip the implicit 'self' argument if call is indexed with ':'
-        for (size_t argIdx = 0; argIdx < args.size(); ++argIdx)
-        {
-            if (!first)
-                result += ", ";
-            else
-                first = false;
-
-            std::string name;
-            if (argIdx < funcTy.argNames.size() && funcTy.argNames[argIdx])
-                name = funcTy.argNames[argIdx]->name;
-            else
-                name = "a" + std::to_string(argIdx);
-
-            if (std::optional<Name> type = tryGetTypeNameInScope(scope, args[argIdx], true))
-                result += name + ": " + *type;
-            else
-                result += name;
-        }
-
-        if (tail && (Luau::isVariadic(*tail) || Luau::get<Luau::FreeTypePack>(Luau::follow(*tail))))
-        {
-            if (!first)
-                result += ", ";
-
-            std::optional<std::string> varArgType;
-            if (const VariadicTypePack* pack = get<VariadicTypePack>(follow(*tail)))
-            {
-                if (std::optional<std::string> res = tryGetTypeNameInScope(scope, pack->ty, true))
-                    varArgType = std::move(res);
-            }
-
-            if (varArgType)
-                result += "...: " + *varArgType;
-            else
-                result += "...";
-        }
     }
 
     result += ")";
@@ -2019,15 +1866,7 @@ static std::optional<AutocompleteEntry> makeAnonymousAutofilled(
     entry.kind = AutocompleteEntryKind::GeneratedFunction;
     entry.typeCorrect = TypeCorrectKind::Correct;
     entry.type = argType;
-    // When the cursor is inside the arg list of an already-typed "function(...)" (argLocation is set),
-    // only suggest the parameter list — not the full "function(...) end" expression.
-    // If argLocation is absent the user has typed the "function" keyword but not yet the "(", so
-    // the full expression is still the correct completion.
-    const AstExprFunction* exprFunc = node->as<AstExprFunction>();
-    if (FFlag::LuauAutocompleteFunctionArglistSuggestion && exprFunc && exprFunc->argLocation.has_value())
-        entry.insertText = makeAnonymousArgList(scope, *type);
-    else
-        entry.insertText = makeAnonymous(scope, *type);
+    entry.insertText = makeAnonymous(scope, *type);
     return std::make_optional(std::move(entry));
 }
 

@@ -67,7 +67,7 @@ void lua_setreadonly(lua_State* L, int idx, int enabled) { RP.lua_setreadonly(L,
 const char* lua_getupvalue(lua_State* L, int funcindex, int n) { return RP.lua_getupvalue(L, funcindex, n); }
 const char* lua_setupvalue(lua_State* L, int funcindex, int n) { return RP.lua_setupvalue(L, funcindex, n); }
 int lua_ref(lua_State* L, int idx) { return RP.lua_ref(L, idx); }
-int lua_unref(lua_State* L, int ref) { return RP.lua_unref(L, ref); }
+void lua_unref(lua_State* L, int ref) { RP.lua_unref(L, ref); }
 
 int lua_pcall(lua_State* L, int nargs, int nresults, int errfunc) { return RP.lua_pcall(L, nargs, nresults, errfunc); }
 void lua_call(lua_State* L, int nargs, int nresults) { RP.lua_call(L, nargs, nresults); }

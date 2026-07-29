@@ -1,9 +1,7 @@
 // This file is part of the Luau programming language and is licensed under MIT License; see LICENSE.txt for details
 #pragma once
 
-#include "Luau/Common.h"
 #include "Luau/Location.h"
-#include "Luau/Variant.h"
 
 #include <iterator>
 #include <optional>
@@ -12,8 +10,6 @@
 
 #include <string.h>
 #include <stdint.h>
-
-LUAU_FASTFLAG(DebugLuauUserDefinedClasses)
 
 namespace Luau
 {
@@ -74,27 +70,15 @@ struct AstLocal
     AstLocal* shadow;
     size_t functionDepth;
     size_t loopDepth;
-    bool isConst;
-    // exported is only a property set after construction
-    bool isExported = false;
 
     AstType* annotation;
 
-    AstLocal(
-        const AstName& name,
-        const Location& location,
-        AstLocal* shadow,
-        size_t functionDepth,
-        size_t loopDepth,
-        AstType* annotation,
-        bool isConst = false
-    )
+    AstLocal(const AstName& name, const Location& location, AstLocal* shadow, size_t functionDepth, size_t loopDepth, AstType* annotation)
         : name(name)
         , location(location)
         , shadow(shadow)
         , functionDepth(functionDepth)
         , loopDepth(loopDepth)
-        , isConst(isConst)
         , annotation(annotation)
     {
     }
@@ -213,12 +197,11 @@ class AstAttr : public AstNode
 public:
     LUAU_RTTI(AstAttr)
 
-    enum class Type
+    enum Type
     {
         Checked,
         Native,
         Deprecated,
-        DebugNoinline,
         Unknown
     };
 
@@ -344,7 +327,6 @@ enum class ConstantNumberParseResult
     Malformed,
     BinOverflow,
     HexOverflow,
-    IntOverflow,
 };
 
 class AstExprConstantNumber : public AstExpr
@@ -360,24 +342,12 @@ public:
     ConstantNumberParseResult parseResult;
 };
 
-class AstExprConstantInteger : public AstExpr
-{
-public:
-    LUAU_RTTI(AstExprConstantInteger)
-
-    AstExprConstantInteger(const Location& location, int64_t value, ConstantNumberParseResult parseResult = ConstantNumberParseResult::Ok);
-
-    void visit(AstVisitor* visitor) override;
-
-    int64_t value;
-    ConstantNumberParseResult parseResult;
-};
 class AstExprConstantString : public AstExpr
 {
 public:
     LUAU_RTTI(AstExprConstantString)
 
-    enum class QuoteStyle
+    enum QuoteStyle
     {
         // A string created using double quotes or an interpolated string,
         // as in:
@@ -563,7 +533,7 @@ public:
 
     struct Item
     {
-        enum class Kind
+        enum Kind
         {
             List,    // foo, in which case key is a nullptr
             Record,  // foo=bar, in which case key is a AstExprConstantString
@@ -590,7 +560,7 @@ class AstExprUnary : public AstExpr
 public:
     LUAU_RTTI(AstExprUnary)
 
-    enum class Op
+    enum Op
     {
         Not,
         Minus,
@@ -696,7 +666,7 @@ class AstExprInstantiate : public AstExpr
 public:
     LUAU_RTTI(AstExprInstantiate)
 
-    AstExprInstantiate(const Location& location, AstExpr* expr, AstArray<AstTypeOrPack> types);
+    AstExprInstantiate(const Location& location, AstExpr* expr, AstArray<AstTypeOrPack> typePack);
 
     void visit(AstVisitor* visitor) override;
 
@@ -838,8 +808,7 @@ public:
         const Location& location,
         const AstArray<AstLocal*>& vars,
         const AstArray<AstExpr*>& values,
-        const std::optional<Location>& equalsSignLocation,
-        bool isConst = false
+        const std::optional<Location>& equalsSignLocation
     );
 
     void visit(AstVisitor* visitor) override;
@@ -847,11 +816,6 @@ public:
     AstArray<AstLocal*> vars;
     AstArray<AstExpr*> values;
 
-    bool isConst = false;
-    bool isExported = false;
-
-    // if the StatLocal is being exported, this is the location of `const` or `local`
-    std::optional<Location> keywordLocation;
     std::optional<Location> equalsSignLocation;
 };
 
@@ -957,15 +921,12 @@ class AstStatLocalFunction : public AstStat
 public:
     LUAU_RTTI(AstStatLocalFunction)
 
-    AstStatLocalFunction(const Location& location, AstLocal* name, AstExprFunction* func, bool isConst, Position constKeywordBegin);
+    AstStatLocalFunction(const Location& location, AstLocal* name, AstExprFunction* func);
 
     void visit(AstVisitor* visitor) override;
 
     AstLocal* name;
     AstExprFunction* func;
-    bool isConst;
-    // Position of the `const` keyword; Position::missing() when isConst is false.
-    Position constKeywordBegin;
 };
 
 class AstStatTypeAlias : public AstStat
@@ -1080,13 +1041,6 @@ public:
     AstTypePack* retTypes;
 };
 
-enum class AstTableAccess
-{
-    Read = 0b01,
-    Write = 0b10,
-    ReadWrite = 0b11,
-};
-
 struct AstDeclaredExternTypeProperty
 {
     AstName name;
@@ -1094,41 +1048,13 @@ struct AstDeclaredExternTypeProperty
     AstType* ty = nullptr;
     bool isMethod = false;
     Location location;
-    AstTableAccess access = AstTableAccess::ReadWrite;
 };
 
-struct AstClassProperty
+enum class AstTableAccess
 {
-    Location qualifierLocation;
-    AstName name;
-    Location nameLocation;
-    std::optional<Location> typeColonLocation = std::nullopt;
-    AstType* ty = nullptr;
-};
-
-struct AstClassMethod
-{
-    std::optional<Location> qualifierLocation;
-    Location keywordLocation;
-    AstName functionName;
-    Location nameLocation;
-    AstExprFunction* function;
-};
-
-using AstClassMember = Variant<AstClassProperty, AstClassMethod>;
-
-class AstStatClass : public AstStat
-{
-public:
-    LUAU_RTTI(AstStatClass)
-
-    AstLocal* name;
-    AstArray<AstClassMember> members;
-    bool exported;
-
-    AstStatClass(const Location& location, AstLocal* name, AstArray<AstClassMember> members, bool exported);
-
-    void visit(AstVisitor* visitor) override;
+    Read = 0b01,
+    Write = 0b10,
+    ReadWrite = 0b11,
 };
 
 struct AstTableIndexer
@@ -1189,8 +1115,7 @@ public:
         std::optional<Location> prefixLocation,
         const Location& nameLocation,
         bool hasParameterList = false,
-        const AstArray<AstTypeOrPack>& parameters = {},
-        AstLocal* prefixLocal = nullptr
+        const AstArray<AstTypeOrPack>& parameters = {}
     );
 
     void visit(AstVisitor* visitor) override;
@@ -1198,7 +1123,6 @@ public:
     bool hasParameterList;
     std::optional<AstName> prefix;
     std::optional<Location> prefixLocation;
-    AstLocal* prefixLocal = nullptr;
     AstName name;
     Location nameLocation;
     AstArray<AstTypeOrPack> parameters;
@@ -1478,10 +1402,6 @@ public:
     {
         return visit(static_cast<AstExpr*>(node));
     }
-    virtual bool visit(class AstExprConstantInteger* node)
-    {
-        return visit(static_cast<AstExpr*>(node));
-    }
     virtual bool visit(class AstExprConstantString* node)
     {
         return visit(static_cast<AstExpr*>(node));
@@ -1626,11 +1546,6 @@ public:
     }
     virtual bool visit(class AstStatDeclareGlobal* node)
     {
-        return visit(static_cast<AstStat*>(node));
-    }
-    virtual bool visit(class AstStatClass* node)
-    {
-        LUAU_ASSERT(FFlag::DebugLuauUserDefinedClasses);
         return visit(static_cast<AstStat*>(node));
     }
     virtual bool visit(class AstStatDeclareExternType* node)

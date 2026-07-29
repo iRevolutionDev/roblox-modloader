@@ -16,6 +16,8 @@
 #include <optional>
 #include <sstream>
 
+LUAU_FASTFLAG(LuauSolverV2)
+LUAU_FASTFLAG(LuauAnalysisUsesSolverMode)
 LUAU_FASTFLAG(LuauSubtypingMissingPropertiesAsNil)
 
 // Maximum number of steps to follow when traversing a path. May not always
@@ -378,7 +380,11 @@ struct TraversalState
 
         if (prop)
         {
-            std::optional<TypeId> maybeType = property.isRead ? prop->readTy : prop->writeTy;
+            std::optional<TypeId> maybeType;
+            if (FFlag::LuauAnalysisUsesSolverMode || FFlag::LuauSolverV2)
+                maybeType = property.isRead ? prop->readTy : prop->writeTy;
+            else
+                maybeType = prop->type_DEPRECATED();
 
             if (maybeType)
             {
@@ -650,10 +656,13 @@ std::string toString(const TypePath::Path& path, bool prefixDot)
         if constexpr (std::is_same_v<T, TypePath::Property>)
         {
             result << '[';
-            if (c.isRead)
-                result << "read ";
-            else
-                result << "write ";
+            if (FFlag::LuauAnalysisUsesSolverMode || FFlag::LuauSolverV2)
+            {
+                if (c.isRead)
+                    result << "read ";
+                else
+                    result << "write ";
+            }
 
             result << '"' << c.name << '"' << ']';
         }

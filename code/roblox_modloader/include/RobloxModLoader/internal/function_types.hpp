@@ -71,7 +71,7 @@ namespace functions
 	using lua_rawiter = int(RML_ENGINE_CALL*)(lua_State* L, int idx, int iter);
 	using lua_next = int(RML_ENGINE_CALL*)(lua_State* L, int idx);
 	using lua_ref = int(RML_ENGINE_CALL*)(lua_State* L, int idx);
-	using lua_unref = int(RML_ENGINE_CALL*)(lua_State* L, int ref);
+	using lua_unref = void(RML_ENGINE_CALL*)(lua_State* L, int ref);
 	using lua_getmetatable = int(RML_ENGINE_CALL*)(lua_State* L, int objindex);
 	using lua_setmetatable = int(RML_ENGINE_CALL*)(lua_State* L, int objindex);
 	using lua_getreadonly = int(RML_ENGINE_CALL*)(lua_State* L, int idx);

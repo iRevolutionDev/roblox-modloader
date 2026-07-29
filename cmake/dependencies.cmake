@@ -42,10 +42,15 @@ function(setup_luau_dependencies target_name access_level)
     target_link_libraries(${target_name} ${access_level}
             Luau.Compiler
             Luau.Ast
-            Luau.VM
-            Luau.VM.Internals
-            Luau.CodeGen
     )
+    
+    if (NOT RML_ENABLE_LUAU)
+        target_link_libraries(${target_name} ${access_level}
+                Luau.VM
+                Luau.VM.Internals
+                Luau.CodeGen
+        )
+    endif ()
 
     target_include_directories(${target_name} ${access_level}
             "${LUAU_SOURCE_DIR}/Compiler/include"

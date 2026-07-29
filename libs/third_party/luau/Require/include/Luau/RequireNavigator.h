@@ -86,28 +86,16 @@ public:
         PresentLuau
     };
 
-    virtual ConfigStatus getConfigStatus() const
-    {
-        return ConfigStatus::Absent;
-    }
+    virtual ConfigStatus getConfigStatus() const = 0;
 
     std::function<void(lua_State*)> luauConfigInit = nullptr;
     void (*luauConfigInterrupt)(lua_State* L, int gc) = nullptr;
 
     // The result of getConfigBehavior determines whether getAlias or getConfig
     // is called when getConfigStatus indicates a configuration is present.
-    virtual ConfigBehavior getConfigBehavior() const
-    {
-        return ConfigBehavior::GetAlias;
-    }
-    virtual std::optional<std::string> getAlias(const std::string& alias) const
-    {
-        return std::nullopt;
-    }
-    virtual std::optional<std::string> getConfig() const
-    {
-        return std::nullopt;
-    }
+    virtual ConfigBehavior getConfigBehavior() const = 0;
+    virtual std::optional<std::string> getAlias(const std::string& alias) const = 0;
+    virtual std::optional<std::string> getConfig() const = 0;
 };
 
 // The Navigator class is responsible for traversing a given require path in the

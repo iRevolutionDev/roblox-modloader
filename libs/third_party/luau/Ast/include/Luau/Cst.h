@@ -51,49 +51,6 @@ public:
     const int classIndex;
 };
 
-class CstAttr : public CstNode
-{
-public:
-    LUAU_CST_RTTI(CstAttr)
-
-    explicit CstAttr(bool hasAt);
-
-    bool hasAt; // false when inside an attribute list, ie @[native checked]
-};
-
-class CstParametrizedAttr : public CstNode
-{
-public:
-    LUAU_CST_RTTI(CstParametrizedAttr)
-
-    explicit CstParametrizedAttr(Position openParenPosition, Position closeParenPosition, AstArray<Position> argsCommaPositions);
-
-    Position openParenPosition; // for `@x(args)` form
-    Position closeParenPosition;
-
-    // Commas inside the `(a, b, c)` arg list
-    AstArray<Position> argsCommaPositions;
-};
-
-struct CstAttrList
-{
-    explicit CstAttrList(Position atBracketPosition, Position closeBracketPosition, AstArray<Position> commaPositions);
-
-    Position atBracketPosition;
-    Position closeBracketPosition;
-    AstArray<Position> commaPositions;
-};
-
-class CstExprGroup : public CstNode
-{
-public:
-    LUAU_CST_RTTI(CstExprGroup)
-
-    explicit CstExprGroup(Position closePosition);
-
-    Position closePosition;
-};
-
 class CstExprConstantNumber : public CstNode
 {
 public:
@@ -104,22 +61,12 @@ public:
     AstArray<char> value;
 };
 
-class CstExprConstantInteger : public CstNode
-{
-public:
-    LUAU_CST_RTTI(CstExprConstantInteger)
-
-    explicit CstExprConstantInteger(const AstArray<char>& value);
-
-    AstArray<char> value;
-};
-
 class CstExprConstantString : public CstNode
 {
 public:
-    LUAU_CST_RTTI(CstExprConstantString)
+    LUAU_CST_RTTI(CstExprConstantNumber)
 
-    enum class QuoteStyle
+    enum QuoteStyle
     {
         QuotedSingle,
         QuotedDouble,
@@ -137,13 +84,13 @@ public:
 // Shared between the expression and call nodes
 struct CstTypeInstantiation
 {
-    Position leftArrow1Position = Position::missing();
-    Position leftArrow2Position = Position::missing();
+    Position leftArrow1Position = {0, 0};
+    Position leftArrow2Position = {0, 0};
 
     AstArray<Position> commaPositions = {};
 
-    Position rightArrow1Position = Position::missing();
-    Position rightArrow2Position = Position::missing();
+    Position rightArrow1Position = {0, 0};
+    Position rightArrow2Position = {0, 0};
 };
 
 class CstExprCall : public CstNode
@@ -151,10 +98,10 @@ class CstExprCall : public CstNode
 public:
     LUAU_CST_RTTI(CstExprCall)
 
-    CstExprCall(Position openParens, Position closeParens, AstArray<Position> commaPositions);
+    CstExprCall(std::optional<Position> openParens, std::optional<Position> closeParens, AstArray<Position> commaPositions);
 
-    Position openParens;
-    Position closeParens;
+    std::optional<Position> openParens;
+    std::optional<Position> closeParens;
     AstArray<Position> commaPositions;
     CstTypeInstantiation* explicitTypes = nullptr;
 };
@@ -177,15 +124,14 @@ public:
 
     CstExprFunction();
 
-    AstArray<CstAttrList*> attrLists = {};
-    Position functionKeywordPosition = Position::missing();
-    Position openGenericsPosition = Position::missing();
+    Position functionKeywordPosition{0, 0};
+    Position openGenericsPosition{0, 0};
     AstArray<Position> genericsCommaPositions;
-    Position closeGenericsPosition = Position::missing();
+    Position closeGenericsPosition{0, 0};
     AstArray<Position> argsAnnotationColonPositions;
     AstArray<Position> argsCommaPositions;
-    Position varargAnnotationColonPosition = Position::missing();
-    Position returnSpecifierPosition = Position::missing();
+    Position varargAnnotationColonPosition{0, 0};
+    Position returnSpecifierPosition{0, 0};
 };
 
 class CstExprTable : public CstNode
@@ -193,20 +139,19 @@ class CstExprTable : public CstNode
 public:
     LUAU_CST_RTTI(CstExprTable)
 
-    enum class Separator
+    enum Separator
     {
         Comma,
         Semicolon,
-        Missing
     };
 
     struct Item
     {
-        Position indexerOpenPosition;  // '[', only if Kind == General
-        Position indexerClosePosition; // ']', only if Kind == General
-        Position equalsPosition;       // only if Kind != List
-        Separator separator;           // may be missing for last Item
-        Position separatorPosition;
+        std::optional<Position> indexerOpenPosition;  // '[', only if Kind == General
+        std::optional<Position> indexerClosePosition; // ']', only if Kind == General
+        std::optional<Position> equalsPosition;       // only if Kind != List
+        std::optional<Separator> separator;           // may be missing for last Item
+        std::optional<Position> separatorPosition;
     };
 
     explicit CstExprTable(const AstArray<Item>& items);
@@ -279,6 +224,17 @@ public:
     Position endPosition;
 };
 
+// Clip with FFlag::LuauCstStatBlock
+class CstStatDo_DEPRECATED : public CstNode
+{
+public:
+    LUAU_CST_RTTI(CstStatDo_DEPRECATED)
+
+    explicit CstStatDo_DEPRECATED(Position endPosition);
+
+    Position endPosition;
+};
+
 class CstStatRepeat : public CstNode
 {
 public:
@@ -316,12 +272,12 @@ class CstStatFor : public CstNode
 public:
     LUAU_CST_RTTI(CstStatFor)
 
-    CstStatFor(Position annotationColonPosition, Position equalsPosition, Position endCommaPosition, Position stepCommaPosition);
+    CstStatFor(Position annotationColonPosition, Position equalsPosition, Position endCommaPosition, std::optional<Position> stepCommaPosition);
 
     Position annotationColonPosition;
     Position equalsPosition;
     Position endCommaPosition;
-    Position stepCommaPosition;
+    std::optional<Position> stepCommaPosition;
 };
 
 class CstStatForIn : public CstNode
@@ -364,9 +320,7 @@ public:
     LUAU_CST_RTTI(CstStatFunction)
 
     explicit CstStatFunction(Position functionKeywordPosition);
-    explicit CstStatFunction(AstArray<CstAttrList*> attrLists, Position functionKeywordPosition);
 
-    AstArray<CstAttrList*> attrLists;
     Position functionKeywordPosition;
 };
 
@@ -376,9 +330,7 @@ public:
     LUAU_CST_RTTI(CstStatLocalFunction)
 
     explicit CstStatLocalFunction(Position localKeywordPosition, Position functionKeywordPosition);
-    explicit CstStatLocalFunction(AstArray<CstAttrList*> attrLists, Position localKeywordPosition, Position functionKeywordPosition);
 
-    AstArray<CstAttrList*> attrLists;
     Position localKeywordPosition;
     Position functionKeywordPosition;
 };
@@ -388,9 +340,9 @@ class CstGenericType : public CstNode
 public:
     LUAU_CST_RTTI(CstGenericType)
 
-    CstGenericType(Position defaultEqualsPosition);
+    CstGenericType(std::optional<Position> defaultEqualsPosition);
 
-    Position defaultEqualsPosition;
+    std::optional<Position> defaultEqualsPosition;
 };
 
 class CstGenericTypePack : public CstNode
@@ -398,10 +350,10 @@ class CstGenericTypePack : public CstNode
 public:
     LUAU_CST_RTTI(CstGenericTypePack)
 
-    CstGenericTypePack(Position ellipsisPosition, Position defaultEqualsPosition);
+    CstGenericTypePack(Position ellipsisPosition, std::optional<Position> defaultEqualsPosition);
 
     Position ellipsisPosition;
-    Position defaultEqualsPosition;
+    std::optional<Position> defaultEqualsPosition;
 };
 
 class CstStatTypeAlias : public CstNode
@@ -441,13 +393,13 @@ public:
     LUAU_CST_RTTI(CstTypeReference)
 
     CstTypeReference(
-        Position prefixPointPosition,
+        std::optional<Position> prefixPointPosition,
         Position openParametersPosition,
         AstArray<Position> parametersCommaPositions,
         Position closeParametersPosition
     );
 
-    Position prefixPointPosition;
+    std::optional<Position> prefixPointPosition;
     Position openParametersPosition;
     AstArray<Position> parametersCommaPositions;
     Position closeParametersPosition;
@@ -460,7 +412,7 @@ public:
 
     struct Item
     {
-        enum class Kind
+        enum struct Kind
         {
             Indexer,
             Property,
@@ -471,8 +423,8 @@ public:
         Position indexerOpenPosition;  // '[', only if Kind != Property
         Position indexerClosePosition; // ']' only if Kind != Property
         Position colonPosition;
-        CstExprTable::Separator separator; // may be missing for last Item
-        Position separatorPosition;
+        std::optional<CstExprTable::Separator> separator; // may be missing for last Item
+        std::optional<Position> separatorPosition;
 
         CstExprConstantString* stringInfo = nullptr; // only if Kind == StringProperty
         Position stringPosition{0, 0};               // only if Kind == StringProperty
@@ -494,7 +446,7 @@ public:
         AstArray<Position> genericsCommaPositions,
         Position closeGenericsPosition,
         Position openArgsPosition,
-        AstArray<Position> argumentNameColonPositions,
+        AstArray<std::optional<Position>> argumentNameColonPositions,
         AstArray<Position> argumentsCommaPositions,
         Position closeArgsPosition,
         Position returnArrowPosition
@@ -504,7 +456,7 @@ public:
     AstArray<Position> genericsCommaPositions;
     Position closeGenericsPosition;
     Position openArgsPosition;
-    AstArray<Position> argumentNameColonPositions;
+    AstArray<std::optional<Position>> argumentNameColonPositions;
     AstArray<Position> argumentsCommaPositions;
     Position closeArgsPosition;
     Position returnArrowPosition;
@@ -526,9 +478,9 @@ class CstTypeUnion : public CstNode
 public:
     LUAU_CST_RTTI(CstTypeUnion)
 
-    CstTypeUnion(Position leadingPosition, AstArray<Position> separatorPositions);
+    CstTypeUnion(std::optional<Position> leadingPosition, AstArray<Position> separatorPositions);
 
-    Position leadingPosition;
+    std::optional<Position> leadingPosition;
     AstArray<Position> separatorPositions;
 };
 
@@ -537,9 +489,9 @@ class CstTypeIntersection : public CstNode
 public:
     LUAU_CST_RTTI(CstTypeIntersection)
 
-    explicit CstTypeIntersection(Position leadingPosition, AstArray<Position> separatorPositions);
+    explicit CstTypeIntersection(std::optional<Position> leadingPosition, AstArray<Position> separatorPositions);
 
-    Position leadingPosition;
+    std::optional<Position> leadingPosition;
     AstArray<Position> separatorPositions;
 };
 
@@ -555,16 +507,6 @@ public:
     unsigned int blockDepth;
 };
 
-class CstTypeGroup : public CstNode
-{
-public:
-    LUAU_CST_RTTI(CstTypeGroup)
-
-    CstTypeGroup(Position closePosition);
-
-    Position closePosition;
-};
-
 class CstTypePackExplicit : public CstNode
 {
 public:
@@ -573,6 +515,7 @@ public:
     explicit CstTypePackExplicit();
     explicit CstTypePackExplicit(Position openParenthesesPosition, Position closeParenthesesPosition, AstArray<Position> commaPositions);
 
+    bool hasParentheses;
     Position openParenthesesPosition;
     Position closeParenthesesPosition;
     AstArray<Position> commaPositions;

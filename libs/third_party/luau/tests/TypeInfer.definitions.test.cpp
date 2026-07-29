@@ -9,6 +9,7 @@
 
 using namespace Luau;
 
+
 LUAU_FASTINT(LuauTypeInferRecursionLimit)
 
 TEST_SUITE_BEGIN("DefinitionTests");
@@ -114,13 +115,13 @@ TEST_CASE_FIXTURE(Fixture, "load_definition_file_errors_do_not_pollute_global_sc
 TEST_CASE_FIXTURE(Fixture, "definition_file_extern_types")
 {
     loadDefinition(R"(
-        declare extern type Foo with
+        declare class Foo
             X: number
 
             function inheritance(self): number
         end
 
-        declare extern type Bar extends Foo with
+        declare class Bar extends Foo
             Y: number
 
             function foo(self, x: number): number
@@ -156,7 +157,7 @@ TEST_CASE_FIXTURE(Fixture, "class_definitions_cannot_overload_non_function")
         getFrontend().globals,
         getFrontend().globals.globalScope,
         R"(
-        declare extern type A with
+        declare class A
             X: number
             X: string
         end
@@ -169,23 +170,23 @@ TEST_CASE_FIXTURE(Fixture, "class_definitions_cannot_overload_non_function")
     REQUIRE(!result.success);
     CHECK_EQ(result.parseResult.errors.size(), 0);
     REQUIRE(bool(result.module));
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
         REQUIRE_EQ(result.module->errors.size(), 2);
     else
         REQUIRE_EQ(result.module->errors.size(), 1);
 
     GenericError* ge = get<GenericError>(result.module->errors[0]);
     REQUIRE(ge);
-    if (!FFlag::DebugLuauForceOldSolver)
-        CHECK_EQ("Cannot overload read type of non-function extern type member 'X'", ge->message);
+    if (FFlag::LuauSolverV2)
+        CHECK_EQ("Cannot overload read type of non-function class member 'X'", ge->message);
     else
         CHECK_EQ("Cannot overload non-function class member 'X'", ge->message);
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         GenericError* ge2 = get<GenericError>(result.module->errors[1]);
         REQUIRE(ge2);
-        CHECK_EQ("Cannot overload write type of non-function extern type member 'X'", ge2->message);
+        CHECK_EQ("Cannot overload write type of non-function class member 'X'", ge2->message);
     }
 }
 
@@ -198,7 +199,7 @@ TEST_CASE_FIXTURE(Fixture, "class_definitions_cannot_extend_non_class")
         R"(
         type NotAClass = {}
 
-        declare extern type Foo extends NotAClass with
+        declare class Foo extends NotAClass
         end
     )",
         "@test",
@@ -222,10 +223,10 @@ TEST_CASE_FIXTURE(Fixture, "no_cyclic_defined_extern_types")
         getFrontend().globals,
         getFrontend().globals.globalScope,
         R"(
-        declare extern type Foo extends Bar with
+        declare class Foo extends Bar
         end
 
-        declare extern type Bar extends Foo with
+        declare class Bar extends Foo
         end
     )",
         "@test",
@@ -266,7 +267,7 @@ TEST_CASE_FIXTURE(Fixture, "declaring_generic_functions")
 TEST_CASE_FIXTURE(Fixture, "class_definition_function_prop")
 {
     loadDefinition(R"(
-        declare extern type Foo with
+        declare class Foo
             X: (number) -> string
         end
 
@@ -287,7 +288,7 @@ TEST_CASE_FIXTURE(Fixture, "class_definition_function_prop")
 TEST_CASE_FIXTURE(Fixture, "definition_file_class_function_args")
 {
     loadDefinition(R"(
-        declare extern type Foo with
+        declare class Foo
             function foo1(self, x: number): number
             function foo2(self, x: number, y: string): number
 
@@ -321,7 +322,7 @@ TEST_CASE_FIXTURE(Fixture, "definitions_documentation_symbols")
 
         export type Foo = string | number
 
-        declare extern type Bar with
+        declare class Bar
             prop: string
         end
 
@@ -361,7 +362,7 @@ TEST_CASE_FIXTURE(Fixture, "definitions_documentation_symbols")
 TEST_CASE_FIXTURE(Fixture, "definitions_symbols_are_generated_for_recursively_referenced_types")
 {
     loadDefinition(R"(
-        declare extern type MyClass with
+        declare class MyClass
             function myMethod(self)
         end
 
@@ -404,7 +405,7 @@ TEST_CASE_FIXTURE(Fixture, "documentation_symbols_dont_attach_to_persistent_type
 TEST_CASE_FIXTURE(Fixture, "single_class_type_identity_in_global_types")
 {
     loadDefinition(R"(
-declare extern type Cls with
+declare class Cls
 end
 
 declare GetCls: () -> (Cls)
@@ -420,10 +421,10 @@ local s : Cls = GetCls()
 TEST_CASE_FIXTURE(Fixture, "class_definition_overload_metamethods")
 {
     loadDefinition(R"(
-        declare extern type Vector3 with
+        declare class Vector3
         end
 
-        declare extern type CFrame with
+        declare class CFrame
             function __mul(self, other: CFrame): CFrame
             function __mul(self, other: Vector3): Vector3
         end
@@ -446,7 +447,7 @@ TEST_CASE_FIXTURE(Fixture, "class_definition_overload_metamethods")
 TEST_CASE_FIXTURE(Fixture, "class_definition_string_props")
 {
     loadDefinition(R"(
-        declare extern type Foo with
+        declare class Foo
             ["a property"]: string
         end
     )");
@@ -467,7 +468,7 @@ TEST_CASE_FIXTURE(Fixture, "class_definition_malformed_string")
         getFrontend().globals,
         getFrontend().globals.globalScope,
         R"(
-        declare extern type Foo with
+        declare class Foo
             ["a\0property"]: string
         end
     )",
@@ -484,7 +485,7 @@ TEST_CASE_FIXTURE(Fixture, "class_definition_malformed_string")
 TEST_CASE_FIXTURE(Fixture, "class_definition_indexer")
 {
     loadDefinition(R"(
-        declare extern type Foo with
+        declare class Foo
             [number]: string
         end
     )");
@@ -510,12 +511,12 @@ TEST_CASE_FIXTURE(Fixture, "class_definition_indexer")
 TEST_CASE_FIXTURE(Fixture, "class_definitions_reference_other_extern_types")
 {
     loadDefinition(R"(
-        declare extern type Channel with
+        declare class Channel
             Messages: { Message }
             OnMessage: (message: Message) -> ()
         end
 
-        declare extern type Message with
+        declare class Message
             Text: string
             Channel: Channel
         end
@@ -537,7 +538,7 @@ TEST_CASE_FIXTURE(Fixture, "class_definitions_reference_other_extern_types")
 TEST_CASE_FIXTURE(Fixture, "definition_file_has_source_module_name_set")
 {
     LoadDefinitionFileResult result = loadDefinition(R"(
-        declare extern type Foo with
+        declare class Foo
         end
     )");
 
@@ -571,7 +572,7 @@ TEST_CASE_FIXTURE(Fixture, "recursive_redefinition_reduces_rightfully")
 TEST_CASE_FIXTURE(BuiltinsFixture, "cli_142285_reduce_minted_union_func")
 {
     ScopedFastFlag sff[] = {
-        {FFlag::DebugLuauForceOldSolver, false},
+        {FFlag::LuauSolverV2, true},
     };
 
     CheckResult result = check(R"(
@@ -605,7 +606,7 @@ TEST_CASE_FIXTURE(Fixture, "vector3_overflow")
     ScopedFastInt sfi{FInt::LuauTypeInferRecursionLimit, 0};
 
     loadDefinition(R"(
-        declare extern type Vector3 with
+        declare class Vector3
             function __add(self, other: Vector3): Vector3
         end
     )");
@@ -624,96 +625,6 @@ end
     )");
 
     LUAU_REQUIRE_NO_ERRORS(result);
-}
-
-TEST_CASE_FIXTURE(Fixture, "vector_readonly")
-{
-    ScopedFastFlag _[] = {{FFlag::DebugLuauForceOldSolver, false}};
-
-    loadDefinition(R"(
-        declare extern type vector with
-            read x: number
-        end
-    )");
-
-    CheckResult result = check(R"(
---!strict
-local function read(n: number | boolean)
-end
-
-local function foo(vec: vector)
-    read(vec.x)
-    read(vec.x > 42)
-    vec.x = 15
-    vec.x -= 15
-end
-    )");
-
-    LUAU_REQUIRE_ERROR_COUNT(2, result);
-
-    CHECK(get<PropertyAccessViolation>(result.errors[0]));
-    CHECK(get<PropertyAccessViolation>(result.errors[1]));
-    CHECK_EQ(result.errors[0].location.begin.line, 8);
-    CHECK_EQ(result.errors[1].location.begin.line, 9);
-}
-
-TEST_CASE_FIXTURE(Fixture, "extern_writeonly_props")
-{
-    ScopedFastFlag _[] = {{FFlag::DebugLuauForceOldSolver, false}};
-
-    loadDefinition(R"(
-        declare extern type noread with
-            write value: number
-        end
-    )");
-
-    CheckResult result = check(R"(
---!strict
-local function read(v: buffer | boolean)
-end
-
-local function foo(bar: noread)
-    bar.value = 42
-    bar.value += -15
-    read(bar.value)
-    read(bar.value > 15)
-end
-    )");
-
-    LUAU_REQUIRE_ERROR_COUNT(3, result);
-    CHECK(get<PropertyAccessViolation>(result.errors[0]));
-    CHECK(get<PropertyAccessViolation>(result.errors[1]));
-    CHECK(get<PropertyAccessViolation>(result.errors[2]));
-    CHECK_EQ(result.errors[0].location.begin.line, 7);
-    CHECK_EQ(result.errors[1].location.begin.line, 8);
-    CHECK_EQ(result.errors[2].location.begin.line, 9);
-}
-
-TEST_CASE_FIXTURE(Fixture, "extern_read_write_dual_attribute")
-{
-    ScopedFastFlag _[] = {{FFlag::DebugLuauForceOldSolver, false}};
-
-    loadDefinition(R"(
-        declare extern type dual_attribute with
-            read value: boolean
-            write value: number
-        end
-    )");
-
-    CheckResult result = check(R"(
---!strict
-local da: dual_attribute
-local x: boolean = da.value
-local y: number = da.value
-da.value = 5
-da.value = false
-    )");
-
-    LUAU_REQUIRE_ERROR_COUNT(2, result);
-    REQUIRE(get<TypeMismatch>(result.errors[0]));
-    REQUIRE(get<TypeMismatch>(result.errors[1]));
-    CHECK_EQ(result.errors[0].location.begin.line, 4);
-    CHECK_EQ(result.errors[1].location.begin.line, 6);
 }
 
 TEST_SUITE_END();

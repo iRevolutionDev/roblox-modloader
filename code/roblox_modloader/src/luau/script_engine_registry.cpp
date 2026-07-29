@@ -1,5 +1,7 @@
 #include "RobloxModLoader/luau/script_engine_registry.hpp"
 
+#include "RobloxModLoader/luau/generated/layout_access.hpp"
+#include "RobloxModLoader/luau/script_engine.hpp"
 #include "RobloxModLoader/roblox/data_model.hpp"
 #include "lstate.h"
 
@@ -33,15 +35,56 @@ namespace rml::luau
 			return nullptr;
 		}
 
+		const auto* wanted = access::state(thread_state)->global;
+
 		for (const auto& engine : m_script_engines | std::views::values)
 		{
-			if (engine && engine->get_context().get_thread_state()->global == thread_state->global)
+			if (!engine)
+			{
+				continue;
+			}
+
+			auto* known = engine->get_context().get_thread_state();
+			if (known && access::state(known)->global == wanted)
 			{
 				return engine;
 			}
 		}
 
 		return nullptr;
+	}
+
+	std::shared_ptr<ScriptEngine> ScriptEngineRegistry::get_or_create_script_engine(const RBX::DataModelType data_model_type, lua_State* thread_state)
+	{
+		if (!thread_state)
+		{
+			return nullptr;
+		}
+
+		{
+			std::shared_lock lock(m_script_engines_mutex);
+			if (const auto it = m_script_engines.find(data_model_type); it != m_script_engines.end())
+			{
+				return it->second;
+			}
+		}
+
+		std::unique_lock lock(m_script_engines_mutex);
+		if (const auto it = m_script_engines.find(data_model_type); it != m_script_engines.end())
+		{
+			return it->second;
+		}
+
+		auto engine = std::make_shared<ScriptEngine>(ScriptContext::Context{.L = thread_state});
+		if (!engine->initialize())
+		{
+			RML_ERROR("Failed to initialize ScriptEngine for DataModel type: {}", static_cast<int>(data_model_type));
+			return nullptr;
+		}
+
+		m_script_engines[data_model_type] = engine;
+		RML_INFO("Created ScriptEngine for DataModel type: {}", static_cast<int>(data_model_type));
+		return engine;
 	}
 
 	void ScriptEngineRegistry::cleanup_script_engine(const RBX::DataModelType data_model_type)

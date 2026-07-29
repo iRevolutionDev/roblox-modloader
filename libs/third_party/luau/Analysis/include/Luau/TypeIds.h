@@ -2,7 +2,6 @@
 #pragma once
 
 #include "Luau/DenseHash.h"
-#include "Luau/OrderedSet.h"
 #include "Luau/TypeFwd.h"
 
 #include <vector>
@@ -54,7 +53,6 @@ public:
     size_t size() const;
     bool empty() const;
     size_t count(TypeId ty) const;
-    bool contains(TypeId ty) const;
 
     void reserve(size_t n);
 
@@ -75,7 +73,5 @@ public:
      */
     std::vector<TypeId> take();
 };
-
-using TypePackIds = OrderedSet<TypePackId>;
 
 } // namespace Luau

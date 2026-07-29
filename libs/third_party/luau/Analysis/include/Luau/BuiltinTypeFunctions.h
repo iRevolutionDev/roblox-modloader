@@ -47,8 +47,6 @@ struct BuiltinTypeFunctions
     TypeFunction setmetatableFunc;
     TypeFunction getmetatableFunc;
 
-    TypeFunction objectofFunc;
-
     TypeFunction weakoptionalFunc;
 
     void addToScope(NotNull<TypeArena> arena, NotNull<Scope> scope) const;

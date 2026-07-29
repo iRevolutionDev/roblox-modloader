@@ -3,7 +3,6 @@
 
 #include "Luau/Common.h"
 #include "Luau/Scope.h"
-#include "Luau/TypeFunctionError.h"
 #include "Luau/TypeFunctionRuntimeBuilder.h"
 #include "Luau/Type.h"
 #include "Luau/Variant.h"
@@ -41,7 +40,6 @@ struct TypeFunctionPrimitiveType
         NilType,
         Boolean,
         Number,
-        Integer,
         String,
         Thread,
         Buffer,
@@ -159,9 +157,6 @@ struct TypeFunctionFunctionType
 
     TypeFunctionTypePackId argTypes;
     TypeFunctionTypePackId retTypes;
-
-    // Parallel to argTypes.head; nullopt entries mean the parameter has no name.
-    std::vector<std::optional<std::string>> argNames;
 };
 
 template<typename T>
@@ -182,16 +177,14 @@ T* getMutable(TypeFunctionTypePackId tv)
 
 struct TypeFunctionTableIndexer
 {
-    TypeFunctionTableIndexer(TypeFunctionTypeId keyType, TypeFunctionTypeId valueType, bool isReadOnly = false)
+    TypeFunctionTableIndexer(TypeFunctionTypeId keyType, TypeFunctionTypeId valueType)
         : keyType(keyType)
         , valueType(valueType)
-        , isReadOnly(isReadOnly)
     {
     }
 
     TypeFunctionTypeId keyType;
     TypeFunctionTypeId valueType;
-    bool isReadOnly = false;
 };
 
 struct TypeFunctionProperty
@@ -295,11 +288,8 @@ struct TypeFunctionRuntime
     TypeFunctionRuntime(NotNull<InternalErrorReporter> ice, NotNull<TypeCheckLimits> limits);
     ~TypeFunctionRuntime();
 
-    // Return value is an error message string if registration failed.
-    std::optional<std::string> registerFunction_DEPRECATED(AstStatTypeFunction* function);
-
-    // Return value is a structured error if registration failed.
-    std::optional<TypeFunctionError> registerFunction(AstStatTypeFunction* function);
+    // Return value is an error message if registration failed
+    std::optional<std::string> registerFunction(AstStatTypeFunction* function);
 
     // For user-defined type functions, we store all generated types and packs for the duration of the typecheck
     TypedAllocator<TypeFunctionType> typeArena;
@@ -329,8 +319,7 @@ private:
     void prepareState();
 };
 
-std::optional<std::string> checkResultForError_DEPRECATED(lua_State* L, const char* typeFunctionName, int luaResult);
-std::optional<TypeFunctionError> checkResultForError(lua_State* L, const char* typeFunctionName, int luaResult);
+std::optional<std::string> checkResultForError(lua_State* L, const char* typeFunctionName, int luaResult);
 
 TypeFunctionRuntime* getTypeFunctionRuntime(lua_State* L);
 

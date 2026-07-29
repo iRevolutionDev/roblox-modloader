@@ -1,39 +1,50 @@
 // This file is part of the Luau programming language and is licensed under MIT License; see LICENSE.txt for details
 
+#include "ConstraintGeneratorFixture.h"
 #include "Fixture.h"
 #include "doctest.h"
 
+LUAU_FASTFLAG(LuauSolverV2);
+
 using namespace Luau;
+
+static TypeId requireBinding(Scope* scope, const char* name)
+{
+    auto b = linearSearchForBinding(scope, name);
+    LUAU_ASSERT(b.has_value());
+    return *b;
+}
 
 TEST_SUITE_BEGIN("ConstraintSolver");
 
-TEST_CASE_FIXTURE(Fixture, "constraint_basics")
+TEST_CASE_FIXTURE(ConstraintGeneratorFixture, "constraint_basics")
 {
-    check(R"(
+    solve(R"(
         local a = 55
         local b = a
     )");
 
-    CHECK("number" == toString(requireType("b")));
+    TypeId bType = requireBinding(rootScope, "b");
+
+    CHECK("number" == toString(bType));
 }
 
-TEST_CASE_FIXTURE(Fixture, "generic_function")
+TEST_CASE_FIXTURE(ConstraintGeneratorFixture, "generic_function")
 {
-    check(R"(
+    solve(R"(
         local function id(a)
             return a
         end
     )");
 
+    TypeId idType = requireBinding(rootScope, "id");
 
-    CHECK("<a>(a) -> a" == toString(requireType("id")));
+    CHECK("<a>(a) -> a" == toString(idType));
 }
 
-TEST_CASE_FIXTURE(Fixture, "proper_let_generalization")
+TEST_CASE_FIXTURE(ConstraintGeneratorFixture, "proper_let_generalization")
 {
-    DOES_NOT_PASS_OLD_SOLVER_GUARD();
-
-    check(R"(
+    solve(R"(
         local function a(c)
             local function d(e)
                 return c
@@ -45,10 +56,12 @@ TEST_CASE_FIXTURE(Fixture, "proper_let_generalization")
         local b = a(5)
     )");
 
-    CHECK("(unknown) -> number" == toString(requireType("b")));
+    TypeId idType = requireBinding(rootScope, "b");
+
+    CHECK("(unknown) -> number" == toString(idType));
 }
 
-TEST_CASE_FIXTURE(Fixture, "table_prop_access_diamond")
+TEST_CASE_FIXTURE(ConstraintGeneratorFixture, "table_prop_access_diamond")
 {
     CheckResult result = check(R"(
         export type ItemDetails = { Id: number }

@@ -4,8 +4,6 @@
 #include "Luau/TypeFunction.h"
 #include "Luau/VisitType.h"
 
-LUAU_FASTFLAG(LuauRemovePrimitiveTypeConstraintAndSubtypingUnifier)
-
 namespace Luau
 {
 
@@ -16,64 +14,54 @@ Constraint::Constraint(NotNull<Scope> scope, const Location& location, Constrain
 {
 }
 
-ReferenceCountInitializer::ReferenceCountInitializer(NotNull<TypeIds> mutatedTypes, NotNull<TypePackIds> mutatedTypePacks)
-    : TypeOnceVisitor("ReferenceCountInitializer", /* skipBoundTypes */ true)
-    , mutatedTypes(mutatedTypes)
-    , mutatedTypePacks(mutatedTypePacks.get())
+struct ReferenceCountInitializer : TypeOnceVisitor
 {
-}
+    NotNull<TypeIds> result;
+    bool traverseIntoTypeFunctions = true;
 
-bool ReferenceCountInitializer::visit(TypeId ty, const FreeType&)
-{
-    mutatedTypes->insert(ty);
-    return false;
-}
+    explicit ReferenceCountInitializer(NotNull<TypeIds> result)
+        : TypeOnceVisitor("ReferenceCountInitializer", /* skipBoundTypes */ true)
+        , result(result)
+    {
+    }
 
-bool ReferenceCountInitializer::visit(TypeId ty, const BlockedType&)
-{
-    mutatedTypes->insert(ty);
-    return false;
-}
+    bool visit(TypeId ty, const FreeType&) override
+    {
+        result->insert(ty);
+        return false;
+    }
 
-bool ReferenceCountInitializer::visit(TypeId ty, const PendingExpansionType&)
-{
-    mutatedTypes->insert(ty);
-    return false;
-}
+    bool visit(TypeId ty, const BlockedType&) override
+    {
+        result->insert(ty);
+        return false;
+    }
 
-bool ReferenceCountInitializer::visit(TypeId ty, const TableType& tt)
-{
-    if (tt.state == TableState::Unsealed || tt.state == TableState::Free)
-        mutatedTypes->insert(ty);
+    bool visit(TypeId ty, const PendingExpansionType&) override
+    {
+        result->insert(ty);
+        return false;
+    }
 
-    return true;
-}
+    bool visit(TypeId ty, const TableType& tt) override
+    {
+        if (tt.state == TableState::Unsealed || tt.state == TableState::Free)
+            result->insert(ty);
 
-bool ReferenceCountInitializer::visit(TypeId ty, const ExternType&)
-{
-    // ExternTypes never contain free types.
-    return false;
-}
+        return true;
+    }
 
-bool ReferenceCountInitializer::visit(TypeId, const TypeFunctionInstanceType& tfit)
-{
-    return tfit.function->canReduceGenerics;
-}
+    bool visit(TypeId ty, const ExternType&) override
+    {
+        // ExternTypes never contain free types.
+        return false;
+    }
 
-
-bool ReferenceCountInitializer::visit(TypePackId tp, const BlockedTypePack&)
-{
-    LUAU_ASSERT(mutatedTypePacks);
-    mutatedTypePacks->insert(tp);
-    return true;
-}
-
-bool ReferenceCountInitializer::visit(TypePackId tp, const FreeTypePack&)
-{
-    LUAU_ASSERT(mutatedTypePacks);
-    mutatedTypePacks->insert(tp);
-    return true;
-}
+    bool visit(TypeId, const TypeFunctionInstanceType& tfit) override
+    {
+        return tfit.function->canReduceGenerics;
+    }
+};
 
 bool isReferenceCountedType(const TypeId typ)
 {
@@ -84,7 +72,7 @@ bool isReferenceCountedType(const TypeId typ)
     return get<FreeType>(typ) || get<BlockedType>(typ) || get<PendingExpansionType>(typ);
 }
 
-std::pair<TypeIds, TypePackIds> Constraint::getMaybeMutatedTypes() const
+TypeIds Constraint::getMaybeMutatedFreeTypes() const
 {
     // For the purpose of this function and reference counting in general, we are only considering
     // mutations that affect the _bounds_ of the free type, and not something that may bind the free
@@ -92,12 +80,7 @@ std::pair<TypeIds, TypePackIds> Constraint::getMaybeMutatedTypes() const
     // contribution to the output set here.
 
     TypeIds types;
-
-    // NOTE: In the future we'd like to track references to type packs, so we're
-    // adding this local, but we do not modify it.
-    TypePackIds typePacks;
-
-    ReferenceCountInitializer rci{NotNull{&types}, NotNull{&typePacks}};
+    ReferenceCountInitializer rci{NotNull{&types}};
 
     if (auto ec = get<EqualityConstraint>(*this))
     {
@@ -139,7 +122,7 @@ std::pair<TypeIds, TypePackIds> Constraint::getMaybeMutatedTypes() const
         rci.traverse(fcc->argsPack);
         rci.traverseIntoTypeFunctions = true;
     }
-    else if (auto ptc = get<DEPRECATED_PrimitiveTypeConstraint>(*this); !FFlag::LuauRemovePrimitiveTypeConstraintAndSubtypingUnifier && ptc)
+    else if (auto ptc = get<PrimitiveTypeConstraint>(*this))
     {
         rci.traverse(ptc->freeType);
     }
@@ -169,24 +152,7 @@ std::pair<TypeIds, TypePackIds> Constraint::getMaybeMutatedTypes() const
     {
         for (TypeId ty : uc->resultPack)
             rci.traverse(ty);
-        // Consider:
-        //
-        //  function set(dictionary, key, value)
-        //      local new = table.clone(dictionary)
-        //      new[key] = value
-        //      return new
-        //  end
-        //
-        // In this case, we would expect `dictionary` to be inferred as
-        // something like `{ [T]: K }` for some generic `T` and `K`.
-        // However, in order to avoid eagerly generalizing dictionary,
-        // we need to track that it may be mutated by the line:
-        //
-        //  new[key] = value
-        //
-        // ... this implies that `UnpackConstraint` can mutate both
-        // it's LHS and RHS operands. LHS directly, and RHS by proxy.
-        rci.traverse(uc->sourcePack);
+        // `UnpackConstraint` should not mutate `sourcePack`.
     }
     else if (auto rpc = get<ReducePackConstraint>(*this))
     {
@@ -201,7 +167,7 @@ std::pair<TypeIds, TypePackIds> Constraint::getMaybeMutatedTypes() const
         rci.traverse(ptc->targetType);
     }
 
-    return {std::move(types), std::move(typePacks)};
+    return types;
 }
 
 } // namespace Luau

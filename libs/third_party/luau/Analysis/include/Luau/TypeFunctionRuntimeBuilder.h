@@ -2,7 +2,6 @@
 #pragma once
 
 #include "Luau/TypeFunction.h"
-#include "Luau/TypeFunctionError.h"
 
 namespace Luau
 {
@@ -23,9 +22,7 @@ struct TypeFunctionRuntimeBuilderState
 
     // List of errors that occur during serialization/deserialization
     // At every iteration of serialization/deserialization, if this list.size() != 0, we halt the process
-    std::vector<std::string> errors_DEPRECATED{};
-
-    std::vector<TypeFunctionError> errors{};
+    std::vector<std::string> errors{};
 
     TypeFunctionRuntimeBuilderState(NotNull<TypeFunctionContext> ctx)
         : ctx(ctx)

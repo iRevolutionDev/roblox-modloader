@@ -68,10 +68,7 @@ for i=1,N do
   vBv = vBv + ui*vi
   vv = vv + vi*vi
 end
-local result = math.sqrt(vBv / vv)
-print(string.format("%0.9f\n", result))
-
-assert(N ~= 100 or math.abs(result - 1.274219991) < 1e-6)
+print(string.format("%0.9f\n", math.sqrt(vBv / vv)))
 
 end
 

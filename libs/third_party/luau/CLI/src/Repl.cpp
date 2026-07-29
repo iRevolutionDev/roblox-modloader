@@ -1,7 +1,6 @@
 // This file is part of the Luau programming language and is licensed under MIT License; see LICENSE.txt for details
 #include "Luau/Repl.h"
 
-#include "Luau/CodeGenOptions.h"
 #include "Luau/Common.h"
 #include "lua.h"
 #include "lualib.h"
@@ -10,11 +9,10 @@
 #include "Luau/Compiler.h"
 #include "Luau/Parser.h"
 #include "Luau/TimeTrace.h"
-#include "Luau/Counters.h"
+
 #include "Luau/Coverage.h"
 #include "Luau/FileUtils.h"
 #include "Luau/Flags.h"
-#include "Luau/JitInliner.h"
 #include "Luau/Profiler.h"
 #include "Luau/ReplRequirer.h"
 #include "Luau/Require.h"
@@ -45,13 +43,11 @@
 #include <signal.h>
 
 LUAU_FASTFLAG(DebugLuauTimeTracing)
-LUAU_FASTFLAG(LuauAutoStack)
+
 
 constexpr int MaxTraversalLimit = 50;
 
 static bool codegen = false;
-static bool codegenCold = false;
-static bool jitInliner = false;
 static int program_argc = 0;
 char** program_argv = nullptr;
 
@@ -190,8 +186,6 @@ void* createCliRequireContext(lua_State* L)
             return codegen;
         },
         coverageTrack,
-        countersActive,
-        countersTrack
     };
 
     // Store ReplRequirer in the registry to keep it alive for the lifetime of
@@ -207,9 +201,6 @@ void setupState(lua_State* L)
 {
     if (codegen)
         Luau::CodeGen::create(L);
-
-    if (jitInliner)
-        Luau::JitInliner::setup(L);
 
     luaL_openlibs(L);
 
@@ -233,8 +224,7 @@ void setupState(lua_State* L)
 
 void setupArguments(lua_State* L, int argc, char** argv)
 {
-    if (!FFlag::LuauAutoStack)
-        lua_checkstack(L, argc);
+    lua_checkstack(L, argc);
 
     for (int i = 0; i < argc; ++i)
         lua_pushstring(L, argv[i]);
@@ -242,8 +232,7 @@ void setupArguments(lua_State* L, int argc, char** argv)
 
 std::string runCode(lua_State* L, const std::string& source)
 {
-    if (!FFlag::LuauAutoStack)
-        lua_checkstack(L, LUA_MINSTACK);
+    lua_checkstack(L, LUA_MINSTACK);
 
     std::string bytecode = Luau::compile(source, copts());
 
@@ -420,8 +409,7 @@ static void completeIndexer(lua_State* L, const std::string& editBuffer, const A
     std::string_view lookup = editBuffer;
     bool completeOnlyFunctions = false;
 
-    if (!FFlag::LuauAutoStack)
-        lua_checkstack(L, LUA_MINSTACK);
+    lua_checkstack(L, LUA_MINSTACK);
 
     // Push the global variable table to begin the search
     lua_pushvalue(L, LUA_GLOBALSINDEX);
@@ -577,28 +565,10 @@ static void runRepl()
     runReplImpl(L);
 }
 
-static std::string getFilePath(const char* name)
-{
-    if (isFile(name))
-        return name;
-
-    std::string base = name;
-
-    std::string luauPath = base + ".luau";
-    if (isFile(luauPath))
-        return luauPath;
-
-    std::string luaPath = base + ".lua";
-    if (isFile(luaPath))
-        return luaPath;
-
-    return "";
-}
-
 // `repl` is used it indicate if a repl should be started after executing the file.
 static bool runFile(const char* name, lua_State* GL, bool repl)
 {
-    std::optional<std::string> source = readFile(getFilePath(name));
+    std::optional<std::string> source = readFile(name);
     if (!source)
     {
         fprintf(stderr, "Error opening %s\n", name);
@@ -621,22 +591,11 @@ static bool runFile(const char* name, lua_State* GL, bool repl)
         if (codegen)
         {
             Luau::CodeGen::CompilationOptions nativeOptions;
-            if (codegenCold)
-            {
-                nativeOptions.flags = Luau::CodeGen::CodeGen_ColdFunctions;
-            }
-
-            if (countersActive())
-                nativeOptions.recordCounters = true;
-
             Luau::CodeGen::compile(L, -1, nativeOptions);
         }
 
         if (coverageActive())
             coverageTrack(L, -1);
-
-        if (countersActive())
-            countersTrack(L, -1);
 
         setupArguments(L, program_argc, program_argv);
         status = lua_resume(L, NULL, program_argc);
@@ -681,7 +640,6 @@ static void displayHelp(const char* argv0)
     printf("\n");
     printf("Available options:\n");
     printf("  --coverage: collect code coverage while running the code and output results to coverage.out\n");
-    printf("  --counters: collect native counters data while running the code and output results to callgrind.out\n");
     printf("  -h, --help: Display this usage message.\n");
     printf("  -i, --interactive: Run an interactive REPL after executing the last script specified.\n");
     printf("  -O<n>: compile with optimization level n (default 1, n should be between 0 and 2).\n");
@@ -689,11 +647,7 @@ static void displayHelp(const char* argv0)
     printf("  --profile[=N]: profile the code using N Hz sampling (default 10000) and output results to profile.out\n");
     printf("  --timetrace: record compiler time tracing information into trace.json\n");
     printf("  --codegen: execute code using native code generation\n");
-    printf("  --codegen-cold: execute code using native code generation, including any functions deemed not profitable to natively compile\n");
-    printf("  --codegen-perf: execute code using native code generation and profile using perf (only on Linux)\n");
     printf("  --program-args,-a: declare start of arguments to be passed to the Luau program\n");
-    printf("  --fflags=<flags>: comma-separated list of fast flags to enable/disable (--fflags=true,false,LuauFlag1=true,LuauFlag2=false).\n");
-    printf("  --jit-inliner: enable JIT bytecode inliner\n");
 }
 
 static int assertionHandler(const char* expr, const char* file, int line, const char* function)
@@ -714,7 +668,6 @@ int replMain(int argc, char** argv)
     bool coverage = false;
     bool interactive = false;
     bool codegenPerf = false;
-    bool counters = false;
     int program_args = argc;
 
     for (int i = 1; i < argc; i++)
@@ -760,11 +713,6 @@ int replMain(int argc, char** argv)
         {
             codegen = true;
         }
-        else if (strcmp(argv[i], "--codegen-cold") == 0)
-        {
-            codegen = true;
-            codegenCold = true;
-        }
         else if (strcmp(argv[i], "--codegen-perf") == 0)
         {
             codegen = true;
@@ -774,17 +722,9 @@ int replMain(int argc, char** argv)
         {
             coverage = true;
         }
-        else if (strcmp(argv[i], "--counters") == 0)
-        {
-            counters = true;
-        }
         else if (strcmp(argv[i], "--timetrace") == 0)
         {
             FFlag::DebugLuauTimeTracing.value = true;
-        }
-        else if (strcmp(argv[i], "--jit-inliner") == 0)
-        {
-            jitInliner = true;
         }
         else if (strncmp(argv[i], "--fflags=", 9) == 0)
         {
@@ -828,9 +768,7 @@ int replMain(int argc, char** argv)
             codegenPerfLog,
             [](void* context, uintptr_t addr, unsigned size, const char* symbol)
             {
-                FILE* outputFile = static_cast<FILE*>(context);
-                fprintf(outputFile, "%016lx %08x %s\n", long(addr), size, symbol);
-                fflush(outputFile);
+                fprintf(static_cast<FILE*>(context), "%016lx %08x %s\n", long(addr), size, symbol);
             }
         );
 #else
@@ -862,9 +800,6 @@ int replMain(int argc, char** argv)
         if (coverage)
             coverageInit(L);
 
-        if (counters)
-            countersInit(L);
-
         int failed = 0;
 
         for (size_t i = 0; i < files.size(); ++i)
@@ -881,9 +816,6 @@ int replMain(int argc, char** argv)
 
         if (coverage)
             coverageDump("coverage.out");
-
-        if (counters)
-            countersDump("callgrind.out");
 
         return failed ? 1 : 0;
     }

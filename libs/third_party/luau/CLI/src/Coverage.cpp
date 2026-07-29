@@ -59,7 +59,7 @@ void coverageDump(const char* path)
 {
     lua_State* L = gCoverage.L;
 
-    FILE* f = fopen(path, "wb");
+    FILE* f = fopen(path, "w");
     if (!f)
     {
         fprintf(stderr, "Error opening coverage %s\n", path);

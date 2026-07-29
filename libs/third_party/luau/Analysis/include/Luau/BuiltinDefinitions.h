@@ -17,17 +17,6 @@ struct TypeChecker;
 struct TypeArena;
 struct Subtyping;
 
-struct MagicRequire final : MagicFunction
-{
-    std::optional<WithPredicate<TypePackId>> handleOldSolver(
-        struct TypeChecker&,
-        const std::shared_ptr<struct Scope>&,
-        const class AstExprCall&,
-        WithPredicate<TypePackId>
-    ) override;
-    bool infer(const MagicFunctionCallContext& context) override;
-};
-
 void registerBuiltinGlobals(Frontend& frontend, GlobalTypes& globals, bool typeCheckForAutocomplete = false);
 TypeId makeUnion(TypeArena& arena, std::vector<TypeId>&& types);
 TypeId makeIntersection(TypeArena& arena, std::vector<TypeId>&& types);
@@ -76,7 +65,7 @@ TypeId makeFunction( // Polymorphic
     bool checked = false
 );
 
-void attachMagicFunction(TypeId ty, std::shared_ptr<MagicFunction> magic);
+void attachMagicFunction(TypeId ty, std::shared_ptr<MagicFunction> fn);
 Property makeProperty(TypeId ty, std::optional<std::string> documentationSymbol = std::nullopt);
 void assignPropDocumentationSymbols(TableType::Props& props, const std::string& baseName);
 

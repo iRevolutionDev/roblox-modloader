@@ -141,6 +141,11 @@ namespace RBX
 		return m_script_engine_registry->get_script_engine(L);
 	}
 
+	std::shared_ptr<rml::luau::ScriptEngine> TaskScheduler::get_or_create_script_engine(const DataModelType data_model_type, lua_State* L)
+	{
+		return m_script_engine_registry->get_or_create_script_engine(data_model_type, L);
+	}
+
 	void TaskScheduler::cleanup_script_engine(const DataModelType data_model_type)
 	{
 		m_script_engine_registry->cleanup_script_engine(data_model_type);

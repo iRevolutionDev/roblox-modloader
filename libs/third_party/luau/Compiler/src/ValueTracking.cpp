@@ -12,12 +12,10 @@ struct ValueVisitor : AstVisitor
 {
     DenseHashMap<AstName, Global>& globals;
     DenseHashMap<AstLocal*, Variable>& variables;
-    DenseHashMap<AstName, AstLocal*>& classLocals;
 
-    ValueVisitor(DenseHashMap<AstName, Global>& globals, DenseHashMap<AstLocal*, Variable>& variables, DenseHashMap<AstName, AstLocal*>& classLocals)
+    ValueVisitor(DenseHashMap<AstName, Global>& globals, DenseHashMap<AstLocal*, Variable>& variables)
         : globals(globals)
         , variables(variables)
-        , classLocals(classLocals)
     {
     }
 
@@ -90,17 +88,6 @@ struct ValueVisitor : AstVisitor
 
         return true;
     }
-
-    bool visit(AstStatClass* decl) override
-    {
-        if (!FFlag::DebugLuauUserDefinedClasses)
-            return false;
-
-        classLocals[decl->name->name] = decl->name;
-        variables[decl->name].written = true;
-
-        return true;
-    }
 };
 
 void assignMutable(DenseHashMap<AstName, Global>& globals, const AstNameTable& names, const char* const* mutableGlobals)
@@ -114,14 +101,9 @@ void assignMutable(DenseHashMap<AstName, Global>& globals, const AstNameTable& n
                 globals[name] = Global::Mutable;
 }
 
-void trackValues(
-    DenseHashMap<AstName, Global>& globals,
-    DenseHashMap<AstLocal*, Variable>& variables,
-    DenseHashMap<AstName, AstLocal*>& classLocals,
-    AstNode* root
-)
+void trackValues(DenseHashMap<AstName, Global>& globals, DenseHashMap<AstLocal*, Variable>& variables, AstNode* root)
 {
-    ValueVisitor visitor{globals, variables, classLocals};
+    ValueVisitor visitor{globals, variables};
     root->visit(&visitor);
 }
 

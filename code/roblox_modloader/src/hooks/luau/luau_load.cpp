@@ -5,8 +5,6 @@
 #include "RobloxModLoader/internal/hooking/engine_hooks.hpp"
 #include "RobloxModLoader/roblox/luau/roblox_extra_space.hpp"
 
-static_assert(std::is_same_v<decltype(&hooks::luau_load), functions::luau_load>);
-
-lua_Status hooks::luau_load(lua_State *L, const char *chunkname, const char *data, size_t size, int env) {
-  return hooking::get_original<&hooks::luau_load>()(L, chunkname, data, size, env);
+lua_Status rml::Hooks::luau_load(lua_State *L, const char *chunkname, const char *data, size_t size, int env) {
+  return rml::Hooking::get_original<&rml::Hooks::luau_load>()(L, chunkname, data, size, env);
 }

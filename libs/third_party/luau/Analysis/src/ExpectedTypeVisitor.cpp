@@ -8,8 +8,6 @@
 #include "Luau/TypeUtils.h"
 #include "Luau/VisitType.h"
 
-LUAU_FASTFLAGVARIABLE(LuauBidirectionalInferenceSimplifyTables)
-
 namespace Luau
 {
 
@@ -17,7 +15,6 @@ ExpectedTypeVisitor::ExpectedTypeVisitor(
     NotNull<DenseHashMap<const AstExpr*, TypeId>> astTypes,
     NotNull<DenseHashMap<const AstExpr*, TypeId>> astExpectedTypes,
     NotNull<DenseHashMap<const AstType*, TypeId>> astResolvedTypes,
-    NotNull<DenseHashMap<const AstNode*, TypeId>> astOverloadResolvedTypes,
     NotNull<TypeArena> arena,
     NotNull<BuiltinTypes> builtinTypes,
     NotNull<Scope> rootScope
@@ -25,7 +22,6 @@ ExpectedTypeVisitor::ExpectedTypeVisitor(
     : astTypes(astTypes)
     , astExpectedTypes(astExpectedTypes)
     , astResolvedTypes(astResolvedTypes)
-    , astOverloadResolvedTypes(astOverloadResolvedTypes)
     , arena(arena)
     , builtinTypes(builtinTypes)
     , rootScope(rootScope)
@@ -171,9 +167,7 @@ bool ExpectedTypeVisitor::visit(AstExprIndexExpr* expr)
 
 bool ExpectedTypeVisitor::visit(AstExprCall* expr)
 {
-    TypeId* ty = astOverloadResolvedTypes->find(expr);
-    if (!ty)
-        ty = astTypes->find(expr->func);
+    auto ty = astTypes->find(expr->func);
     if (!ty)
         return true;
 
@@ -230,21 +224,11 @@ void ExpectedTypeVisitor::applyExpectedType(TypeId expectedType, const AstExpr* 
             {
                 if (auto exprType = astTypes->find(expr))
                 {
-                    if (FFlag::LuauBidirectionalInferenceSimplifyTables)
+                    std::vector<TypeId> parts{begin(utv), end(utv)};
+                    if (auto tt = extractMatchingTableType(parts, *exprType, builtinTypes))
                     {
-                        if (auto tt = extractMatchingTableType(utv, *exprType, builtinTypes, arena))
-                        {
-                            applyExpectedType(*tt, expr);
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        if (auto tt = extractMatchingTableType_DEPRECATED(utv, *exprType, builtinTypes))
-                        {
-                            applyExpectedType(*tt, expr);
-                            return;
-                        }
+                        applyExpectedType(*tt, expr);
+                        return;
                     }
                 }
             }
@@ -299,11 +283,11 @@ void ExpectedTypeVisitor::applyExpectedType(TypeId expectedType, const AstExpr* 
                     applyExpectedType(expectedTableType->indexer->indexResultType, item.value);
                 }
             }
-            else if (item.kind == AstExprTable::Item::Kind::List && expectedTableType->indexer)
+            else if (item.kind == AstExprTable::Item::List && expectedTableType->indexer)
             {
                 applyExpectedType(expectedTableType->indexer->indexResultType, item.value);
             }
-            else if (item.kind == AstExprTable::Item::Kind::General && expectedTableType->indexer)
+            else if (item.kind == AstExprTable::Item::General && expectedTableType->indexer)
             {
                 applyExpectedType(expectedTableType->indexer->indexResultType, item.value);
                 applyExpectedType(expectedKeyType, item.key);

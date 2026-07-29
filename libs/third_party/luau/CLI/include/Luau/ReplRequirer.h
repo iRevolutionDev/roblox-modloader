@@ -18,21 +18,12 @@ struct ReplRequirer
     using BoolCheck = bool (*)();
     using Coverage = void (*)(lua_State*, int);
 
-    ReplRequirer(
-        CompileOptions copts,
-        BoolCheck coverageActive,
-        BoolCheck codegenEnabled,
-        Coverage coverageTrack,
-        BoolCheck countersActive,
-        Coverage countersTrack
-    );
+    ReplRequirer(CompileOptions copts, BoolCheck coverageActive, BoolCheck codegenEnabled, Coverage coverageTrack);
 
     CompileOptions copts;
     BoolCheck coverageActive;
     BoolCheck codegenEnabled;
     Coverage coverageTrack;
-    BoolCheck countersActive;
-    Coverage countersTrack;
 
     VfsNavigator vfs;
 };

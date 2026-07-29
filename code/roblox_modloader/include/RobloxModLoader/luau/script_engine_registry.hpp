@@ -10,54 +10,52 @@
 #include <unordered_map>
 #include <vector>
 
-namespace RBX {
-    enum class DataModelType;
-    class DataModel;
+namespace RBX
+{
+	enum class DataModelType;
+	class DataModel;
 }
 
-namespace rml::luau {
-    class ScriptEngineRegistry final {
-    public:
-        using DataModelLookup = std::function<const RBX::DataModel *(RBX::DataModelType)>;
+namespace rml::luau
+{
+	class ScriptEngineRegistry final
+	{
+	public:
+		using DataModelLookup = std::function<const RBX::DataModel*(RBX::DataModelType)>;
 
-        ScriptEngineRegistry() = default;
+		ScriptEngineRegistry() = default;
+		~ScriptEngineRegistry();
+		ScriptEngineRegistry(const ScriptEngineRegistry&) = delete;
+		ScriptEngineRegistry& operator=(const ScriptEngineRegistry&) = delete;
+		ScriptEngineRegistry(ScriptEngineRegistry&&) noexcept = delete;
+		ScriptEngineRegistry& operator=(ScriptEngineRegistry&&) noexcept = delete;
 
-        ~ScriptEngineRegistry();
+		std::shared_ptr<ScriptEngine> get_script_engine(RBX::DataModelType data_model_type);
+		std::shared_ptr<ScriptEngine> get_script_engine(lua_State* thread_state);
+		std::shared_ptr<ScriptEngine> get_or_create_script_engine(RBX::DataModelType data_model_type, lua_State* thread_state);
 
-        ScriptEngineRegistry(const ScriptEngineRegistry &) = delete;
+		void cleanup_script_engine(RBX::DataModelType data_model_type);
+		void cleanup_orphaned_script_engines(const DataModelLookup& data_model_lookup);
 
-        ScriptEngineRegistry &operator=(const ScriptEngineRegistry &) = delete;
+		void maybe_cleanup_orphaned_script_engines(const DataModelLookup& data_model_lookup);
 
-        ScriptEngineRegistry(ScriptEngineRegistry &&) noexcept = delete;
+		void shutdown() noexcept;
 
-        ScriptEngineRegistry &operator=(ScriptEngineRegistry &&) noexcept = delete;
+	private:
+		struct TrackedCleanup
+		{
+			std::jthread thread;
+			std::shared_ptr<std::atomic<bool> > completed;
+		};
 
-        std::shared_ptr<ScriptEngine> get_script_engine(RBX::DataModelType data_model_type);
+		void prune_finished_cleanup_threads();
 
-        std::shared_ptr<ScriptEngine> get_script_engine(lua_State *thread_state);
+		mutable std::shared_mutex m_script_engines_mutex;
+		std::unordered_map<RBX::DataModelType, std::shared_ptr<ScriptEngine> > m_script_engines;
 
-        void cleanup_script_engine(RBX::DataModelType data_model_type);
+		std::mutex m_cleanup_threads_mutex;
+		std::vector<TrackedCleanup> m_cleanup_threads;
 
-        void cleanup_orphaned_script_engines(const DataModelLookup &data_model_lookup);
-
-        void maybe_cleanup_orphaned_script_engines(const DataModelLookup &data_model_lookup);
-
-        void shutdown() noexcept;
-
-    private:
-        struct TrackedCleanup {
-            std::jthread thread;
-            std::shared_ptr<std::atomic<bool> > completed;
-        };
-
-        void prune_finished_cleanup_threads();
-
-        mutable std::shared_mutex m_script_engines_mutex;
-        std::unordered_map<RBX::DataModelType, std::shared_ptr<ScriptEngine> > m_script_engines;
-
-        std::mutex m_cleanup_threads_mutex;
-        std::vector<TrackedCleanup> m_cleanup_threads;
-
-        std::atomic<std::uint64_t> m_step_counter{0};
-    };
+		std::atomic<std::uint64_t> m_step_counter{0};
+	};
 }

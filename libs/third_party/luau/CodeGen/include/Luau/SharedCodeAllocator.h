@@ -1,7 +1,6 @@
 // This file is part of the Luau programming language and is licensed under MIT License; see LICENSE.txt for details
 #pragma once
 
-#include "Luau/CodeAllocationData.h"
 #include "Luau/CodeGen.h"
 #include "Luau/Common.h"
 #include "Luau/NativeProtoExecData.h"
@@ -46,7 +45,7 @@ public:
     NativeModule(
         SharedCodeAllocator* allocator,
         const std::optional<ModuleId>& moduleId,
-        CodeAllocationData codeAllocationData,
+        const uint8_t* moduleBaseAddress,
         std::vector<NativeProtoExecDataPtr> nativeProtos
     ) noexcept;
 
@@ -70,9 +69,6 @@ public:
     // Gets the base address of the executable native code for the module.
     [[nodiscard]] const uint8_t* getModuleBaseAddress() const noexcept;
 
-    // Gets the information about code allocation for this module.
-    [[nodiscard]] CodeAllocationData getCodeAllocationData() const noexcept;
-
     // Attempts to find the NativeProto with the given bytecode id.  If no
     // NativeProto for that bytecode id exists, a null pointer is returned.
     [[nodiscard]] const uint32_t* tryGetNativeProto(uint32_t bytecodeId) const noexcept;
@@ -84,7 +80,7 @@ private:
 
     SharedCodeAllocator* allocator = nullptr;
     std::optional<ModuleId> moduleId = {};
-    CodeAllocationData codeAllocationData;
+    const uint8_t* moduleBaseAddress = nullptr;
 
     std::vector<NativeProtoExecDataPtr> nativeProtos = {};
 };

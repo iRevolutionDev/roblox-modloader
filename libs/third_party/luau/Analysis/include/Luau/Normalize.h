@@ -18,9 +18,25 @@ namespace Luau
 struct InternalErrorReporter;
 struct Module;
 struct Scope;
-struct TypeFunctionRuntime;
 
 using ModulePtr = std::shared_ptr<Module>;
+
+bool isSubtype(
+    TypeId subTy,
+    TypeId superTy,
+    NotNull<Scope> scope,
+    NotNull<BuiltinTypes> builtinTypes,
+    InternalErrorReporter& ice,
+    SolverMode solverMode
+);
+bool isSubtype(
+    TypePackId subPack,
+    TypePackId superPack,
+    NotNull<Scope> scope,
+    NotNull<BuiltinTypes> builtinTypes,
+    InternalErrorReporter& ice,
+    SolverMode solverMode
+);
 
 } // namespace Luau
 
@@ -126,12 +142,6 @@ struct NormalizedExternType
      */
     std::unordered_map<TypeId, TypeIds> externTypes;
 
-    /*
-     * We track an overall collection of shapes that extend this extern type.
-     * This should be interpreted as a big intersection of the given types.
-     */
-    TypeIds shapeExtensions;
-
     /**
      * In order to maintain a consistent insertion order, we use this vector to
      * keep track of it. An ordered std::map will sort by pointer identity,
@@ -214,10 +224,6 @@ struct NormalizedType
     // This type is either never or number.
     TypeId numbers;
 
-    // The integer part of the type.
-    // This type is either never or integer.
-    TypeId integers;
-
     // The string part of the type.
     // This may be the `string` type, or a union of singletons.
     NormalizedStringType strings;
@@ -284,7 +290,6 @@ struct NormalizedType
     bool hasErrors() const;
     bool hasNils() const;
     bool hasNumbers() const;
-    bool hasIntegers() const;
     bool hasStrings() const;
     bool hasThreads() const;
     bool hasBuffers() const;
@@ -397,7 +402,6 @@ private:
     TypeId intersectionOfBools(TypeId here, TypeId there);
     void intersectExternTypes(NormalizedExternType& heres, const NormalizedExternType& theres);
     void intersectExternTypesWithExternType(NormalizedExternType& heres, TypeId there);
-    void intersectExternTypesWithShape(NormalizedExternType& heres, TypeId there);
     void intersectStrings(NormalizedStringType& here, const NormalizedStringType& there);
     std::optional<TypeId> intersectionOfTables(TypeId here, TypeId there, SeenTablePropPairs& seenTablePropPairs, Set<TypeId>& seenSet);
     void intersectTablesWithTable(TypeIds& heres, TypeId there, SeenTablePropPairs& seenTablePropPairs, Set<TypeId>& seenSetTypes);
@@ -435,17 +439,5 @@ private:
 
     friend struct FuelInitializer;
 };
-
-bool isSubtype(
-    TypeId subTy,
-    TypeId superTy,
-    NotNull<TypeArena> arena,
-    NotNull<BuiltinTypes> builtinTypes,
-    NotNull<Scope> scope,
-    NotNull<Normalizer> normalizer,
-    NotNull<TypeFunctionRuntime> typeFunctionRuntime,
-    NotNull<InternalErrorReporter> reporter
-);
-
 
 } // namespace Luau

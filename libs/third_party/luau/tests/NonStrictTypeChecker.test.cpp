@@ -20,7 +20,8 @@ LUAU_DYNAMIC_FASTINT(LuauConstraintGeneratorRecursionLimit)
 LUAU_FASTINT(LuauNonStrictTypeCheckerRecursionLimit)
 LUAU_FASTINT(LuauCheckRecursionLimit)
 LUAU_FASTFLAG(LuauAddRecursionCounterToNonStrictTypeChecker)
-LUAU_FASTFLAG(DebugLuauForceOldSolver)
+LUAU_FASTFLAG(LuauExplicitTypeInstantiationSyntax)
+LUAU_FASTFLAG(LuauExplicitTypeInstantiationSupport)
 
 using namespace Luau;
 
@@ -66,12 +67,13 @@ using namespace Luau;
 
 struct NonStrictTypeCheckerFixture : Fixture
 {
+
     NonStrictTypeCheckerFixture() = default;
 
     CheckResult checkNonStrict(const std::string& code)
     {
         ScopedFastFlag flags[] = {
-            {FFlag::DebugLuauForceOldSolver, false},
+            {FFlag::LuauSolverV2, true},
         };
         LoadDefinitionFileResult res = loadDefinition(definitions);
         LUAU_ASSERT(res.success);
@@ -81,7 +83,7 @@ struct NonStrictTypeCheckerFixture : Fixture
     CheckResult checkNonStrictModule(const std::string& moduleName)
     {
         ScopedFastFlag flags[] = {
-            {FFlag::DebugLuauForceOldSolver, false},
+            {FFlag::LuauSolverV2, true},
         };
         LoadDefinitionFileResult res = loadDefinition(definitions);
         LUAU_ASSERT(res.success);
@@ -460,6 +462,9 @@ end
 
 TEST_CASE_FIXTURE(NonStrictTypeCheckerFixture, "generic_type_instantiation")
 {
+    ScopedFastFlag syntax{FFlag::LuauExplicitTypeInstantiationSyntax, true};
+    ScopedFastFlag semantics{FFlag::LuauExplicitTypeInstantiationSupport, true};
+
     CheckResult result = checkNonStrict(R"(
         function array<T>(): {T}
             return {}
@@ -779,7 +784,7 @@ TEST_CASE_FIXTURE(Fixture, "unknown_globals_in_one_sided_conditionals")
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "new_non_strict_should_suppress_dynamic_require_errors")
 {
-    ScopedFastFlag sff{FFlag::DebugLuauForceOldSolver, false};
+    ScopedFastFlag sff{FFlag::LuauSolverV2, true};
     // Avoid warning about dynamic requires in new nonstrict mode
     CheckResult result = check(Mode::Nonstrict, R"(
 function passThrough(module)
@@ -802,7 +807,7 @@ end
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "new_non_strict_should_suppress_unknown_require_errors")
 {
-    ScopedFastFlag sff{FFlag::DebugLuauForceOldSolver, false};
+    ScopedFastFlag sff{FFlag::LuauSolverV2, true};
 
     // Avoid warning about dynamic requires in new nonstrict mode
     CheckResult result = check(Mode::Nonstrict, R"(
@@ -892,26 +897,5 @@ TEST_CASE_FIXTURE(NonStrictTypeCheckerFixture, "nonstrict_check_expr_recursion_l
     LUAU_REQUIRE_NO_ERRORS(result);
 }
 #endif
-
-TEST_CASE_FIXTURE(NonStrictTypeCheckerFixture, "typecheck_class_method_bodies")
-{
-    ScopedFastFlag sffs[] = {
-        {FFlag::DebugLuauForceOldSolver, false},
-        {FFlag::DebugLuauUserDefinedClasses, true},
-    };
-
-    CheckResult result = checkNonStrict(R"(
-        --!nonstrict
-        class Student
-            public name: number
-            function greet(self)
-                return `Hello, {lower(self.name)}!`
-            end
-        end
-    )");
-
-    LUAU_REQUIRE_ERROR_COUNT(1, result);
-    LUAU_CHECK_ERROR(result, CheckedFunctionCallError);
-}
 
 TEST_SUITE_END();

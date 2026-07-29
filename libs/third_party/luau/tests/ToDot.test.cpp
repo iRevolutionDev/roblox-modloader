@@ -9,7 +9,7 @@
 
 using namespace Luau;
 
-LUAU_FASTFLAG(DebugLuauForceOldSolver);
+LUAU_FASTFLAG(LuauSolverV2);
 
 struct ToDotClassFixture : Fixture
 {
@@ -145,7 +145,7 @@ local function f(a, ...: string) return a end
     ToDotOptions opts;
     opts.showPointers = false;
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         CHECK_EQ(
             R"(digraph graphname {
@@ -242,7 +242,7 @@ local a: A<number, ...string>
 
     ToDotOptions opts;
     opts.showPointers = false;
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         CHECK_EQ(
             R"(digraph graphname {
@@ -335,7 +335,9 @@ n1 [label="FreeType 1"];
 
 TEST_CASE_FIXTURE(Fixture, "free_with_constraints")
 {
-    DOES_NOT_PASS_OLD_SOLVER_GUARD();
+    ScopedFastFlag sff[] = {
+        {FFlag::LuauSolverV2, true},
+    };
 
     Type type{TypeVariant{FreeType{nullptr, getBuiltins()->numberType, getBuiltins()->optionalNumberType}}};
 

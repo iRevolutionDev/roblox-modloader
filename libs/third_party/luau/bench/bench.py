@@ -8,8 +8,6 @@ import sys
 import re
 import json
 
-import influxbench
-
 # Taken from rotest
 from color import colored, Color
 from tabulate import TablePrinter, Alignment
@@ -382,8 +380,8 @@ def analyzeResult(subdir, main, comparisons):
             'Driver': main.shortVm
         })
 
-    if reporter != None:
-        reporter.report_result(subdir, main.name, main.filename, "SUCCESS", main.min, main.avg, main.max, main.sampleConfidenceInterval, main.shortVm, main.vm)
+    if influxReporter != None:
+        influxReporter.report_result(subdir, main.name, main.filename, "SUCCESS", main.min, main.avg, main.max, main.sampleConfidenceInterval, main.shortVm, main.vm)
 
     print(colored(Color.GREEN, 'SUCCESS') + ': {:<40}'.format(main.name) + ": " + '{:8.3f}'.format(main.avg) + "ms +/- " +
         '{:6.3f}'.format(main.sampleConfidenceInterval / main.avg * 100) + "% on " + main.shortVm)
@@ -429,8 +427,8 @@ def analyzeResult(subdir, main, comparisons):
 
             resultPrinter.add_row({ 'Test': main.name, 'Min': "", 'Average': "FAILED", 'StdDev%': "", 'Driver': compare.shortVm, 'Speedup': "", 'Significance': "", 'P(T<=t)': "" })
 
-            if reporter != None:
-                reporter.report_result(subdir, main.filename, main.filename, "FAILED", 0.0, 0.0, 0.0, 0.0, compare.shortVm, compare.vm)
+            if influxReporter != None:
+                influxReporter.report_result(subdir, main.filename, main.filename, "FAILED", 0.0, 0.0, 0.0, 0.0, compare.shortVm, compare.vm)
 
             if arguments.speedup:
                 plotValueLists[0].pop()
@@ -486,8 +484,8 @@ def analyzeResult(subdir, main, comparisons):
             '{:6.3f}'.format(compare.sampleConfidenceInterval / compare.avg * 100) + "% on " + compare.shortVm +
             ' ({:+7.3f}%, '.format(speedup * 100) + verdict + ")")
 
-        if reporter != None:
-            reporter.report_result(subdir, main.name, main.filename, "SUCCESS", compare.min, compare.avg, compare.max, compare.sampleConfidenceInterval, compare.shortVm, compare.vm)
+        if influxReporter != None:
+            influxReporter.report_result(subdir, main.name, main.filename, "SUCCESS", compare.min, compare.avg, compare.max, compare.sampleConfidenceInterval, compare.shortVm, compare.vm)
 
         if arguments.speedup:
             oldValue = plotValueLists[0].pop()
@@ -523,8 +521,8 @@ def runTest(subdir, filename, filepath):
         else:
             resultPrinter.add_row({ 'Test': filepath, 'Min': "", 'Average': "FAILED", 'StdDev%': "", 'Driver': getShortVmName(mainVm) })
 
-        if reporter != None:
-            reporter.report_result(subdir, filename, filename, "FAILED", 0.0, 0.0, 0.0, 0.0, getShortVmName(mainVm), mainVm)
+        if influxReporter != None:
+            influxReporter.report_result(subdir, filename, filename, "FAILED", 0.0, 0.0, 0.0, 0.0, getShortVmName(mainVm), mainVm)
         return
 
     compareResultSets = []
@@ -755,8 +753,8 @@ def writeResultsToFile():
     except:
         print("Failed to write results to a file")
 
-def run(args, argsubcb, reporter_factory=None):
-    global arguments, resultPrinter, reporter, argumentSubstituionCallback, allResults
+def run(args, argsubcb):
+    global arguments, resultPrinter, influxReporter, argumentSubstituionCallback, allResults
     arguments = args
     argumentSubstituionCallback = argsubcb
 
@@ -764,12 +762,11 @@ def run(args, argsubcb, reporter_factory=None):
         print(f"{colored(Color.RED, 'ERROR')}: --callgrind is not supported on Windows.  Please consider using this option on another OS, or Linux using WSL.")
         sys.exit(1)
 
-    if reporter_factory:
-        reporter = reporter_factory(arguments)
-    elif arguments.report_metrics or arguments.print_influx_debugging:
-        reporter = influxbench.InfluxReporter(arguments)
+    if arguments.report_metrics or arguments.print_influx_debugging:
+        import influxbench
+        influxReporter = influxbench.InfluxReporter(arguments)
     else:
-        reporter = None
+        influxReporter = None
 
     if matplotlib == None:
         arguments.absolute = 0
@@ -893,8 +890,6 @@ def run(args, argsubcb, reporter_factory=None):
         for filepath in sorted(all_files):
             subdir, filename = os.path.split(filepath)
             if filename.endswith(".lua"):
-                if os.path.isfile(os.path.join(subdir, "bench_resource_directory")):
-                    continue
                 if arguments.run_test == None or re.match(arguments.run_test, filename[:-4]):
                     runTest(subdir, filename, filepath)
 
@@ -934,9 +929,9 @@ def run(args, argsubcb, reporter_factory=None):
 
     writeResultsToFile()
 
-    if reporter != None:
-        reporter.report_result(arguments.folder, "Total", "all", "SUCCESS", mainTotalMin, mainTotalAverage, mainTotalMax, 0.0, getShortVmName(arguments.vm), os.path.abspath(arguments.vm))
-        reporter.flush(0)
+    if influxReporter != None:
+        influxReporter.report_result(arguments.folder, "Total", "all", "SUCCESS", mainTotalMin, mainTotalAverage, mainTotalMax, 0.0, getShortVmName(arguments.vm), os.path.abspath(arguments.vm))
+        influxReporter.flush(0)
 
 
 if __name__ == "__main__":

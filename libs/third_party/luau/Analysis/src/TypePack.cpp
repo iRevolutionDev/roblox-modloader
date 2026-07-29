@@ -201,14 +201,6 @@ const TypeId& TypePackIterator::operator*()
     return tp->head[currentIndex];
 }
 
-std::optional<TypePackId> TypePackIterator::tryGetHead() const
-{
-    if (currentIndex == 0)
-        return currentTypePack;
-    else
-        return std::nullopt;
-}
-
 std::optional<TypePackId> TypePackIterator::tail()
 {
     LUAU_ASSERT(!tp);

@@ -57,6 +57,5 @@ assertEq(shadowsString(1), "Value is 1")
 assertEq(`\u{0041}\t`, "A\t")
 
 assertEq(`{"5"} + {7} = 12`, "5 + 7 = 12")
-assertEq(`\0{123}\0`, "\000123\0")
 
 return "OK"

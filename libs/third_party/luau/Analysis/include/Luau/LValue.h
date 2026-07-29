@@ -32,7 +32,7 @@ struct LValueHasher
 
 const LValue* baseof(const LValue& lvalue);
 
-std::optional<LValue> tryGetLValue(const class AstExpr& node);
+std::optional<LValue> tryGetLValue(const class AstExpr& expr);
 
 // Utility function: breaks down an LValue to get at the Symbol
 Symbol getBaseSymbol(const LValue& lvalue);

@@ -8,8 +8,6 @@
 
 #include <math.h>
 
-LUAU_FASTFLAG(LuauTrackPrefixLocal)
-
 namespace Luau
 {
 
@@ -243,7 +241,6 @@ struct AstJsonEncoder : public AstVisitor
         else
             write("luauType", nullptr);
         write("name", local->name);
-        write("isConst", local->isConst);
         writeType("AstLocal");
         write("location", local->location);
         popComma(c);
@@ -306,18 +303,6 @@ struct AstJsonEncoder : public AstVisitor
         writeNode(
             node,
             "AstExprConstantNumber",
-            [&]()
-            {
-                write("value", node->value);
-            }
-        );
-    }
-
-    void write(class AstExprConstantInteger* node)
-    {
-        writeNode(
-            node,
-            "AstExprConstantInteger",
             [&]()
             {
                 write("value", node->value);
@@ -508,11 +493,11 @@ struct AstJsonEncoder : public AstVisitor
     {
         switch (kind)
         {
-        case AstExprTable::Item::Kind::List:
+        case AstExprTable::Item::List:
             return writeString("item");
-        case AstExprTable::Item::Kind::Record:
+        case AstExprTable::Item::Record:
             return writeString("record");
-        case AstExprTable::Item::Kind::General:
+        case AstExprTable::Item::General:
             return writeString("general");
         }
     }
@@ -525,7 +510,7 @@ struct AstJsonEncoder : public AstVisitor
         write("kind", item.kind);
         switch (item.kind)
         {
-        case AstExprTable::Item::Kind::List:
+        case AstExprTable::Item::List:
             write("value", item.value);
             break;
         default:
@@ -582,11 +567,11 @@ struct AstJsonEncoder : public AstVisitor
     {
         switch (op)
         {
-        case AstExprUnary::Op::Not:
+        case AstExprUnary::Not:
             return writeString("Not");
-        case AstExprUnary::Op::Minus:
+        case AstExprUnary::Minus:
             return writeString("Minus");
-        case AstExprUnary::Op::Len:
+        case AstExprUnary::Len:
             return writeString("Len");
         }
     }
@@ -999,8 +984,6 @@ struct AstJsonEncoder : public AstVisitor
                     PROP(prefix);
                 if (node->prefixLocation)
                     write("prefixLocation", *node->prefixLocation);
-                if (FFlag::LuauTrackPrefixLocal && node->prefixLocal)
-                    write("prefixLocal", node->prefixLocal);
                 PROP(name);
                 PROP(nameLocation);
                 PROP(parameters);
@@ -1160,6 +1143,21 @@ struct AstJsonEncoder : public AstVisitor
         );
     }
 
+    void write(AstAttr::Type type)
+    {
+        switch (type)
+        {
+        case AstAttr::Type::Checked:
+            return writeString("checked");
+        case AstAttr::Type::Native:
+            return writeString("native");
+        case AstAttr::Type::Deprecated:
+            return writeString("deprecated");
+        case AstAttr::Type::Unknown:
+            return writeString("unknown");
+        }
+    }
+
     void write(class AstAttr* node)
     {
         writeNode(
@@ -1230,12 +1228,6 @@ struct AstJsonEncoder : public AstVisitor
     }
 
     bool visit(class AstExprConstantNumber* node) override
-    {
-        write(node);
-        return false;
-    }
-
-    bool visit(class AstExprConstantInteger* node) override
     {
         write(node);
         return false;

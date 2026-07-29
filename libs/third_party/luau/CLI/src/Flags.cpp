@@ -2,7 +2,6 @@
 #include "Luau/Common.h"
 #include "Luau/ExperimentalFlags.h"
 
-#include <string>
 #include <string_view>
 
 #include <stdio.h>
@@ -16,14 +15,6 @@ static void setLuauFlag(std::string_view name, bool state)
         {
             flag->value = state;
             return;
-        }
-        if (flag->version != 0)
-        {
-            if (name == std::string(flag->name) + std::to_string(flag->version))
-            {
-                flag->value = state;
-                return;
-            }
         }
     }
 

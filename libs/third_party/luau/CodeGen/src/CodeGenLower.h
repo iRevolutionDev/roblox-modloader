@@ -7,13 +7,11 @@
 #include "Luau/IrBuilder.h"
 #include "Luau/IrDump.h"
 #include "Luau/IrUtils.h"
-#include "Luau/LogBuilder.h"
 #include "Luau/LoweringStats.h"
 #include "Luau/OptimizeConstProp.h"
 #include "Luau/OptimizeDeadStore.h"
 #include "Luau/OptimizeFinalX64.h"
 
-#include "CodeGenContext.h"
 #include "EmitCommon.h"
 #include "IrLoweringA64.h"
 #include "IrLoweringX64.h"
@@ -25,10 +23,10 @@
 #include <vector>
 
 LUAU_FASTFLAG(DebugCodegenOptSize)
-LUAU_FASTFLAG(LuauCodegenSharedLog)
 LUAU_FASTINT(CodegenHeuristicsInstructionLimit)
 LUAU_FASTINT(CodegenHeuristicsBlockLimit)
 LUAU_FASTINT(CodegenHeuristicsBlockInstructionLimit)
+LUAU_FASTFLAG(LuauCodegenBlockSafeEnv)
 
 namespace Luau
 {
@@ -82,7 +80,6 @@ inline unsigned getInstructionCount(const std::vector<IrInst>& instructions, IrC
 
 template<typename AssemblyBuilder, typename IrLowering>
 inline bool lowerImpl(
-    LogBuilder* logger,
     AssemblyBuilder& build,
     IrLowering& lowering,
     IrFunction& function,
@@ -104,18 +101,10 @@ inline bool lowerImpl(
 
     bool outputEnabled = options.includeAssembly || options.includeIr;
 
-    std::string emptyLog;
-    IrToStringContext ctx{
-        FFlag::LuauCodegenSharedLog ? (logger ? logger->text : emptyLog) : build.text,
-        function.blocks,
-        function.constants,
-        function.cfg,
-        function.vmExitInfo,
-        function.proto
-    };
+    IrToStringContext ctx{build.text, function.blocks, function.constants, function.cfg, function.proto};
 
     // We use this to skip outlined fallback blocks from IR/asm text output
-    size_t textSize = (FFlag::LuauCodegenSharedLog ? ctx.result : build.text).length();
+    size_t textSize = build.text.length();
     uint32_t codeSize = build.getCodeSize();
     bool seenFallback = false;
 
@@ -136,12 +125,12 @@ inline bool lowerImpl(
 
         CODEGEN_ASSERT(block.start != ~0u);
         CODEGEN_ASSERT(block.finish != ~0u);
-        CODEGEN_ASSERT(!seenFallback || block.kind == IrBlockKind::Fallback || block.kind == IrBlockKind::ExitSync);
+        CODEGEN_ASSERT(!seenFallback || block.kind == IrBlockKind::Fallback);
 
-        // If we want to skip fallback/exit code IR/asm, we'll record when those blocks start once we see them
-        if ((block.kind == IrBlockKind::Fallback || block.kind == IrBlockKind::ExitSync) && !seenFallback)
+        // If we want to skip fallback code IR/asm, we'll record when those blocks start once we see them
+        if (block.kind == IrBlockKind::Fallback && !seenFallback)
         {
-            textSize = (FFlag::LuauCodegenSharedLog ? ctx.result : build.text).length();
+            textSize = build.text.length();
             codeSize = build.getCodeSize();
             seenFallback = true;
         }
@@ -149,12 +138,7 @@ inline bool lowerImpl(
         if (options.includeIr)
         {
             if (options.includeIrPrefix == IncludeIrPrefix::Yes)
-            {
-                if (FFlag::LuauCodegenSharedLog)
-                    logger->formatAppend("# ");
-                else
-                    build.logAppend("# ");
-            }
+                build.logAppend("# ");
 
             toStringDetailed(ctx, block, blockIndex, options.includeUseInfo, options.includeCfgInfo, options.includeRegFlowInfo);
         }
@@ -169,8 +153,6 @@ inline bool lowerImpl(
             function.entryLocation = build.getLabelOffset(block.label);
         }
 
-        lowering.startBlock(block);
-
         IrBlock& nextBlock = getNextBlock(function, sortedBlocks, dummy, i);
 
         // Optimizations often propagate information between blocks
@@ -179,28 +161,18 @@ inline bool lowerImpl(
             CODEGEN_ASSERT(function.getBlockIndex(nextBlock) == block.expectedNextBlock);
 
         // Block might establish a safe environment right at the start
-        if ((block.flags & kBlockFlagSafeEnvCheck) != 0)
+        if (FFlag::LuauCodegenBlockSafeEnv && (block.flags & kBlockFlagSafeEnvCheck) != 0)
         {
             if (options.includeIr)
             {
-                if (FFlag::LuauCodegenSharedLog)
-                {
-                    if (options.includeIrPrefix == IncludeIrPrefix::Yes)
-                        logger->formatAppend("# ");
+                if (options.includeIrPrefix == IncludeIrPrefix::Yes)
+                    build.logAppend("# ");
 
-                    logger->formatAppend("  implicit CHECK_SAFE_ENV exit(%u)\n", block.startpc);
-                }
-                else
-                {
-                    if (options.includeIrPrefix == IncludeIrPrefix::Yes)
-                        build.logAppend("# ");
-
-                    build.logAppend("  implicit CHECK_SAFE_ENV exit(%u)\n", block.startpc);
-                }
+                build.logAppend("  implicit CHECK_SAFE_ENV exit(%u)\n", block.startpc);
             }
 
             CODEGEN_ASSERT(block.startpc != kBlockNoStartPc);
-            lowering.checkSafeEnv(IrOp{IrOpKind::VmExit, block.startpc}, kInvalidInstIdx, nextBlock);
+            lowering.checkSafeEnv(IrOp{IrOpKind::VmExit, block.startpc}, nextBlock);
         }
 
         for (uint32_t index = block.start; index <= block.finish; index++)
@@ -212,7 +184,7 @@ inline bool lowerImpl(
             // If IR instruction is the first one for the original bytecode, we can annotate it with source code text
             if (outputEnabled && options.annotator && bcLocation != ~0u)
             {
-                options.annotator(options.annotatorContext, (FFlag::LuauCodegenSharedLog ? ctx.result : build.text), bytecodeid, bcLocation);
+                options.annotator(options.annotatorContext, build.text, bytecodeid, bcLocation);
 
                 // If available, report inferred register tags
                 BytecodeTypes bcTypes = function.getBytecodeTypesAt(bcLocation);
@@ -221,10 +193,7 @@ inline bool lowerImpl(
                 {
                     toString(ctx.result, bcTypes, options.compilationOptions.userdataTypes);
 
-                    if (FFlag::LuauCodegenSharedLog)
-                        logger->formatAppend("\n");
-                    else
-                        build.logAppend("\n");
+                    build.logAppend("\n");
                 }
             }
 
@@ -241,14 +210,6 @@ inline bool lowerImpl(
             // This also prevents them from getting into text output when that's enabled
             if (isPseudo(inst.cmd))
             {
-                // Process potential store location hint that existed at this location
-                if (const StoreLocationHint* hint = function.findStoreLocationHint(index))
-                {
-                    lowering.regs.currInstIdx = index;
-                    lowering.valueTracker.processStoreLocationHint(hint);
-                    lowering.regs.currInstIdx = kInvalidInstIdx;
-                }
-
                 CODEGEN_ASSERT(inst.useCount == 0);
                 continue;
             }
@@ -259,12 +220,7 @@ inline bool lowerImpl(
             if (options.includeIr)
             {
                 if (options.includeIrPrefix == IncludeIrPrefix::Yes)
-                {
-                    if (FFlag::LuauCodegenSharedLog)
-                        logger->formatAppend("# ");
-                    else
-                        build.logAppend("# ");
-                }
+                    build.logAppend("# ");
 
                 toStringDetailed(ctx, block, blockIndex, inst, index, options.includeUseInfo);
             }
@@ -290,37 +246,8 @@ inline bool lowerImpl(
 
         lowering.finishBlock(block, nextBlock);
 
-        if (function.jitRngState)
-        {
-            // Insert a random-length NOP sled after each block to make intra-function
-            // gadget offsets unpredictable. 0–7 bytes; A64 rounds down to a multiple of 4.
-            IrInst& termInst = function.instructions[block.finish];
-
-            bool blockFallsThrough = anyArgumentMatch(
-                termInst,
-                [&](IrOp op)
-                {
-                    return op.kind == IrOpKind::Block && function.blockOp(op).start == nextBlock.start;
-                }
-            );
-
-            // Single-predecessor fallthrough should skip padding altogether
-            if (!(blockFallsThrough && termInst.cmd == IrCmd::JUMP && nextBlock.useCount == 1))
-            {
-                uint32_t maxNopBytes = blockFallsThrough ? 4 : 8;
-                uint32_t nopBytes = jitRngRandom(function.jitRngState) % maxNopBytes;
-                if (nopBytes > 0)
-                    build.nop(nopBytes);
-            }
-        }
-
         if (options.includeIr && options.includeIrPrefix == IncludeIrPrefix::Yes)
-        {
-            if (FFlag::LuauCodegenSharedLog)
-                logger->formatAppend("#\n");
-            else
-                build.logAppend("#\n");
-        }
+            build.logAppend("#\n");
 
         if (block.expectedNextBlock == ~0u)
             function.validRestoreOpBlocks.clear();
@@ -328,30 +255,24 @@ inline bool lowerImpl(
 
     if (!seenFallback)
     {
-        textSize = (FFlag::LuauCodegenSharedLog ? ctx.result : build.text).length();
+        textSize = build.text.length();
         codeSize = build.getCodeSize();
     }
 
     lowering.finishFunction();
 
-    if (outputEnabled && !options.includeOutlinedCode && textSize < (FFlag::LuauCodegenSharedLog ? ctx.result : build.text).size())
+    if (outputEnabled && !options.includeOutlinedCode && textSize < build.text.size())
     {
-        (FFlag::LuauCodegenSharedLog ? ctx.result : build.text).resize(textSize);
+        build.text.resize(textSize);
 
         if (options.includeAssembly)
-        {
-            if (FFlag::LuauCodegenSharedLog)
-                logger->formatAppend("; skipping %u bytes of outlined code\n", unsigned((build.getCodeSize() - codeSize) * sizeof(build.code[0])));
-            else
-                build.logAppend("; skipping %u bytes of outlined code\n", unsigned((build.getCodeSize() - codeSize) * sizeof(build.code[0])));
-        }
+            build.logAppend("; skipping %u bytes of outlined code\n", unsigned((build.getCodeSize() - codeSize) * sizeof(build.code[0])));
     }
 
     return true;
 }
 
 inline bool lowerIr(
-    LogBuilder* logger,
     X64::AssemblyBuilderX64& build,
     IrBuilder& ir,
     const std::vector<uint32_t>& sortedBlocks,
@@ -363,13 +284,12 @@ inline bool lowerIr(
 {
     optimizeMemoryOperandsX64(ir.function);
 
-    X64::IrLoweringX64 lowering(logger, build, helpers, ir.function, stats);
+    X64::IrLoweringX64 lowering(build, helpers, ir.function, stats);
 
-    return lowerImpl(logger, build, lowering, ir.function, sortedBlocks, proto ? proto->bytecodeid : 0, options);
+    return lowerImpl(build, lowering, ir.function, sortedBlocks, proto->bytecodeid, options);
 }
 
 inline bool lowerIr(
-    LogBuilder* logger,
     A64::AssemblyBuilderA64& build,
     IrBuilder& ir,
     const std::vector<uint32_t>& sortedBlocks,
@@ -379,15 +299,14 @@ inline bool lowerIr(
     LoweringStats* stats
 )
 {
-    A64::IrLoweringA64 lowering(logger, build, helpers, ir.function, stats);
+    A64::IrLoweringA64 lowering(build, helpers, ir.function, stats);
 
-    return lowerImpl(logger, build, lowering, ir.function, sortedBlocks, proto ? proto->bytecodeid : 0, options);
+    return lowerImpl(build, lowering, ir.function, sortedBlocks, proto->bytecodeid, options);
 }
 
 template<typename AssemblyBuilder>
 inline bool lowerFunction(
     IrBuilder& ir,
-    LogBuilder* logger,
     AssemblyBuilder& build,
     ModuleHelpers& helpers,
     Proto* proto,
@@ -397,10 +316,6 @@ inline bool lowerFunction(
 )
 {
     ir.function.stats = stats;
-    ir.function.recordCounters = options.compilationOptions.recordCounters;
-
-    if (options.compilationOptions.nopPadding && proto != nullptr)
-        ir.function.jitRngState = jitRngSeed(uintptr_t(proto));
 
     killUnusedBlocks(ir.function);
 
@@ -478,7 +393,7 @@ inline bool lowerFunction(
         }
     }
 
-    bool result = lowerIr(logger, build, ir, sortedBlocks, helpers, proto, options, stats);
+    bool result = lowerIr(build, ir, sortedBlocks, helpers, proto, options, stats);
 
     if (!result)
         codeGenCompilationResult = CodeGenCompilationResult::CodeGenLoweringFailure;

@@ -80,6 +80,8 @@ namespace RBX {
 
         std::shared_ptr<rml::luau::ScriptEngine> get_script_engine(lua_State *L);
 
+        std::shared_ptr<rml::luau::ScriptEngine> get_or_create_script_engine(DataModelType data_model_type, lua_State *L);
+
         void cleanup_script_engine(DataModelType data_model_type);
 
         void cleanup_orphaned_script_engines();

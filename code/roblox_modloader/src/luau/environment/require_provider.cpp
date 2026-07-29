@@ -8,7 +8,6 @@
 #include "ltable.h"
 #include "pointers.hpp"
 #include "filesystem/directory.hpp"
-#include <Luau/CodeGen.h>
 #include <Luau/Compiler.h>
 
 
@@ -53,14 +52,6 @@ namespace rml::luau::environment
 			lua_getglobal(L, "require");
 			if (lua_isfunction(L, -1))
 			{
-				// THIS IS SO BAD, BUT I DON'T KNOW HOW TO DO IT BETTER
-				// TODO: Find a better way to use lua_ref without crash
-				if (const auto* g = L->global; g->registryfree != 0)
-				{
-					auto* reg    = hvalue(registry(L));
-					TValue* slot = luaH_setnum(L, reg, g->registryfree);
-					setnvalue(slot, 0);
-				}
 				original_require_ref = lua_ref(L, -1);
 
 				if (original_require_ref == LUA_NOREF)

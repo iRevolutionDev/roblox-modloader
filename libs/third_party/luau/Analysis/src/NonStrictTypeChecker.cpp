@@ -23,7 +23,6 @@ LUAU_FASTFLAG(DebugLuauMagicTypes)
 
 LUAU_FASTINTVARIABLE(LuauNonStrictTypeCheckerRecursionLimit, 300)
 LUAU_FASTFLAGVARIABLE(LuauAddRecursionCounterToNonStrictTypeChecker)
-LUAU_FASTFLAG(DebugLuauUserDefinedClasses)
 
 namespace Luau
 {
@@ -235,7 +234,7 @@ struct NonStrictTypeChecker
         if (noTypeFunctionErrors.find(instance))
             return instance;
 
-        TypeFunctionContext context{arena, builtinTypes, stack.back(), NotNull{&normalizer}, typeFunctionRuntime, ice, limits, NotNull{&subtyping}};
+        TypeFunctionContext context{arena, builtinTypes, stack.back(), NotNull{&normalizer}, typeFunctionRuntime, ice, limits};
         ErrorVec errors = reduceTypeFunctions(instance, location, NotNull{&context}, true).errors;
 
         if (errors.empty())
@@ -301,8 +300,6 @@ struct NonStrictTypeChecker
         else if (auto s = stat->as<AstStatDeclareGlobal>())
             return visit(s);
         else if (auto s = stat->as<AstStatDeclareExternType>())
-            return visit(s);
-        else if (auto s = stat->as<AstStatClass>())
             return visit(s);
         else if (auto s = stat->as<AstStatError>())
             return visit(s);
@@ -504,21 +501,6 @@ struct NonStrictTypeChecker
         return {};
     }
 
-    NonStrictContext visit(AstStatClass* declClass)
-    {
-        for (auto prop : declClass->members)
-        {
-            if (auto property = get_if<AstClassProperty>(&prop))
-                visit(property->ty);
-            else if (auto method = get_if<AstClassMethod>(&prop))
-                visit(method->function);
-            else
-                LUAU_ASSERT(!"Unknown class field");
-        }
-
-        return {};
-    }
-
     NonStrictContext visit(AstStatError* error)
     {
         for (AstStat* stat : error->statements)
@@ -547,8 +529,6 @@ struct NonStrictTypeChecker
         else if (auto e = expr->as<AstExprConstantBool>())
             return visit(e);
         else if (auto e = expr->as<AstExprConstantNumber>())
-            return visit(e);
-        else if (auto e = expr->as<AstExprConstantInteger>())
             return visit(e);
         else if (auto e = expr->as<AstExprConstantString>())
             return visit(e);
@@ -605,11 +585,6 @@ struct NonStrictTypeChecker
     }
 
     NonStrictContext visit(AstExprConstantNumber* expr)
-    {
-        return {};
-    }
-
-    NonStrictContext visit(AstExprConstantInteger* expr)
     {
         return {};
     }
@@ -1225,10 +1200,7 @@ struct NonStrictTypeChecker
                 SubtypingResult r = subtyping.isSubtype(actualType, *contextTy, scope);
                 if (r.normalizationTooComplex)
                     reportError(NormalizationTooComplex{}, fragment->location);
-                // If this subtype test passed and we did not see an error
-                // suppressing bit, then return this as the type that will
-                // error at runtime.
-                if (r.isSubtype && !r.isErrorSuppressing)
+                if (r.isSubtype)
                     return {actualType};
             }
         }
@@ -1288,7 +1260,7 @@ void checkNonStrict(
 {
     LUAU_TIMETRACE_SCOPE("checkNonStrict", "Typechecking");
 
-    NonStrictTypeChecker typeChecker{NotNull{module->internalTypes.get()}, builtinTypes, typeFunctionRuntime, ice, unifierState, dfg, limits, module};
+    NonStrictTypeChecker typeChecker{NotNull{&module->internalTypes}, builtinTypes, typeFunctionRuntime, ice, unifierState, dfg, limits, module};
     typeChecker.visit(sourceModule.root);
     unfreeze(module->interfaceTypes);
     copyErrors(module->errors, module->interfaceTypes, builtinTypes);

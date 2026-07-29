@@ -4,10 +4,26 @@
 #include "RobloxModLoader/luau/script_context.hpp"
 
 #include "RobloxModLoader/luau/environment/environment.hpp"
+#include "RobloxModLoader/luau/generated/layout_access.hpp"
 #include "RobloxModLoader/roblox/luau/roblox_extra_space.hpp"
 #include "RobloxModLoader/roblox/security/script_permissions.hpp"
+#include "utils/seh_guard.hpp"
 
 namespace rml::luau {
+    struct SetIdentityCall {
+        const lua_State *L;
+        RBX::Security::Permissions identity;
+        std::uint64_t capabilities;
+    };
+
+    static void invoke_set_thread_identity(void *ctx) {
+        const auto *call = static_cast<SetIdentityCall *>(ctx);
+        auto *extra_space = static_cast<RBX::Luau::RobloxExtraSpace *>(call->L->userdata);
+        if (!extra_space) return;
+        extra_space->context.identity = call->identity;
+        extra_space->capabilities = call->capabilities;
+    }
+
     ScriptContext::ScriptContext(const Context context)
         : m_context(context) {
     }
@@ -21,9 +37,6 @@ namespace rml::luau {
             std::unique_lock lock(m_state_mutex);
 
             m_is_initialized.store(true, std::memory_order_release);
-
-            // Setup all global providers
-            environment::setup_lua_environment(m_context.L);
 
             LOG_INFO("Execution context initialized successfully");
             return true;
@@ -63,43 +76,38 @@ namespace rml::luau {
             return;
         }
 
-        auto *extra_space = static_cast<RBX::Luau::RobloxExtraSpace *>(L->userdata);
-        if (!extra_space) {
-            LOG_ERROR("Cannot set thread identity: Thread extra space is null");
+        SetIdentityCall call{L, identity, capabilities};
+        if (!rml::utils::guarded_invoke(&invoke_set_thread_identity, &call)) {
+            LOG_ERROR("set_thread_identity faulted - lua_State/extra-space layout may have changed on this "
+                      "Studio build; skipping identity set");
             return;
         }
-
-        extra_space->context.identity = identity;
-        extra_space->capabilities = capabilities;
 
         LOG_INFO("Set thread identity to {} with capabilities 0x{:X}", static_cast<int>(identity), capabilities);
     }
 
-    void ScriptContext::elevate_closure(const Closure *closure, const std::uint64_t capabilities) noexcept {
-        if (!closure || closure->isC) {
+    static void report_elevation_unavailable() {
+        static std::once_flag reported;
+        std::call_once(reported, [] {
+            LOG_ERROR("Prototype elevation is off: the dumper has not recovered Proto.userdata for this Studio "
+                      "build, and the slot luau declares for it holds something else here");
+        });
+    }
+
+    void ScriptContext::elevate_closure(const Closure *closure, std::uint64_t) noexcept {
+        if (!closure || access::closure(closure)->isC) {
             return;
         }
 
-        auto *security = new std::uint64_t();
-        *security = capabilities;
-
-        set_proto(closure->l.p, security);
+        report_elevation_unavailable();
     }
 
-    void ScriptContext::set_proto(Proto *proto, std::uint64_t *security) noexcept {
+    void ScriptContext::set_proto(Proto *proto, std::uint64_t *) noexcept {
         if (!proto) {
             return;
         }
 
-        proto->userdata = static_cast<void *>(security);
-
-        if (proto->sizep <= 0 || !proto->p) return;
-
-        for (int i = 0; i < proto->sizep; ++i) {
-            if (proto->p[i]) {
-                set_proto(proto->p[i], security);
-            }
-        }
+        report_elevation_unavailable();
     }
 
     std::size_t ScriptContext::get_memory_usage() const noexcept {

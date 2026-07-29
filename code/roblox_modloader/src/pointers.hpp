@@ -2,9 +2,12 @@
 // clang-format off
 #include "RobloxModLoader/memory/batch.hpp"
 #include "RobloxModLoader/memory/module.hpp"
+#include "RobloxModLoader/memory/signature_cache.hpp"
 #include "RobloxModLoader/util/compile_time_helpers.hpp"
 #include "RobloxModLoader/internal/roblox_pointers.hpp"
 // clang-format on
+
+#include <span>
 
 namespace rml
 {
@@ -14,14 +17,10 @@ namespace rml
 		static constexpr auto get_roblox_batch();
 
 		template<cstxpr_str batch_name, size_t N>
-		void run_batch(const memory::batch<N>& batch, const memory::module& mem_region)
+		void run_batch(const memory::batch<N>& batch, const std::uint32_t sigset_hash, const memory::module& mem_region)
 		{
-			if (!memory::batch_runner::run(batch, mem_region))
-			{
-				const std::string error_message =
-				    std::string("Failed to find some patterns for ") + std::string(batch_name.str);
-				throw std::runtime_error(error_message);
-			}
+			const std::span<const memory::signature> entries{batch.m_entries.data(), batch.m_entries.size()};
+			memory::run_batch_cached(entries, mem_region, sigset_hash);
 		}
 
 	public:

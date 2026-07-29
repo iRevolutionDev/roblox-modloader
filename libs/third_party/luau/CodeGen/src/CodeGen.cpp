@@ -43,7 +43,6 @@
 
 LUAU_FASTFLAGVARIABLE(DebugCodegenOptSize)
 LUAU_FASTFLAGVARIABLE(DebugCodegenSkipNumbering)
-LUAU_FASTFLAGVARIABLE(LuauCodegenNopPadding)
 
 // Per-module IR instruction count limit
 LUAU_FASTINTVARIABLE(CodegenHeuristicsInstructionLimit, 1'048'576) // 1 M
@@ -57,9 +56,6 @@ LUAU_FASTINTVARIABLE(CodegenHeuristicsBlockLimit, 32'768) // 32 K
 // Per-function IR instruction limit
 // Current value is based on some member variables being limited to 16 bits
 LUAU_FASTINTVARIABLE(CodegenHeuristicsBlockInstructionLimit, 65'536) // 64 K
-
-LUAU_FASTFLAGVARIABLE(LuauCodegenInteger3)
-LUAU_FASTFLAG(LuauCIProto)
 
 namespace Luau
 {
@@ -128,7 +124,7 @@ void onDisable(lua_State* L, Proto* proto)
             {
                 if (isLua(ci))
                 {
-                    Proto* p = FFlag::LuauCIProto ? ci->p : clvalue(ci->func)->l.p;
+                    Proto* p = clvalue(ci->func)->l.p;
 
                     if (p == proto)
                     {

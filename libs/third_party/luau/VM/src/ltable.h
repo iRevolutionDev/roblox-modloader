@@ -34,4 +34,5 @@ LUAI_FUNC void luaH_clear(LuaTable* tt);
 
 #define luaH_setslot(L, t, slot, key) (invalidateTMcache(t), (slot == luaO_nilobject ? luaH_newkey(L, t, key) : cast_to(TValue*, slot)))
 
-extern const LuaNode luaH_dummynode;
+// extern const LuaNode luaH_dummynode;
+#define luaH_dummynode (*reinterpret_cast<LuaNode*>(get_roblox_pointers()->luaH_dummynode))

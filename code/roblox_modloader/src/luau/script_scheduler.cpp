@@ -354,8 +354,17 @@ namespace rml::luau {
             m_currently_executing.fetch_add(1, std::memory_order_relaxed);
 
             const auto start_time = std::chrono::high_resolution_clock::now();
+            
+            const int top_before = lua_gettop(context->L);
+            const int type_before = top_before > 0 ? lua_type(context->L, top_before) : -99;
 
-            g_pointers->m_roblox_pointers.task_defer(context->L);
+            if (const int result = lua_resume(context->L, nullptr, 0);
+                result != LUA_OK && result != LUA_YIELD) {
+                const char *error = lua_tostring(context->L, -1);
+                LOG_ERROR("Error running script: result={} top_before={} type_before={} top_after={} err='{}'",
+                          result, top_before, type_before, lua_gettop(context->L),
+                          error ? error : "(null)");
+            }
 
             const auto end_time = std::chrono::high_resolution_clock::now();
             const auto execution_time = std::chrono::duration_cast<std::chrono::nanoseconds>(end_time - start_time);

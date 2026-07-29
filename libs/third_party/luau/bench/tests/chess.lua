@@ -855,10 +855,6 @@ local function chess()
 	for k,v in ipairs(testCases) do
 		test(v[1],v[2],v[3])
 	end
-
-	if failures > 0 then
-		error("Test Failure")
-	end
 end
 
 bench.runCode(chess, "chess")

@@ -18,8 +18,10 @@
 #include <algorithm>
 #include <string>
 
+LUAU_FASTFLAGVARIABLE(LuauEnableDenseTableAlias)
+LUAU_FASTFLAGVARIABLE(LuauToStringDecomposition)
+
 LUAU_FASTFLAG(LuauSolverV2)
-LUAU_FASTFLAG(LuauIntegerType2)
 
 /*
  * Enables increasing levels of verbosity for Luau type names when stringifying.
@@ -39,6 +41,8 @@ LUAU_FASTFLAG(LuauIntegerType2)
  */
 LUAU_FASTINTVARIABLE(DebugLuauVerboseTypeNames, 0)
 LUAU_FASTFLAGVARIABLE(DebugLuauToStringNoLexicalSort)
+
+LUAU_FASTFLAGVARIABLE(LuauToStringIgnoresSyntheticName)
 
 namespace Luau
 {
@@ -180,7 +184,8 @@ struct StringifierState
         , result(result)
         , exhaustive(opts.exhaustive)
     {
-        ignoreSyntheticName = opts.ignoreSyntheticName;
+        if (FFlag::LuauToStringIgnoresSyntheticName)
+            ignoreSyntheticName = opts.ignoreSyntheticName;
 
         for (const auto& [_, v] : opts.nameMap.types)
             usedNames.insert(v);
@@ -304,6 +309,8 @@ struct StringifierState
 
     void emitAndRecordSpan(const std::string& s, TypeId ty)
     {
+        LUAU_ASSERT(FFlag::LuauToStringDecomposition);
+
         size_t startPos = result.name.length();
         emit(s);
         size_t endPos = result.name.length();
@@ -610,13 +617,6 @@ struct TypeStringifier
         case PrimitiveType::Table:
             state.emit("table");
             return;
-        case PrimitiveType::Integer:
-            if (FFlag::LuauIntegerType2)
-            {
-                state.emit("integer");
-                return;
-            }
-            [[fallthrough]];
         default:
             LUAU_ASSERT(!"Unknown primitive type");
             throw InternalCompilerError("Unknown primitive type " + std::to_string(ptv.type));
@@ -714,9 +714,12 @@ struct TypeStringifier
         if (ttv.boundTo)
             return stringify(*ttv.boundTo);
 
-        // if hide table alias expansions are enabled and there is a name found for the table, use it
-        bool showName = !state.exhaustive || state.opts.hideTableAliasExpansions;
-
+        bool showName = !state.exhaustive;
+        if (FFlag::LuauEnableDenseTableAlias)
+        {
+            // if hide table alias expansions are enabled and there is a name found for the table, use it
+            showName = !state.exhaustive || state.opts.hideTableAliasExpansions;
+        }
         if (showName)
         {
             if (ttv.name)
@@ -736,18 +739,40 @@ struct TypeStringifier
                     }
                 }
 
-                state.emitAndRecordSpan(*ttv.name, ty);
+                if (FFlag::LuauToStringDecomposition)
+                    state.emitAndRecordSpan(*ttv.name, ty);
+                else
+                    state.emit(*ttv.name);
                 stringify(ttv.instantiatedTypeParams, ttv.instantiatedTypePackParams);
                 return;
             }
         }
 
-        if (!state.exhaustive && !state.ignoreSyntheticName)
+        if (FFlag::LuauToStringIgnoresSyntheticName)
+        {
+            if (!state.exhaustive && !state.ignoreSyntheticName)
+            {
+                if (ttv.syntheticName)
+                {
+                    state.result.invalid = true;
+                    if (FFlag::LuauToStringDecomposition)
+                        state.emitAndRecordSpan(*ttv.syntheticName, ty);
+                    else
+                        state.emit(*ttv.syntheticName);
+                    stringify(ttv.instantiatedTypeParams, ttv.instantiatedTypePackParams);
+                    return;
+                }
+            }
+        }
+        else if (!state.exhaustive)
         {
             if (ttv.syntheticName)
             {
                 state.result.invalid = true;
-                state.emitAndRecordSpan(*ttv.syntheticName, ty);
+                if (FFlag::LuauToStringDecomposition)
+                    state.emitAndRecordSpan(*ttv.syntheticName, ty);
+                else
+                    state.emit(*ttv.syntheticName);
                 stringify(ttv.instantiatedTypeParams, ttv.instantiatedTypePackParams);
                 return;
             }
@@ -789,8 +814,6 @@ struct TypeStringifier
         if (ttv.indexer && ttv.props.empty() && isNumber(ttv.indexer->indexType))
         {
             state.emit("{");
-            if (ttv.indexer->isReadOnly)
-                state.emit("read ");
             stringify(ttv.indexer->indexResultType);
             state.emit("}");
 
@@ -805,8 +828,6 @@ struct TypeStringifier
         if (ttv.indexer)
         {
             state.newline();
-            if (ttv.indexer->isReadOnly)
-                state.emit("read ");
             state.emit("[");
             stringify(ttv.indexer->indexType);
             state.emit("]: ");
@@ -857,7 +878,10 @@ struct TypeStringifier
         state.result.invalid = true;
         if (!state.exhaustive && mtv.syntheticName)
         {
-            state.emitAndRecordSpan(*mtv.syntheticName, ty);
+            if (FFlag::LuauToStringDecomposition)
+                state.emitAndRecordSpan(*mtv.syntheticName, ty);
+            else
+                state.emit(*mtv.syntheticName);
             return;
         }
 
@@ -871,7 +895,10 @@ struct TypeStringifier
 
     void operator()(TypeId ty, const ExternType& etv)
     {
-        state.emitAndRecordSpan(etv.name, ty);
+        if (FFlag::LuauToStringDecomposition)
+            state.emitAndRecordSpan(etv.name, ty);
+        else
+            state.emit(etv.name);
     }
 
     void operator()(TypeId, const AnyType&)
@@ -898,101 +925,184 @@ struct TypeStringifier
         bool optional = false;
         bool hasNonNilDisjunct = false;
 
-        std::vector<ElementResult> results = {};
-        size_t resultsLength = 0;
-        bool lengthLimitHit = false;
-
-        for (auto el : &uv)
+        if (FFlag::LuauToStringDecomposition)
         {
-            el = follow(el);
+            std::vector<ElementResult> results = {};
+            size_t resultsLength = 0;
+            bool lengthLimitHit = false;
 
-            if (state.opts.useQuestionMarks && isNil(el))
+            for (auto el : &uv)
             {
-                optional = true;
-                continue;
+                el = follow(el);
+
+                if (state.opts.useQuestionMarks && isNil(el))
+                {
+                    optional = true;
+                    continue;
+                }
+                else
+                {
+                    hasNonNilDisjunct = true;
+                }
+
+                std::string saved = std::move(state.result.name);
+                size_t savedSpansSize = state.result.typeSpans.size();
+
+                bool needParens = !state.cycleNames.contains(el) && (get<IntersectionType>(el) != nullptr || get<FunctionType>(el) != nullptr);
+
+                if (needParens)
+                    state.emit("(");
+
+                stringify(el);
+
+                if (needParens)
+                    state.emit(")");
+
+                ElementResult elem;
+                elem.str = std::move(state.result.name);
+
+                for (size_t i = savedSpansSize; i < state.result.typeSpans.size(); ++i)
+                    elem.spans.push_back(state.result.typeSpans[i]);
+                state.result.typeSpans.resize(savedSpansSize);
+
+                resultsLength += elem.str.length();
+                results.push_back(std::move(elem));
+
+                state.result.name = std::move(saved);
+
+                lengthLimitHit = state.opts.maxTypeLength > 0 && resultsLength > state.opts.maxTypeLength;
+
+                if (lengthLimitHit)
+                    break;
             }
-            else
-            {
-                hasNonNilDisjunct = true;
-            }
 
-            std::string saved = std::move(state.result.name);
-            size_t savedSpansSize = state.result.typeSpans.size();
+            state.unsee(&uv);
 
-            bool needParens = !state.cycleNames.contains(el) && (get<IntersectionType>(el) != nullptr || get<FunctionType>(el) != nullptr);
+            if (!lengthLimitHit && !FFlag::DebugLuauToStringNoLexicalSort)
+                std::sort(
+                    results.begin(),
+                    results.end(),
+                    [](const ElementResult& a, const ElementResult& b)
+                    {
+                        return a.str < b.str;
+                    }
+                );
 
-            if (needParens)
+            if (optional && results.size() > 1)
                 state.emit("(");
 
-            stringify(el);
-
-            if (needParens)
-                state.emit(")");
-
-            ElementResult elem;
-            elem.str = std::move(state.result.name);
-
-            for (size_t i = savedSpansSize; i < state.result.typeSpans.size(); ++i)
-                elem.spans.push_back(state.result.typeSpans[i]);
-            state.result.typeSpans.resize(savedSpansSize);
-
-            resultsLength += elem.str.length();
-            results.push_back(std::move(elem));
-
-            state.result.name = std::move(saved);
-
-            lengthLimitHit = state.opts.maxTypeLength > 0 && resultsLength > state.opts.maxTypeLength;
-
-            if (lengthLimitHit)
-                break;
-        }
-
-        state.unsee(&uv);
-
-        if (!lengthLimitHit && !FFlag::DebugLuauToStringNoLexicalSort)
-            std::sort(
-                results.begin(),
-                results.end(),
-                [](const ElementResult& a, const ElementResult& b)
-                {
-                    return a.str < b.str;
-                }
-            );
-
-        if (optional && results.size() > 1)
-            state.emit("(");
-
-        bool first = true;
-        bool shouldPlaceOnNewlines = results.size() > state.opts.compositeTypesSingleLineLimit;
-        for (ElementResult& elem : results)
-        {
-            if (!first)
+            bool first = true;
+            bool shouldPlaceOnNewlines = results.size() > state.opts.compositeTypesSingleLineLimit;
+            for (ElementResult& elem : results)
             {
-                if (shouldPlaceOnNewlines)
-                    state.newline();
-                else
-                    state.emit(" ");
-                state.emit("| ");
+                if (!first)
+                {
+                    if (shouldPlaceOnNewlines)
+                        state.newline();
+                    else
+                        state.emit(" ");
+                    state.emit("| ");
+                }
+
+                size_t basePos = state.result.name.length();
+                state.emit(elem.str);
+                for (const auto& [start, end, ty] : elem.spans)
+                    state.result.typeSpans.emplace_back(ToStringSpan{basePos + start, basePos + end, ty});
+
+                first = false;
             }
 
-            size_t basePos = state.result.name.length();
-            state.emit(elem.str);
-            for (const auto& [start, end, ty] : elem.spans)
-                state.result.typeSpans.emplace_back(ToStringSpan{basePos + start, basePos + end, ty});
+            if (optional)
+            {
+                const char* s = "?";
+                if (results.size() > 1)
+                    s = ")?";
 
-            first = false;
+                if (!hasNonNilDisjunct)
+                    s = "nil";
+
+                state.emit(s);
+            }
         }
-
-        if (optional)
+        else
         {
-            const char* s = "?";
-            if (results.size() > 1)
-                s = ")?";
+            std::vector<std::string> results = {};
+            size_t resultsLength = 0;
+            bool lengthLimitHit = false;
 
-            if (!hasNonNilDisjunct)
-                s = "nil";
+            for (auto el : &uv)
+            {
+                el = follow(el);
 
-            state.emit(s);
+                if (state.opts.useQuestionMarks && isNil(el))
+                {
+                    optional = true;
+                    continue;
+                }
+                else
+                {
+                    hasNonNilDisjunct = true;
+                }
+
+                std::string saved = std::move(state.result.name);
+
+                bool needParens = !state.cycleNames.contains(el) &&
+                                  (get<IntersectionType>(el) || get<FunctionType>(el)); // NOLINT(readability-implicit-bool-conversion)
+
+                if (needParens)
+                    state.emit("(");
+
+                stringify(el);
+
+                if (needParens)
+                    state.emit(")");
+
+                resultsLength += state.result.name.length();
+                results.push_back(std::move(state.result.name));
+
+                state.result.name = std::move(saved);
+
+                lengthLimitHit = state.opts.maxTypeLength > 0 && resultsLength > state.opts.maxTypeLength;
+
+                if (lengthLimitHit)
+                    break;
+            }
+
+            state.unsee(&uv);
+
+            if (!lengthLimitHit && !FFlag::DebugLuauToStringNoLexicalSort)
+                std::sort(results.begin(), results.end());
+
+            if (optional && results.size() > 1)
+                state.emit("(");
+
+            bool first = true;
+            bool shouldPlaceOnNewlines = results.size() > state.opts.compositeTypesSingleLineLimit;
+            for (std::string& ss : results)
+            {
+                if (!first)
+                {
+                    if (shouldPlaceOnNewlines)
+                        state.newline();
+                    else
+                        state.emit(" ");
+                    state.emit("| ");
+                }
+                state.emit(ss);
+                first = false;
+            }
+
+            if (optional)
+            {
+                const char* s = "?";
+                if (results.size() > 1)
+                    s = ")?";
+
+                if (!hasNonNilDisjunct)
+                    s = "nil";
+
+                state.emit(s);
+            }
         }
     }
 
@@ -1005,76 +1115,134 @@ struct TypeStringifier
             return;
         }
 
-        std::vector<ElementResult> results = {};
-        size_t resultsLength = 0;
-        bool lengthLimitHit = false;
-
-        for (auto el : uv.parts)
+        if (FFlag::LuauToStringDecomposition)
         {
-            el = follow(el);
+            std::vector<ElementResult> results = {};
+            size_t resultsLength = 0;
+            bool lengthLimitHit = false;
 
-            std::string saved = std::move(state.result.name);
-            size_t savedSpansSize = state.result.typeSpans.size();
-
-            bool needParens = !state.cycleNames.contains(el) && (get<UnionType>(el) != nullptr || get<FunctionType>(el) != nullptr);
-
-            if (needParens)
-                state.emit("(");
-
-            stringify(el);
-
-            if (needParens)
-                state.emit(")");
-
-            ElementResult elem;
-            elem.str = std::move(state.result.name);
-
-            for (size_t i = savedSpansSize; i < state.result.typeSpans.size(); ++i)
-                elem.spans.push_back(state.result.typeSpans[i]);
-            state.result.typeSpans.resize(savedSpansSize);
-
-            resultsLength += elem.str.length();
-            results.push_back(std::move(elem));
-
-            state.result.name = std::move(saved);
-
-            lengthLimitHit = state.opts.maxTypeLength > 0 && resultsLength > state.opts.maxTypeLength;
-
-            if (lengthLimitHit)
-                break;
-        }
-
-        state.unsee(&uv);
-
-        if (!lengthLimitHit && !FFlag::DebugLuauToStringNoLexicalSort)
-            std::sort(
-                results.begin(),
-                results.end(),
-                [](const ElementResult& a, const ElementResult& b)
-                {
-                    return a.str < b.str;
-                }
-            );
-
-        bool first = true;
-        bool shouldPlaceOnNewlines = results.size() > state.opts.compositeTypesSingleLineLimit || isOverloadedFunction(ty);
-        for (ElementResult& elem : results)
-        {
-            if (!first)
+            for (auto el : uv.parts)
             {
-                if (shouldPlaceOnNewlines)
-                    state.newline();
-                else
-                    state.emit(" ");
-                state.emit("& ");
+                el = follow(el);
+
+                std::string saved = std::move(state.result.name);
+                size_t savedSpansSize = state.result.typeSpans.size();
+
+                bool needParens = !state.cycleNames.contains(el) && (get<UnionType>(el) != nullptr || get<FunctionType>(el) != nullptr);
+
+                if (needParens)
+                    state.emit("(");
+
+                stringify(el);
+
+                if (needParens)
+                    state.emit(")");
+
+                ElementResult elem;
+                elem.str = std::move(state.result.name);
+
+                for (size_t i = savedSpansSize; i < state.result.typeSpans.size(); ++i)
+                    elem.spans.push_back(state.result.typeSpans[i]);
+                state.result.typeSpans.resize(savedSpansSize);
+
+                resultsLength += elem.str.length();
+                results.push_back(std::move(elem));
+
+                state.result.name = std::move(saved);
+
+                lengthLimitHit = state.opts.maxTypeLength > 0 && resultsLength > state.opts.maxTypeLength;
+
+                if (lengthLimitHit)
+                    break;
             }
 
-            size_t basePos = state.result.name.length();
-            state.emit(elem.str);
-            for (const auto& [start, end, spanTy] : elem.spans)
-                state.result.typeSpans.emplace_back(ToStringSpan{basePos + start, basePos + end, spanTy});
+            state.unsee(&uv);
 
-            first = false;
+            if (!lengthLimitHit && !FFlag::DebugLuauToStringNoLexicalSort)
+                std::sort(
+                    results.begin(),
+                    results.end(),
+                    [](const ElementResult& a, const ElementResult& b)
+                    {
+                        return a.str < b.str;
+                    }
+                );
+
+            bool first = true;
+            bool shouldPlaceOnNewlines = results.size() > state.opts.compositeTypesSingleLineLimit || isOverloadedFunction(ty);
+            for (ElementResult& elem : results)
+            {
+                if (!first)
+                {
+                    if (shouldPlaceOnNewlines)
+                        state.newline();
+                    else
+                        state.emit(" ");
+                    state.emit("& ");
+                }
+
+                size_t basePos = state.result.name.length();
+                state.emit(elem.str);
+                for (const auto& [start, end, spanTy] : elem.spans)
+                    state.result.typeSpans.emplace_back(ToStringSpan{basePos + start, basePos + end, spanTy});
+
+                first = false;
+            }
+        }
+        else
+        {
+            std::vector<std::string> results = {};
+            size_t resultsLength = 0;
+            bool lengthLimitHit = false;
+
+            for (auto el : uv.parts)
+            {
+                el = follow(el);
+
+                std::string saved = std::move(state.result.name);
+
+                bool needParens =
+                    !state.cycleNames.contains(el) && (get<UnionType>(el) || get<FunctionType>(el)); // NOLINT(readability-implicit-bool-conversion)
+
+                if (needParens)
+                    state.emit("(");
+
+                stringify(el);
+
+                if (needParens)
+                    state.emit(")");
+
+                resultsLength += state.result.name.length();
+                results.push_back(std::move(state.result.name));
+
+                state.result.name = std::move(saved);
+
+                lengthLimitHit = state.opts.maxTypeLength > 0 && resultsLength > state.opts.maxTypeLength;
+
+                if (lengthLimitHit)
+                    break;
+            }
+
+            state.unsee(&uv);
+
+            if (!lengthLimitHit && !FFlag::DebugLuauToStringNoLexicalSort)
+                std::sort(results.begin(), results.end());
+
+            bool first = true;
+            bool shouldPlaceOnNewlines = results.size() > state.opts.compositeTypesSingleLineLimit || isOverloadedFunction(ty);
+            for (std::string& ss : results)
+            {
+                if (!first)
+                {
+                    if (shouldPlaceOnNewlines)
+                        state.newline();
+                    else
+                        state.emit(" ");
+                    state.emit("& ");
+                }
+                state.emit(ss);
+                first = false;
+            }
         }
     }
 
@@ -1455,6 +1623,8 @@ static void tableTypeToStringDetailed(
     TypeStringifier& tvs
 )
 {
+    LUAU_ASSERT(FFlag::LuauToStringIgnoresSyntheticName);
+
     if (ignoreSyntheticName == IgnoreSyntheticName::No && ttv->syntheticName)
         result.invalid = true;
 
@@ -1476,6 +1646,37 @@ static void tableTypeToStringDetailed(
 
     if (endPos > startPos)
         result.typeSpans.emplace_back(ToStringSpan{startPos, endPos, ty});
+
+    tvs.stringify(ttv->instantiatedTypeParams, ttv->instantiatedTypePackParams);
+}
+
+static void tableTypeToStringDetailed_DEPRECATED(
+    const TableType* ttv,
+    const IgnoreSyntheticName ignoreSyntheticName,
+    ToStringResult& result,
+    const std::shared_ptr<Scope>& scope,
+    const std::string_view nameToUse,
+    TypeStringifier& tvs
+)
+{
+    LUAU_ASSERT(FFlag::LuauToStringIgnoresSyntheticName);
+
+    if (ignoreSyntheticName == IgnoreSyntheticName::No && ttv->syntheticName)
+        result.invalid = true;
+
+    // If scope is provided, add module name and check visibility
+    if (ttv->name && scope)
+    {
+        auto [success, moduleName] = canUseTypeNameInScope(scope, *ttv->name);
+
+        if (!success)
+            result.invalid = true;
+
+        if (moduleName)
+            result.name = format("%s.", moduleName->c_str());
+    }
+
+    result.name += nameToUse;
 
     tvs.stringify(ttv->instantiatedTypeParams, ttv->instantiatedTypePackParams);
 }
@@ -1504,25 +1705,73 @@ ToStringResult toStringDetailed(TypeId ty, ToStringOptions& opts)
 
     if (!opts.exhaustive)
     {
-        if (state.ignoreSyntheticName)
+        if (FFlag::LuauToStringIgnoresSyntheticName)
         {
-            if (auto ttv = get<TableType>(ty); ttv && ttv->name)
+            if (state.ignoreSyntheticName)
             {
-                tableTypeToStringDetailed(ty, ttv, IgnoreSyntheticName::Yes, result, opts.scope, *ttv->name, tvs);
+                if (auto ttv = get<TableType>(ty); ttv && ttv->name)
+                {
+                    if (FFlag::LuauToStringDecomposition)
+                        tableTypeToStringDetailed(ty, ttv, IgnoreSyntheticName::Yes, result, opts.scope, *ttv->name, tvs);
+                    else
+                        tableTypeToStringDetailed_DEPRECATED(ttv, IgnoreSyntheticName::Yes, result, opts.scope, *ttv->name, tvs);
 
+                    return result;
+                }
+            }
+            else if (auto ttv = get<TableType>(ty); ttv && (ttv->name || ttv->syntheticName))
+            {
+                if (FFlag::LuauToStringDecomposition)
+                    tableTypeToStringDetailed(
+                        ty, ttv, IgnoreSyntheticName::No, result, opts.scope, ttv->name ? *ttv->name : *ttv->syntheticName, tvs
+                    );
+                else
+                    tableTypeToStringDetailed_DEPRECATED(
+                        ttv, IgnoreSyntheticName::No, result, opts.scope, ttv->name ? *ttv->name : *ttv->syntheticName, tvs
+                    );
+
+                return result;
+            }
+            else if (auto mtv = get<MetatableType>(ty); mtv && mtv->syntheticName)
+            {
+                result.invalid = true;
+                result.name = *mtv->syntheticName;
                 return result;
             }
         }
         else if (auto ttv = get<TableType>(ty); ttv && (ttv->name || ttv->syntheticName))
         {
-            tableTypeToStringDetailed(ty, ttv, IgnoreSyntheticName::No, result, opts.scope, ttv->name ? *ttv->name : *ttv->syntheticName, tvs);
+            if (ttv->syntheticName)
+                result.invalid = true;
+
+            // If scope is provided, add module name and check visibility
+            if (ttv->name && opts.scope)
+            {
+                auto [success, moduleName] = canUseTypeNameInScope(opts.scope, *ttv->name);
+
+                if (!success)
+                    result.invalid = true;
+
+                if (moduleName)
+                    result.name = format("%s.", moduleName->c_str());
+            }
+
+            if (FFlag::LuauToStringDecomposition)
+                state.emitAndRecordSpan(ttv->name ? *ttv->name : *ttv->syntheticName, ty);
+            else
+                result.name += ttv->name ? *ttv->name : *ttv->syntheticName;
+
+            tvs.stringify(ttv->instantiatedTypeParams, ttv->instantiatedTypePackParams);
 
             return result;
         }
         else if (auto mtv = get<MetatableType>(ty); mtv && mtv->syntheticName)
         {
             result.invalid = true;
-            result.name = *mtv->syntheticName;
+            if (FFlag::LuauToStringDecomposition)
+                state.emitAndRecordSpan(*mtv->syntheticName, ty);
+            else
+                result.name = *mtv->syntheticName;
             return result;
         }
     }
@@ -2009,7 +2258,7 @@ std::string toString(const Constraint& constraint, ToStringOptions& opts)
         {
             return "function_check " + tos(c.fn) + " " + tos(c.argsPack);
         }
-        else if constexpr (std::is_same_v<T, DEPRECATED_PrimitiveTypeConstraint>)
+        else if constexpr (std::is_same_v<T, PrimitiveTypeConstraint>)
         {
             if (c.expectedType)
                 return "prim " + tos(c.freeType) + "[expected: " + tos(*c.expectedType) + "] as " + tos(c.primitiveType);

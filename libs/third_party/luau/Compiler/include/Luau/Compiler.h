@@ -54,10 +54,6 @@ struct CompileOptions
     // alternative vector type name for type tables, in addition to default type 'vector'
     const char* vectorType = nullptr;
 
-    // 0 - 32-bit float vector components
-    // 1 - 64-bit double vector components
-    int vectorPrecision;
-
     // null-terminated array of globals that are mutable; disables the import optimization for fields accessed through these
     const char* const* mutableGlobals = nullptr;
 
@@ -107,9 +103,7 @@ std::string compile(
 void setCompileConstantNil(CompileConstant* constant);
 void setCompileConstantBoolean(CompileConstant* constant, bool b);
 void setCompileConstantNumber(CompileConstant* constant, double n);
-void setCompileConstantInteger64(CompileConstant* constant, int64_t l);
 void setCompileConstantVector(CompileConstant* constant, float x, float y, float z, float w);
-void setCompileConstantVectord(CompileConstant* constant, double x, double y, double z, double w);
 void setCompileConstantString(CompileConstant* constant, const char* s, size_t l);
 
 } // namespace Luau

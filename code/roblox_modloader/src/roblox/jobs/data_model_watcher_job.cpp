@@ -7,6 +7,7 @@
 #endif
 #include "RobloxModLoader/roblox/data_model.hpp"
 #include "RobloxModLoader/roblox/script_context.hpp"
+#include "RobloxModLoader/roblox/security/script_permissions.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
 #include "RobloxModLoader/roblox/waiting_hybrid_scripts_job.hpp"
 #include "dotnet/dotnet_mod_loader.hpp"
@@ -117,6 +118,20 @@ namespace rml::jobs
 
 		// Execute Luau scripts that registered for this DataModel context
 #if RML_ENABLE_LUAU
+		// A ScriptEngine must exist for this DataModel (create_mod_thread looks it up by type).
+		// Create it here, bound to the DataModel's global Lua state, before scheduling any scripts.
+		if (script_context)
+		{
+			if (const auto lua_state = script_context->get_global_state(RBX::Security::Identity::RobloxEngine))
+			{
+				task_scheduler().get_or_create_script_engine(data_model_type, lua_state);
+			}
+			else
+			{
+				LOG_WARN("No global Lua state for DataModel type {}; scripts will not run", static_cast<int>(data_model_type));
+			}
+		}
+
 		try
 		{
 			if (luau::g_script_manager)

@@ -58,9 +58,8 @@ if maxdepth < N then maxdepth = N end
 do
   local stretchdepth = maxdepth + 1
   local stretchtree = BottomUpTree(0, stretchdepth)
-  local check = ItemCheck(stretchtree)
-  print(string.format("stretch tree of depth %d\t check: %d\n", stretchdepth, check))
-  assert(check == -1)
+  print(string.format("stretch tree of depth %d\t check: %d\n",
+    stretchdepth, ItemCheck(stretchtree)))
 end
 
 local longlivedtree = BottomUpTree(0, maxdepth)
@@ -74,13 +73,10 @@ for depth=mindepth,maxdepth,2 do
   end
   print(string.format("%d\t trees of depth %d\t check: %d\n",
     iterations*2, depth, check))
-  assert(check == -2 * iterations)
 end
 
-local longlivedcheck = ItemCheck(longlivedtree)
 print(string.format("long lived tree of depth %d\t check: %d\n",
-  maxdepth, longlivedcheck))
-assert(longlivedcheck == -1)
+  maxdepth, ItemCheck(longlivedtree)))
 
 end
 

@@ -48,7 +48,6 @@ struct Config
     DenseHashMap<std::string, AliasInfo> aliases{""};
 
     void setAlias(std::string alias, std::string value, const std::string& configLocation);
-    void setAlias(std::string alias, std::string value);
 
 private:
     // Prevents making unnecessary copies of the same config location string.
@@ -72,7 +71,7 @@ struct ConfigOptions
 
     struct AliasOptions
     {
-        std::optional<std::string> configLocation;
+        std::string configLocation;
         bool overwriteAliases;
     };
     std::optional<AliasOptions> aliasOptions = std::nullopt;

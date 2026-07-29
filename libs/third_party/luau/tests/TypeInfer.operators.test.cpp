@@ -17,9 +17,10 @@
 
 using namespace Luau;
 
-LUAU_FASTFLAG(DebugLuauForceOldSolver)
+LUAU_FASTFLAG(LuauSolverV2)
 LUAU_FASTFLAG(LuauSolverAgnosticStringification)
-LUAU_FASTFLAG(LuauConcatDoesntAlwaysReturnString)
+LUAU_FASTFLAG(LuauBetterTypeMismatchErrors)
+LUAU_FASTFLAG(LuauTypeFunctionsUseSolveFunctionCall)
 
 TEST_SUITE_BEGIN("TypeInferOperators");
 
@@ -31,7 +32,7 @@ TEST_CASE_FIXTURE(Fixture, "or_joins_types")
     )");
     LUAU_REQUIRE_NO_ERRORS(result);
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         // FIXME: Regression
         CHECK("(string & ~(false?)) | number" == toString(*requireType("s")));
@@ -53,7 +54,7 @@ TEST_CASE_FIXTURE(Fixture, "or_joins_types_with_no_extras")
     )");
     LUAU_REQUIRE_NO_ERRORS(result);
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         // FIXME: Regression.
         CHECK("(string & ~(false?)) | number" == toString(*requireType("s")));
@@ -74,7 +75,7 @@ TEST_CASE_FIXTURE(Fixture, "or_joins_types_with_no_superfluous_union")
     )");
     LUAU_REQUIRE_NO_ERRORS(result);
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         // FIXME: Regression
         CHECK("(string & ~(false?)) | string" == toString(requireType("s")));
@@ -223,7 +224,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "typecheck_overloaded_multiply_that_is_an_int
     CHECK("Vec3" == toString(requireType("c")));
     CHECK("Vec3" == toString(requireType("d")));
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
         CHECK("mul<Vec3, string>" == toString(requireType("e")));
     else
         CHECK_EQ("Vec3", toString(requireType("e")));
@@ -261,7 +262,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "typecheck_overloaded_multiply_that_is_an_int
     CHECK("Vec3" == toString(requireType("c")));
     CHECK("Vec3" == toString(requireType("d")));
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
         CHECK("mul<string, Vec3>" == toString(requireType("e")));
     else
         CHECK_EQ("Vec3", toString(requireType("e")));
@@ -299,7 +300,7 @@ TEST_CASE_FIXTURE(Fixture, "cannot_indirectly_compare_types_that_do_not_have_a_m
 
     LUAU_REQUIRE_ERROR_COUNT(1, result);
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         REQUIRE(get<CannotCompareUnrelatedTypes>(result.errors[0]));
     }
@@ -327,7 +328,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "cannot_indirectly_compare_types_that_do_not_
 
     LUAU_REQUIRE_ERROR_COUNT(1, result);
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         REQUIRE(get<CannotCompareUnrelatedTypes>(result.errors[0]));
     }
@@ -429,7 +430,7 @@ TEST_CASE_FIXTURE(Fixture, "compound_assign_mismatch_result")
         s += 10
     )");
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         LUAU_REQUIRE_ERROR_COUNT(1, result);
         CHECK_EQ(result.errors[0], (TypeError{Location{{2, 8}, {2, 9}}, TypeMismatch{getBuiltins()->numberType, getBuiltins()->stringType}}));
@@ -466,7 +467,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "compound_assign_metatable")
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "compound_assign_metatable_with_changing_return_type")
 {
-    ScopedFastFlag sff{FFlag::DebugLuauForceOldSolver, false};
+    ScopedFastFlag sff{FFlag::LuauSolverV2, true};
 
     CheckResult result = check(R"(
         --!strict
@@ -538,7 +539,10 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "compound_assign_mismatch_metatable")
     )");
 
     LUAU_REQUIRE_ERROR_COUNT(1, result);
-    CHECK("Expected this to be 'V2', but got 'number'" == toString(result.errors[0]));
+    if (FFlag::LuauBetterTypeMismatchErrors)
+        CHECK("Expected this to be 'V2', but got 'number'" == toString(result.errors[0]));
+    else
+        CHECK("Type 'number' could not be converted into 'V2'" == toString(result.errors[0]));
 }
 
 TEST_CASE_FIXTURE(Fixture, "CallOrOfFunctions")
@@ -592,7 +596,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "typecheck_unary_minus")
     CHECK_EQ("string", toString(requireType("a")));
     CHECK_EQ("number", toString(requireType("b")));
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         LUAU_REQUIRE_ERROR_COUNT(2, result);
 
@@ -617,6 +621,8 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "typecheck_unary_minus")
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "typecheck_unary_minus_error")
 {
+    ScopedFastFlag _{FFlag::LuauTypeFunctionsUseSolveFunctionCall, true};
+
     CheckResult result = check(R"(
         --!strict
         local mt = {}
@@ -632,7 +638,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "typecheck_unary_minus_error")
         local a = -foo
     )");
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         LUAU_REQUIRE_ERROR_COUNT(2, result);
 
@@ -734,7 +740,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "disallow_string_and_types_without_metatables
 
     LUAU_REQUIRE_ERROR_COUNT(3, result);
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         CHECK(get<UninhabitedTypeFunction>(result.errors[0]));
         CHECK(Location{{2, 18}, {2, 30}} == result.errors[0].location);
@@ -752,7 +758,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "disallow_string_and_types_without_metatables
 
         GenericError* gen1 = get<GenericError>(result.errors[1]);
         REQUIRE(gen1);
-        if (!FFlag::DebugLuauForceOldSolver)
+        if (FFlag::LuauSolverV2)
             CHECK_EQ(gen1->message, "Operator + is not applicable for '{ value: number }' and 'number' because neither type has a metatable");
         else
             CHECK_EQ(gen1->message, "Binary operator '+' not supported by types 'foo' and 'number'");
@@ -785,7 +791,7 @@ TEST_CASE_FIXTURE(Fixture, "concat_op_on_free_lhs_and_string_rhs")
         end
     )");
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         LUAU_REQUIRE_NO_ERRORS(result);
         CHECK("<a>(a) -> concat<a, string>" == toString(requireType("f")));
@@ -807,7 +813,7 @@ TEST_CASE_FIXTURE(Fixture, "concat_op_on_string_lhs_and_free_rhs")
 
     LUAU_REQUIRE_NO_ERRORS(result);
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
         CHECK("<a>(a) -> concat<string, a>" == toString(requireType("f")));
     else
         CHECK_EQ("(string) -> string", toString(requireType("f")));
@@ -826,7 +832,7 @@ TEST_CASE_FIXTURE(Fixture, "strict_binary_op_where_lhs_unknown")
 
     CheckResult result = check(src);
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         LUAU_REQUIRE_ERROR_COUNT(ops.size(), result);
         CHECK_EQ(
@@ -870,7 +876,7 @@ TEST_CASE_FIXTURE(Fixture, "error_on_invalid_operand_types_to_relational_operato
 
     LUAU_REQUIRE_ERROR_COUNT(1, result);
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         GenericError* ge = get<GenericError>(result.errors[0]);
         REQUIRE(ge);
@@ -893,7 +899,7 @@ TEST_CASE_FIXTURE(Fixture, "error_on_invalid_operand_types_to_relational_operato
     )");
 
     // If DCR is off and the flag to remove this check in the old solver is on, the expected behavior is no errors.
-    if (FFlag::DebugLuauForceOldSolver)
+    if (!FFlag::LuauSolverV2)
     {
         LUAU_REQUIRE_NO_ERRORS(result);
         return;
@@ -901,7 +907,7 @@ TEST_CASE_FIXTURE(Fixture, "error_on_invalid_operand_types_to_relational_operato
 
     LUAU_REQUIRE_ERROR_COUNT(1, result);
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         GenericError* ge = get<GenericError>(result.errors[0]);
         REQUIRE(ge);
@@ -934,7 +940,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "UnknownGlobalCompoundAssign")
 {
     // In non-strict mode, global definition is still allowed
     {
-        if (FFlag::DebugLuauForceOldSolver)
+        if (!FFlag::LuauSolverV2)
         {
             CheckResult result = check(R"(
                 --!nonstrict
@@ -961,7 +967,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "UnknownGlobalCompoundAssign")
 
     // In non-strict mode, compound assignment is not a definition, it's a modification
     {
-        if (FFlag::DebugLuauForceOldSolver)
+        if (!FFlag::LuauSolverV2)
         {
             CheckResult result = check(R"(
                 --!nonstrict
@@ -1080,7 +1086,7 @@ TEST_CASE_FIXTURE(Fixture, "infer_any_in_all_modes_when_lhs_is_unknown")
         end
     )");
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         LUAU_REQUIRE_NO_ERRORS(result);
         CHECK(toString(requireType("f")) == "<a, b>(a, b) -> add<a, b>");
@@ -1112,7 +1118,7 @@ TEST_CASE_FIXTURE(Fixture, "infer_type_for_generic_subtraction")
         end
     )");
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         LUAU_REQUIRE_NO_ERRORS(result);
         CHECK(toString(requireType("f")) == "<a, b>(a, b) -> sub<a, b>");
@@ -1132,7 +1138,7 @@ TEST_CASE_FIXTURE(Fixture, "infer_type_for_generic_multiplication")
         end
     )");
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         LUAU_REQUIRE_NO_ERRORS(result);
         CHECK(toString(requireType("f")) == "<a, b>(a, b) -> mul<a, b>");
@@ -1152,7 +1158,7 @@ TEST_CASE_FIXTURE(Fixture, "infer_type_for_generic_division")
         end
     )");
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         LUAU_REQUIRE_NO_ERRORS(result);
         CHECK(toString(requireType("f")) == "<a, b>(a, b) -> div<a, b>");
@@ -1172,7 +1178,7 @@ TEST_CASE_FIXTURE(Fixture, "infer_type_for_generic_floor_division")
         end
     )");
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         LUAU_REQUIRE_NO_ERRORS(result);
         CHECK(toString(requireType("f")) == "<a, b>(a, b) -> idiv<a, b>");
@@ -1192,7 +1198,7 @@ TEST_CASE_FIXTURE(Fixture, "infer_type_for_generic_exponentiation")
         end
     )");
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         LUAU_REQUIRE_NO_ERRORS(result);
         CHECK(toString(requireType("f")) == "<a, b>(a, b) -> pow<a, b>");
@@ -1212,7 +1218,7 @@ TEST_CASE_FIXTURE(Fixture, "infer_type_for_generic_modulo")
         end
     )");
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         LUAU_REQUIRE_NO_ERRORS(result);
         CHECK(toString(requireType("f")) == "<a, b>(a, b) -> mod<a, b>");
@@ -1232,7 +1238,7 @@ TEST_CASE_FIXTURE(Fixture, "infer_type_for_generic_concat")
         end
     )");
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         LUAU_REQUIRE_NO_ERRORS(result);
         CHECK(toString(requireType("f")) == "<a, b>(a, b) -> concat<a, b>");
@@ -1318,7 +1324,7 @@ TEST_CASE_FIXTURE(ExternTypeFixture, "unrelated_extern_types_cannot_be_compared"
 TEST_CASE_FIXTURE(Fixture, "unrelated_primitives_cannot_be_compared")
 {
     ScopedFastFlag sff[] = {
-        {FFlag::DebugLuauForceOldSolver, false},
+        {FFlag::LuauSolverV2, true},
     };
 
     CheckResult result = check(R"(
@@ -1331,8 +1337,8 @@ TEST_CASE_FIXTURE(Fixture, "unrelated_primitives_cannot_be_compared")
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "mm_comparisons_must_return_a_boolean")
 {
-#if 0 // CLI-115687
-    if (true || FFlag::DebugLuauForceOldSolver)
+    // CLI-115687
+    if (1 || !FFlag::LuauSolverV2)
         return;
 
     CheckResult result = check(R"(
@@ -1362,7 +1368,6 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "mm_comparisons_must_return_a_boolean")
 
     CHECK(toString(result.errors[1]) == "Metamethod '__lt' must return a boolean");
     CHECK(toString(result.errors[3]) == "Metamethod '__lt' must return a boolean");
-#endif
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "reworked_and")
@@ -1380,12 +1385,12 @@ local w = c and 1
 
     CHECK("number?" == toString(requireType("x")));
     CHECK("number" == toString(requireType("y")));
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
         CHECK("false | number" == toString(requireType("z")));
     else
         CHECK("boolean | number" == toString(requireType("z"))); // 'false' widened to boolean
 
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
         CHECK("number?" == toString(requireType("w")));
     else
         CHECK("(boolean | number)?" == toString(requireType("w")));
@@ -1411,7 +1416,7 @@ local f1 = f or 'f'
 
     CHECK("number | string" == toString(requireType("a1")));
     CHECK("number" == toString(requireType("b1")));
-    if (!FFlag::DebugLuauForceOldSolver)
+    if (FFlag::LuauSolverV2)
     {
         CHECK("string | true" == toString(requireType("c1")));
         CHECK("string | true" == toString(requireType("d1")));
@@ -1464,6 +1469,9 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "luau_polyfill_is_array_simplified")
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "luau_polyfill_is_array")
 {
+    // CLI-116480 Subtyping bug: table should probably be a subtype of {[unknown]: unknown}
+    DOES_NOT_PASS_NEW_SOLVER_GUARD();
+
     CheckResult result = check(R"(
 --!strict
 return function(value: any): boolean
@@ -1560,7 +1568,7 @@ return startsWith
 
 TEST_CASE_FIXTURE(Fixture, "add_type_function_works")
 {
-    if (FFlag::DebugLuauForceOldSolver)
+    if (!FFlag::LuauSolverV2)
         return;
 
     CheckResult result = check(R"(
@@ -1619,7 +1627,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "compare_singleton_string_to_string")
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "no_infinite_expansion_of_free_type" * doctest::timeout(1.0))
 {
-    ScopedFastFlag sff{FFlag::DebugLuauForceOldSolver, false};
+    ScopedFastFlag sff(FFlag::LuauSolverV2, true);
     check(R"(
         local tooltip = {}
 
@@ -1668,40 +1676,6 @@ end
     )");
 
     LUAU_REQUIRE_NO_ERRORS(result);
-}
-
-TEST_CASE_FIXTURE(BuiltinsFixture, "overload_concat")
-{
-    ScopedFastFlag sff{FFlag::LuauConcatDoesntAlwaysReturnString, true};
-
-    CheckResult result = check(R"(
-        type classData = {
-            b:buffer;
-            len:number;
-        }
-        local metatable = {
-            __concat = function(self:cls,str:string):cls
-                buffer.writestring(self.b,self.len,str)
-                self.len+=#str
-                return self
-            end;
-        }
-
-        export type cls = typeof(setmetatable({}::classData, metatable))
-
-        --returns a long string
-        local new = function():cls
-            return setmetatable({
-                b = buffer.create(100_000::number);
-                len = 0;
-            }::classData,metatable)::cls
-        end
-        local class = new()
-
-        class ..= "Hello"
-    )");
-
-    LUAU_CHECK_NO_ERRORS(result);
 }
 
 TEST_SUITE_END();
