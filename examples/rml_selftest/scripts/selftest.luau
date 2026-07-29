@@ -5,7 +5,9 @@ local passed, failed, parked = 0, 0, 0
 local function say(text)
 	print("[selftest] " .. text)
 	if rml and rml.logger then
-		pcall(rml.logger.info, "[selftest] " .. text)
+		pcall(function()
+			rml.logger:info("[selftest] " .. text)
+		end)
 	end
 end
 
