@@ -66,39 +66,30 @@ namespace rml::luau::environment
 			lua_pop(L, 1);
 		}
 
-		static void* heap_object_behind(void* reported, const std::uint8_t tag)
-		{
-			auto* object = tag == LUA_TUSERDATA ? access::object_behind_payload(reported) : reported;
-
-			return access::gc_header(object)->tt == tag ? object : nullptr;
-		}
-
-		static void take_heap_node(void* context, void* reported, const std::uint8_t tag, std::uint8_t,
-		                           std::size_t, const char*)
+		static bool take_heap_object(void* context, void*, void* object)
 		{
 			auto* walk = static_cast<HeapWalk*>(context);
-			if (reported == nullptr || !collectable_on_the_stack(tag, walk->include_tables))
+			if (object == nullptr)
 			{
-				return;
+				return false;
 			}
 
-			auto* object = heap_object_behind(reported, tag);
-			if (object == nullptr || access::swept_away(walk->collector, object))
+			const auto tag = access::gc_header(object)->tt;
+			if (!collectable_on_the_stack(tag, walk->include_tables) ||
+			    access::swept_away(walk->collector, object))
 			{
-				return;
+				return false;
 			}
 
 			walk->objects.emplace_back(object, tag);
-		}
 
-		static void skip_heap_edge(void*, void*, void*, const char*)
-		{
+			return false;
 		}
 
 		int getgc(lua_State* L)
 		{
-			const auto enumerate = g_pointers->m_roblox_pointers.luaC_enumheap;
-			if (enumerate == nullptr)
+			const auto visit = g_pointers->m_roblox_pointers.luaM_visitgco;
+			if (visit == nullptr)
 			{
 				luaL_error(L, "getgc: this Studio build did not give up its heap walk");
 			}
@@ -109,7 +100,7 @@ namespace rml::luau::environment
 			HeapWalk walk{access::state(L)->global, include_tables, {}};
 			walk.objects.reserve(8192);
 
-			enumerate(L, &walk, take_heap_node, skip_heap_edge);
+			visit(L, &walk, take_heap_object);
 
 			int index = 0;
 			for (const auto& [object, tag] : walk.objects)
