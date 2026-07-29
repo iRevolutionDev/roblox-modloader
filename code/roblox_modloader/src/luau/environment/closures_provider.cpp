@@ -8,6 +8,9 @@
 
 #include <Luau/Compiler.h>
 
+#include <utility>
+#include <vector>
+
 #include "lfunc.h"
 #include "lgc.h"
 #include "lobject.h"
@@ -22,11 +25,9 @@ namespace rml::luau::environment
 	{
 		struct HeapWalk
 		{
-			lua_State* state;
 			const access::GlobalState* collector;
-			LuaTable* into;
 			bool include_tables;
-			int found;
+			std::vector<std::pair<void*, std::uint8_t>> objects;
 		};
 
 		static bool collectable_on_the_stack(const std::uint8_t tag, const bool include_tables)
@@ -87,7 +88,7 @@ namespace rml::luau::environment
 				return;
 			}
 
-			put_object(walk->state, walk->into, ++walk->found, object, tag);
+			walk->objects.emplace_back(object, tag);
 		}
 
 		static void skip_heap_edge(void*, void*, void*, const char*)
@@ -103,9 +104,18 @@ namespace rml::luau::environment
 			}
 
 			const auto include_tables = luaL_optboolean(L, 1, 0) != 0;
+			auto* holder = new_object_holder(L);
 
-			HeapWalk walk{L, access::state(L)->global, new_object_holder(L), include_tables, 0};
+			HeapWalk walk{access::state(L)->global, include_tables, {}};
+			walk.objects.reserve(8192);
+
 			enumerate(L, &walk, take_heap_node, skip_heap_edge);
+
+			int index = 0;
+			for (const auto& [object, tag] : walk.objects)
+			{
+				put_object(L, holder, ++index, object, tag);
+			}
 
 			return 1;
 		}
