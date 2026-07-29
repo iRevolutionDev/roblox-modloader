@@ -97,6 +97,11 @@ struct FreeType
     TypeId upperBound = nullptr;
 
     Polarity polarity = Polarity::Unknown;
+
+    // If set, this free type was created for a primitive literal (string or boolean).
+    // When generalized, it will be resolved to its lower-bound singleton if the upper
+    // bound was narrowed, or to this primitive type otherwise.
+    std::optional<TypeId> primitiveType;
 };
 
 struct GenericType
@@ -162,6 +167,7 @@ struct PrimitiveType
         NilType, // ObjC #defines Nil :(
         Boolean,
         Number,
+        Integer,
         String,
         Thread,
         Function,
@@ -413,14 +419,16 @@ enum class TableState
 
 struct TableIndexer
 {
-    TableIndexer(TypeId indexType, TypeId indexResultType)
+    TableIndexer(TypeId indexType, TypeId indexResultType, bool isReadOnly = false)
         : indexType(indexType)
         , indexResultType(indexResultType)
+        , isReadOnly(isReadOnly)
     {
     }
 
     TypeId indexType;
     TypeId indexResultType;
+    bool isReadOnly = false;
 };
 
 struct Property
@@ -540,6 +548,18 @@ struct ClassUserData
     virtual ~ClassUserData() {}
 };
 
+struct Obj
+{
+    TypeId ty;
+};
+
+struct Klass
+{
+    TypeId ty;
+};
+
+using NominalRelation = Variant<Obj, Klass>;
+
 /** The type of an external userdata exposed to Luau.
  *
  * Extern types behave like tables in many ways, but there are some important differences:
@@ -561,6 +581,13 @@ struct ExternType
     ModuleName definitionModuleName;
     std::optional<Location> definitionLocation;
     std::optional<TableIndexer> indexer;
+    /* This field represents a bidirectional relationship between classes and object types
+       Given a Class, this relation should be a Obj in the variant, representing an instantiation of the class
+       Given a Object, this relation should be a Klass in the variant, representing the class prototype
+       Other sources of Extern Types will not have this relation set - this is for the classes fixture so that
+       we can go between class and object easily, given just the extern type
+     */
+    std::optional<NominalRelation> relation;
 
     ExternType(
         Name name,
@@ -945,6 +972,7 @@ bool isPrim(TypeId ty, PrimitiveType::Type primType);
 bool isNil(TypeId ty);
 bool isBoolean(TypeId ty);
 bool isNumber(TypeId ty);
+bool isInteger(TypeId ty);
 bool isString(TypeId ty);
 bool isThread(TypeId ty);
 bool isBuffer(TypeId ty);
@@ -1003,12 +1031,15 @@ public:
     std::unique_ptr<BuiltinTypeFunctions> typeFunctions;
     const TypeId nilType;
     const TypeId numberType;
+    const TypeId integerType;
     const TypeId stringType;
     const TypeId booleanType;
     const TypeId threadType;
     const TypeId bufferType;
     const TypeId functionType;
     const TypeId externType;
+    const TypeId objectType;
+    const TypeId classType;
     const TypeId tableType;
     const TypeId emptyTableType;
     const TypeId trueType;

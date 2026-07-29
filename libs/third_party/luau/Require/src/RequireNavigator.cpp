@@ -5,12 +5,15 @@
 #include "AliasCycleTracker.h"
 #include "PathUtilities.h"
 
+#include "Luau/Common.h"
 #include "Luau/Config.h"
 #include "Luau/LuauConfig.h"
 
 #include <algorithm>
 #include <optional>
 #include <utility>
+
+LUAU_DYNAMIC_FASTFLAGVARIABLE(LuauSelfIsSelfAndAlwaysSelf, false)
 
 namespace Luau::Require
 {
@@ -71,6 +74,23 @@ Error Navigator::navigateImpl(std::string_view path)
             }
         );
 
+        if (Error error = resetToRequirer())
+            return error;
+
+        if (DFFlag::LuauSelfIsSelfAndAlwaysSelf)
+        {
+            if (alias == "self")
+            {
+                // If the alias is "@self", we immediately navigate directly
+                // from the requirer's context. Neither embedder-defined
+                // nor user-defined alias overrides are considered.
+                if (Error error = navigateThroughPath(path))
+                    return error;
+
+                return std::nullopt;
+            }
+        }
+
         if (auto [error, wasOverridden] = toAliasOverride(alias); error)
         {
             return error;
@@ -82,9 +102,6 @@ Error Navigator::navigateImpl(std::string_view path)
 
             return std::nullopt;
         }
-
-        if (Error error = resetToRequirer())
-            return error;
 
         Config config;
         if (Error error = navigateToAndPopulateConfig(alias, config))
@@ -101,16 +118,23 @@ Error Navigator::navigateImpl(std::string_view path)
         }
         else
         {
-            if (alias == "self")
+            if (DFFlag::LuauSelfIsSelfAndAlwaysSelf)
             {
-                // If the alias is "@self", we reset to the requirer's context and
-                // navigate directly from there.
-                if (Error error = resetToRequirer())
-                    return error;
-                if (Error error = navigateThroughPath(path))
-                    return error;
+                LUAU_ASSERT(alias != "self");
+            }
+            else
+            {
+                if (alias == "self")
+                {
+                    // If the alias is "@self", we reset to the requirer's context and
+                    // navigate directly from there.
+                    if (Error error = resetToRequirer())
+                        return error;
+                    if (Error error = navigateThroughPath(path))
+                        return error;
 
-                return std::nullopt;
+                    return std::nullopt;
+                }
             }
 
             if (Error error = toAliasFallback(alias))
@@ -260,7 +284,10 @@ Error Navigator::navigateToAndPopulateConfig(const std::string& desiredAlias, Co
         {
             if (navigationContext.getConfigBehavior() == NavigationContext::ConfigBehavior::GetAlias)
             {
-                config.setAlias(desiredAlias, *navigationContext.getAlias(desiredAlias), /* configLocation = */ "unused");
+                std::optional<std::string> aliasPath = navigationContext.getAlias(desiredAlias);
+                if (!aliasPath)
+                    return "could not resolve alias \"" + desiredAlias + "\"";
+                config.setAlias(desiredAlias, *aliasPath);
                 break;
             }
 
@@ -270,7 +297,6 @@ Error Navigator::navigateToAndPopulateConfig(const std::string& desiredAlias, Co
 
             Luau::ConfigOptions opts;
             Luau::ConfigOptions::AliasOptions aliasOpts;
-            aliasOpts.configLocation = "unused";
             aliasOpts.overwriteAliases = false;
             opts.aliasOptions = std::move(aliasOpts);
 

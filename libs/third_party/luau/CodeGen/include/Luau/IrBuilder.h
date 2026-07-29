@@ -41,6 +41,7 @@ struct IrBuilder
     IrOp undef();
 
     IrOp constInt(int value);
+    IrOp constInt64(int64_t value);
     IrOp constUint(unsigned value);
     IrOp constImport(unsigned value);
     IrOp constDouble(double value);
@@ -62,6 +63,7 @@ struct IrBuilder
 
     IrOp block(IrBlockKind kind); // Requested kind can be ignored if we are in an outlined sequence
     IrOp blockAtInst(uint32_t index);
+    IrOp fallbackBlock(uint32_t pcpos);
 
     IrOp vmReg(uint8_t index);
     IrOp vmConst(uint32_t index);

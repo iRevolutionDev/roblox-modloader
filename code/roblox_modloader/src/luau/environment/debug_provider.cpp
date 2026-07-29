@@ -13,6 +13,8 @@
 
 #include <array>
 
+#undef getproto
+
 namespace rml::luau::environment
 {
 	namespace debug_impl

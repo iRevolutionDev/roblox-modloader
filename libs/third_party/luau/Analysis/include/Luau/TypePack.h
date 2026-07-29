@@ -157,8 +157,8 @@ struct TypePackIterator
     using iterator_category = std::input_iterator_tag;
 
     TypePackIterator() = default;
-    explicit TypePackIterator(TypePackId tp);
-    TypePackIterator(TypePackId tp, const TxnLog* log);
+    explicit TypePackIterator(TypePackId typePack);
+    TypePackIterator(TypePackId typePack, const TxnLog* log);
 
     TypePackIterator& operator++();
     TypePackIterator operator++(int);
@@ -166,6 +166,10 @@ struct TypePackIterator
     bool operator==(const TypePackIterator& rhs);
 
     const TypeId& operator*();
+
+    // If the iterator currently points at the head of a type pack, return that
+    // pack.  Else return nullopt.
+    std::optional<TypePackId> tryGetHead() const;
 
     /** Return the tail of a TypePack.
      * This may *only* be called on an iterator that has been incremented to the end.

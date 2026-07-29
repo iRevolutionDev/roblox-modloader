@@ -4,8 +4,6 @@
 #include "Luau/Common.h"
 #include "Luau/IrData.h"
 
-LUAU_FASTFLAG(LuauCodegenUpvalueLoadProp2)
-
 namespace Luau
 {
 namespace CodeGen
@@ -21,6 +19,7 @@ static void visitVmRegDefsUses(T& visitor, IrFunction& function, IrInst& inst)
     case IrCmd::LOAD_POINTER:
     case IrCmd::LOAD_DOUBLE:
     case IrCmd::LOAD_INT:
+    case IrCmd::LOAD_INT64:
     case IrCmd::LOAD_FLOAT:
     case IrCmd::LOAD_TVALUE:
         visitor.maybeUse(OP_A(inst)); // Argument can also be a VmConst
@@ -30,6 +29,7 @@ static void visitVmRegDefsUses(T& visitor, IrFunction& function, IrInst& inst)
     case IrCmd::STORE_POINTER:
     case IrCmd::STORE_DOUBLE:
     case IrCmd::STORE_INT:
+    case IrCmd::STORE_INT64:
     case IrCmd::STORE_VECTOR:
     case IrCmd::STORE_TVALUE:
     case IrCmd::STORE_SPLIT_TVALUE:
@@ -82,12 +82,8 @@ static void visitVmRegDefsUses(T& visitor, IrFunction& function, IrInst& inst)
         visitor.defRange(vmRegOp(OP_A(inst)), function.uintOp(OP_B(inst)));
         break;
     case IrCmd::GET_UPVALUE:
-        if (!FFlag::LuauCodegenUpvalueLoadProp2)
-            visitor.def(OP_A(inst));
         break;
     case IrCmd::SET_UPVALUE:
-        if (!FFlag::LuauCodegenUpvalueLoadProp2)
-            visitor.use(OP_B(inst));
         break;
     case IrCmd::INTERRUPT:
         break;
@@ -123,8 +119,7 @@ static void visitVmRegDefsUses(T& visitor, IrFunction& function, IrInst& inst)
     case IrCmd::FASTCALL:
         visitor.use(OP_C(inst));
 
-        if (int nresults = function.intOp(OP_D(inst)); nresults != -1)
-            visitor.defRange(vmRegOp(OP_B(inst)), nresults);
+        visitor.defRange(vmRegOp(OP_B(inst)), function.intOp(OP_D(inst)));
         break;
     case IrCmd::INVOKE_FASTCALL:
         if (int count = function.intOp(OP_F(inst)); count != -1)
@@ -153,9 +148,8 @@ static void visitVmRegDefsUses(T& visitor, IrFunction& function, IrInst& inst)
             visitor.useVarargs(vmRegOp(OP_C(inst)));
         }
 
-        // Multiple return sequences (count == -1) are defined by ADJUST_STACK_TO_REG
-        if (int count = function.intOp(OP_G(inst)); count != -1)
-            visitor.defRange(vmRegOp(OP_B(inst)), count);
+        // While ADJUST_STACK_TO_REG would semantically define the result range, we need to define it immediately
+        visitor.defRange(vmRegOp(OP_B(inst)), function.intOp(OP_G(inst)));
         break;
     case IrCmd::FORGLOOP:
         // First register is not used by instruction, we check that it's still 'nil' with CHECK_TAG
@@ -221,6 +215,13 @@ static void visitVmRegDefsUses(T& visitor, IrFunction& function, IrInst& inst)
 
     case IrCmd::FINDUPVAL:
         visitor.use(OP_A(inst));
+        break;
+
+    case IrCmd::MARK_USED:
+        visitor.useRange(vmRegOp(OP_A(inst)), function.intOp(OP_B(inst)));
+        break;
+    case IrCmd::MARK_DEAD:
+        // Does not affect VM def/use info
         break;
 
     default:

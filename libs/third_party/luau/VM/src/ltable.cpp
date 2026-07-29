@@ -45,12 +45,10 @@ static_assert(TKey{{NULL}, {0}, LUA_TNIL, MAXSIZE - 1}.next == MAXSIZE - 1, "not
 static_assert(TKey{{NULL}, {0}, LUA_TNIL, -(MAXSIZE - 1)}.next == -(MAXSIZE - 1), "not enough bits for next");
 
 // empty hash data points to dummynode so that we can always dereference it
-// const LuaNode luaH_dummynode = {
-//     {{NULL}, {0}, LUA_TNIL},   // value
-//     {{NULL}, {0}, LUA_TNIL, 0} // key
-// };
-
-#define luaH_dummynode (*reinterpret_cast<LuaNode*>(get_roblox_pointers()->luaH_dummynode))
+const LuaNode luaH_dummynode = {
+    {{NULL}, {0}, LUA_TNIL},   // value
+    {{NULL}, {0}, LUA_TNIL, 0} // key
+};
 
 #define dummynode (&luaH_dummynode)
 
@@ -101,7 +99,32 @@ static LuaNode* hashnum(const LuaTable* t, double n)
     return hashpow2(t, h2);
 }
 
-static LuaNode* hashvec(const LuaTable* t, const float* v)
+static LuaNode* hashint(const LuaTable* t, int64_t n)
+{
+    static_assert(sizeof(n) == sizeof(unsigned int) * 2, "expected a 8-byte integer");
+    unsigned int i[2];
+    memcpy(i, &n, sizeof(i));
+
+    uint32_t h1 = i[0];
+    uint32_t h2 = i[1];
+
+    // finalizer from MurmurHash64B
+    const uint32_t m = 0x5bd1e995;
+
+    h1 ^= h2 >> 18;
+    h1 *= m;
+    h2 ^= h1 >> 22;
+    h2 *= m;
+    h1 ^= h2 >> 17;
+    h1 *= m;
+    h2 ^= h1 >> 19;
+    h2 *= m;
+
+    // ... truncated to 32-bit output (normally hash is equal to (uint64_t(h1) << 32) | h2, but we only really need the lower 32-bit half)
+    return hashpow2(t, h2);
+}
+
+LUAU_MAYBE_UNUSED static LuaNode* hashvec(const LuaTable* t, const float* v)
 {
     unsigned int i[LUA_VECTOR_SIZE];
     memcpy(i, v, sizeof(i));
@@ -128,6 +151,33 @@ static LuaNode* hashvec(const LuaTable* t, const float* v)
     return hashpow2(t, h);
 }
 
+static LUAU_MAYBE_UNUSED LuaNode* hashvec(const LuaTable* t, const double* v)
+{
+    uint64_t i[LUA_VECTOR_SIZE];
+    memcpy(i, v, sizeof(i));
+
+    // convert -0 to 0 to make sure they hash to the same value
+    i[0] = (i[0] == 0x8000000000000000ull) ? 0 : i[0];
+    i[1] = (i[1] == 0x8000000000000000ull) ? 0 : i[1];
+    i[2] = (i[2] == 0x8000000000000000ull) ? 0 : i[2];
+
+    // scramble bits to make sure that integer coordinates have entropy in lower bits
+    i[0] ^= i[0] >> 32;
+    i[1] ^= i[1] >> 32;
+    i[2] ^= i[2] >> 32;
+
+    // Optimized Spatial Hashing for Collision Detection of Deformable Objects
+    unsigned int h = uint32_t(i[0] * 73856093) ^ uint32_t(i[1] * 19349663) ^ uint32_t(i[2] * 83492791);
+
+#if LUA_VECTOR_SIZE == 4
+    i[3] = (i[3] == 0x8000000000000000ull) ? 0 : i[3];
+    i[3] ^= i[3] >> 32;
+    h ^= uint32_t(i[3] * 39916801);
+#endif
+
+    return hashpow2(t, h);
+}
+
 /*
 ** returns the `main' position of an element in a table (that is, the index
 ** of its hash value)
@@ -138,6 +188,8 @@ static LuaNode* mainposition(const LuaTable* t, const TValue* key)
     {
     case LUA_TNUMBER:
         return hashnum(t, nvalue(key));
+    case LUA_TINTEGER:
+        return hashint(t, lvalue(key));
     case LUA_TVECTOR:
         return hashvec(t, vvalue(key));
     case LUA_TSTRING:

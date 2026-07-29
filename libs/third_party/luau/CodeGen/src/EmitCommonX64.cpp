@@ -15,7 +15,7 @@
 #include <utility>
 
 LUAU_DYNAMIC_FASTFLAGVARIABLE(AddReturnExectargetCheck, false)
-LUAU_FASTFLAG(LuauCodegenUpvalueLoadProp2)
+LUAU_FASTFLAG(LuauCIProto)
 
 namespace Luau
 {
@@ -245,8 +245,6 @@ void callSetTable(IrRegAllocX64& regs, AssemblyBuilderX64& build, int rb, Operan
 
 void checkObjectBarrierConditions(AssemblyBuilderX64& build, RegisterX64 tmp, RegisterX64 object, RegisterX64 ra, IrOp raOp, int ratag, Label& skip)
 {
-    CODEGEN_ASSERT(FFlag::LuauCodegenUpvalueLoadProp2);
-
     // Barrier should've been optimized away if we know that it's not collectable, checking for correctness
     if (ratag == -1 || !isGCO(ratag))
     {
@@ -283,60 +281,12 @@ void checkObjectBarrierConditions(AssemblyBuilderX64& build, RegisterX64 tmp, Re
     build.jcc(ConditionX64::Zero, skip);
 }
 
-void checkObjectBarrierConditions_DEPRECATED(AssemblyBuilderX64& build, RegisterX64 tmp, RegisterX64 object, IrOp ra, int ratag, Label& skip)
-{
-    CODEGEN_ASSERT(!FFlag::LuauCodegenUpvalueLoadProp2);
-
-    // Barrier should've been optimized away if we know that it's not collectable, checking for correctness
-    if (ratag == -1 || !isGCO(ratag))
-    {
-        // iscollectable(ra)
-        OperandX64 tag = (ra.kind == IrOpKind::VmReg) ? luauRegTag(vmRegOp(ra)) : luauConstantTag(vmConstOp(ra));
-        build.cmp(tag, LUA_TSTRING);
-        build.jcc(ConditionX64::Less, skip);
-    }
-
-    // isblack(obj2gco(o))
-    build.test(byte[object + offsetof(GCheader, marked)], bitmask(BLACKBIT));
-    build.jcc(ConditionX64::Zero, skip);
-
-    // iswhite(gcvalue(ra))
-    OperandX64 value = (ra.kind == IrOpKind::VmReg) ? luauRegValue(vmRegOp(ra)) : luauConstantValue(vmConstOp(ra));
-    build.mov(tmp, value);
-    build.test(byte[tmp + offsetof(GCheader, marked)], bit2mask(WHITE0BIT, WHITE1BIT));
-    build.jcc(ConditionX64::Zero, skip);
-}
-
 void callBarrierObject(IrRegAllocX64& regs, AssemblyBuilderX64& build, RegisterX64 object, IrOp objectOp, RegisterX64 ra, IrOp raOp, int ratag)
 {
-    CODEGEN_ASSERT(FFlag::LuauCodegenUpvalueLoadProp2);
-
     Label skip;
 
     ScopedRegX64 tmp{regs, SizeX64::qword};
     checkObjectBarrierConditions(build, tmp.reg, object, ra, raOp, ratag, skip);
-
-    {
-        ScopedSpills spillGuard(regs);
-
-        IrCallWrapperX64 callWrap(regs, build);
-        callWrap.addArgument(SizeX64::qword, rState);
-        callWrap.addArgument(SizeX64::qword, object, objectOp);
-        callWrap.addArgument(SizeX64::qword, tmp);
-        callWrap.call(qword[rNativeContext + offsetof(NativeContext, luaC_barrierf)]);
-    }
-
-    build.setLabel(skip);
-}
-
-void callBarrierObject_DEPRECATED(IrRegAllocX64& regs, AssemblyBuilderX64& build, RegisterX64 object, IrOp objectOp, IrOp ra, int ratag)
-{
-    CODEGEN_ASSERT(!FFlag::LuauCodegenUpvalueLoadProp2);
-
-    Label skip;
-
-    ScopedRegX64 tmp{regs, SizeX64::qword};
-    checkObjectBarrierConditions_DEPRECATED(build, tmp.reg, object, ra, ratag, skip);
 
     {
         ScopedSpills spillGuard(regs);
@@ -427,8 +377,8 @@ void emitInterrupt(AssemblyBuilderX64& build)
 
     // note: rbx is non-volatile so it will be saved across interrupt call automatically
 
-    RegisterX64 rArg1 = (build.abi == ABIX64::Windows) ? rcx : rdi;
-    RegisterX64 rArg2 = (build.abi == ABIX64::Windows) ? rdx : rsi;
+    RegisterX64 rArg1 = IrCallWrapperX64::suggestArgumentRegister<0>(SizeX64::qword, build);
+    RegisterX64 rArg2 = IrCallWrapperX64::suggestArgumentRegister<1>(SizeX64::qword, build);
 
     Label skip;
 
@@ -548,7 +498,10 @@ void emitReturn(AssemblyBuilderX64& build, ModuleHelpers& helpers)
     build.mov(rax, qword[rax + offsetof(TValue, value.gc)]);
     build.mov(sClosure, rax);
 
-    build.mov(proto, qword[rax + offsetof(Closure, l.p)]);
+    if (FFlag::LuauCIProto)
+        build.mov(proto, qword[cip + offsetof(CallInfo, p)]);
+    else
+        build.mov(proto, qword[rax + offsetof(Closure, l.p)]);
 
     build.mov(execdata, qword[proto + offsetof(Proto, execdata)]);
 

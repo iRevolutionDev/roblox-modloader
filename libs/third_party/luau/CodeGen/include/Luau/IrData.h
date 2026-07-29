@@ -2,6 +2,7 @@
 #pragma once
 
 #include "Luau/Bytecode.h"
+#include "Luau/DenseHash.h"
 #include "Luau/IrAnalysis.h"
 #include "Luau/Label.h"
 #include "Luau/RegisterX64.h"
@@ -65,6 +66,10 @@ enum class IrCmd : uint8_t
     // A: Rn
     LOAD_INT,
 
+    // Load an int64 from TValue
+    // A: Rn
+    LOAD_INT64,
+
     // Load a float field from vector (use FLOAT_TO_NUM to convert to double)
     // A: Rn or Kn
     // B: int (offset from the start of TValue)
@@ -126,6 +131,11 @@ enum class IrCmd : uint8_t
     // B: int
     STORE_INT,
 
+    // Store an int64 into TValue
+    // A: Rn
+    // B: int64
+    STORE_INT64,
+
     // Store a vector into TValue
     // When optional 'E' tag is present, it is written out to the TValue as well
     // A: Rn
@@ -152,6 +162,41 @@ enum class IrCmd : uint8_t
     // A, B: int
     ADD_INT,
     SUB_INT,
+
+    // Add two int64s
+    // A, B: int64
+    ADD_INT64,
+    // Subtract two int64s
+    // A, B: int64
+    SUB_INT64,
+    // Multiply two int64s
+    // A, B: int64
+    MUL_INT64,
+    // Signed truncating division
+    // A, B: int64
+    DIV_INT64,
+    // Signed floored division
+    // A, B: int64
+    IDIV_INT64,
+    // Unsigned division
+    // A, B: int64
+    UDIV_INT64,
+    // Signed truncating remainder
+    // A, B: int64
+    REM_INT64,
+    // Unsigned remainder
+    // A, B: int64
+    UREM_INT64,
+    // Signed floored modulus
+    // A, B: int64
+    MOD_INT64,
+
+    // Guard against int64 RFC behavior
+    // If b is 0, throws a division by zero error.
+    // If a is -2^63 and b is -1, throws an overflow error.
+    // A, B: int64
+    // C: block/vmexit/undef
+    CHECK_DIV_INT64,
 
     // Sign extend an 8-bit value
     // A: int
@@ -252,6 +297,12 @@ enum class IrCmd : uint8_t
     // C, D: double (condition arguments)
     SELECT_NUM,
 
+    // Select B if C cond D, otherwise select A
+    // A, B: int64 (endpoints)
+    // C, D: int64 (condition arguments)
+    // E: condition
+    SELECT_INT64,
+
     // For each lane in the vector, select B if C == D, otherwise select A
     // A, B: TValue (endpoints)
     // C, D: TValue (condition arguments)
@@ -319,6 +370,11 @@ enum class IrCmd : uint8_t
     // A, B: int
     // C: condition
     CMP_INT,
+
+    // Perform a comparison of two int64 numbers. Result is an integer register containing 0 or 1
+    // A, B: int64
+    // C: condition
+    CMP_INT64,
 
     // Perform a comparison of two tags. Result is an integer register containing 0 or 1
     CMP_TAG,
@@ -434,9 +490,19 @@ enum class IrCmd : uint8_t
     // B: int (tag)
     NEW_USERDATA,
 
+    // Create new heap-allocated vector
+    // A: double (x)
+    // B: double (y)
+    // C: double (z)
+    NEW_VECTOR,
+
     // Convert integer into a double number
     // A: int
     INT_TO_NUM,
+
+    // Convert int64 into a double number
+    // A: int64
+    INT64_TO_NUM,
 
     // Convert unsigned integer into a double number
     // A: uint
@@ -449,6 +515,10 @@ enum class IrCmd : uint8_t
     // Converts a double number to an integer. 'A' may be any representable integer in a double.
     // A: double
     NUM_TO_INT,
+
+    // Converts a double number to a 64 bit integer. 'A' may be any representable integer in a double.
+    // A: double
+    NUM_TO_INT64,
 
     // Converts a double number to an unsigned integer. For out-of-range values of 'A', the result is arch-specific.
     // A: double
@@ -634,12 +704,26 @@ enum class IrCmd : uint8_t
     // When undef is specified instead of a block, execution is aborted on check failure
     CHECK_USERDATA_TAG,
 
+    // Guard against the result of number comparison being false
+    // A, B: number
+    // C: condition
+    // D: block/vmexit/undef
+    // When undef is specified instead of a block, execution is aborted on check failure
+    CHECK_CMP_NUM,
+
     // Guard against the result of integer comparison being false
     // A, B: int
     // C: condition
     // D: block/vmexit/undef
     // When undef is specified instead of a block, execution is aborted on check failure
     CHECK_CMP_INT,
+
+    // Guard against the result of int64 comparison being false
+    // A, B: int64
+    // C: condition
+    // D: block/vmexit/undef
+    // When undef is specified instead of a block, execution is aborted on check failure
+    CHECK_CMP_INT64,
 
     // Special operations
 
@@ -794,8 +878,51 @@ enum class IrCmd : uint8_t
     FALLBACK_FORGPREP,
 
     // Instruction that passes value through, it is produced by constant folding and users substitute it with the value
-    SUBSTITUTE,
     // A: operand of any type
+    SUBSTITUTE,
+
+    // Pseudo instruction to mark VM registers as implicitly used at the location
+    // A: Rn (start)
+    // B: int (count, -1 to mark all registers after start)
+    MARK_USED,
+
+    // Pseudo instruction to mark VM registers as dead at the location
+    // A: Rn (start)
+    // B: int (count, -1 to mark all registers after start)
+    MARK_DEAD,
+
+    // Performs bitwise and/xor/or on two int64
+    // A, B: int64
+    BITAND_INT64,
+    BITXOR_INT64,
+    BITOR_INT64,
+
+    // Performs bitwise not on an int64
+    // A: int64
+    BITNOT_INT64,
+
+    // Performs bitwise shift on an int64
+    // A: int64 (source)
+    // B: int64 (shift amount; negative reverses direction, |amount| >= 64 returns 0 or sign-fill)
+    BITLSHIFT_INT64,
+    BITRSHIFT_INT64,
+    BITARSHIFT_INT64,
+
+    // Performs bitwise rotate on an int64
+    // A: int64 (source)
+    // B: int64 (rotate amount, mod 64)
+    BITLROTATE_INT64,
+    BITRROTATE_INT64,
+
+    // Returns the number of consecutive zero bits in A
+    // Result is Int64 (not Int) for consistency with other int64 operations, even though value is in [0, 64]
+    // A: int64
+    BITCOUNTLZ_INT64,
+    BITCOUNTRZ_INT64,
+
+    // Swap byte order in A
+    // A: int64
+    BYTESWAP_INT64,
 
     // Performs bitwise and/xor/or on two unsigned integers
     // A, B: int
@@ -907,11 +1034,30 @@ enum class IrCmd : uint8_t
     // B: int (offset)
     // C: double (value)
     BUFFER_WRITEF64,
+
+    // Read int64 value from buffer storage at specified offset
+    // A: pointer (buffer)
+    // B: int (offset)
+    BUFFER_READI64,
+
+    // Write i64/u64 value to buffer storage at specified offset
+    // A: pointer (buffer)
+    // B: int (offset)
+    // C: int64 (value)
+    BUFFER_WRITEI64,
+
+    // Perform a conditional jump based on the result of Proto ID comparison
+    // A: closure pointer
+    // B: protoid
+    // C: block (if true)
+    // D: block (if false)
+    JUMP_CMP_PROTOID,
 };
 
 enum class IrConstKind : uint8_t
 {
     Int,
+    Int64,
     Uint,
     Double,
     Tag,
@@ -925,6 +1071,7 @@ struct IrConst
     union
     {
         int valueInt;
+        int64_t valueInt64;
         unsigned valueUint;
         double valueDouble;
         uint8_t valueTag;
@@ -1023,6 +1170,7 @@ enum class IrValueKind : uint8_t
     None,
     Tag,
     Int,
+    Int64,
     Pointer,
     Float,
     Double,
@@ -1079,6 +1227,14 @@ inline bool hasOp(IrInst& inst, uint32_t idx)
 #define HAS_OP_E(inst) (4 < (inst).ops.size() && (inst).ops[4].kind != IrOpKind::None)
 #define HAS_OP_F(inst) (5 < (inst).ops.size() && (inst).ops[5].kind != IrOpKind::None)
 #define HAS_OP_G(inst) (6 < (inst).ops.size() && (inst).ops[6].kind != IrOpKind::None)
+
+#define OPT_OP_A(inst) (0 < (inst).ops.size() && (inst).ops[0].kind != IrOpKind::None ? (inst).ops[0] : IrOp{})
+#define OPT_OP_B(inst) (1 < (inst).ops.size() && (inst).ops[1].kind != IrOpKind::None ? (inst).ops[1] : IrOp{})
+#define OPT_OP_C(inst) (2 < (inst).ops.size() && (inst).ops[2].kind != IrOpKind::None ? (inst).ops[2] : IrOp{})
+#define OPT_OP_D(inst) (3 < (inst).ops.size() && (inst).ops[3].kind != IrOpKind::None ? (inst).ops[3] : IrOp{})
+#define OPT_OP_E(inst) (4 < (inst).ops.size() && (inst).ops[4].kind != IrOpKind::None ? (inst).ops[4] : IrOp{})
+#define OPT_OP_F(inst) (5 < (inst).ops.size() && (inst).ops[5].kind != IrOpKind::None ? (inst).ops[5] : IrOp{})
+#define OPT_OP_G(inst) (6 < (inst).ops.size() && (inst).ops[6].kind != IrOpKind::None ? (inst).ops[6] : IrOp{})
 
 // When IrInst operands are used, current instruction index is often required to track lifetime
 inline constexpr uint32_t kInvalidInstIdx = ~0u;
@@ -1170,6 +1326,7 @@ enum class IrBlockKind : uint8_t
     Fallback,
     Internal,
     Linearized,
+    ExitSync,
     Dead,
 };
 
@@ -1194,6 +1351,7 @@ struct IrBlock
     uint32_t chainkey = 0;
     uint32_t expectedNextBlock = ~0u;
 
+    // Bytecode PC position at which the block was generated
     uint32_t startpc = kBlockNoStartPc;
 
     Label label;
@@ -1244,6 +1402,35 @@ struct ValueRestoreLocation
     IrOp op;             // Operand representing the location (Rn/Kn)
     IrValueKind kind;    // The kind of value at the restore location
     IrCmd conversionCmd; // Type conversion instruction that was used to store the value at the restore location
+    bool lazy;           // This location comes from a DSE hint and is emitted on demand (see StoreLocationHint)
+};
+
+struct StoreLocationHint
+{
+    IrOp op;          // Operand representing available location (Rn)
+    uint32_t instIdx; // Value that was supposed to be stored there
+    IrValueKind kind; // Value kind
+};
+
+struct VmExitStoreRecord
+{
+    uint32_t instIdx = kInvalidInstIdx;
+    IrInst backup;
+};
+
+struct VmExitStoreInfo
+{
+    uint8_t reg = 0;
+    SmallVector<VmExitStoreRecord, 2> stores;
+};
+
+struct VmExitSyncInfo
+{
+    std::vector<VmExitStoreInfo> regStores;
+
+    IrOp block;
+    IrOp vmExit;
+    SmallVector<IrOp, 2> argOps;
 };
 
 struct IrFunction
@@ -1260,9 +1447,15 @@ struct IrFunction
     uint32_t entryLocation = 0;
     uint32_t endLocation = 0;
 
+    std::vector<uint32_t> extraNativeData;
+
     // For each instruction, an operand that can be used to recompute the value
     std::vector<ValueRestoreLocation> valueRestoreOps;
     std::vector<uint32_t> validRestoreOpBlocks;
+    DenseHashMap<uint32_t, StoreLocationHint> storeLocationHints{kInvalidInstIdx};
+
+    DenseHashMap<uint32_t, VmExitSyncInfo> vmExitInfo{kInvalidInstIdx};
+    DenseHashMap<uint32_t, uint32_t> blockToVmExitMap{~0u};
 
     BytecodeTypeInfo bcOriginalTypeInfo; // Bytecode type information as loaded
     BytecodeTypeInfo bcTypeInfo;         // Bytecode type information with additional inferences
@@ -1273,6 +1466,13 @@ struct IrFunction
     CfgInfo cfg;
 
     LoweringStats* stats = nullptr;
+
+    bool recordCounters = false; // Taken from CompilationOptions for easy access
+
+    uint64_t jitRngState = 0; // PCG32 state for NOP padding; seeded per-function in lowerFunction
+
+    // Stores register tags that are known after constant propagating through a block, indexed by that block's index
+    std::vector<std::vector<uint8_t>> blockExitTags; // blockIdx → tag array
 
     IrBlock& blockOp(IrOp op)
     {
@@ -1329,6 +1529,14 @@ struct IrFunction
         return value.valueInt;
     }
 
+    int64_t int64Op(IrOp op)
+    {
+        IrConst& value = constOp(op);
+
+        CODEGEN_ASSERT(value.kind == IrConstKind::Int64);
+        return value.valueInt64;
+    }
+
     std::optional<int> asIntOp(IrOp op)
     {
         if (op.kind != IrOpKind::Constant)
@@ -1340,6 +1548,19 @@ struct IrFunction
             return std::nullopt;
 
         return value.valueInt;
+    }
+
+    std::optional<int64_t> asInt64Op(IrOp op)
+    {
+        if (op.kind != IrOpKind::Constant)
+            return std::nullopt;
+
+        IrConst& value = constOp(op);
+
+        if (value.kind != IrConstKind::Int64)
+            return std::nullopt;
+
+        return value.valueInt64;
     }
 
     unsigned uintOp(IrOp op)
@@ -1416,6 +1637,14 @@ struct IrFunction
         valueRestoreOps[instIdx] = location;
     }
 
+    void materializeRestoreLocation(uint32_t instIdx)
+    {
+        CODEGEN_ASSERT(instIdx < valueRestoreOps.size());
+        CODEGEN_ASSERT(valueRestoreOps[instIdx].lazy);
+
+        valueRestoreOps[instIdx].lazy = false;
+    }
+
     ValueRestoreLocation findRestoreLocation(uint32_t instIdx, bool limitToCurrentBlock) const
     {
         if (instIdx >= valueRestoreOps.size())
@@ -1446,6 +1675,16 @@ struct IrFunction
     bool hasRestoreLocation(const IrInst& inst, bool limitToCurrentBlock) const
     {
         return findRestoreLocation(getInstIndex(inst), limitToCurrentBlock).op.kind != IrOpKind::None;
+    }
+
+    void recordStoreLocationHint(uint32_t instIdx, StoreLocationHint hint)
+    {
+        storeLocationHints[instIdx] = hint;
+    }
+
+    const StoreLocationHint* findStoreLocationHint(uint32_t instIdx) const
+    {
+        return storeLocationHints.find(instIdx);
     }
 
     BytecodeTypes getBytecodeTypesAt(int pcpos) const

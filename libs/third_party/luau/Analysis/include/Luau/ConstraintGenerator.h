@@ -3,8 +3,10 @@
 
 #include "Luau/Ast.h"
 #include "Luau/Constraint.h"
+#include "Luau/ConstraintGraph.h"
 #include "Luau/ConstraintSet.h"
 #include "Luau/ControlFlow.h"
+#include "Luau/ControlFlowGraph.h"
 #include "Luau/DataFlowGraph.h"
 #include "Luau/HashUtil.h"
 #include "Luau/InsertionOrderedMap.h"
@@ -13,9 +15,11 @@
 #include "Luau/NotNull.h"
 #include "Luau/Polarity.h"
 #include "Luau/Refinement.h"
+#include "Luau/Set.h"
 #include "Luau/Symbol.h"
 #include "Luau/TypeFwd.h"
 #include "Luau/TypeIds.h"
+#include "Luau/TypeStateMap.h"
 #include "Luau/TypeUtils.h"
 
 #include <memory>
@@ -63,6 +67,12 @@ struct Checkpoint
     size_t offset = 0;
 };
 
+struct ClassDeclRecord
+{
+    TypeId ty = nullptr;
+    DenseHashMap<AstName, TypeId> memberTypes{AstName{""}};
+};
+
 struct ConstraintGenerator
 {
     // A list of all the scopes in the module. This vector holds ownership of the
@@ -94,6 +104,7 @@ struct ConstraintGenerator
     // See the functions recordInferredBinding and fillInInferredBindings.
     DenseHashMap<Symbol, InferredBinding> inferredBindings{{}};
 
+    // Remove constraints, freeTypes, and scopeToFunction with DebugLuauCyclicRequireTypeInference: these move to ConstraintGraph (cgraph).
     // Constraints that go straight to the solver.
     std::vector<ConstraintPtr> constraints;
 
@@ -136,10 +147,15 @@ struct ConstraintGenerator
 
     DenseHashMap<AstExpr*, Inference> inferredExprCache{nullptr};
 
+    DenseHashMap<AstLocal*, std::unique_ptr<ClassDeclRecord>> classDeclRecords{nullptr};
+
     DcrLogger* logger;
 
     bool recursionLimitMet = false;
 
+    NotNull<ConstraintGraph> cgraph;
+
+    CFG::TypeStateMap* typestate = nullptr;
     ConstraintGenerator(
         ModulePtr module,
         NotNull<Normalizer> normalizer,
@@ -152,7 +168,9 @@ struct ConstraintGenerator
         std::function<void(const ModuleName&, const ScopePtr&)> prepareModuleScope,
         DcrLogger* logger,
         NotNull<DataFlowGraph> dfg,
-        std::vector<RequireCycle> requireCycles
+        std::vector<RequireCycle> requireCycles,
+        NotNull<ConstraintGraph> cgraph,
+        CFG::TypeStateMap* typestate = nullptr
     );
 
     ConstraintSet run(AstStatBlock* block);
@@ -177,6 +195,8 @@ private:
     std::vector<InteriorFreeTypes> interiorFreeTypes;
 
     std::vector<TypeId> unionsToSimplify;
+
+    Set<AstName> uninitializedGlobals{{}};
 
     Polarity polarity = Polarity::None;
 
@@ -225,6 +245,9 @@ private:
      * @param cv the constraint variant to add.
      * @return the pointer to the inserted constraint
      */
+    TypeId resolveRHSType(const ScopePtr& scope, Location location, AstExpr* expr);
+    TypeId resolveLHSType(const ScopePtr& scope, Location location, const CFG::LValue& lv);
+
     NotNull<Constraint> addConstraint(const ScopePtr& scope, const Location& location, ConstraintV cv);
 
     /**
@@ -264,7 +287,7 @@ private:
     );
     void applyRefinements(const ScopePtr& scope, Location location, RefinementId refinement);
 
-    LUAU_NOINLINE void checkAliases(const ScopePtr& scope, AstStatBlock* block);
+    LUAU_NOINLINE void prototypeTypeDefinitions(const ScopePtr& scope, AstStatBlock* block);
 
     ControlFlow visitBlockWithoutChildScope(const ScopePtr& scope, AstStatBlock* block);
 
@@ -284,8 +307,9 @@ private:
     ControlFlow visit(const ScopePtr& scope, AstStatTypeAlias* alias);
     ControlFlow visit(const ScopePtr& scope, AstStatTypeFunction* function);
     ControlFlow visit(const ScopePtr& scope, AstStatDeclareGlobal* declareGlobal);
-    ControlFlow visit(const ScopePtr& scope, AstStatDeclareExternType* declareExternType);
-    ControlFlow visit(const ScopePtr& scope, AstStatDeclareFunction* declareFunction);
+    ControlFlow visit(const ScopePtr& scope, AstStatDeclareExternType* declaredExternType);
+    ControlFlow visit(const ScopePtr& scope, AstStatDeclareFunction* global);
+    ControlFlow visit(const ScopePtr& scope, AstStatClass* statClass);
     ControlFlow visit(const ScopePtr& scope, AstStatError* error);
 
     InferencePack checkPack(const ScopePtr& scope, AstArray<AstExpr*> exprs, const std::vector<std::optional<TypeId>>& expectedTypes = {});
@@ -356,7 +380,7 @@ private:
     void visitLValue(const ScopePtr& scope, AstExpr* expr, TypeId rhsType);
     void visitLValue(const ScopePtr& scope, AstExprLocal* local, TypeId rhsType);
     void visitLValue(const ScopePtr& scope, AstExprGlobal* global, TypeId rhsType);
-    void visitLValue(const ScopePtr& scope, AstExprIndexName* indexName, TypeId rhsType);
+    void visitLValue(const ScopePtr& scope, AstExprIndexName* expr, TypeId rhsType);
     void visitLValue(const ScopePtr& scope, AstExprIndexExpr* indexExpr, TypeId rhsType);
 
     struct FunctionSignature
@@ -374,6 +398,7 @@ private:
 
     FunctionSignature checkFunctionSignature(
         const ScopePtr& parent,
+        ClassDeclRecord* enclosingClass,
         AstExprFunction* fn,
         std::optional<TypeId> expectedType = {},
         std::optional<Location> originalName = {}
@@ -445,6 +470,8 @@ private:
         bool replaceErrorWithFresh = false,
         Polarity initialPolarity = Polarity::Positive
     );
+
+    TypePackId resolveTypePack_(const ScopePtr& scope, const AstTypeList& list, bool inTypeArguments, bool replaceErrorWithFresh);
 
     /**
      * Creates generic types given a list of AST definitions, resolving default

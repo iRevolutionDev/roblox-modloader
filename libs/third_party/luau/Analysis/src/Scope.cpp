@@ -4,8 +4,6 @@
 
 LUAU_FASTFLAG(LuauSolverV2);
 
-LUAU_FASTFLAG(LuauReworkInfiniteTypeFinder)
-
 namespace Luau
 {
 
@@ -241,6 +239,7 @@ void Scope::inheritRefinements(const ScopePtr& childScope)
     }
 }
 
+
 bool Scope::shouldWarnGlobal(std::string name) const
 {
     for (const Scope* current = this; current; current = current->parent.get())
@@ -253,7 +252,6 @@ bool Scope::shouldWarnGlobal(std::string name) const
 
 std::optional<Location> Scope::isInvalidTypeAlias(const std::string& name) const
 {
-    LUAU_ASSERT(FFlag::LuauReworkInfiniteTypeFinder);
     for (auto scope = this; scope; scope = scope->parent.get())
     {
         if (auto loc = scope->invalidTypeAliases.find(name))
@@ -261,18 +259,6 @@ std::optional<Location> Scope::isInvalidTypeAlias(const std::string& name) const
     }
 
     return std::nullopt;
-}
-
-bool Scope::isInvalidTypeAliasName_DEPRECATED(const std::string& name) const
-{
-    LUAU_ASSERT(!FFlag::LuauReworkInfiniteTypeFinder);
-    for (auto scope = this; scope; scope = scope->parent.get())
-    {
-        if (scope->invalidTypeAliasNames_DEPRECATED.contains(name))
-            return true;
-    }
-
-    return false;
 }
 
 NotNull<Scope> Scope::findNarrowestScopeContaining(Location location)

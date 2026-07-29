@@ -5,26 +5,20 @@
 
 using namespace Luau;
 
-LUAU_FASTFLAG(LuauSolverV2)
-LUAU_FASTFLAG(LuauExplicitTypeInstantiationSyntax)
-LUAU_FASTFLAG(LuauExplicitTypeInstantiationSupport)
-LUAU_FASTFLAG(LuauMorePreciseErrorSuppression)
-LUAU_FASTFLAG(LuauBetterTypeMismatchErrors)
+LUAU_FASTFLAG(DebugLuauForceOldSolver)
+LUAU_FASTFLAG(LuauDropUnionSubtypeReasoning)
 
 TEST_SUITE_BEGIN("TypeInferExplicitTypeInstantiations");
 
 #define SUBCASE_BOTH_SOLVERS() \
     for (bool enabled : {true, false}) \
-        if (ScopedFastFlag sffSolver{FFlag::LuauSolverV2, enabled}; true) \
+        if (ScopedFastFlag sffSolver{FFlag::DebugLuauForceOldSolver, !enabled}; true) \
     SUBCASE(enabled ? "New solver" : "Old solver")
 
 TEST_CASE_FIXTURE(Fixture, "as_expression_correct")
 {
     SUBCASE_BOTH_SOLVERS()
     {
-        ScopedFastFlag syntax{FFlag::LuauExplicitTypeInstantiationSyntax, true};
-        ScopedFastFlag semantics{FFlag::LuauExplicitTypeInstantiationSupport, true};
-
         CheckResult result = check(R"(
         --!strict
         local function f<T>(): T
@@ -42,9 +36,6 @@ TEST_CASE_FIXTURE(Fixture, "as_expression_incorrect")
 {
     SUBCASE_BOTH_SOLVERS()
     {
-        ScopedFastFlag syntax{FFlag::LuauExplicitTypeInstantiationSyntax, true};
-        ScopedFastFlag semantics{FFlag::LuauExplicitTypeInstantiationSupport, true};
-
         CheckResult result = check(R"(
         --!strict
         local function f<T>(): T
@@ -56,20 +47,16 @@ TEST_CASE_FIXTURE(Fixture, "as_expression_incorrect")
 
         LUAU_REQUIRE_ERROR_COUNT(1, result);
 
-        if (FFlag::LuauSolverV2)
+        if (!FFlag::DebugLuauForceOldSolver)
         {
             REQUIRE_EQ(
                 toString(result.errors[0]),
                 "Operator '+' could not be applied to operands of types string and number; there is no corresponding overload for __add"
             );
         }
-        else if (FFlag::LuauBetterTypeMismatchErrors)
-        {
-            REQUIRE_EQ(toString(result.errors[0]), "Expected this to be 'number', but got 'string'");
-        }
         else
         {
-            REQUIRE_EQ(toString(result.errors[0]), "Type 'string' could not be converted into 'number'");
+            REQUIRE_EQ(toString(result.errors[0]), "Expected this to be 'number', but got 'string'");
         }
     }
 }
@@ -78,9 +65,6 @@ TEST_CASE_FIXTURE(Fixture, "as_stmt_correct")
 {
     SUBCASE_BOTH_SOLVERS()
     {
-        ScopedFastFlag syntax{FFlag::LuauExplicitTypeInstantiationSyntax, true};
-        ScopedFastFlag semantics{FFlag::LuauExplicitTypeInstantiationSupport, true};
-
         CheckResult result = check(R"(
         --!strict
         local function f<T>(a: T, b: T)
@@ -96,11 +80,10 @@ TEST_CASE_FIXTURE(Fixture, "as_stmt_correct")
 
 TEST_CASE_FIXTURE(Fixture, "as_stmt_incorrect")
 {
+    ScopedFastFlag _{FFlag::LuauDropUnionSubtypeReasoning, true};
+
     SUBCASE_BOTH_SOLVERS()
     {
-        ScopedFastFlag syntax{FFlag::LuauExplicitTypeInstantiationSyntax, true};
-        ScopedFastFlag semantics{FFlag::LuauExplicitTypeInstantiationSupport, true};
-
         CheckResult result = check(R"(
         --!strict
         local function f<T>(a: T, b: T)
@@ -110,41 +93,17 @@ TEST_CASE_FIXTURE(Fixture, "as_stmt_incorrect")
         f<<number | boolean>>(1, "a")
         )");
 
-        if (FFlag::LuauSolverV2 && FFlag::LuauMorePreciseErrorSuppression)
+        if (!FFlag::DebugLuauForceOldSolver)
         {
             LUAU_REQUIRE_ERROR_COUNT(1, result);
-
-            // clang-format off
-            std::string expected =
-                "Expected this to be 'boolean | number', but got 'string';\n"
-                "this is because\n"
-                "\t * the 1st component of the union is `number`, and `string` is not a subtype of `number`\n"
-                "\t * the 2nd component of the union is `boolean`, and `string` is not a subtype of `boolean`"
-            ;
-            // clang-format on
-
-            CHECK_LONG_STRINGS_EQ(expected, toString(result.errors.at(0)));
-        }
-        else if (FFlag::LuauSolverV2)
-        {
-            LUAU_REQUIRE_ERROR_COUNT(1, result);
-            if (FFlag::LuauBetterTypeMismatchErrors)
-                REQUIRE_EQ(toString(result.errors[0]), "Expected this to be 'boolean | number', but got 'string'");
-            else
-                REQUIRE_EQ(toString(result.errors[0]), "Type 'string' could not be converted into 'boolean | number'");
+            CHECK_EQ("Expected this to be 'boolean | number', but got 'string'", toString(result.errors.at(0)));
         }
         else
         {
             LUAU_REQUIRE_ERROR_COUNT(1, result);
-            if (FFlag::LuauBetterTypeMismatchErrors)
-                REQUIRE_EQ(
-                    toString(result.errors[0]), "Expected this to be 'boolean | number', but got 'string'; none of the union options are compatible"
-                );
-            else
-                REQUIRE_EQ(
-                    toString(result.errors[0]),
-                    "Type 'string' could not be converted into 'boolean | number'; none of the union options are compatible"
-                );
+            REQUIRE_EQ(
+                toString(result.errors[0]), "Expected this to be 'boolean | number', but got 'string'; none of the union options are compatible"
+            );
         }
     }
 }
@@ -153,9 +112,6 @@ TEST_CASE_FIXTURE(Fixture, "multiple_calls")
 {
     SUBCASE_BOTH_SOLVERS()
     {
-        ScopedFastFlag syntax{FFlag::LuauExplicitTypeInstantiationSyntax, true};
-        ScopedFastFlag semantics{FFlag::LuauExplicitTypeInstantiationSupport, true};
-
         CheckResult result = check(R"(
         --!strict
         local function f<T>(): T
@@ -174,9 +130,6 @@ TEST_CASE_FIXTURE(Fixture, "anonymous_type_inferred")
 {
     SUBCASE_BOTH_SOLVERS()
     {
-        ScopedFastFlag syntax{FFlag::LuauExplicitTypeInstantiationSyntax, true};
-        ScopedFastFlag semantics{FFlag::LuauExplicitTypeInstantiationSupport, true};
-
         CheckResult result = check(R"(
         --!strict
         local function f<T, U>(): { a: T, b: U }
@@ -196,12 +149,9 @@ TEST_CASE_FIXTURE(Fixture, "anonymous_type_inferred")
 
 TEST_CASE_FIXTURE(Fixture, "type_packs")
 {
-    ScopedFastFlag syntax{FFlag::LuauExplicitTypeInstantiationSyntax, true};
-    ScopedFastFlag semantics{FFlag::LuauExplicitTypeInstantiationSupport, true};
-
     // FIXME: This triggers a GenericTypePackCountMismatch error, and it's not obvious if the
     // code for explicit types is broken, or if subtyping is broken.
-    ScopedFastFlag oldSolver{FFlag::LuauSolverV2, false};
+    ScopedFastFlag oldSolver{FFlag::DebugLuauForceOldSolver, true};
 
     CheckResult result = check(R"(
     --!strict
@@ -215,12 +165,9 @@ TEST_CASE_FIXTURE(Fixture, "type_packs")
 
 TEST_CASE_FIXTURE(Fixture, "type_packs_method")
 {
-    ScopedFastFlag syntax{FFlag::LuauExplicitTypeInstantiationSyntax, true};
-    ScopedFastFlag semantics{FFlag::LuauExplicitTypeInstantiationSupport, true};
-
     // FIXME: This triggers a GenericTypePackCountMismatch error, and it's not obvious if the
     // code for explicit types is broken, or if subtyping is broken.
-    ScopedFastFlag oldSolver{FFlag::LuauSolverV2, false};
+    ScopedFastFlag oldSolver{FFlag::DebugLuauForceOldSolver, true};
 
     CheckResult result = check(R"(
     --!strict
@@ -236,12 +183,9 @@ TEST_CASE_FIXTURE(Fixture, "type_packs_method")
 
 TEST_CASE_FIXTURE(Fixture, "type_packs_incorrect")
 {
-    ScopedFastFlag syntax{FFlag::LuauExplicitTypeInstantiationSyntax, true};
-    ScopedFastFlag semantics{FFlag::LuauExplicitTypeInstantiationSupport, true};
-
     // FIXME: This triggers a GenericTypePackCountMismatch error, and it's not obvious if the
     // code for explicit types is broken, or if subtyping is broken.
-    ScopedFastFlag oldSolver{FFlag::LuauSolverV2, false};
+    ScopedFastFlag oldSolver{FFlag::DebugLuauForceOldSolver, true};
 
     CheckResult result = check(R"(
     --!strict
@@ -255,12 +199,9 @@ TEST_CASE_FIXTURE(Fixture, "type_packs_incorrect")
 
 TEST_CASE_FIXTURE(Fixture, "type_packs_incorrect_method")
 {
-    ScopedFastFlag syntax{FFlag::LuauExplicitTypeInstantiationSyntax, true};
-    ScopedFastFlag semantics{FFlag::LuauExplicitTypeInstantiationSupport, true};
-
     // FIXME: This triggers a GenericTypePackCountMismatch error, and it's not obvious if the
     // code for explicit types is broken, or if subtyping is broken.
-    ScopedFastFlag oldSolver{FFlag::LuauSolverV2, false};
+    ScopedFastFlag oldSolver{FFlag::DebugLuauForceOldSolver, true};
 
     CheckResult result = check(R"(
     --!strict
@@ -278,9 +219,6 @@ TEST_CASE_FIXTURE(Fixture, "dot_index_call")
 {
     SUBCASE_BOTH_SOLVERS()
     {
-        ScopedFastFlag syntax{FFlag::LuauExplicitTypeInstantiationSyntax, true};
-        ScopedFastFlag semantics{FFlag::LuauExplicitTypeInstantiationSupport, true};
-
         CheckResult result = check(R"(
         --!strict
         local t = {
@@ -302,9 +240,6 @@ TEST_CASE_FIXTURE(Fixture, "method_index_call")
 {
     SUBCASE_BOTH_SOLVERS()
     {
-        ScopedFastFlag syntax{FFlag::LuauExplicitTypeInstantiationSyntax, true};
-        ScopedFastFlag semantics{FFlag::LuauExplicitTypeInstantiationSupport, true};
-
         CheckResult result = check(R"(
         --!strict
         local t = {
@@ -327,9 +262,6 @@ TEST_CASE_FIXTURE(Fixture, "stored_as_variable")
 {
     SUBCASE_BOTH_SOLVERS()
     {
-        ScopedFastFlag syntax{FFlag::LuauExplicitTypeInstantiationSyntax, true};
-        ScopedFastFlag semantics{FFlag::LuauExplicitTypeInstantiationSupport, true};
-
         CheckResult result = check(R"(
         --!strict
         local function f<T>(): T
@@ -352,9 +284,6 @@ TEST_CASE_FIXTURE(Fixture, "not_a_function")
 {
     SUBCASE_BOTH_SOLVERS()
     {
-        ScopedFastFlag syntax{FFlag::LuauExplicitTypeInstantiationSyntax, true};
-        ScopedFastFlag semantics{FFlag::LuauExplicitTypeInstantiationSupport, true};
-
         CheckResult result = check(R"(
         --!strict
         local oops = 3
@@ -372,9 +301,6 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "metatable_call")
 {
     SUBCASE_BOTH_SOLVERS()
     {
-        ScopedFastFlag syntax{FFlag::LuauExplicitTypeInstantiationSyntax, true};
-        ScopedFastFlag semantics{FFlag::LuauExplicitTypeInstantiationSupport, true};
-
         CheckResult result = check(R"(
         --!strict
         local t = setmetatable({}, {
@@ -397,9 +323,6 @@ TEST_CASE_FIXTURE(Fixture, "method_call_incomplete")
 {
     SUBCASE_BOTH_SOLVERS()
     {
-        ScopedFastFlag syntax{FFlag::LuauExplicitTypeInstantiationSyntax, true};
-        ScopedFastFlag semantics{FFlag::LuauExplicitTypeInstantiationSupport, true};
-
         CheckResult result = check(R"(
         --!strict
         local t = {
@@ -422,9 +345,6 @@ TEST_CASE_FIXTURE(Fixture, "too_many_provided")
 {
     SUBCASE_BOTH_SOLVERS()
     {
-        ScopedFastFlag syntax{FFlag::LuauExplicitTypeInstantiationSyntax, true};
-        ScopedFastFlag semantics{FFlag::LuauExplicitTypeInstantiationSupport, true};
-
         CheckResult result = check(R"(
         --!strict
         local function f<T>() end
@@ -435,7 +355,7 @@ TEST_CASE_FIXTURE(Fixture, "too_many_provided")
         LUAU_REQUIRE_ERROR_COUNT(1, result);
         LUAU_REQUIRE_ERROR(result, TypeInstantiationCountMismatch);
 
-        if (FFlag::LuauSolverV2)
+        if (!FFlag::DebugLuauForceOldSolver)
         {
             REQUIRE_EQ(
                 toString(result.errors[0]),
@@ -456,9 +376,6 @@ TEST_CASE_FIXTURE(Fixture, "too_many_provided_type_packs")
 {
     SUBCASE_BOTH_SOLVERS()
     {
-        ScopedFastFlag syntax{FFlag::LuauExplicitTypeInstantiationSyntax, true};
-        ScopedFastFlag semantics{FFlag::LuauExplicitTypeInstantiationSupport, true};
-
         CheckResult result = check(R"(
         --!strict
         local function f<T...>(): (T...) end
@@ -469,7 +386,7 @@ TEST_CASE_FIXTURE(Fixture, "too_many_provided_type_packs")
         LUAU_REQUIRE_ERROR_COUNT(1, result);
         LUAU_REQUIRE_ERROR(result, TypeInstantiationCountMismatch);
 
-        if (FFlag::LuauSolverV2)
+        if (!FFlag::DebugLuauForceOldSolver)
         {
             REQUIRE_EQ(
                 toString(result.errors[0]),
@@ -490,9 +407,6 @@ TEST_CASE_FIXTURE(Fixture, "too_many_provided_method")
 {
     SUBCASE_BOTH_SOLVERS()
     {
-        ScopedFastFlag syntax{FFlag::LuauExplicitTypeInstantiationSyntax, true};
-        ScopedFastFlag semantics{FFlag::LuauExplicitTypeInstantiationSupport, true};
-
         CheckResult result = check(R"(
         --!strict
         local t = {
@@ -506,7 +420,7 @@ TEST_CASE_FIXTURE(Fixture, "too_many_provided_method")
         LUAU_REQUIRE_ERROR(result, TypeInstantiationCountMismatch);
         REQUIRE_EQ(result.errors[0].location.begin.line, 6);
 
-        if (FFlag::LuauSolverV2)
+        if (!FFlag::DebugLuauForceOldSolver)
         {
             REQUIRE_EQ(
                 toString(result.errors[0]),
@@ -527,9 +441,6 @@ TEST_CASE_FIXTURE(Fixture, "too_many_type_packs_provided_method")
 {
     SUBCASE_BOTH_SOLVERS()
     {
-        ScopedFastFlag syntax{FFlag::LuauExplicitTypeInstantiationSyntax, true};
-        ScopedFastFlag semantics{FFlag::LuauExplicitTypeInstantiationSupport, true};
-
         CheckResult result = check(R"(
         --!strict
         local t = {
@@ -543,7 +454,7 @@ TEST_CASE_FIXTURE(Fixture, "too_many_type_packs_provided_method")
         LUAU_REQUIRE_ERROR(result, TypeInstantiationCountMismatch);
         REQUIRE_EQ(result.errors[0].location.begin.line, 6);
 
-        if (FFlag::LuauSolverV2)
+        if (!FFlag::DebugLuauForceOldSolver)
         {
             REQUIRE_EQ(
                 toString(result.errors[0]),
@@ -564,9 +475,6 @@ TEST_CASE_FIXTURE(Fixture, "function_intersections")
 {
     SUBCASE_BOTH_SOLVERS()
     {
-        ScopedFastFlag syntax{FFlag::LuauExplicitTypeInstantiationSyntax, true};
-        ScopedFastFlag semantics{FFlag::LuauExplicitTypeInstantiationSupport, true};
-
         CheckResult result = check(R"(
         --!strict
         local f: (<T>(T) -> T) & (<T>(T?) -> T) = nil :: any
@@ -584,9 +492,6 @@ TEST_CASE_FIXTURE(Fixture, "incomplete_type_packs")
 {
     SUBCASE_BOTH_SOLVERS()
     {
-        ScopedFastFlag syntax{FFlag::LuauExplicitTypeInstantiationSyntax, true};
-        ScopedFastFlag semantics{FFlag::LuauExplicitTypeInstantiationSupport, true};
-
         CheckResult result = check(R"(
             local f: <A, T...>() -> (A, T...) = nil :: any
             local correct: string, b: number, c: boolean = f<<string>>()
@@ -597,6 +502,63 @@ TEST_CASE_FIXTURE(Fixture, "incomplete_type_packs")
         LUAU_REQUIRE_ERROR(result, TypeMismatch);
         REQUIRE_EQ(result.errors[0].location.begin.line, 3);
     }
+}
+
+TEST_CASE_FIXTURE(Fixture, "replacing_generic_with_generic")
+{
+    // This really only does the right thing in the new solver.
+    ScopedFastFlag sffs[] = {
+        {FFlag::DebugLuauForceOldSolver, false},
+    };
+
+    CheckResult result = check(R"(
+        local foo: <A, B>() -> (A, B) = nil :: any
+
+        local function bar<T>()
+            return foo<<T, number>>()
+        end
+
+        local baz, quxx = bar<<string>>()
+    )");
+
+    LUAU_REQUIRE_NO_ERRORS(result);
+    CHECK_EQ("string", toString(requireType("baz")));
+    CHECK_EQ("number", toString(requireType("quxx")));
+}
+
+TEST_CASE_FIXTURE(Fixture, "typeof_in_method_call_type_args_no_crash")
+{
+    CheckResult result = check(R"(
+        local t = {}
+        function t:f<T, U>() end
+
+        local x = 5
+        globl = 42
+
+        t:f<<typeof(x), string>>()
+        t:f<<number, typeof(x)>>()
+        t:f<<typeof(globl), unknown>>()
+        t:f<<typeof(t.f), unknown>>()
+    )");
+
+    LUAU_REQUIRE_ERROR_COUNT(1, result);
+    // We assign to an unknown global.
+    CHECK(get<UnknownSymbol>(result.errors[0]));
+}
+
+TEST_CASE_FIXTURE(Fixture, "typeof_local_in_type_pack_no_crash")
+{
+
+    CheckResult result = check(R"(
+        local t = {}
+        function t:f<T...>() end
+
+        local x = 5
+
+        t:f<<(string, typeof(x))>>()
+    )");
+
+    LUAU_REQUIRE_NO_ERRORS(result);
 }
 
 TEST_SUITE_END();

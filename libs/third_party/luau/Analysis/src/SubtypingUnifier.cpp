@@ -8,8 +8,6 @@
 #include "Luau/TypeUtils.h"
 #include "Luau/Unifier2.h"
 
-LUAU_FASTFLAG(LuauUnifyWithSubtyping2)
-
 namespace Luau
 {
 
@@ -30,7 +28,10 @@ bool SubtypingUnifier::canBeUnified(TypeId ty) const
     return is<FreeType>(ty) || isBlocked(ty);
 }
 
-SubtypingUnifier::Result SubtypingUnifier::dispatchConstraints(NotNull<const Constraint> constraint, std::vector<ConstraintV> assumedConstraints) const
+SubtypingUnifier::Result SubtypingUnifier::dispatchConstraints(
+    NotNull<const Constraint> constraint,
+    std::vector<ConstraintV> assumedConstraints
+) const
 {
     UnifyResult unifierRes = UnifyResult::Ok;
     // NOTE: You *could* potentially reuse the input vector, but this seems
@@ -46,34 +47,6 @@ SubtypingUnifier::Result SubtypingUnifier::dispatchConstraints(NotNull<const Con
             outstandingConstraints.push_back(std::move(cv));
     }
     return {unifierRes, std::move(outstandingConstraints), std::move(upperBounds)};
-}
-
-OccursCheckResult SubtypingUnifier::occursCheck(TypePackId needle, TypePackId haystack) const
-{
-    needle = follow(needle);
-    haystack = follow(haystack);
-
-    if (getMutable<ErrorTypePack>(needle))
-        return OccursCheckResult::Pass;
-
-    if (!getMutable<FreeTypePack>(needle))
-        reporter->ice("Expected needle pack to be free");
-
-    while (!getMutable<ErrorTypePack>(haystack))
-    {
-        if (needle == haystack)
-            return OccursCheckResult::Fail;
-
-        if (auto a = get<TypePack>(haystack); a && a->tail)
-        {
-            haystack = follow(*a->tail);
-            continue;
-        }
-
-        break;
-    }
-
-    return OccursCheckResult::Pass;
 }
 
 
@@ -141,7 +114,6 @@ std::pair<UnifyResult, bool> SubtypingUnifier::dispatchOneConstraint(
                 emplaceTypePack<BoundTypePack>(asMutable(superTp), builtinTypes->errorTypePack);
                 return {UnifyResult::OccursCheckFailed, true};
             }
-
             emplaceTypePack<BoundTypePack>(asMutable(superTp), subTp);
             return {UnifyResult::Ok, true};
         }

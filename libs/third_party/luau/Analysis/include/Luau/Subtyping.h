@@ -40,6 +40,11 @@ struct SubtypingReasoning
     // The path, relative to the _root supertype_, where subtyping failed.
     Path superPath;
     SubtypingVariance variance = SubtypingVariance::Covariant;
+    // Set when the failure is due to a property modifier mismatch (e.g. the
+    // sub property is read-only or write-only but the super property requires
+    // read-write). In this case the leaf types at the path ends are the same,
+    // so a plain "X is not a subtype of X" message would be misleading.
+    bool isPropertyModifierViolation = false;
 
     bool operator==(const SubtypingReasoning& other) const;
 };
@@ -127,8 +132,8 @@ struct SubtypingResult
     /// If any generic bounds were invalid, report them here
     std::vector<GenericBoundsMismatch> genericBoundsMismatches;
 
-    SubtypingResult& andAlso(const SubtypingResult& other, SubtypingSuppressionPolicy policy = SubtypingSuppressionPolicy::Any);
-    SubtypingResult& orElse(const SubtypingResult& other);
+    SubtypingResult& andAlso(SubtypingResult other, SubtypingSuppressionPolicy policy = SubtypingSuppressionPolicy::Any);
+    SubtypingResult& orElse(SubtypingResult other);
     SubtypingResult& withBothComponent(TypePath::Component component);
     SubtypingResult& withSuperComponent(TypePath::Component component);
     SubtypingResult& withSubComponent(TypePath::Component component);
@@ -137,13 +142,12 @@ struct SubtypingResult
     SubtypingResult& withSuperPath(TypePath::Path path);
     SubtypingResult& withErrors(ErrorVec& err);
     SubtypingResult& withError(TypeError err);
+    SubtypingResult& withPropertyModifierViolation();
 
     SubtypingResult& withAssumedConstraint(ConstraintV constraint);
 
     // Only negates the `isSubtype`.
     static SubtypingResult negate(const SubtypingResult& result);
-    static SubtypingResult all(const std::vector<SubtypingResult>& results);
-    static SubtypingResult any(const std::vector<SubtypingResult>& results);
 };
 
 struct SubtypingEnvironment
@@ -201,6 +205,8 @@ struct SubtypingEnvironment
 
     int iterationCount = 0;
 };
+
+struct TypeFunctionRuntime;
 
 struct Subtyping
 {
@@ -278,6 +284,7 @@ private:
     template<typename SubTy, typename SuperTy>
     SubtypingResult isInvariantWith(SubtypingEnvironment& env, const TryPair<const SubTy*, const SuperTy*>& pair, NotNull<Scope>);
 
+    SubtypingResult isCovariantWith(SubtypingEnvironment& env, const UnionType* subUnion, const UnionType* superUnion, NotNull<Scope> scope);
     SubtypingResult isCovariantWith(SubtypingEnvironment& env, TypeId subTy, const UnionType* superUnion, NotNull<Scope> scope);
     SubtypingResult isCovariantWith(SubtypingEnvironment& env, const UnionType* subUnion, TypeId superTy, NotNull<Scope> scope);
     SubtypingResult isCovariantWith(SubtypingEnvironment& env, TypeId subTy, const IntersectionType* superIntersection, NotNull<Scope> scope);
@@ -306,6 +313,7 @@ private:
         bool forceCovariantTest,
         NotNull<Scope> scope
     );
+
     SubtypingResult isCovariantWith(SubtypingEnvironment& env, const MetatableType* subMt, const MetatableType* superMt, NotNull<Scope> scope);
     SubtypingResult isCovariantWith(SubtypingEnvironment& env, const MetatableType* subMt, const TableType* superTable, NotNull<Scope> scope);
     SubtypingResult isCovariantWith(
@@ -407,9 +415,16 @@ private:
 
     // Pack subtyping
     SubtypingResult isCovariantWith(SubtypingEnvironment& env, TypePackId subTp, TypePackId superTp, NotNull<Scope> scope);
-    std::optional<SubtypingResult> isSubTailCovariantWith(
+
+    enum class EarlyExit
+    {
+        Yes,
+        No
+    };
+
+    EarlyExit isSubTailCovariantWith(
         SubtypingEnvironment& env,
-        std::vector<SubtypingResult>& outputResults,
+        SubtypingResult& outputResult,
         TypePackId subTp,
         TypePackId subTail,
         TypePackId superTp,
@@ -418,9 +433,10 @@ private:
         std::optional<TypePackId> superTail,
         NotNull<Scope> scope
     );
-    std::optional<SubtypingResult> isCovariantWithSuperTail(
+
+    EarlyExit isCovariantWithSuperTail(
         SubtypingEnvironment& env,
-        std::vector<SubtypingResult>& outputResults,
+        SubtypingResult& outputResult,
         TypePackId subTp,
         size_t subHeadStartIndex,
         const std::vector<TypeId>& subHead,
