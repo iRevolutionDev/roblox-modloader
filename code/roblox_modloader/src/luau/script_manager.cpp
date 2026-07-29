@@ -6,10 +6,18 @@
 #include "RobloxModLoader/luau/environment/environment.hpp"
 #include "config/config.hpp"
 #include "filesystem/file.hpp"
+#include "filesystem/directory.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
 #include "lobject.h"
 
 namespace rml::luau {
+    static bool luau_runtime_ready() noexcept {
+        if (!g_pointers) return false;
+        const auto &p = g_pointers->m_roblox_pointers;
+        return p.get_global_state && p.lua_newthread && p.luaL_sandboxthread && p.luau_load
+               && p.lua_pcall && p.lua_gettop && p.lua_tolstring && p.lua_type;
+    }
+
     ScriptManager::ScriptManager() {
         g_script_manager = this;
 
@@ -33,28 +41,7 @@ namespace rml::luau {
             LOG_INFO("Hot reload enabled in debug mode");
         }
 
-        // for (const auto &mod: g_mod_manager->mods) {
-        //     try {
-        //         mod->on_script_manager_load();
-        //     } catch (const std::exception &e) {
-        //         LOG_ERROR("Mod '{}' failed to load scripts: {}", mod->name, e.what());
-        //     } catch (...) {
-        //         LOG_ERROR("Mod '{}' failed to load scripts with unknown error", mod->name);
-        //     }
-        // }
-
-        const auto lua_state = luaL_newstate();
-
-        try {
-#undef luaO_nilobject
-            g_pointers->m_roblox_pointers.luaO_nilobject = g_pointers->m_roblox_pointers.lua_pushvalue(lua_state, 1);
-            const auto table = g_pointers->m_roblox_pointers.luaH_new(lua_state, 0, 0);
-            g_pointers->m_roblox_pointers.luaH_dummynode = static_cast<LuaTable *>(table)->node;
-        } catch (const std::exception &ex) {
-            LOG_ERROR("Failed to initialize Roblox pointers: {}", ex.what());
-        }
-
-        lua_close(lua_state);
+        load_mod_scripts(filesystem::directory::get_mod_loader_directory() / "mods");
 
         LOG_INFO("Mod script manager initialized successfully");
     }
@@ -168,6 +155,15 @@ namespace rml::luau {
     void ScriptManager::execute_scripts_for_context(RBX::DataModelType data_model_type) {
         std::unique_lock lock(m_scripts_mutex);
 
+        if (!luau_runtime_ready()) {
+            static std::once_flag warned;
+            std::call_once(warned, [] {
+                LOG_WARN("Luau engine functions unavailable for this Studio build - mod scripts disabled "
+                         "(signatures will re-scan on the next build)");
+            });
+            return;
+        }
+
         LOG_INFO("Executing scripts for DataModel type: {}", static_cast<int>(data_model_type));
 
         for (auto &mod_context: m_loaded_mods) {
@@ -181,7 +177,7 @@ namespace rml::luau {
             }
 
             if (!mod_context.mod_thread) {
-                mod_context.mod_thread = create_mod_thread(data_model_type, mod_context.mod_name);
+                mod_context.mod_thread = create_mod_thread(data_model_type, mod_context.mod_name, mod_context.mod_thread_ref);
                 if (!mod_context.mod_thread) {
                     LOG_ERROR("Failed to create dedicated thread for mod: {}", mod_context.mod_name);
                     continue;
@@ -460,19 +456,7 @@ namespace rml::luau {
                 chunk_name,
                 mod_context
             );
-
-            std::thread execution_thread([future = std::move(future), script_info]() mutable {
-                try {
-                    const auto result = future.get();
-                    handle_script_result(script_info, result);
-                } catch (const std::exception &e) {
-                    log_script_error(script_info, std::format("Exception during execution: {}", e.what()));
-                } catch (...) {
-                    log_script_error(script_info, "Unknown exception during execution");
-                }
-            });
-
-            execution_thread.detach();
+            handle_script_result(script_info, future.get());
         } catch (const std::exception &e) {
             log_script_error(script_info, std::format("Failed to schedule script: {}", e.what()));
         } catch (...) {
@@ -551,19 +535,7 @@ namespace rml::luau {
 
         try {
             auto future = execute_script_in_mod_thread(engine, script_info, chunk_name, mod_thread);
-
-            std::thread execution_thread([future = std::move(future), script_info]() mutable {
-                try {
-                    const auto result = future.get();
-                    handle_script_result(script_info, result);
-                } catch (const std::exception &e) {
-                    log_script_error(script_info, std::format("Exception during execution: {}", e.what()));
-                } catch (...) {
-                    log_script_error(script_info, "Unknown exception during execution");
-                }
-            });
-
-            execution_thread.detach();
+            handle_script_result(script_info, future.get());
         } catch (const std::exception &e) {
             log_script_error(script_info, std::format("Failed to schedule script: {}", e.what()));
         } catch (...) {
@@ -578,6 +550,8 @@ namespace rml::luau {
         lua_State *mod_thread) noexcept {
         try {
             auto script_thread = lua_newthread(mod_thread);
+            lua_ref(mod_thread, -1);
+            lua_pop(mod_thread, 1);
 
             auto loader = [&script_info, &chunk_name, script_thread](lua_State *) -> int {
                 const auto compile_result = ScriptEngine::compile_script(script_info.content);
@@ -627,7 +601,8 @@ namespace rml::luau {
     }
 
     lua_State *ScriptManager::create_mod_thread(RBX::DataModelType data_model_type,
-                                                const std::string &mod_name) noexcept {
+                                                const std::string &mod_name,
+                                                int &thread_ref) noexcept {
         try {
             if (!rml::has_task_scheduler()) {
                 LOG_ERROR("TaskScheduler not available, cannot create mod thread for: {}", mod_name);
@@ -654,7 +629,12 @@ namespace rml::luau {
                 return nullptr;
             }
 
-            luaL_sandboxthread(mod_thread); // Isolates mod context
+            thread_ref = lua_ref(global_state, -1);
+            lua_pop(global_state, 1);
+
+            luaL_sandboxthread(mod_thread);
+
+            environment::setup_lua_environment(mod_thread);
 
             return mod_thread;
         } catch (const std::exception &e) {
@@ -668,6 +648,11 @@ namespace rml::luau {
 
     void ScriptManager::cleanup_mod_thread(ModScriptContext &mod_context) noexcept {
         if (!mod_context.mod_thread) return;
+
+        if (mod_context.mod_thread_ref >= 0) {
+            lua_unref(mod_context.mod_thread, mod_context.mod_thread_ref);
+            mod_context.mod_thread_ref = -1;
+        }
 
         LOG_INFO("Cleaned up Lua thread for mod: {}", mod_context.mod_name);
         mod_context.mod_thread = nullptr;

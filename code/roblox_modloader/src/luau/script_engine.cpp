@@ -4,7 +4,6 @@
 #include "RobloxModLoader/luau/script_context.hpp"
 #include "RobloxModLoader/luau/script_scheduler.hpp"
 #include "RobloxModLoader/luau/environment/environment.hpp"
-#include <Luau/CodeGen.h>
 #include <Luau/Compiler.h>
 
 namespace rml::luau {
@@ -234,7 +233,10 @@ namespace rml::luau {
             }
 
             auto context = std::make_unique<ScriptScheduler::ExecutionContext>();
-            context->L = lua_newthread(m_context->get_thread_state());
+            const auto host = m_context->get_thread_state();
+            context->L = lua_newthread(host);
+            context->thread_ref = lua_ref(host, -1);
+            lua_pop(host, 1);
             context->chunk_name = std::string(chunk_name);
             context->security_level = security_level;
             context->priority = ScriptScheduler::Priority::Normal;
@@ -254,25 +256,23 @@ namespace rml::luau {
                 return future;
             }
 
-            auto completion_future = m_scheduler->schedule_script(std::move(context));
+            const int call_result = lua_pcall(context->L, 0, 0, 0);
+            const auto end_time = std::chrono::high_resolution_clock::now();
 
-            std::thread([promise, completion_future = std::move(completion_future), start_time]() mutable {
-                try {
-                    completion_future.wait();
-                    const auto end_time = std::chrono::high_resolution_clock::now();
+            if (call_result != LUA_OK) {
+                const char *error = lua_tostring(context->L, -1);
+                LOG_ERROR("Script call failed: code={} msg='{}'", call_result, error ? error : "(null)");
+                promise->set_value(ExecutionResult{
+                    .success = false,
+                    .error_message = error ? error : "runtime error"
+                });
+                return future;
+            }
 
-                    promise->set_value(ExecutionResult{
-                        .success = true,
-                        .execution_time = std::chrono::duration_cast<std::chrono::nanoseconds>(
-                            end_time - start_time)
-                    });
-                } catch (const std::exception &e) {
-                    promise->set_value(ExecutionResult{
-                        .success = false,
-                        .error_message = e.what()
-                    });
-                }
-            }).detach();
+            promise->set_value(ExecutionResult{
+                .success = true,
+                .execution_time = std::chrono::duration_cast<std::chrono::nanoseconds>(end_time - start_time)
+            });
         } catch (const std::exception &e) {
             promise->set_value(ExecutionResult{
                 .success = false,
@@ -301,9 +301,14 @@ namespace rml::luau {
             }
 
             auto context = std::make_unique<ScriptScheduler::ExecutionContext>();
-            context->L = mod_context.mod_thread
-                             ? mod_context.mod_thread
-                             : lua_newthread(m_context->get_thread_state());
+            if (mod_context.mod_thread) {
+                context->L = mod_context.mod_thread;
+            } else {
+                const auto host = m_context->get_thread_state();
+                context->L = lua_newthread(host);
+                context->thread_ref = lua_ref(host, -1);
+                lua_pop(host, 1);
+            }
             context->chunk_name = std::string(chunk_name);
             context->security_level = security_level;
             context->priority = ScriptScheduler::Priority::Normal;
@@ -324,26 +329,24 @@ namespace rml::luau {
                 });
                 return future;
             }
+            
+            const int call_result = lua_pcall(context->L, 0, 0, 0);
+            const auto end_time = std::chrono::high_resolution_clock::now();
 
-            auto completion_future = m_scheduler->schedule_script(std::move(context));
+            if (call_result != LUA_OK) {
+                const char *error = lua_tostring(context->L, -1);
+                LOG_ERROR("Script call failed: code={} msg='{}'", call_result, error ? error : "(null)");
+                promise->set_value(ExecutionResult{
+                    .success = false,
+                    .error_message = error ? error : "runtime error"
+                });
+                return future;
+            }
 
-            std::thread([promise, completion_future = std::move(completion_future), start_time]() mutable {
-                try {
-                    completion_future.wait();
-                    const auto end_time = std::chrono::high_resolution_clock::now();
-
-                    promise->set_value(ExecutionResult{
-                        .success = true,
-                        .execution_time = std::chrono::duration_cast<std::chrono::nanoseconds>(
-                            end_time - start_time)
-                    });
-                } catch (const std::exception &e) {
-                    promise->set_value(ExecutionResult{
-                        .success = false,
-                        .error_message = e.what()
-                    });
-                }
-            }).detach();
+            promise->set_value(ExecutionResult{
+                .success = true,
+                .execution_time = std::chrono::duration_cast<std::chrono::nanoseconds>(end_time - start_time)
+            });
         } catch (const std::exception &e) {
             promise->set_value(ExecutionResult{
                 .success = false,

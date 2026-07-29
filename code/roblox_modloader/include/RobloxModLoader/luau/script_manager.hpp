@@ -36,6 +36,7 @@ namespace rml::luau {
         std::filesystem::path mod_path;
         std::unordered_map<RBX::DataModelType, std::vector<ScriptInfo> > scripts_by_context;
         lua_State *mod_thread{nullptr};
+        int mod_thread_ref{-1};
         bool loaded{false};
     };
 
@@ -101,7 +102,8 @@ namespace rml::luau {
             const std::vector<std::string> &patterns);
 
         [[nodiscard]] static lua_State *create_mod_thread(RBX::DataModelType data_model_type,
-                                                          const std::string &mod_name) noexcept;
+                                                          const std::string &mod_name,
+                                                          int &thread_ref) noexcept;
 
         static void cleanup_mod_thread(ModScriptContext &mod_context) noexcept;
 
@@ -133,17 +135,6 @@ namespace rml::luau {
                 if (!result.success) [[unlikely]] {
                     const auto error_msg = std::format("Script execution failed: {}", result.error_message);
                     log_script_error(script_info, error_msg);
-
-                    if (const auto roblox_error = std::format("Script '{}' execution failed: {}",
-                                                              script_info.full_path.filename().string(),
-                                                              result.error_message);
-                        roblox_error.size() < 1024) {
-                        g_pointers->m_roblox_pointers.print(
-                            RBX::MESSAGE_ERROR,
-                            "%s\n",
-                            roblox_error.c_str()
-                        );
-                    }
                 } else {
                     log_script_success(script_info);
                 }

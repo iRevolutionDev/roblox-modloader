@@ -20,6 +20,7 @@ namespace rml::luau {
         struct ExecutionContext {
             lua_State *L{nullptr};
             lua_State *rL{nullptr};
+            int thread_ref{-1};
             std::string chunk_name;
             RBX::Security::Permissions security_level{0};
             Priority priority{Priority::Normal};
