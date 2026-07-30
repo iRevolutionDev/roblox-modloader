@@ -157,3 +157,39 @@ foreach (EXAMPLE_DIR ${EXAMPLE_DIRS})
         message(STATUS "Skipping ${EXAMPLE_DIR} (not a valid mod directory)")
     endif ()
 endforeach ()
+
+if (WIN32 AND DEFINED ENV{ROBLOX_STUDIO_PATH} AND NOT "$ENV{ROBLOX_STUDIO_PATH}" STREQUAL "")
+    set(RML_SCRIPT_MOD_DIRS "")
+
+    foreach (EXAMPLE_DIR ${EXAMPLE_DIRS})
+        if (IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE_DIR} AND
+        EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE_DIR}/mod.toml AND
+        IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE_DIR}/scripts AND
+        NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE_DIR}/main.cpp AND
+        NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE_DIR}/CMakeLists.txt)
+            list(APPEND RML_SCRIPT_MOD_DIRS ${EXAMPLE_DIR})
+        endif ()
+    endforeach ()
+
+    if (RML_SCRIPT_MOD_DIRS)
+        add_custom_target(rml_script_mods ALL)
+
+        foreach (SCRIPT_MOD ${RML_SCRIPT_MOD_DIRS})
+            set(RML_SCRIPT_MOD_TARGET_DIR "$ENV{ROBLOX_STUDIO_PATH}/RobloxModLoader/mods/${SCRIPT_MOD}")
+
+            add_custom_command(TARGET rml_script_mods POST_BUILD
+                    COMMAND ${CMAKE_COMMAND} -E make_directory "${RML_SCRIPT_MOD_TARGET_DIR}/scripts"
+                    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    "${CMAKE_CURRENT_SOURCE_DIR}/${SCRIPT_MOD}/mod.toml"
+                    "${RML_SCRIPT_MOD_TARGET_DIR}/mod.toml"
+                    COMMAND ${CMAKE_COMMAND} -E copy_directory
+                    "${CMAKE_CURRENT_SOURCE_DIR}/${SCRIPT_MOD}/scripts"
+                    "${RML_SCRIPT_MOD_TARGET_DIR}/scripts"
+                    COMMENT "Deploying script mod ${SCRIPT_MOD}"
+                    VERBATIM
+            )
+        endforeach ()
+
+        message(STATUS "Script-only mods deployed on build: ${RML_SCRIPT_MOD_DIRS}")
+    endif ()
+endif ()
