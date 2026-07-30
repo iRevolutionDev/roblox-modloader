@@ -41,7 +41,7 @@ namespace rml
 			m_jobs.emplace(job_id, JobEntry(std::move(job)));
 			m_name_to_id.emplace(job_name, job_id);
 
-			RML_DEBUG("Registered job '{}' with ID {}", job_name, job_id);
+			RML_INFO("Registered job '{}' with ID {}", job_name, job_id);
 			return job_id;
 		}
 		catch (const std::exception& e)

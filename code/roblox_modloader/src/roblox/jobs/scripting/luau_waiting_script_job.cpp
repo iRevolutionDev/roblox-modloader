@@ -1,53 +1,103 @@
 #include "RobloxModLoader/internal/common.hpp"
 #include "luau_waiting_script_job.hpp"
 
-#include "pointers.hpp"
-#include "RobloxModLoader/luau/script_engine.hpp"
-#include "RobloxModLoader/luau/script_manager.hpp"
+#include "RobloxModLoader/luau/script_host.hpp"
+#include "RobloxModLoader/luau/script_runtime.hpp"
 #include "RobloxModLoader/roblox/data_model.hpp"
-#include "RobloxModLoader/roblox/task_scheduler.hpp"
 #include "RobloxModLoader/roblox/waiting_hybrid_scripts_job.hpp"
+
+#include <unordered_map>
 
 RML_LOG_SCOPE("LuauWaitingScriptJob");
 
-namespace rml::jobs {
-    LuauWaitingScriptJob::LuauWaitingScriptJob() noexcept
-        : JobBase(JOB_NAME, JobPriority::High, JobKind::WaitingHybridScripts, true) {
-    }
+namespace rml::jobs
+{
+	LuauWaitingScriptJob::LuauWaitingScriptJob() noexcept
+		: JobBase(JOB_NAME, JobPriority::High, JobKind::WaitingHybridScripts, true)
+	{
+	}
 
-    bool LuauWaitingScriptJob::should_execute_impl(const JobExecutionContext &context) noexcept {
-        const auto data_model = RBX::DataModel::from_job(context.job_as<RBX::DataModelJob>());
-        if (!data_model) {
-            return false;
-        }
+	static luau::ScriptHost* host_for_job(const JobExecutionContext& context)
+	{
+		auto* runtime = luau::script_runtime();
+		if (!runtime)
+		{
+			return nullptr;
+		}
 
-        const auto data_model_type = data_model->type;
+		const auto data_model = RBX::DataModel::from_job(context.job_as<RBX::DataModelJob>());
+		if (!data_model)
+		{
+			return nullptr;
+		}
 
-        if (!has_task_scheduler()) {
-            return false;
-        }
+		return runtime->host(data_model->type);
+	}
 
-        const auto engine = task_scheduler().get_script_engine(data_model_type);
-        return engine && engine->get_scheduler().get_total_queue_size();
-    }
+	static void report_gate(const char* reason, const int data_model_type)
+	{
+		static std::unordered_map<std::string, bool> seen;
+		if (seen.emplace(std::format("{}:{}", reason, data_model_type), true).second)
+		{
+			RML_WARN("gate: {} (DataModel type {})", reason, data_model_type);
+		}
+	}
 
-    void LuauWaitingScriptJob::execute_impl(const JobExecutionContext &context) {
-        const auto job = context.job_as<RBX::ScriptContextFacets::WaitingHybridScriptsJob>();
-        const auto data_model = RBX::DataModel::from_job(job);
-        if (!data_model) {
-            return;
-        }
+	static void report_heartbeat(const int data_model_type)
+	{
+		static std::atomic<std::uint64_t> calls{0};
+		const auto count = calls.fetch_add(1, std::memory_order_relaxed) + 1;
 
-        const auto data_model_type = data_model->type;
+		if (count % 200 == 0)
+		{
+			RML_INFO("gate: still being stepped, {} calls so far, latest DataModel type {}", count, data_model_type);
+		}
+	}
 
-        if (const auto engine = task_scheduler().get_script_engine(data_model_type)) {
-            if (auto &scheduler = const_cast<luau::ScriptScheduler &>(engine->get_scheduler()); scheduler.step()) {
-                RML_DEBUG("Processed script from queue for DataModel type: {}",
-                          static_cast<int>(data_model_type));
-            }
-        }
-    }
+	bool LuauWaitingScriptJob::should_execute_impl(const JobExecutionContext& context) noexcept
+	{
+		auto* runtime = luau::script_runtime();
+		if (!runtime)
+		{
+			report_gate("script_runtime() is null", -1);
+			return false;
+		}
 
-    void LuauWaitingScriptJob::destroy_impl() noexcept {
-    }
+		const auto data_model = RBX::DataModel::from_job(context.job_as<RBX::DataModelJob>());
+		if (!data_model)
+		{
+			report_gate("from_job gave no DataModel", -1);
+			return false;
+		}
+
+		const auto type = static_cast<int>(data_model->type);
+		report_heartbeat(type);
+
+		auto* host = runtime->host(data_model->type);
+		if (!host)
+		{
+			report_gate("no host bound", type);
+			return false;
+		}
+
+		if (!host->has_pending())
+		{
+			return false;
+		}
+
+		RML_INFO("gate: passing, {} item(s) pending for DataModel type {}", host->dispatcher().pending_count(), type);
+		return true;
+	}
+
+	void LuauWaitingScriptJob::execute_impl(const JobExecutionContext& context)
+	{
+		if (auto* host = host_for_job(context))
+		{
+			host->pump(luau::Budget{});
+		}
+	}
+
+	void LuauWaitingScriptJob::destroy_impl() noexcept
+	{
+	}
 }

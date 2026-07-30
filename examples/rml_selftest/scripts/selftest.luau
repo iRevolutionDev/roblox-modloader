@@ -4,10 +4,8 @@ local passed, failed, parked = 0, 0, 0
 
 local function say(text)
 	print("[selftest] " .. text)
-	if rml and rml.logger then
-		pcall(function()
-			rml.logger:info("[selftest] " .. text)
-		end)
+	if rml and rml.log then
+		pcall(rml.log.info, "[selftest] " .. text)
 	end
 end
 
@@ -261,6 +259,18 @@ check("clonefunction makes a copy that stands on its own", function()
 	assert(copy() == "the original line", "the clone does not behave like the original")
 end)
 
+check("clonefunction copies a closure that captured something", function()
+	local secret = tonumber("777")
+	local function reader()
+		return secret
+	end
+
+	local copy = clonefunction(reader)
+
+	assert(copy ~= reader, "the clone is the very same object")
+	assert(copy() == 777, "the clone read back " .. tostring(copy()))
+end)
+
 check("hookfunction swaps a luau function and hands back the original", function()
 	local function target(a, b)
 		return a + b
@@ -329,6 +339,45 @@ check("restorefunction puts a hooked function back", function()
 
 	restorefunction(target)
 	assert(target(2, 3) == 5, "the function was not put back")
+end)
+
+
+check("rml.mod carries this mod's manifest and refuses writes", function()
+	assert(type(rml.mod) == "table", "rml.mod is a " .. type(rml.mod))
+	assert(rml.mod.name == "RML Self Test", "name = " .. tostring(rml.mod.name))
+	assert(#tostring(rml.mod.path) > 0, "path is empty")
+	assert(not pcall(function()
+		rml.mod.name = "hijacked"
+	end), "rml.mod accepted a write")
+end)
+
+check("require refuses a specifier with no alias", function()
+	local ok, err = pcall(require, "some_module")
+	assert(not ok, "a bare specifier resolved")
+	assert(string.find(tostring(err), "@rml/", 1, true) ~= nil, "the error does not name the aliases: " .. tostring(err))
+end)
+
+check("require refuses to climb out of the mod folder", function()
+	assert(not pcall(require, "@self/../../../escape"), "a .. specifier resolved")
+end)
+
+check("require reports a module it cannot find", function()
+	local ok, err = pcall(require, "@self/definitely_not_here")
+	assert(not ok, "a missing module resolved")
+	assert(string.find(tostring(err), "not found", 1, true) ~= nil, "unexpected error: " .. tostring(err))
+end)
+
+check("require hands back the same table twice", function()
+	local first = require("@self/probe")
+	local second = require("@self/probe")
+	assert(first == second, "the two requires produced different tables")
+	assert(first.marker == "probe", "the module did not load its own contents")
+end)
+
+check("require detects a cycle instead of overflowing", function()
+	local ok, err = pcall(require, "@self/cycle_a")
+	assert(not ok, "a cyclic require resolved")
+	assert(string.find(tostring(err), "cycle", 1, true) ~= nil, "unexpected error: " .. tostring(err))
 end)
 
 local function probe(name, body)
@@ -431,6 +480,6 @@ end)
 
 say(("==== done: %d passed, %d failed, %d parked ===="):format(passed, failed, parked))
 
-if failed > 0 and rml and rml.logger then
-	pcall(rml.logger.warn, ("%d selftest checks failed"):format(failed))
+if failed > 0 and rml and rml.log then
+	pcall(rml.log.warn, "%d selftest checks failed", failed)
 end

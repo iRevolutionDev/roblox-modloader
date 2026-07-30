@@ -3,7 +3,8 @@
 #include "../../mod/mod_manager.hpp"
 #include "RobloxModLoader/internal/common.hpp"
 #if RML_ENABLE_LUAU
-	#include "RobloxModLoader/luau/script_manager.hpp"
+	#include "RobloxModLoader/luau/script_host.hpp"
+	#include "RobloxModLoader/luau/script_runtime.hpp"
 #endif
 #include "RobloxModLoader/roblox/data_model.hpp"
 #include "RobloxModLoader/roblox/script_context.hpp"
@@ -91,6 +92,24 @@ namespace rml::jobs
 		events::DataModelChangedEvent ev(reinterpret_cast<u64>(old_data_model), reinterpret_cast<u64>(new_data_model), static_cast<int>(data_model_type));
 		events::event_manager().emit(ev);
 
+#if RML_ENABLE_LUAU
+		if (auto* runtime = luau::script_runtime())
+		{
+			if (script_context)
+			{
+				if (const auto lua_state = script_context->get_global_state(RBX::Security::Identity::RobloxEngine))
+				{
+					runtime->bind_host(data_model_type, lua_state);
+					runtime->activate(data_model_type);
+				}
+				else
+				{
+					LOG_WARN("No global Lua state for DataModel type {}; scripts will not run", static_cast<int>(data_model_type));
+				}
+			}
+		}
+#endif
+
 		// Notify managed (.NET) mods about the change if the bridge is initialized
 		if (dotnet::g_dotnet_mod_loader)
 		{
@@ -116,33 +135,13 @@ namespace rml::jobs
 		// 	}
 		// }
 
-		// Execute Luau scripts that registered for this DataModel context
 #if RML_ENABLE_LUAU
-		// A ScriptEngine must exist for this DataModel (create_mod_thread looks it up by type).
-		// Create it here, bound to the DataModel's global Lua state, before scheduling any scripts.
-		if (script_context)
+		if (auto* runtime = luau::script_runtime())
 		{
-			if (const auto lua_state = script_context->get_global_state(RBX::Security::Identity::RobloxEngine))
+			if (auto* host = runtime->host(data_model_type))
 			{
-				task_scheduler().get_or_create_script_engine(data_model_type, lua_state);
+				host->pump(luau::Budget{.max_items = 256, .max_time = std::chrono::milliseconds{250}});
 			}
-			else
-			{
-				LOG_WARN("No global Lua state for DataModel type {}; scripts will not run", static_cast<int>(data_model_type));
-			}
-		}
-
-		try
-		{
-			if (luau::g_script_manager)
-			{
-				luau::g_script_manager->execute_scripts_for_context(data_model_type);
-			}
-			LOG_INFO("Successfully triggered mod scripts for DataModel type: {}", static_cast<int>(data_model_type));
-		}
-		catch (const std::exception& e)
-		{
-			LOG_ERROR("Failed to execute mod scripts for DataModel type {}: {}", static_cast<int>(data_model_type), e.what());
 		}
 #endif
 	}

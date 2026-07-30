@@ -1,5 +1,3 @@
-#include "RobloxModLoader/luau/script_context.hpp"
-
 #include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/roblox/script_context.hpp"
 #include "pointers.hpp"

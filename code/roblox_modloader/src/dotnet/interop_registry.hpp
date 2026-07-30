@@ -24,6 +24,7 @@ namespace rml::dotnet
 		InstanceArray = 7,
 		Blittable = 8,
 		Tuple = 9,
+		LuauRef = 10,
 	};
 
 	struct alignas(8) InteropVariant
@@ -83,9 +84,16 @@ namespace rml::dotnet
 		void(RML_INTEROP_CALL* event_slot_fire)(uintptr_t instance, const char* event_name, uintptr_t slot_handle, const InteropVariant* args, uint32_t arg_count);
 		void(RML_INTEROP_CALL* event_slot_disconnect)(uintptr_t slot_handle);
 		void(RML_INTEROP_CALL* event_slot_release)(uintptr_t slot_handle);
+
+		int32_t(RML_INTEROP_CALL* luau_host_ready)(int32_t data_model_type);
+		void(RML_INTEROP_CALL* luau_schedule)(int32_t data_model_type, const char* chunk_name, const char* source, ManagedYieldCallback callback, void* state);
+		void(RML_INTEROP_CALL* luau_evaluate)(int32_t data_model_type, const char* chunk_name, const char* source, ManagedYieldCallback callback, void* state);
+		void(RML_INTEROP_CALL* luau_ref_call)(uintptr_t ref_handle, const InteropVariant* args, uint32_t arg_count, ManagedYieldCallback callback, void* state);
+		void(RML_INTEROP_CALL* luau_ref_index)(uintptr_t ref_handle, const char* key, ManagedYieldCallback callback, void* state);
+		void(RML_INTEROP_CALL* luau_ref_release)(uintptr_t ref_handle);
 	};
 
-	inline constexpr uint32_t RML_INTEROP_VERSION = 9;
+	inline constexpr uint32_t RML_INTEROP_VERSION = 10;
 
 	class InteropRegistry
 	{

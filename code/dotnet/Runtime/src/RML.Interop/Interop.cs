@@ -188,6 +188,140 @@ public static unsafe class Interop
         Table->ModsMenuRemove(id);
     }
 
+    public static bool LuauHostReady(int dataModelType)
+    {
+        if (!IsInitialized || Table == null || Table->LuauHostReady == null)
+        {
+            return false;
+        }
+
+        return Table->LuauHostReady(dataModelType) != 0;
+    }
+
+    public static bool LuauSchedule(int dataModelType, string source, string? chunkName, nint callback, nint state)
+    {
+        if (!IsInitialized || Table == null || Table->LuauSchedule == null || callback == nint.Zero)
+        {
+            return false;
+        }
+
+        ArgumentNullException.ThrowIfNull(source);
+        return RunLuauChunk(Table->LuauSchedule, dataModelType, source, chunkName, callback, state);
+    }
+
+    public static bool LuauEvaluate(int dataModelType, string source, string? chunkName, nint callback, nint state)
+    {
+        if (!IsInitialized || Table == null || Table->LuauEvaluate == null || callback == nint.Zero)
+        {
+            return false;
+        }
+
+        ArgumentNullException.ThrowIfNull(source);
+        return RunLuauChunk(Table->LuauEvaluate, dataModelType, source, chunkName, callback, state);
+    }
+
+    private static bool RunLuauChunk(
+        delegate* unmanaged[Cdecl]<int, sbyte*, sbyte*, delegate* unmanaged[Cdecl]<void*, InteropVariant*, sbyte*, void>, void*, void> slot,
+        int dataModelType,
+        string source,
+        string? chunkName,
+        nint callback,
+        nint state)
+    {
+        var name = string.IsNullOrEmpty(chunkName) ? "@managed" : chunkName;
+
+        var nameCount = Encoding.UTF8.GetByteCount(name);
+        var nameBuffer = stackalloc byte[nameCount + 1];
+        Encoding.UTF8.GetBytes(name, new Span<byte>(nameBuffer, nameCount));
+        nameBuffer[nameCount] = 0;
+
+        var sourceBytes = new byte[Encoding.UTF8.GetByteCount(source) + 1];
+        Encoding.UTF8.GetBytes(source, sourceBytes);
+
+        var cb = (delegate* unmanaged[Cdecl]<void*, InteropVariant*, sbyte*, void>)callback;
+
+        fixed (byte* sourceBuffer = sourceBytes)
+        {
+            slot(dataModelType, (sbyte*)nameBuffer, (sbyte*)sourceBuffer, cb, (void*)state);
+        }
+
+        return true;
+    }
+
+    public static bool LuauRefCall(nuint refHandle, object?[]? args, nint callback, nint state)
+    {
+        if (refHandle == 0 || !IsInitialized || Table == null || Table->LuauRefCall == null || callback == nint.Zero)
+        {
+            return false;
+        }
+
+        var cb = (delegate* unmanaged[Cdecl]<void*, InteropVariant*, sbyte*, void>)callback;
+        var argCount = args?.Length ?? 0;
+
+        if (argCount == 0)
+        {
+            Table->LuauRefCall(refHandle, null, 0, cb, (void*)state);
+            return true;
+        }
+
+        var tempPtrsArr = ArrayPool<nint>.Shared.Rent(argCount);
+        var argVariantsArr = ArrayPool<InteropVariant>.Shared.Rent(argCount);
+
+        try
+        {
+            fixed (nint* tempPtrs = tempPtrsArr)
+            fixed (InteropVariant* argVariants = argVariantsArr)
+            {
+                var tempPtrCount = 0;
+                try
+                {
+                    Reflection.BuildArgVariants(args!, argCount, tempPtrs, ref tempPtrCount, argVariants);
+                    Table->LuauRefCall(refHandle, argVariants, (uint)argCount, cb, (void*)state);
+                }
+                finally
+                {
+                    Reflection.FreeTempPtrs(tempPtrs, tempPtrCount);
+                }
+            }
+        }
+        finally
+        {
+            ArrayPool<nint>.Shared.Return(tempPtrsArr);
+            ArrayPool<InteropVariant>.Shared.Return(argVariantsArr);
+        }
+
+        return true;
+    }
+
+    public static bool LuauRefIndex(nuint refHandle, string key, nint callback, nint state)
+    {
+        if (refHandle == 0 || !IsInitialized || Table == null || Table->LuauRefIndex == null || callback == nint.Zero)
+        {
+            return false;
+        }
+
+        ArgumentNullException.ThrowIfNull(key);
+
+        var byteCount = Encoding.UTF8.GetByteCount(key);
+        var buffer = stackalloc byte[byteCount + 1];
+        Encoding.UTF8.GetBytes(key, new Span<byte>(buffer, byteCount));
+        buffer[byteCount] = 0;
+
+        var cb = (delegate* unmanaged[Cdecl]<void*, InteropVariant*, sbyte*, void>)callback;
+        Table->LuauRefIndex(refHandle, (sbyte*)buffer, cb, (void*)state);
+        return true;
+    }
+
+    public static void LuauRefRelease(nuint refHandle)
+    {
+        if (refHandle == 0 || !IsInitialized || Table == null || Table->LuauRefRelease == null)
+        {
+            return;
+        }
+
+        Table->LuauRefRelease(refHandle);
+    }
+
     public class Reflection
     {
         private const int StackAllocArgThreshold = 64;
@@ -371,7 +505,7 @@ public static unsafe class Interop
             }
         }
 
-        private static void BuildArgVariants(
+        internal static void BuildArgVariants(
             object?[] args, int argCount, nint* tempPtrs, ref int tempPtrCount, InteropVariant* argVariants)
         {
             for (var i = 0; i < argCount; i++)
@@ -380,7 +514,7 @@ public static unsafe class Interop
             }
         }
 
-        private static void FreeTempPtrs(nint* tempPtrs, int tempPtrCount)
+        internal static void FreeTempPtrs(nint* tempPtrs, int tempPtrCount)
         {
             for (var i = 0; i < tempPtrCount; i++)
             {
