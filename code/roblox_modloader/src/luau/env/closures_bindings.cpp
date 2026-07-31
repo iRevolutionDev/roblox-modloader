@@ -216,7 +216,8 @@ namespace rml::luau
 		luaL_checktype(L, 2, LUA_TFUNCTION);
 		refuse_c_target(L, "hookfunction");
 
-		auto& closures = bound_env(L).closures();
+		auto& env = bound_env(L);
+		auto& closures = env.closures();
 		auto* target = closure_argument(L, 1);
 
 		if (closures.is_protected(reinterpret_cast<Closure*>(target)))
@@ -246,6 +247,7 @@ namespace rml::luau
 			                           .replacement = vm::Ref::take(L, replacement_index),
 			                           .original_kind = FunctionKind::LuauClosure,
 			                           .replacement_kind = FunctionKind::LuauClosure,
+			                           .owner = std::string{env.mod().mod_name()},
 			                       });
 		}
 
@@ -264,7 +266,7 @@ namespace rml::luau
 		return 1;
 	}
 
-	static bool restore_from(lua_State* L, access::Closure* target, const vm::Ref& original)
+	bool restore_closure(lua_State* L, Closure* raw_target, const vm::Ref& original)
 	{
 		vm::StackGuard stack(L);
 
@@ -273,6 +275,7 @@ namespace rml::luau
 			return false;
 		}
 
+		auto* target = access::closure(raw_target);
 		const auto* source = access::closure(lua_topointer(L, -1));
 
 		target->env = source->env;
@@ -304,7 +307,7 @@ namespace rml::luau
 			luaL_error(L, "restorefunction: this function was never hooked");
 		}
 
-		if (!restore_from(L, target, record->original))
+		if (!restore_closure(L, reinterpret_cast<Closure*>(target), record->original))
 		{
 			luaL_error(L, "restorefunction: the original function is no longer referenced");
 		}

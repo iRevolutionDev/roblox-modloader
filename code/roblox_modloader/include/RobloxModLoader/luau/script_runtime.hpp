@@ -7,6 +7,7 @@
 namespace rml::luau
 {
 	class Bridge;
+	class ScriptWatcher;
 
 	class RML_EXPORT ScriptRuntime final
 	{
@@ -32,8 +33,16 @@ namespace rml::luau
 		void activate(RBX::DataModelType type);
 
 		std::expected<void, std::string> reload(std::string_view mod_name);
+		std::size_t reload_all();
 
-		[[nodiscard]] const ScriptCatalog& catalog() const noexcept { return m_catalog; }
+		[[nodiscard]] std::expected<ModReloadPlan, std::string> plan_reload(const std::string& mod_name,
+		                                                                    RBX::DataModelType type) const;
+
+		[[nodiscard]] std::vector<std::pair<std::string, std::filesystem::path>> script_roots() const;
+
+		void set_hot_reload(bool enabled);
+		[[nodiscard]] bool hot_reload_enabled() const noexcept;
+
 		[[nodiscard]] Bridge& bridge() noexcept { return *m_bridge; }
 
 		[[nodiscard]] RefId next_ref_id() noexcept;
@@ -45,8 +54,12 @@ namespace rml::luau
 		[[nodiscard]] ModEnvironment environment_for(const ModManifestPtr& mod) const;
 
 	private:
+		mutable std::shared_mutex m_catalog_mutex;
 		ScriptCatalog m_catalog;
 		std::unique_ptr<Bridge> m_bridge;
+
+		mutable std::mutex m_watcher_mutex;
+		std::unique_ptr<ScriptWatcher> m_watcher;
 
 		mutable std::shared_mutex m_hosts_mutex;
 		std::unordered_map<RBX::DataModelType, std::unique_ptr<ScriptHost>> m_hosts;

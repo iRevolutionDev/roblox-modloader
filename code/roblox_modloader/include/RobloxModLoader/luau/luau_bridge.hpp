@@ -102,6 +102,7 @@ namespace rml::luau
 
 		void add_script_listener(RBX::DataModelType context, std::string_view event_name, RefId callback);
 		void drop_script_listeners(RBX::DataModelType context) noexcept;
+		void drop_script_callbacks(RBX::DataModelType context, std::span<const RefId> callbacks) noexcept;
 
 		void remove_listener(std::string_view event_name, std::size_t id) noexcept;
 

@@ -16,6 +16,12 @@ namespace rml::luau
 {
 	class ScriptRuntime;
 
+	struct ModReloadPlan
+	{
+		ModManifestPtr manifest;
+		std::vector<ScriptAsset> scripts;
+	};
+
 	class RML_EXPORT ScriptHost final
 	{
 	public:
@@ -45,16 +51,29 @@ namespace rml::luau
 
 		std::expected<ScriptEnv*, vm::VmError> loader_env() { return env_for(nullptr); }
 
-		[[nodiscard]] RefId retain(vm::Ref ref);
+		[[nodiscard]] RefId retain(vm::Ref ref, std::string owner = {});
 		[[nodiscard]] vm::Ref* lookup(RefId id) noexcept;
 		void release(RefId id) noexcept;
+
+		std::expected<void, vm::VmError> reload_mod(const ModReloadPlan& plan);
+
+		[[nodiscard]] std::uint64_t generation_of(const std::string& mod_name) const noexcept;
 
 		void shutdown() noexcept;
 
 	private:
+		struct RefEntry
+		{
+			vm::Ref ref;
+			std::string owner;
+		};
+
 		[[nodiscard]] bool on_owner_thread() const noexcept;
 
 		void execute(Work& work, std::move_only_function<void(WorkResult)> settle) noexcept;
+
+		void run_unload_handlers(ScriptEnv& env);
+		void release_mod_state(const std::string& mod_name, ScriptEnv& env);
 
 		ScriptRuntime* m_runtime;
 		RBX::DataModelType m_type;
@@ -65,7 +84,9 @@ namespace rml::luau
 		ClosureRegistry m_closures;
 
 		std::unordered_map<std::string, std::unique_ptr<ScriptEnv>> m_mod_envs;
-		std::unordered_map<RefId, vm::Ref> m_refs;
+		std::unordered_map<RefId, RefEntry> m_refs;
+		std::unordered_map<std::string, std::uint64_t> m_generations;
+		std::vector<EnvTokenPtr> m_expired_tokens;
 
 		std::atomic<std::thread::id> m_owner{};
 		bool m_shutdown{false};

@@ -2,6 +2,7 @@
 
 #if RML_ENABLE_LUAU
 	#include "RobloxModLoader/roblox/job_manager.hpp"
+	#include "config/config_manager.hpp"
 	#include "filesystem/directory.hpp"
 	#include "roblox/jobs/scripting/luau_waiting_script_job.hpp"
 #endif
@@ -31,6 +32,11 @@ namespace rml
 
 		luau::set_script_runtime(runtime.get());
 		m_runtime = std::move(runtime);
+
+		if (config::get_config_manager().get_core_config().developer.enable_hot_reload)
+		{
+			m_runtime->set_hot_reload(true);
+		}
 
 		if (jobs::has_job_manager())
 		{

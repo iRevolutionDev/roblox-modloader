@@ -194,6 +194,26 @@ namespace rml::luau
 		std::erase_if(m_script_listeners, [](const auto& entry) { return entry.second.empty(); });
 	}
 
+	void Bridge::drop_script_callbacks(const RBX::DataModelType context, const std::span<const RefId> callbacks) noexcept
+	{
+		if (callbacks.empty())
+		{
+			return;
+		}
+
+		std::unique_lock lock(m_mutex);
+
+		for (auto& listeners : m_script_listeners | std::views::values)
+		{
+			std::erase_if(listeners, [context, callbacks](const ScriptListener& listener) {
+				return listener.context == context
+				    && std::ranges::find(callbacks, listener.callback) != callbacks.end();
+			});
+		}
+
+		std::erase_if(m_script_listeners, [](const auto& entry) { return entry.second.empty(); });
+	}
+
 	void Bridge::dispatch_to_scripts(const std::string_view event_name, const BridgeArgs& args)
 	{
 		std::vector<ScriptListener> snapshot;

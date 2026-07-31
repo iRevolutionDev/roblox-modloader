@@ -1,5 +1,6 @@
 #include "RobloxModLoader/luau/script_host.hpp"
 
+#include "RobloxModLoader/luau/luau_bridge.hpp"
 #include "RobloxModLoader/luau/script_runtime.hpp"
 #include "RobloxModLoader/luau/vm/stack_guard.hpp"
 #include "RobloxModLoader/luau/vm/thread_identity.hpp"
@@ -87,9 +88,16 @@ namespace rml::luau
 		    .bytecode = std::move(*bytecode),
 		    .owner = mod,
 		    .want_result = false,
+		    .generation = mod ? generation_of(mod->name) : 0,
 		});
 
 		return {};
+	}
+
+	std::uint64_t ScriptHost::generation_of(const std::string& mod_name) const noexcept
+	{
+		const auto it = m_generations.find(mod_name);
+		return it == m_generations.end() ? 0 : it->second;
 	}
 
 	void ScriptHost::pump(const Budget& budget) noexcept
@@ -175,6 +183,11 @@ namespace rml::luau
 
 	static WorkResult run_chunk(ScriptHost& host, RunChunk& chunk)
 	{
+		if (chunk.owner && chunk.generation != host.generation_of(chunk.owner->name))
+		{
+			return Value{};
+		}
+
 		auto env = host.env_for(chunk.owner);
 		if (!env)
 		{
@@ -277,6 +290,23 @@ namespace rml::luau
 		return read_value(L, -1, host);
 	}
 
+	static WorkResult reload_requested(ScriptHost& host, const ReloadMod& request)
+	{
+		auto plan = host.runtime().plan_reload(request.mod_name, host.type());
+		if (!plan)
+		{
+			return std::unexpected(vm::VmError::internal(
+			    std::format("cannot reload '{}': {}", request.mod_name, plan.error())));
+		}
+
+		if (auto reloaded = host.reload_mod(*plan); !reloaded)
+		{
+			return std::unexpected(std::move(reloaded.error()));
+		}
+
+		return Value{};
+	}
+
 	void ScriptHost::execute(Work& work, std::move_only_function<void(WorkResult)> settle) noexcept
 	{
 		auto result = std::visit(
@@ -295,6 +325,10 @@ namespace rml::luau
 			    {
 				    return index_ref(*this, held);
 			    }
+			    else if constexpr (std::is_same_v<Held, ReloadMod>)
+			    {
+				    return reload_requested(*this, held);
+			    }
 			    else
 			    {
 				    release(held.target);
@@ -306,10 +340,10 @@ namespace rml::luau
 		settle(std::move(result));
 	}
 
-	RefId ScriptHost::retain(vm::Ref ref)
+	RefId ScriptHost::retain(vm::Ref ref, std::string owner)
 	{
 		const auto id = m_runtime->next_ref_id();
-		m_refs.emplace(id, std::move(ref));
+		m_refs.emplace(id, RefEntry{.ref = std::move(ref), .owner = std::move(owner)});
 		m_runtime->map_ref(id, this);
 		return id;
 	}
@@ -317,13 +351,123 @@ namespace rml::luau
 	vm::Ref* ScriptHost::lookup(const RefId id) noexcept
 	{
 		const auto it = m_refs.find(id);
-		return it == m_refs.end() ? nullptr : &it->second;
+		return it == m_refs.end() ? nullptr : &it->second.ref;
 	}
 
 	void ScriptHost::release(const RefId id) noexcept
 	{
 		m_refs.erase(id);
 		m_runtime->unmap_ref(id);
+	}
+
+	void ScriptHost::run_unload_handlers(ScriptEnv& env)
+	{
+		auto handlers = env.take_unload_handlers();
+		if (handlers.empty())
+		{
+			return;
+		}
+
+		auto* L = env.thread();
+
+		for (auto& handler : std::views::reverse(handlers))
+		{
+			vm::StackGuard guard(L);
+
+			if (!handler.push(L))
+			{
+				continue;
+			}
+
+			if (const auto called = vm::protected_call(L, 0, 0); !called)
+			{
+				RML_ERROR("An unload handler of mod '{}' failed: {}", env.mod().mod_name(),
+				          called.error().describe());
+			}
+		}
+	}
+
+	void ScriptHost::release_mod_state(const std::string& mod_name, ScriptEnv& env)
+	{
+		auto* L = env.thread();
+
+		for (auto& [target, record] : m_closures.take_hooks_of(mod_name))
+		{
+			if (!restore_closure(L, target, record.original))
+			{
+				RML_WARN("Could not restore a function hooked by mod '{}'", mod_name);
+			}
+		}
+
+		m_closures.release_owner(mod_name);
+
+		std::vector<RefId> dropped;
+		for (const auto& [id, entry] : m_refs)
+		{
+			if (entry.owner == mod_name)
+			{
+				dropped.push_back(id);
+			}
+		}
+
+		for (const auto id : dropped)
+		{
+			release(id);
+		}
+
+		if (!dropped.empty())
+		{
+			m_runtime->bridge().drop_script_callbacks(m_type, dropped);
+		}
+	}
+
+	std::expected<void, vm::VmError> ScriptHost::reload_mod(const ModReloadPlan& plan)
+	{
+		if (!plan.manifest)
+		{
+			return std::unexpected(vm::VmError::internal("reload asked for a mod with no manifest"));
+		}
+
+		if (!vm::api_ready())
+		{
+			vm::report_api_unavailable_once();
+			return std::unexpected(vm::VmError::unavailable("the Luau C API is not resolved on this Studio build"));
+		}
+
+		const auto& mod_name = plan.manifest->name;
+
+		++m_generations[mod_name];
+
+		if (const auto it = m_mod_envs.find(mod_name); it != m_mod_envs.end())
+		{
+			auto retired = std::move(it->second);
+			m_mod_envs.erase(it);
+
+			run_unload_handlers(*retired);
+			release_mod_state(mod_name, *retired);
+
+			m_expired_tokens.push_back(retired->token());
+		}
+
+		const auto dropped = m_modules.invalidate_under(plan.manifest->scripts_root());
+
+		std::size_t posted = 0;
+		for (const auto& asset : plan.scripts)
+		{
+			if (auto queued = post_script(plan.manifest, asset); !queued)
+			{
+				RML_ERROR("Could not queue '{}' for mod '{}': {}", asset.chunk_name(), mod_name,
+				          queued.error().message);
+				continue;
+			}
+
+			++posted;
+		}
+
+		RML_INFO("Reloaded mod '{}' on DataModel type {}: {} module(s) dropped, {} script(s) queued", mod_name,
+		         static_cast<int>(m_type), dropped, posted);
+
+		return {};
 	}
 
 	void ScriptHost::shutdown() noexcept
@@ -336,10 +480,28 @@ namespace rml::luau
 
 		m_dispatcher.drain_cancelled(vm::VmError::unavailable("the DataModel this script host served went away"));
 
+		m_runtime->bridge().drop_script_listeners(m_type);
 		m_runtime->unmap_refs_of(this);
+
+		for (auto& entry : m_refs | std::views::values)
+		{
+			entry.ref.release();
+		}
 		m_refs.clear();
-		m_modules.clear();
-		m_closures.clear();
+
+		m_modules.release();
+		m_closures.release();
+
+		for (auto& env : m_mod_envs | std::views::values)
+		{
+			if (env)
+			{
+				env->release();
+			}
+		}
+
 		m_mod_envs.clear();
+		m_expired_tokens.clear();
+		m_generations.clear();
 	}
 }

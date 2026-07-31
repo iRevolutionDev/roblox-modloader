@@ -96,6 +96,13 @@ namespace rml::luau
 		m_entries.erase(id);
 	}
 
+	void BytecodeCache::invalidate_under(const std::string_view canonical_root)
+	{
+		std::erase_if(m_entries, [canonical_root](const auto& entry) {
+			return std::string_view{entry.first.string()}.starts_with(canonical_root);
+		});
+	}
+
 	void BytecodeCache::clear() noexcept
 	{
 		m_entries.clear();

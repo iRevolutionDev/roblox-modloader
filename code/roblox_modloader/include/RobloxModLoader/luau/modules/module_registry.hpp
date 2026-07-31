@@ -22,7 +22,9 @@ namespace rml::luau
 		    lua_State* L, const ModuleId& id, const ModEnvironment& env);
 
 		void invalidate(const ModuleId& id);
+		std::size_t invalidate_under(const std::filesystem::path& root);
 		void clear() noexcept;
+		void release() noexcept;
 
 		[[nodiscard]] std::size_t loaded_count() const noexcept { return m_loaded.size(); }
 

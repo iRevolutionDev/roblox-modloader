@@ -178,7 +178,7 @@ namespace rml::luau
 		luaL_checktype(L, 2, LUA_TFUNCTION);
 
 		auto& env = bound_env(L);
-		const auto callback = env.host().retain(vm::Ref::take(L, 2));
+		const auto callback = env.host().retain(anchor_in_env(env, L, 2), std::string{env.mod().mod_name()});
 
 		bridge->add_script_listener(env.host().type(), event_name, callback);
 

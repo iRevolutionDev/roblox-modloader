@@ -25,6 +25,12 @@ namespace rml::luau::vm
 		[[nodiscard]] lua_State* get() const noexcept { return m_thread; }
 		[[nodiscard]] bool valid() const noexcept { return m_thread != nullptr && m_anchor.valid(); }
 
+		void release() noexcept
+		{
+			m_thread = nullptr;
+			m_anchor.release();
+		}
+
 		explicit operator bool() const noexcept { return valid(); }
 
 	private:

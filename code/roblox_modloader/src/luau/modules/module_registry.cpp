@@ -129,10 +129,44 @@ namespace rml::luau
 		m_bytecode.invalidate(id);
 	}
 
+	std::size_t ModuleRegistry::invalidate_under(const std::filesystem::path& root)
+	{
+		std::error_code ec;
+		auto canonical = std::filesystem::weakly_canonical(root, ec);
+		if (ec)
+		{
+			canonical = root;
+		}
+
+		auto prefix = canonical.generic_string();
+		if (!prefix.empty() && prefix.back() != '/')
+		{
+			prefix += '/';
+		}
+
+		const auto dropped = std::erase_if(m_loaded, [&prefix](const auto& entry) {
+			return entry.first.string().starts_with(prefix);
+		});
+
+		m_bytecode.invalidate_under(prefix);
+
+		return dropped;
+	}
+
 	void ModuleRegistry::clear() noexcept
 	{
 		m_loaded.clear();
 		m_loading.clear();
 		m_bytecode.clear();
+	}
+
+	void ModuleRegistry::release() noexcept
+	{
+		for (auto& ref : m_loaded | std::views::values)
+		{
+			ref.release();
+		}
+
+		clear();
 	}
 }

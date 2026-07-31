@@ -4,6 +4,7 @@
 #include "RobloxModLoader/luau/luau_bridge.hpp"
 #include "RobloxModLoader/luau/vm/vm_api.hpp"
 #include "lstate.h"
+#include "luau/script/script_watcher.hpp"
 #include "RobloxModLoader/roblox/data_model.hpp"
 
 RML_LOG_SCOPE("ScriptRuntime");
@@ -31,17 +32,33 @@ namespace rml::luau
 		m_mods_directory = mods_directory;
 		m_loader_env = ModEnvironment{.manifest = nullptr, .rml_libraries = default_rml_libraries_root()};
 
-		if (auto scanned = m_catalog.scan(mods_directory); !scanned)
+		std::size_t catalogued = 0;
 		{
-			return std::unexpected(std::move(scanned.error()));
+			std::unique_lock lock(m_catalog_mutex);
+
+			if (auto scanned = m_catalog.scan(mods_directory); !scanned)
+			{
+				return std::unexpected(std::move(scanned.error()));
+			}
+
+			catalogued = m_catalog.mods().size();
 		}
 
-		RML_INFO("Catalogued script mods: {}", m_catalog.mods().size());
+		RML_INFO("Catalogued script mods: {}", catalogued);
 		return {};
 	}
 
 	void ScriptRuntime::shutdown() noexcept
 	{
+		{
+			std::lock_guard watcher_lock(m_watcher_mutex);
+			if (m_watcher)
+			{
+				m_watcher->stop();
+				m_watcher.reset();
+			}
+		}
+
 		std::unique_lock lock(m_hosts_mutex);
 
 		for (auto& host : m_hosts | std::views::values)
@@ -54,6 +71,8 @@ namespace rml::luau
 
 		m_hosts.clear();
 		m_by_global_state.clear();
+
+		std::unique_lock catalog_lock(m_catalog_mutex);
 		m_catalog.clear();
 	}
 
@@ -169,33 +188,161 @@ namespace rml::luau
 
 		std::size_t posted = 0;
 
-		for (const auto& mod : m_catalog.mods())
 		{
-			for (const auto& asset : mod.for_context(type))
-			{
-				if (auto queued = target->post_script(mod.manifest, asset); !queued)
-				{
-					RML_ERROR("Could not queue '{}' for mod '{}': {}", asset.path.filename().string(),
-					          mod.manifest->name, queued.error().message);
-					continue;
-				}
+			std::shared_lock lock(m_catalog_mutex);
 
-				++posted;
+			for (const auto& mod : m_catalog.mods())
+			{
+				for (const auto& asset : mod.for_context(type))
+				{
+					if (auto queued = target->post_script(mod.manifest, asset); !queued)
+					{
+						RML_ERROR("Could not queue '{}' for mod '{}': {}", asset.path.filename().string(),
+						          mod.manifest->name, queued.error().message);
+						continue;
+					}
+
+					++posted;
+				}
 			}
 		}
 
 		RML_INFO("Queued {} scripts for DataModel type {}", posted, static_cast<int>(type));
 	}
 
-	std::expected<void, std::string> ScriptRuntime::reload(const std::string_view mod_name)
+	std::expected<ModReloadPlan, std::string> ScriptRuntime::plan_reload(const std::string& mod_name,
+	                                                                     const RBX::DataModelType type) const
 	{
-		if (auto rescanned = m_catalog.rescan(mod_name); !rescanned)
+		std::shared_lock lock(m_catalog_mutex);
+
+		const auto* mod = m_catalog.find(mod_name);
+		if (mod == nullptr)
 		{
-			return std::unexpected(std::move(rescanned.error()));
+			return std::unexpected(std::format("unknown mod: '{}'", mod_name));
 		}
 
-		RML_INFO("Reloaded the catalogue for mod '{}'", mod_name);
+		const auto scripts = mod->for_context(type);
+
+		return ModReloadPlan{
+		    .manifest = mod->manifest,
+		    .scripts = std::vector<ScriptAsset>{scripts.begin(), scripts.end()},
+		};
+	}
+
+	std::vector<std::pair<std::string, std::filesystem::path>> ScriptRuntime::script_roots() const
+	{
+		std::shared_lock lock(m_catalog_mutex);
+
+		std::vector<std::pair<std::string, std::filesystem::path>> roots;
+		roots.reserve(m_catalog.mods().size());
+
+		for (const auto& mod : m_catalog.mods())
+		{
+			if (mod.manifest)
+			{
+				roots.emplace_back(mod.manifest->name, mod.manifest->scripts_root());
+			}
+		}
+
+		return roots;
+	}
+
+	std::expected<void, std::string> ScriptRuntime::reload(const std::string_view mod_name)
+	{
+		{
+			std::unique_lock lock(m_catalog_mutex);
+
+			if (auto rescanned = m_catalog.rescan(mod_name); !rescanned)
+			{
+				return std::unexpected(std::move(rescanned.error()));
+			}
+		}
+
+		std::size_t notified = 0;
+		{
+			std::shared_lock lock(m_hosts_mutex);
+
+			for (auto& target : m_hosts | std::views::values)
+			{
+				if (!target)
+				{
+					continue;
+				}
+
+				target->dispatcher().post(ReloadMod{.mod_name = std::string{mod_name}});
+				++notified;
+			}
+		}
+
+		if (notified == 0)
+		{
+			RML_INFO("Rescanned mod '{}', no script host is bound yet", mod_name);
+			return {};
+		}
+
+		RML_INFO("Queued a reload of mod '{}' on {} host(s)", mod_name, notified);
 		return {};
+	}
+
+	std::size_t ScriptRuntime::reload_all()
+	{
+		std::vector<std::string> names;
+		{
+			std::shared_lock lock(m_catalog_mutex);
+
+			names.reserve(m_catalog.mods().size());
+			for (const auto& mod : m_catalog.mods())
+			{
+				if (mod.manifest)
+				{
+					names.push_back(mod.manifest->name);
+				}
+			}
+		}
+
+		std::size_t reloaded = 0;
+		for (const auto& name : names)
+		{
+			if (auto queued = reload(name); !queued)
+			{
+				RML_ERROR("Could not reload '{}': {}", name, queued.error());
+				continue;
+			}
+
+			++reloaded;
+		}
+
+		return reloaded;
+	}
+
+	void ScriptRuntime::set_hot_reload(const bool enabled)
+	{
+		std::lock_guard lock(m_watcher_mutex);
+
+		if (!enabled)
+		{
+			if (m_watcher)
+			{
+				m_watcher->stop();
+				m_watcher.reset();
+			}
+
+			return;
+		}
+
+		if (m_watcher)
+		{
+			return;
+		}
+
+		m_watcher = std::make_unique<ScriptWatcher>(*this);
+		m_watcher->start();
+	}
+
+	bool ScriptRuntime::hot_reload_enabled() const noexcept
+	{
+		std::lock_guard lock(m_watcher_mutex);
+		return m_watcher != nullptr;
 	}
 
 	static std::expected<RunChunk, vm::VmError> build_chunk(const std::string_view source,

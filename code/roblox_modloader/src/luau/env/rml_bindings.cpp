@@ -79,6 +79,16 @@ namespace rml::luau
 		lua_setreadonly(L, -1, true);
 	}
 
+	static int rml_on_unload(lua_State* L)
+	{
+		luaL_checktype(L, 1, LUA_TFUNCTION);
+
+		auto& env = bound_env(L);
+		env.add_unload_handler(anchor_in_env(env, L, 1));
+
+		return 0;
+	}
+
 	static void push_mod_table(const ScriptEnv& env, lua_State* L)
 	{
 		const auto& manifest = env.mod().manifest;
@@ -113,6 +123,9 @@ namespace rml::luau
 
 		push_mod_table(env, L);
 		lua_setfield(L, -2, "mod");
+
+		push_bound_function(env, L, "on_unload", &rml_on_unload);
+		lua_setfield(L, -2, "on_unload");
 
 		lua_setreadonly(L, -1, true);
 		lua_setglobal(L, "rml");

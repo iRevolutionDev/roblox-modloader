@@ -44,6 +44,12 @@ namespace rml::luau::vm
 
 		void reset() noexcept;
 
+		void release() noexcept
+		{
+			m_owner = nullptr;
+			m_id = LUA_NOREF;
+		}
+
 	private:
 		lua_State* m_owner{nullptr};
 		int m_id{LUA_NOREF};

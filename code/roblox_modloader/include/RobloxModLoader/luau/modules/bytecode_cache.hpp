@@ -12,6 +12,7 @@ namespace rml::luau
 		[[nodiscard]] std::expected<std::span<const std::byte>, vm::VmError> acquire(const ModuleId& id);
 
 		void invalidate(const ModuleId& id);
+		void invalidate_under(std::string_view canonical_root);
 		void clear() noexcept;
 
 		[[nodiscard]] std::size_t size() const noexcept { return m_entries.size(); }

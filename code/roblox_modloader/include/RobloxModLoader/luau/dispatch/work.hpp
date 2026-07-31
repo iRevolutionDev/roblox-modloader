@@ -14,6 +14,12 @@ namespace rml::luau
 		std::vector<std::byte> bytecode;
 		ModManifestPtr owner;
 		bool want_result{false};
+		std::uint64_t generation{0};
+	};
+
+	struct ReloadMod
+	{
+		std::string mod_name;
 	};
 
 	struct CallRef
@@ -33,5 +39,5 @@ namespace rml::luau
 		RefId target{kInvalidRef};
 	};
 
-	using Work = std::variant<RunChunk, CallRef, IndexRef, ReleaseRef>;
+	using Work = std::variant<RunChunk, CallRef, IndexRef, ReleaseRef, ReloadMod>;
 }

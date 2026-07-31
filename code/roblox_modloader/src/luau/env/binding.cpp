@@ -1,6 +1,7 @@
 #include "RobloxModLoader/luau/env/binding.hpp"
 
 #include "RobloxModLoader/luau/script_host.hpp"
+#include "RobloxModLoader/luau/vm/stack_guard.hpp"
 
 #include <cstring>
 
@@ -8,20 +9,52 @@ RML_LOG_SCOPE("LuauBinding");
 
 namespace rml::luau
 {
-	static void push_env_upvalue(ScriptEnv& env, lua_State* L)
+	static void push_env_upvalue(const ScriptEnv& env, lua_State* L)
 	{
-		auto* address = &env;
-		lua_pushlstring(L, reinterpret_cast<const char*>(&address), sizeof(address));
+		auto* token = env.token().get();
+		lua_pushlstring(L, reinterpret_cast<const char*>(&token), sizeof(token));
 	}
 
-	ScriptEnv::ScriptEnv(ScriptHost& host, vm::Thread thread, ModEnvironment mod) noexcept
-		: m_host(&host), m_thread(std::move(thread)), m_mod(std::move(mod))
+	ScriptEnv::ScriptEnv(ScriptHost& host, vm::Thread thread, ModEnvironment mod)
+		: m_host(&host), m_thread(std::move(thread)), m_mod(std::move(mod)),
+		  m_token(std::make_shared<EnvToken>())
 	{
+		m_token->env = this;
+	}
+
+	ScriptEnv::~ScriptEnv()
+	{
+		m_token->env = nullptr;
 	}
 
 	ModuleRegistry& ScriptEnv::modules() const noexcept { return m_host->modules(); }
 
 	ClosureRegistry& ScriptEnv::closures() const noexcept { return m_host->closures(); }
+
+	void ScriptEnv::add_unload_handler(vm::Ref handler)
+	{
+		if (handler.valid())
+		{
+			m_unload_handlers.push_back(std::move(handler));
+		}
+	}
+
+	std::vector<vm::Ref> ScriptEnv::take_unload_handlers() noexcept
+	{
+		return std::exchange(m_unload_handlers, {});
+	}
+
+	void ScriptEnv::release() noexcept
+	{
+		for (auto& handler : m_unload_handlers)
+		{
+			handler.release();
+		}
+
+		m_unload_handlers.clear();
+		m_original_require.release();
+		m_thread.release();
+	}
 
 	void push_bound_function(ScriptEnv& env, lua_State* L, const char* debug_name, const lua_CFunction fn)
 	{
@@ -35,15 +68,54 @@ namespace rml::luau
 		lua_setglobal(L, name);
 	}
 
-	ScriptEnv& bound_env(lua_State* L) noexcept
+	ScriptEnv* try_bound_env(lua_State* L) noexcept
 	{
 		std::size_t length = 0;
 		const auto* bytes = lua_tolstring(L, lua_upvalueindex(1), &length);
 
-		ScriptEnv* env = nullptr;
-		std::memcpy(&env, bytes, sizeof(env));
+		if (bytes == nullptr || length != sizeof(EnvToken*))
+		{
+			return nullptr;
+		}
 
-		return *env;
+		EnvToken* token = nullptr;
+		std::memcpy(&token, bytes, sizeof(token));
+
+		return token == nullptr ? nullptr : token->env;
+	}
+
+	ScriptEnv& bound_env(lua_State* L)
+	{
+		if (auto* env = try_bound_env(L))
+		{
+			return *env;
+		}
+
+		luaL_error(L, "this function belongs to a script environment that was unloaded");
+	}
+
+	vm::Ref anchor_in_env(const ScriptEnv& env, lua_State* L, const int index)
+	{
+		auto* target = env.thread();
+
+		if (target == nullptr || target == L)
+		{
+			return vm::Ref::take(L, index);
+		}
+
+		const auto staged = vm::Ref::take(L, index);
+		if (!staged.valid())
+		{
+			return {};
+		}
+
+		vm::StackGuard guard(target);
+		if (!staged.push(target))
+		{
+			return {};
+		}
+
+		return vm::Ref::take(target, -1);
 	}
 
 	bool bind_globals(ScriptEnv& env, lua_State* L) noexcept
