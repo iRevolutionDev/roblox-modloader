@@ -18,6 +18,7 @@ namespace rml::luau::vm
 		Kind kind{Kind::Internal};
 		std::string message;
 		std::string traceback;
+		bool reported{false};
 
 		[[nodiscard]] std::string describe() const
 		{
@@ -43,4 +44,8 @@ namespace rml::luau::vm
 	[[nodiscard]] std::expected<int, VmError> protected_call(lua_State* L, int nargs, int nresults) noexcept;
 
 	[[nodiscard]] VmError error_from_stack(lua_State* L, VmError::Kind kind);
+
+	[[nodiscard]] VmError::Kind kind_from_status(int status) noexcept;
+
+	[[nodiscard]] std::string capture_traceback(lua_State* L);
 }

@@ -351,14 +351,67 @@ check("rml.mod carries this mod's manifest and refuses writes", function()
 	end), "rml.mod accepted a write")
 end)
 
-check("require refuses a specifier with no alias", function()
+check("require refuses a specifier with no prefix", function()
 	local ok, err = pcall(require, "some_module")
 	assert(not ok, "a bare specifier resolved")
 	assert(string.find(tostring(err), "@rml/", 1, true) ~= nil, "the error does not name the aliases: " .. tostring(err))
 end)
 
+check("require refuses an alias it does not know", function()
+	local ok, err = pcall(require, "@nowhere/thing")
+	assert(not ok, "an unknown alias resolved")
+	assert(string.find(tostring(err), "unknown alias", 1, true) ~= nil, "unexpected error: " .. tostring(err))
+end)
+
 check("require refuses to climb out of the mod folder", function()
 	assert(not pcall(require, "@self/../../../escape"), "a .. specifier resolved")
+	assert(not pcall(require, "../outside"), "a relative .. specifier resolved")
+	assert(not pcall(require, "@self/C:/windows/system32/drivers/etc/hosts"), "an absolute path resolved")
+end)
+
+check("require resolves a path relative to the file asking", function()
+	local direct = require("@self/probe")
+	assert(require("./probe") == direct, "'./probe' and '@self/probe' gave different modules")
+end)
+
+check("require loads a folder through its init file", function()
+	local pkg = require("@self/pkg")
+	assert(pkg.marker == "pkg", "the init file did not load")
+	assert(require("@self/pkg") == pkg, "the init file was loaded twice")
+	assert(pkg.sibling.marker == "sibling", "an init file resolved './' against the wrong folder")
+end)
+
+check("a required module reaches as far as the script that required it", function()
+	local caps = require("@self/caps")
+
+	local mine = {
+		settings = pcall(function()
+			return settings()
+		end),
+		instance = pcall(function()
+			return Instance.new("Folder")
+		end),
+		loadstring = pcall(function()
+			return loadstring("return 1")
+		end),
+		getservice = pcall(function()
+			return game:GetService("CoreGui")
+		end),
+	}
+
+	for name, ok in pairs(mine) do
+		local theirs = caps.at_load[name]
+		assert(theirs ~= nil, "the module never probed " .. name)
+		assert(theirs.ok == ok, ("%s: the script got %s, the module got %s (%s)"):format(name, tostring(ok),
+			tostring(theirs.ok), theirs.err))
+	end
+end)
+
+check("require walks relative paths from inside a module", function()
+	local pkg = require("@self/pkg")
+	assert(pkg.helper.marker == "helper", "the helper never loaded")
+	assert(pkg.helper.leaf.marker == "leaf", "a nested './' require went astray")
+	assert(pkg.helper.sibling == pkg.sibling, "'../' landed on a different module")
 end)
 
 check("require reports a module it cannot find", function()
@@ -400,6 +453,32 @@ probe("frame alignment", function()
 
 	say("probe align " .. table.concat(shown, " "))
 	say(("probe locals were %d %d %d"):format(aaa, bbb, ccc))
+end)
+
+probe("require hands an Instance to the engine", function()
+	if game == nil or Instance == nil then
+		say("probe require-instance skipped: this thread has no engine globals")
+		return
+	end
+
+	local holder = Instance.new("Folder")
+	holder.Parent = game:GetService("ServerStorage")
+
+	local module = Instance.new("ModuleScript")
+	module.Name = "RmlSelfTestModule"
+	module.Source = "return { marker = 'engine' }"
+	module.Parent = holder
+
+	local ok, result = pcall(require, module)
+	holder:Destroy()
+
+	if not ok then
+		say("probe require-instance raised " .. tostring(result))
+		return
+	end
+
+	assert(type(result) == "table" and result.marker == "engine", "the engine module came back wrong")
+	say("probe require-instance loaded a ModuleScript through the engine")
 end)
 
 check("getstack sees the live frame and setstack writes into it", function()

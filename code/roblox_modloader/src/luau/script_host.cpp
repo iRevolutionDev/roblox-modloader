@@ -7,15 +7,17 @@
 #include "RobloxModLoader/luau/vm/stack_guard.hpp"
 #include "RobloxModLoader/luau/vm/thread_identity.hpp"
 #include "RobloxModLoader/luau/vm/vm_api.hpp"
-#include "RobloxModLoader/roblox/security/script_permissions.hpp"
 #include "RobloxModLoader/roblox/data_model.hpp"
+#include "RobloxModLoader/roblox/security/script_permissions.hpp"
 
 RML_LOG_SCOPE("ScriptHost");
 
 namespace rml::luau
 {
-	ScriptHost::ScriptHost(ScriptRuntime& runtime, const RBX::DataModelType type, lua_State* global_state)
-		: m_runtime(&runtime), m_type(type), m_global(global_state)
+	ScriptHost::ScriptHost(ScriptRuntime& runtime, const RBX::DataModelType type, lua_State* global_state) :
+	    m_runtime(&runtime),
+	    m_type(type),
+	    m_global(global_state)
 	{
 	}
 
@@ -109,6 +111,8 @@ namespace rml::luau
 	{
 		m_owner.store(std::this_thread::get_id(), std::memory_order_release);
 
+		prune_parked();
+
 		if (const auto pending = m_dispatcher.pending_count(); pending > 0)
 		{
 			RML_INFO("Pumping {} queued item(s) for DataModel type {}", pending, static_cast<int>(m_type));
@@ -120,8 +124,8 @@ namespace rml::luau
 	static std::expected<void, vm::VmError> push_value(lua_State* L, const Value& value, ScriptHost& host)
 	{
 		return std::visit(
-		    [&](const auto& held) -> std::expected<void, vm::VmError> {
-			    using Held = std::decay_t<decltype(held)>;
+		    [&]<typename H>(const H& held) -> std::expected<void, vm::VmError> {
+			    using Held = std::decay_t<H>;
 
 			    if constexpr (std::is_same_v<Held, std::monostate>)
 			    {
@@ -150,8 +154,7 @@ namespace rml::luau
 			    }
 			    else
 			    {
-				    return std::unexpected(
-				        vm::VmError::unavailable("passing an engine Instance into Luau is not wired up yet"));
+				    return std::unexpected(vm::VmError::unavailable("passing an engine Instance into Luau is not wired up yet"));
 			    }
 
 			    return {};
@@ -163,27 +166,100 @@ namespace rml::luau
 	{
 		switch (lua_type(L, index))
 		{
-		case LUA_TNIL:
-			return Value{};
-		case LUA_TBOOLEAN:
-			return lua_toboolean(L, index) != 0;
-		case LUA_TNUMBER:
-			return lua_tonumberx(L, index, nullptr);
+		case LUA_TNIL: return Value{};
+		case LUA_TBOOLEAN: return lua_toboolean(L, index) != 0;
+		case LUA_TNUMBER: return lua_tonumberx(L, index, nullptr);
 		case LUA_TSTRING:
 		{
 			std::size_t length = 0;
 			const auto* text = lua_tolstring(L, index, &length);
 			return std::string{text ? text : "", text ? length : 0};
 		}
-		default:
-			break;
+		default: break;
 		}
 
 		lua_pushvalue(L, index);
-		auto ref = vm::Ref::take(L, -1);
+		auto ref = vm::Ref::take(L, -1, host.global_state());
 		lua_pop(L, 1);
 
 		return LuauRefHandle{host.retain(std::move(ref))};
+	}
+
+	static int report_script_error(lua_State* L)
+	{
+		std::size_t length = 0;
+		const auto* raw = lua_tolstring(L, 1, &length);
+		std::string message = raw ? std::string{raw, length} : "unknown Luau error";
+
+		const auto traceback = vm::capture_traceback(L);
+		const auto* label = lua_tolstring(L, lua_upvalueindex(1), nullptr);
+
+		RML_ERROR("{} raised: {}{}{}", label ? label : "a mod script", message, traceback.empty() ? "" : "\n", traceback);
+
+		if (!traceback.empty())
+		{
+			message.append("\n").append(traceback);
+		}
+
+		lua_pushlstring(L, message.data(), message.size());
+		return 1;
+	}
+
+	static void push_error_handler(lua_State* L, const std::string& label)
+	{
+		lua_pushlstring(L, label.data(), label.size());
+		lua_pushcclosure(L, &report_script_error, "rml_script_error", 1);
+	}
+
+	static bool push_xpcall(lua_State* L)
+	{
+		lua_getglobal(L, "xpcall");
+		if (lua_isfunction(L, -1))
+		{
+			return true;
+		}
+
+		lua_pop(L, 1);
+		return false;
+	}
+
+	static WorkResult start_thread(ScriptHost& host, vm::Thread thread, const int nargs, const bool wrapped, const bool want_result, const std::string& label, std::string owner)
+	{
+		auto* co = thread.get();
+
+		const auto outcome = vm::resume(co, nargs);
+		if (!outcome)
+		{
+			return std::unexpected(outcome.error());
+		}
+
+		if (outcome->suspended)
+		{
+			RML_DEBUG("{} yielded; it carries on when the engine resumes it", label);
+			host.park(std::move(thread), std::move(owner), label);
+			return Value{};
+		}
+
+		const auto produced = outcome->results;
+
+		if (!wrapped)
+		{
+			return want_result && produced >= 1 ? read_value(co, 1, host) : Value{};
+		}
+
+		if (produced < 1 || lua_toboolean(co, 1) == 0)
+		{
+			if (!want_result)
+			{
+				return Value{};
+			}
+
+			std::size_t length = 0;
+			const auto* raw = produced >= 2 ? lua_tolstring(co, 2, &length) : nullptr;
+			return std::unexpected(vm::VmError{.kind = vm::VmError::Kind::Runtime, .message = raw ? std::string{raw, length} : "the script failed", .reported = true});
+		}
+
+		return want_result && produced >= 2 ? read_value(co, 2, host) : Value{};
 	}
 
 	static WorkResult run_chunk(ScriptHost& host, RunChunk& chunk)
@@ -205,34 +281,35 @@ namespace rml::luau
 			return std::unexpected(thread.error());
 		}
 
-		auto* L = thread->get();
-		vm::StackGuard guard(L);
+		auto* co = thread->get();
 
-		vm::set_identity(L, RBX::Security::Permissions::RobloxEngine, RBX::Security::FULL_CAPABILITIES, false);
+		vm::set_identity(co, RBX::Security::Permissions::RobloxEngine, RBX::Security::FULL_CAPABILITIES, false);
 
-		if (auto loaded = vm::load_chunk(L, chunk.chunk_name, chunk.bytecode, RBX::Security::FULL_CAPABILITIES);
-		    !loaded)
+		const auto label = std::format("script '{}'", chunk.chunk_name);
+		const auto wrapped = push_xpcall(co);
+
+		if (auto loaded = vm::load_chunk(co, chunk.chunk_name, chunk.bytecode, RBX::Security::FULL_CAPABILITIES); !loaded)
 		{
 			return std::unexpected(std::move(loaded.error()));
 		}
 
-		const auto called = vm::protected_call(L, 0, chunk.want_result ? 1 : 0);
-		if (!called)
+		if (wrapped)
 		{
-			return std::unexpected(called.error());
+			push_error_handler(co, label);
 		}
 
-		if (!chunk.want_result || *called < 1)
-		{
-			return Value{};
-		}
-
-		return read_value(L, -1, host);
+		return start_thread(host,
+		    std::move(*thread),
+		    wrapped ? 2 : 0,
+		    wrapped,
+		    chunk.want_result,
+		    label,
+		    chunk.owner ? chunk.owner->name : std::string{});
 	}
 
-	static WorkResult call_ref(ScriptHost& host, CallRef& call)
+	static WorkResult call_ref(ScriptHost& host, const CallRef& call)
 	{
-		auto* target = host.lookup(call.target);
+		const auto* target = host.lookup(call.target);
 		if (target == nullptr)
 		{
 			return std::unexpected(vm::VmError::internal("the Luau handle being called is no longer live"));
@@ -244,31 +321,45 @@ namespace rml::luau
 			return std::unexpected(env.error());
 		}
 
-		auto* L = (*env)->thread();
-		vm::StackGuard guard(L);
+		auto thread = vm::Thread::spawn((*env)->thread());
+		if (!thread)
+		{
+			return std::unexpected(thread.error());
+		}
 
-		target->push(L);
+		auto* co = thread->get();
+
+		vm::set_identity(co, RBX::Security::Permissions::RobloxEngine, RBX::Security::FULL_CAPABILITIES, false);
+
+		constexpr auto label = std::string{"a script callback"};
+		const auto wrapped = push_xpcall(co);
+
+		if (!target->push(co))
+		{
+			return std::unexpected(vm::VmError::internal("the Luau handle being called is no longer live"));
+		}
+
+		if (wrapped)
+		{
+			push_error_handler(co, label);
+		}
 
 		for (const auto& argument : call.args)
 		{
-			if (auto pushed = push_value(L, argument, host); !pushed)
+			if (auto pushed = push_value(co, argument, host); !pushed)
 			{
 				return std::unexpected(std::move(pushed.error()));
 			}
 		}
 
-		const auto called = vm::protected_call(L, static_cast<int>(call.args.size()), 1);
-		if (!called)
-		{
-			return std::unexpected(called.error());
-		}
+		const auto argc = static_cast<int>(call.args.size());
 
-		return read_value(L, -1, host);
+		return start_thread(host, std::move(*thread), (wrapped ? 2 : 0) + argc, wrapped, true, label, {});
 	}
 
-	static WorkResult index_ref(ScriptHost& host, IndexRef& index)
+	static WorkResult index_ref(ScriptHost& host, const IndexRef& index)
 	{
-		auto* target = host.lookup(index.target);
+		const auto* target = host.lookup(index.target);
 		if (target == nullptr)
 		{
 			return std::unexpected(vm::VmError::internal("the Luau handle being indexed is no longer live"));
@@ -294,8 +385,7 @@ namespace rml::luau
 		auto plan = host.runtime().plan_reload(request.mod_name, host.type());
 		if (!plan)
 		{
-			return std::unexpected(vm::VmError::internal(
-			    std::format("cannot reload '{}': {}", request.mod_name, plan.error())));
+			return std::unexpected(vm::VmError::internal(std::format("cannot reload '{}': {}", request.mod_name, plan.error())));
 		}
 
 		if (auto reloaded = host.reload_mod(*plan); !reloaded)
@@ -309,8 +399,8 @@ namespace rml::luau
 	void ScriptHost::execute(Work& work, std::move_only_function<void(WorkResult)> settle) noexcept
 	{
 		auto result = std::visit(
-		    [this](auto& held) -> WorkResult {
-			    using Held = std::decay_t<decltype(held)>;
+		    [this]<typename H>(H& held) -> WorkResult {
+			    using Held = std::decay_t<H>;
 
 			    if constexpr (std::is_same_v<Held, RunChunk>)
 			    {
@@ -337,6 +427,59 @@ namespace rml::luau
 		    work);
 
 		settle(std::move(result));
+	}
+
+	void ScriptHost::park(vm::Thread thread, std::string owner, std::string label)
+	{
+		if (!thread.valid())
+		{
+			return;
+		}
+
+		m_parked.push_back(ParkedThread{.thread = std::move(thread), .owner = std::move(owner), .label = std::move(label)});
+	}
+
+	void ScriptHost::prune_parked() noexcept
+	{
+		if (m_parked.empty() || m_shutdown)
+		{
+			return;
+		}
+
+		std::erase_if(m_parked, [](const ParkedThread& parked) {
+			return !vm::is_suspended(parked.thread);
+		});
+	}
+
+	void ScriptHost::close_parked_of(const std::string& mod_name) noexcept
+	{
+		if (m_parked.empty())
+		{
+			return;
+		}
+
+		const auto env = loader_env();
+		if (!env)
+		{
+			return;
+		}
+
+		auto* L = (*env)->thread();
+
+		std::erase_if(m_parked, [&](const ParkedThread& parked) {
+			if (parked.owner != mod_name)
+			{
+				return false;
+			}
+
+			if (!vm::close_thread(L, parked.thread))
+			{
+				RML_WARN("{} of mod '{}' stayed suspended through the reload", parked.label, mod_name);
+				return false;
+			}
+
+			return true;
+		});
 	}
 
 	RefId ScriptHost::retain(vm::Ref ref, std::string owner)
@@ -380,14 +523,15 @@ namespace rml::luau
 
 			if (const auto called = vm::protected_call(L, 0, 0); !called)
 			{
-				RML_ERROR("An unload handler of mod '{}' failed: {}", env.mod().mod_name(),
-				          called.error().describe());
+				RML_ERROR("An unload handler of mod '{}' failed: {}", env.mod().mod_name(), called.error().describe());
 			}
 		}
 	}
 
 	void ScriptHost::release_mod_state(const std::string& mod_name, ScriptEnv& env)
 	{
+		close_parked_of(mod_name);
+
 		auto* L = env.thread();
 
 		for (auto& [target, record] : m_closures.take_hooks_of(mod_name))
@@ -439,7 +583,7 @@ namespace rml::luau
 
 		if (const auto it = m_mod_envs.find(mod_name); it != m_mod_envs.end())
 		{
-			auto retired = std::move(it->second);
+			const auto retired = std::move(it->second);
 			m_mod_envs.erase(it);
 
 			run_unload_handlers(*retired);
@@ -464,16 +608,14 @@ namespace rml::luau
 		{
 			if (auto queued = post_script(plan.manifest, asset); !queued)
 			{
-				RML_ERROR("Could not queue '{}' for mod '{}': {}", asset.chunk_name(), mod_name,
-				          queued.error().message);
+				RML_ERROR("Could not queue '{}' for mod '{}': {}", asset.chunk_name(), mod_name, queued.error().message);
 				continue;
 			}
 
 			++posted;
 		}
 
-		RML_INFO("Reloaded mod '{}' on DataModel type {}: {} module(s) dropped, {} script(s) queued", mod_name,
-		         static_cast<int>(m_type), dropped, posted);
+		RML_INFO("Reloaded mod '{}' on DataModel type {}: {} module(s) dropped, {} script(s) queued", mod_name, static_cast<int>(m_type), dropped, posted);
 
 		return {};
 	}
@@ -496,6 +638,12 @@ namespace rml::luau
 			entry.ref.release();
 		}
 		m_refs.clear();
+
+		for (auto& parked : m_parked)
+		{
+			parked.thread.release();
+		}
+		m_parked.clear();
 
 		m_bytecode.clear();
 		m_closures.release();

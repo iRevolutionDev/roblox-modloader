@@ -144,7 +144,7 @@ namespace rml
 		        }
 		    },
 		    {"LUA_RESUME",
-		        "40 53 48 83 EC 20 41 B8 01 00 00 00 48 8B D9 E8 ? ? ? ? 85 C0",
+		        "48 89 74 24 ? 57 48 83 EC 20 49 63 F0 48 8B F9 44 8B C6",
 		        [](const memory::handle ptr) {
 			        g_pointers->m_roblox_pointers.lua_resume = ptr.as<functions::lua_resume>();
 		        }

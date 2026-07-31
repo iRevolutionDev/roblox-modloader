@@ -5,6 +5,7 @@
 #include "RobloxModLoader/luau/env/closure_registry.hpp"
 #include "RobloxModLoader/luau/modules/bytecode_cache.hpp"
 #include "RobloxModLoader/luau/script/script_asset.hpp"
+#include "RobloxModLoader/luau/vm/lua_thread.hpp"
 #include <unordered_map>
 
 namespace RBX
@@ -51,6 +52,8 @@ namespace rml::luau
 
 		std::expected<ScriptEnv*, vm::VmError> loader_env() { return env_for(nullptr); }
 
+		void park(vm::Thread thread, std::string owner, std::string label);
+
 		[[nodiscard]] RefId retain(vm::Ref ref, std::string owner = {});
 		[[nodiscard]] vm::Ref* lookup(RefId id) noexcept;
 		void release(RefId id) noexcept;
@@ -68,7 +71,17 @@ namespace rml::luau
 			std::string owner;
 		};
 
+		struct ParkedThread
+		{
+			vm::Thread thread;
+			std::string owner;
+			std::string label;
+		};
+
 		[[nodiscard]] bool on_owner_thread() const noexcept;
+
+		void prune_parked() noexcept;
+		void close_parked_of(const std::string& mod_name) noexcept;
 
 		void execute(Work& work, std::move_only_function<void(WorkResult)> settle) noexcept;
 
@@ -87,6 +100,7 @@ namespace rml::luau
 		std::unordered_map<RefId, RefEntry> m_refs;
 		std::unordered_map<std::string, std::uint64_t> m_generations;
 		std::vector<EnvTokenPtr> m_expired_tokens;
+		std::vector<ParkedThread> m_parked;
 
 		std::atomic<std::thread::id> m_owner{};
 		bool m_shutdown{false};

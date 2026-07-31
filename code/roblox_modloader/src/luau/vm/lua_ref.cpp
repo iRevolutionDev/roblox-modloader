@@ -2,7 +2,7 @@
 
 namespace rml::luau::vm
 {
-	Ref Ref::take(lua_State* L, const int index)
+	Ref Ref::take(lua_State* L, const int index, lua_State* owner)
 	{
 		if (!L)
 		{
@@ -15,7 +15,7 @@ namespace rml::luau::vm
 			return {};
 		}
 
-		return Ref{L, id};
+		return Ref{owner ? owner : L, id};
 	}
 
 	bool Ref::push(lua_State* L) const

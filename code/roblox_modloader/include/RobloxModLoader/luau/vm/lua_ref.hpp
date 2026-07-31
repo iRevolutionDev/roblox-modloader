@@ -35,7 +35,7 @@ namespace rml::luau::vm
 			return *this;
 		}
 
-		[[nodiscard]] static Ref take(lua_State* L, int index);
+		[[nodiscard]] static Ref take(lua_State* L, int index, lua_State* owner = nullptr);
 
 		[[nodiscard]] bool valid() const noexcept { return m_owner != nullptr && m_id != LUA_NOREF; }
 		[[nodiscard]] int id() const noexcept { return m_id; }

@@ -242,7 +242,7 @@ namespace rml::luau
 			return;
 		}
 
-		if (!result)
+		if (!result && !result.error().reported)
 		{
 			RML_ERROR("{}", result.error().describe());
 		}

@@ -8,7 +8,7 @@ namespace rml::luau::vm
 	static constexpr char kTracebackField[] = "traceback";
 	static constexpr char kUnknownError[] = "unknown Luau error";
 
-	static std::string capture_traceback(lua_State* L)
+	std::string capture_traceback(lua_State* L)
 	{
 		const int base = lua_gettop(L);
 		std::string text;
@@ -96,7 +96,7 @@ namespace rml::luau::vm
 		return error;
 	}
 
-	static VmError::Kind kind_from_status(const int status)
+	VmError::Kind kind_from_status(const int status) noexcept
 	{
 		switch (status)
 		{
