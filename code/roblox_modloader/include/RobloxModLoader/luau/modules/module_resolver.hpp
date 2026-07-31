@@ -7,8 +7,10 @@ namespace rml::luau
 {
 	enum class ResolveError : std::uint8_t
 	{
-		MissingAlias,
+		NoPrefix,
+		UnknownAlias,
 		EmptyName,
+		NoRequirer,
 		EscapesRoot,
 		NotFound,
 		NotAFile,
@@ -19,9 +21,17 @@ namespace rml::luau
 	{
 		ResolveError error{ResolveError::NotFound};
 		std::string specifier;
+		std::string requirer;
+		std::string alias;
 		std::vector<std::string> attempted;
 
 		[[nodiscard]] std::string describe() const;
+	};
+
+	struct ResolvedModule
+	{
+		ModuleId id;
+		std::string logical;
 	};
 
 	namespace roots
@@ -32,17 +42,19 @@ namespace rml::luau
 
 	struct ResolveRule
 	{
-		std::string_view prefix;
+		std::string_view alias;
 		std::filesystem::path (*root)(const ModEnvironment&) noexcept;
 	};
 
 	inline constexpr std::array kResolveRules{
-	    ResolveRule{"@rml/", &roots::rml_libraries},
-	    ResolveRule{"@self/", &roots::mod_scripts},
+	    ResolveRule{"rml", &roots::rml_libraries},
+	    ResolveRule{"self", &roots::mod_scripts},
 	};
 
-	[[nodiscard]] std::expected<ModuleId, ResolveFailure> resolve_module(
-	    std::string_view specifier, const ModEnvironment& env);
+	[[nodiscard]] std::expected<ResolvedModule, ResolveFailure> resolve_module(
+	    std::string_view specifier, const ModEnvironment& env, std::string_view requirer = {});
 
-	[[nodiscard]] bool is_safe_relative_specifier(std::string_view rest) noexcept;
+	[[nodiscard]] std::string logical_name_for(const std::filesystem::path& file, const ModEnvironment& env);
+
+	[[nodiscard]] bool is_logical_module_path(std::string_view text) noexcept;
 }

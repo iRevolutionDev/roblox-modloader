@@ -122,4 +122,13 @@ namespace rml::luau::vm
 		if (!utils::guarded_invoke(&elevate_proto_tree, &call))
 			RML_ERROR("elevate_closure faulted while walking the proto tree; capabilities were not applied");
 	}
+
+	void elevate_stack_closure(lua_State* L, const int index, const std::uint64_t capabilities) noexcept
+	{
+		const auto to_pointer = g_pointers ? g_pointers->m_roblox_pointers.lua_topointer : nullptr;
+		if (!L || !to_pointer || !lua_isfunction(L, index))
+			return;
+
+		elevate_closure(static_cast<const Closure*>(to_pointer(L, index)), capabilities);
+	}
 }

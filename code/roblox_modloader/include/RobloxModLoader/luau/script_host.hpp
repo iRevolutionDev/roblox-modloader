@@ -3,7 +3,7 @@
 #include "RobloxModLoader/luau/dispatch/dispatcher.hpp"
 #include "RobloxModLoader/luau/env/binding.hpp"
 #include "RobloxModLoader/luau/env/closure_registry.hpp"
-#include "RobloxModLoader/luau/modules/module_registry.hpp"
+#include "RobloxModLoader/luau/modules/bytecode_cache.hpp"
 #include "RobloxModLoader/luau/script/script_asset.hpp"
 #include <unordered_map>
 
@@ -38,7 +38,7 @@ namespace rml::luau
 		[[nodiscard]] ScriptRuntime& runtime() const noexcept { return *m_runtime; }
 
 		[[nodiscard]] Dispatcher& dispatcher() noexcept { return m_dispatcher; }
-		[[nodiscard]] ModuleRegistry& modules() noexcept { return m_modules; }
+		[[nodiscard]] BytecodeCache& bytecode() noexcept { return m_bytecode; }
 		[[nodiscard]] ClosureRegistry& closures() noexcept { return m_closures; }
 
 		void pump(const Budget& budget) noexcept;
@@ -80,7 +80,7 @@ namespace rml::luau
 		lua_State* m_global;
 
 		Dispatcher m_dispatcher;
-		ModuleRegistry m_modules;
+		BytecodeCache m_bytecode;
 		ClosureRegistry m_closures;
 
 		std::unordered_map<std::string, std::unique_ptr<ScriptEnv>> m_mod_envs;

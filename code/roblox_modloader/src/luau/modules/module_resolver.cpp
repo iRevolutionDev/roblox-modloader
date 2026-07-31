@@ -17,6 +17,9 @@ namespace rml::luau
 		}
 	}
 
+	static constexpr std::array kSourceExtensions{std::string_view{".luau"}, std::string_view{".lua"}};
+	static constexpr std::array kInitNames{std::string_view{"init.luau"}, std::string_view{"init.lua"}};
+
 	static std::string join_attempts(const std::vector<std::string>& attempted)
 	{
 		std::string joined;
@@ -29,6 +32,146 @@ namespace rml::luau
 			joined += path;
 		}
 		return joined.empty() ? std::string{"nothing"} : joined;
+	}
+
+	static std::string known_aliases()
+	{
+		std::string joined;
+		for (const auto& rule : kResolveRules)
+		{
+			if (!joined.empty())
+			{
+				joined += ", ";
+			}
+			joined += std::format("'@{}/'", rule.alias);
+		}
+		return joined;
+	}
+
+	std::string ResolveFailure::describe() const
+	{
+		switch (error)
+		{
+		case ResolveError::NoPrefix:
+			return std::format("module '{}' has no prefix: start it with './', '../', '@self/' or '@rml/', or pass a "
+			                   "ModuleScript instance instead",
+			    specifier);
+		case ResolveError::UnknownAlias:
+			return std::format("module '{}' asks for the unknown alias '@{}': the known aliases are {}", specifier, alias, known_aliases());
+		case ResolveError::EmptyName: return std::format("module '{}' names nothing to load", specifier);
+		case ResolveError::NoRequirer:
+			return std::format("module '{}' is relative, but the file asking for it is not one the loader owns: use '@self/' or "
+			                   "'@rml/' here",
+			    specifier);
+		case ResolveError::EscapesRoot:
+			return std::format("module '{}' escapes '@{}': '..' cannot climb past the root, and absolute paths are not allowed", specifier, alias);
+		case ResolveError::NotAFile:
+			return std::format("module '{}' is not a regular file (tried: {})", specifier, join_attempts(attempted));
+		case ResolveError::IoError:
+			return std::format("module '{}' could not be resolved: the root of '@{}' is unavailable", specifier, alias);
+		case ResolveError::NotFound: break;
+		}
+
+		if (requirer.empty())
+		{
+			return std::format("module '{}' not found (tried: {})", specifier, join_attempts(attempted));
+		}
+
+		return std::format("module '{}' not found from '{}' (tried: {})", specifier, requirer, join_attempts(attempted));
+	}
+
+	static std::string lowered(const std::string_view text)
+	{
+		std::string folded;
+		folded.reserve(text.size());
+		std::ranges::transform(text, std::back_inserter(folded), [](const unsigned char c) {
+			return static_cast<char>(std::tolower(c));
+		});
+		return folded;
+	}
+
+	struct AliasSplit
+	{
+		std::string alias;
+		std::string_view rest;
+	};
+
+	static AliasSplit split_alias(const std::string_view aliased)
+	{
+		const auto slash = aliased.find('/');
+		if (slash == std::string_view::npos)
+		{
+			return AliasSplit{.alias = lowered(aliased.substr(1)), .rest = {}};
+		}
+
+		return AliasSplit{.alias = lowered(aliased.substr(1, slash - 1)), .rest = aliased.substr(slash + 1)};
+	}
+
+	static const ResolveRule* rule_for(const std::string_view alias)
+	{
+		const auto found = std::ranges::find(kResolveRules, alias, &ResolveRule::alias);
+		return found == kResolveRules.end() ? nullptr : &*found;
+	}
+
+	static bool is_usable_segment(const std::string_view segment)
+	{
+		return segment.find('\0') == std::string_view::npos && segment.find(':') == std::string_view::npos;
+	}
+
+	static bool walk_segments(const std::string_view path, std::vector<std::string>& segments)
+	{
+		std::size_t start = 0;
+
+		while (start <= path.size())
+		{
+			auto end = path.find('/', start);
+			if (end == std::string_view::npos)
+			{
+				end = path.size();
+			}
+
+			const auto segment = path.substr(start, end - start);
+
+			if (segment == "..")
+			{
+				if (segments.empty())
+				{
+					return false;
+				}
+				segments.pop_back();
+			}
+			else if (!segment.empty() && segment != ".")
+			{
+				if (!is_usable_segment(segment))
+				{
+					return false;
+				}
+				segments.emplace_back(segment);
+			}
+
+			if (end == path.size())
+			{
+				break;
+			}
+
+			start = end + 1;
+		}
+
+		return true;
+	}
+
+	static std::string build_logical(const std::string_view alias, const std::vector<std::string>& segments)
+	{
+		std::string logical{"@"};
+		logical += alias;
+
+		for (const auto& segment : segments)
+		{
+			logical += '/';
+			logical += segment;
+		}
+
+		return logical;
 	}
 
 	static bool is_inside(const std::filesystem::path& root, const std::filesystem::path& candidate)
@@ -44,96 +187,101 @@ namespace rml::luau
 		return first != relative.end() && *first != "..";
 	}
 
-	std::string ResolveFailure::describe() const
+	static std::vector<std::filesystem::path> candidates_for(const std::filesystem::path& target, const std::vector<std::string>& segments)
 	{
-		switch (error)
+		std::vector<std::filesystem::path> candidates;
+
+		if (!segments.empty() && segments.back() != "init")
 		{
-			case ResolveError::MissingAlias:
-				return std::format(
-				    "module '{}' has no alias: require needs an explicit '@rml/' or '@self/' prefix", specifier);
-			case ResolveError::EmptyName:
-				return std::format("module '{}' names nothing after its alias", specifier);
-			case ResolveError::EscapesRoot:
-				return std::format(
-				    "module '{}' escapes its root: '..', absolute paths and drive letters are not allowed", specifier);
-			case ResolveError::NotAFile:
-				return std::format("module '{}' is not a regular file (tried: {})", specifier, join_attempts(attempted));
-			case ResolveError::IoError:
-				return std::format("module '{}' could not be resolved: its root directory is unavailable", specifier);
-			case ResolveError::NotFound:
-				break;
+			for (const auto extension : kSourceExtensions)
+			{
+				auto candidate = target;
+				candidate += extension;
+				candidates.push_back(std::move(candidate));
+			}
 		}
 
-		return std::format("module '{}' not found (tried: {})", specifier, join_attempts(attempted));
+		for (const auto init : kInitNames)
+		{
+			candidates.push_back(target / init);
+		}
+
+		return candidates;
 	}
 
-	bool is_safe_relative_specifier(const std::string_view rest) noexcept
+	bool is_logical_module_path(const std::string_view text) noexcept
 	{
-		if (rest.empty())
+		if (text.size() < 2 || text.front() != '@')
 		{
 			return false;
 		}
 
-		if (rest.find('\0') != std::string_view::npos || rest.find(':') != std::string_view::npos)
-		{
-			return false;
-		}
-
-		if (rest.front() == '/' || rest.front() == '\\')
-		{
-			return false;
-		}
-
-		std::size_t start = 0;
-		while (true)
-		{
-			std::size_t end = start;
-			while (end < rest.size() && rest[end] != '/' && rest[end] != '\\')
-			{
-				++end;
-			}
-
-			if (rest.substr(start, end - start) == "..")
-			{
-				return false;
-			}
-
-			if (end >= rest.size())
-			{
-				return true;
-			}
-
-			start = end + 1;
-		}
+		return rule_for(split_alias(text).alias) != nullptr;
 	}
 
-	std::expected<ModuleId, ResolveFailure> resolve_module(const std::string_view specifier, const ModEnvironment& env)
+	std::expected<ResolvedModule, ResolveFailure> resolve_module(const std::string_view raw_specifier, const ModEnvironment& env, const std::string_view requirer)
 	{
-		ResolveFailure failure{.error = ResolveError::MissingAlias, .specifier = std::string{specifier}};
+		ResolveFailure failure{.error = ResolveError::NoPrefix, .specifier = std::string{raw_specifier}, .requirer = std::string{requirer}};
 
-		const ResolveRule* rule = nullptr;
-		for (const auto& candidate : kResolveRules)
-		{
-			if (specifier.starts_with(candidate.prefix))
-			{
-				rule = &candidate;
-				break;
-			}
-		}
+		std::string specifier{raw_specifier};
+		std::ranges::replace(specifier, '\\', '/');
 
-		if (rule == nullptr)
-		{
-			return std::unexpected(std::move(failure));
-		}
-
-		const auto rest = specifier.substr(rule->prefix.size());
-		if (rest.empty())
+		if (specifier.empty())
 		{
 			failure.error = ResolveError::EmptyName;
 			return std::unexpected(std::move(failure));
 		}
 
-		if (!is_safe_relative_specifier(rest))
+		const ResolveRule* rule = nullptr;
+		std::vector<std::string> segments;
+		std::string_view tail;
+
+		if (specifier.front() == '@')
+		{
+			auto split = split_alias(specifier);
+
+			rule = rule_for(split.alias);
+			if (rule == nullptr)
+			{
+				failure.error = ResolveError::UnknownAlias;
+				failure.alias = std::move(split.alias);
+				return std::unexpected(std::move(failure));
+			}
+
+			tail = split.rest;
+		}
+		else if (specifier == "." || specifier == ".." || specifier.starts_with("./") || specifier.starts_with("../"))
+		{
+			if (!is_logical_module_path(requirer))
+			{
+				failure.error = ResolveError::NoRequirer;
+				return std::unexpected(std::move(failure));
+			}
+
+			const auto split = split_alias(requirer);
+			rule = rule_for(split.alias);
+
+			if (!walk_segments(split.rest, segments))
+			{
+				failure.error = ResolveError::NoRequirer;
+				return std::unexpected(std::move(failure));
+			}
+
+			if (!segments.empty())
+			{
+				segments.pop_back();
+			}
+
+			tail = specifier;
+		}
+		else
+		{
+			return std::unexpected(std::move(failure));
+		}
+
+		failure.alias = std::string{rule->alias};
+
+		if (!walk_segments(tail, segments))
 		{
 			failure.error = ResolveError::EscapesRoot;
 			return std::unexpected(std::move(failure));
@@ -154,11 +302,16 @@ namespace rml::luau
 			return std::unexpected(std::move(failure));
 		}
 
+		auto target = root;
+		for (const auto& segment : segments)
+		{
+			target /= segment;
+		}
+
 		bool saw_non_file = false;
 
-		for (const std::string_view extension : {".luau", ".lua"})
+		for (const auto& candidate : candidates_for(target, segments))
 		{
-			const auto candidate = root / (std::string{rest} + std::string{extension});
 			failure.attempted.push_back(candidate.generic_string());
 
 			ec.clear();
@@ -184,16 +337,80 @@ namespace rml::luau
 
 			if (!is_inside(canonical_root, resolved))
 			{
-				RML_WARN("Rejected module '{}': '{}' resolves outside '{}'", specifier, resolved.generic_string(),
-				         canonical_root.generic_string());
+				RML_WARN("Rejected module '{}': '{}' resolves outside '{}'",
+				    raw_specifier,
+				    resolved.generic_string(),
+				    canonical_root.generic_string());
 				failure.error = ResolveError::EscapesRoot;
 				return std::unexpected(std::move(failure));
 			}
 
-			return ModuleId{resolved.generic_string()};
+			return ResolvedModule{.id = ModuleId{resolved.generic_string()}, .logical = build_logical(rule->alias, segments)};
 		}
 
 		failure.error = saw_non_file ? ResolveError::NotAFile : ResolveError::NotFound;
 		return std::unexpected(std::move(failure));
+	}
+
+	std::string logical_name_for(const std::filesystem::path& file, const ModEnvironment& env)
+	{
+		std::error_code ec;
+		auto subject = std::filesystem::weakly_canonical(file, ec);
+		if (ec)
+		{
+			subject = file;
+		}
+
+		for (const auto& rule : kResolveRules)
+		{
+			const auto root = rule.root(env);
+			if (root.empty())
+			{
+				continue;
+			}
+
+			ec.clear();
+			auto canonical_root = std::filesystem::weakly_canonical(root, ec);
+			if (ec)
+			{
+				canonical_root = root;
+			}
+
+			if (!is_inside(canonical_root, subject))
+			{
+				continue;
+			}
+
+			ec.clear();
+			const auto relative = std::filesystem::relative(subject, canonical_root, ec);
+			if (ec || relative.empty())
+			{
+				continue;
+			}
+
+			auto text = relative.generic_string();
+
+			for (const auto extension : kSourceExtensions)
+			{
+				if (text.ends_with(extension))
+				{
+					text.resize(text.size() - extension.size());
+					break;
+				}
+			}
+
+			if (text == "init")
+			{
+				text.clear();
+			}
+			else if (text.ends_with("/init"))
+			{
+				text.resize(text.size() - std::string_view{"/init"}.size());
+			}
+
+			return text.empty() ? std::format("@{}", rule.alias) : std::format("@{}/{}", rule.alias, text);
+		}
+
+		return {};
 	}
 }

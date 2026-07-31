@@ -96,10 +96,23 @@ namespace rml::luau
 		m_entries.erase(id);
 	}
 
-	void BytecodeCache::invalidate_under(const std::string_view canonical_root)
+	std::size_t BytecodeCache::invalidate_under(const std::filesystem::path& root)
 	{
-		std::erase_if(m_entries, [canonical_root](const auto& entry) {
-			return std::string_view{entry.first.string()}.starts_with(canonical_root);
+		std::error_code ec;
+		auto canonical = std::filesystem::weakly_canonical(root, ec);
+		if (ec)
+		{
+			canonical = root;
+		}
+
+		auto prefix = canonical.generic_string();
+		if (!prefix.empty() && prefix.back() != '/')
+		{
+			prefix += '/';
+		}
+
+		return std::erase_if(m_entries, [&prefix](const auto& entry) {
+			return entry.first.string().starts_with(prefix);
 		});
 	}
 

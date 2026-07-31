@@ -16,7 +16,7 @@ namespace rml::luau
 	}
 
 	ScriptEnv::ScriptEnv(ScriptHost& host, vm::Thread thread, ModEnvironment mod)
-		: m_host(&host), m_thread(std::move(thread)), m_mod(std::move(mod)),
+		: m_host(&host), m_thread(std::move(thread)), m_mod(std::move(mod)), m_modules(host.bytecode()),
 		  m_token(std::make_shared<EnvToken>())
 	{
 		m_token->env = this;
@@ -26,8 +26,6 @@ namespace rml::luau
 	{
 		m_token->env = nullptr;
 	}
-
-	ModuleRegistry& ScriptEnv::modules() const noexcept { return m_host->modules(); }
 
 	ClosureRegistry& ScriptEnv::closures() const noexcept { return m_host->closures(); }
 
@@ -52,6 +50,7 @@ namespace rml::luau
 		}
 
 		m_unload_handlers.clear();
+		m_modules.release();
 		m_original_require.release();
 		m_thread.release();
 	}

@@ -2,7 +2,7 @@
 
 #include "RobloxModLoader/luau/env/mod_environment.hpp"
 #include "RobloxModLoader/luau/modules/bytecode_cache.hpp"
-#include "RobloxModLoader/luau/modules/module_id.hpp"
+#include "RobloxModLoader/luau/modules/module_resolver.hpp"
 #include "RobloxModLoader/luau/vm/lua_ref.hpp"
 #include <unordered_map>
 
@@ -11,7 +11,10 @@ namespace rml::luau
 	class ModuleRegistry final
 	{
 	public:
-		ModuleRegistry() = default;
+		explicit ModuleRegistry(BytecodeCache& bytecode) noexcept
+			: m_bytecode(&bytecode)
+		{
+		}
 
 		ModuleRegistry(const ModuleRegistry&) = delete;
 		ModuleRegistry& operator=(const ModuleRegistry&) = delete;
@@ -19,7 +22,7 @@ namespace rml::luau
 		ModuleRegistry& operator=(ModuleRegistry&&) = delete;
 
 		[[nodiscard]] std::expected<void, vm::VmError> require(
-		    lua_State* L, const ModuleId& id, const ModEnvironment& env);
+		    lua_State* L, const ResolvedModule& module, const ModEnvironment& env);
 
 		void invalidate(const ModuleId& id);
 		std::size_t invalidate_under(const std::filesystem::path& root);
@@ -30,12 +33,12 @@ namespace rml::luau
 
 	private:
 		[[nodiscard]] std::expected<void, vm::VmError> load(
-		    lua_State* L, const ModuleId& id, const ModEnvironment& env);
+		    lua_State* L, const ResolvedModule& module, const ModEnvironment& env);
 
-		[[nodiscard]] std::string describe_cycle(const ModuleId& repeated) const;
+		[[nodiscard]] std::string describe_cycle(const ResolvedModule& repeated) const;
 
+		BytecodeCache* m_bytecode;
 		std::unordered_map<ModuleId, vm::Ref, ModuleIdHash> m_loaded;
-		std::vector<ModuleId> m_loading;
-		BytecodeCache m_bytecode;
+		std::vector<ResolvedModule> m_loading;
 	};
 }

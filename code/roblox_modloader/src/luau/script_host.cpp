@@ -1,12 +1,13 @@
 #include "RobloxModLoader/luau/script_host.hpp"
 
 #include "RobloxModLoader/luau/luau_bridge.hpp"
+#include "RobloxModLoader/luau/modules/module_resolver.hpp"
 #include "RobloxModLoader/luau/script_runtime.hpp"
+#include "RobloxModLoader/luau/vm/chunk.hpp"
 #include "RobloxModLoader/luau/vm/stack_guard.hpp"
 #include "RobloxModLoader/luau/vm/thread_identity.hpp"
 #include "RobloxModLoader/luau/vm/vm_api.hpp"
 #include "RobloxModLoader/roblox/security/script_permissions.hpp"
-#include "pointers.hpp"
 #include "RobloxModLoader/roblox/data_model.hpp"
 
 RML_LOG_SCOPE("ScriptHost");
@@ -75,7 +76,11 @@ namespace rml::luau
 			return std::unexpected(vm::VmError::internal(std::move(source.error())));
 		}
 
-		const auto chunk_name = asset.chunk_name();
+		auto chunk_name = logical_name_for(asset.path, m_runtime->environment_for(mod));
+		if (chunk_name.empty())
+		{
+			chunk_name = asset.chunk_name();
+		}
 
 		auto bytecode = BytecodeCache::compile(*source, chunk_name);
 		if (!bytecode)
@@ -84,7 +89,7 @@ namespace rml::luau
 		}
 
 		m_dispatcher.post(RunChunk{
-		    .chunk_name = chunk_name,
+		    .chunk_name = std::move(chunk_name),
 		    .bytecode = std::move(*bytecode),
 		    .owner = mod,
 		    .want_result = false,
@@ -205,17 +210,11 @@ namespace rml::luau
 
 		vm::set_identity(L, RBX::Security::Permissions::RobloxEngine, RBX::Security::FULL_CAPABILITIES, false);
 
-		const auto name = std::format("={}", chunk.chunk_name);
-		if (g_pointers->m_roblox_pointers.luau_load(L, name.c_str(),
-		                                            reinterpret_cast<const char*>(chunk.bytecode.data()),
-		                                            chunk.bytecode.size(), 0) != 0)
+		if (auto loaded = vm::load_chunk(L, chunk.chunk_name, chunk.bytecode, RBX::Security::FULL_CAPABILITIES);
+		    !loaded)
 		{
-			return std::unexpected(vm::error_from_stack(L, vm::VmError::Kind::Syntax));
+			return std::unexpected(std::move(loaded.error()));
 		}
-
-		if (const auto to_pointer = g_pointers->m_roblox_pointers.lua_topointer)
-			if (const void* main_closure = to_pointer(L, -1))
-				vm::elevate_closure(static_cast<const Closure*>(main_closure), RBX::Security::FULL_CAPABILITIES);
 
 		const auto called = vm::protected_call(L, 0, chunk.want_result ? 1 : 0);
 		if (!called)
@@ -449,7 +448,16 @@ namespace rml::luau
 			m_expired_tokens.push_back(retired->token());
 		}
 
-		const auto dropped = m_modules.invalidate_under(plan.manifest->scripts_root());
+		const auto scripts_root = plan.manifest->scripts_root();
+
+		auto dropped = m_bytecode.invalidate_under(scripts_root);
+		for (const auto& env : m_mod_envs | std::views::values)
+		{
+			if (env)
+			{
+				dropped += env->modules().invalidate_under(scripts_root);
+			}
+		}
 
 		std::size_t posted = 0;
 		for (const auto& asset : plan.scripts)
@@ -489,7 +497,7 @@ namespace rml::luau
 		}
 		m_refs.clear();
 
-		m_modules.release();
+		m_bytecode.clear();
 		m_closures.release();
 
 		for (auto& env : m_mod_envs | std::views::values)

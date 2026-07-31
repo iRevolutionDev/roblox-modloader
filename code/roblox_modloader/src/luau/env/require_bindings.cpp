@@ -1,6 +1,5 @@
 #include "RobloxModLoader/luau/env/binding.hpp"
-
-#include "RobloxModLoader/luau/modules/module_registry.hpp"
+#include "RobloxModLoader/luau/generated/layout_access.hpp"
 #include "RobloxModLoader/luau/modules/module_resolver.hpp"
 #include "RobloxModLoader/luau/script_host.hpp"
 
@@ -8,6 +7,42 @@ RML_LOG_SCOPE("Require");
 
 namespace rml::luau
 {
+	static constexpr int kRequirerSearchDepth = 24;
+
+	static std::string requirer_of(lua_State* L)
+	{
+		alignas(16) std::array<std::byte, 1024> storage{};
+		const auto* record = access::debug_record(storage.data());
+
+		for (auto level = 1; level <= kRequirerSearchDepth; ++level)
+		{
+			storage.fill(std::byte{});
+
+			if (!lua_getinfo(L, level, "s", reinterpret_cast<lua_Debug*>(storage.data())))
+			{
+				break;
+			}
+
+			if (record->source == nullptr)
+			{
+				continue;
+			}
+
+			std::string_view name{record->source};
+			if (name.starts_with('='))
+			{
+				name.remove_prefix(1);
+			}
+
+			if (is_logical_module_path(name))
+			{
+				return std::string{name};
+			}
+		}
+
+		return {};
+	}
+
 	static int forward_to_engine(lua_State* L, const ScriptEnv& env)
 	{
 		if (!env.original_require().valid())
@@ -28,15 +63,21 @@ namespace rml::luau
 	{
 		auto& env = bound_env(L);
 
-		if (lua_gettop(L) >= 1 && lua_isuserdata(L, 1))
+		if (lua_gettop(L) < 1)
+		{
+			luaL_error(L, "require expects a ModuleScript, an asset id, or a path such as '@self/name'");
+		}
+
+		if (lua_type(L, 1) != LUA_TSTRING)
 		{
 			return forward_to_engine(L, env);
 		}
 
 		std::size_t length = 0;
-		const auto* specifier = luaL_checklstring(L, 1, &length);
+		const auto* specifier = lua_tolstring(L, 1, &length);
+		const std::string_view text{specifier, length};
 
-		const auto resolved = resolve_module(std::string_view{specifier, length}, env.mod());
+		const auto resolved = resolve_module(text, env.mod(), text.starts_with('.') ? requirer_of(L) : std::string{});
 		if (!resolved)
 		{
 			const auto message = resolved.error().describe();

@@ -4,7 +4,9 @@
 #include "RobloxModLoader/luau/env/closure_registry.hpp"
 #include "RobloxModLoader/luau/extensions/luau_extensions.hpp"
 #include "RobloxModLoader/luau/generated/layout_access.hpp"
+#include "RobloxModLoader/luau/vm/chunk.hpp"
 #include "RobloxModLoader/luau/vm/stack_guard.hpp"
+#include "RobloxModLoader/roblox/security/script_permissions.hpp"
 #include "pointers.hpp"
 
 #include <Luau/Compiler.h>
@@ -138,10 +140,12 @@ namespace rml::luau
 		static constexpr Luau::CompileOptions options{0, 0};
 		const auto bytecode = Luau::compile("return stub(...)", options);
 
-		const auto load = g_pointers->m_roblox_pointers.luau_load;
-		if (load == nullptr || load(L, "=rml_closure_wrapper", bytecode.data(), bytecode.size(), -1) != LUA_OK)
+		if (const auto loaded = vm::load_chunk(L, "rml_closure_wrapper", std::as_bytes(std::span{bytecode}),
+		                                       RBX::Security::FULL_CAPABILITIES, -1);
+		    !loaded)
 		{
-			luaL_error(L, "newlclosure: the wrapper chunk could not be loaded");
+			const auto message = loaded.error().describe();
+			luaL_error(L, "newlclosure: the wrapper chunk could not be loaded (%s)", message.c_str());
 		}
 
 		lua_insert(L, -2);

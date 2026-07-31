@@ -1,8 +1,8 @@
 #include "RobloxModLoader/luau/modules/module_registry.hpp"
 
+#include "RobloxModLoader/luau/vm/chunk.hpp"
 #include "RobloxModLoader/luau/vm/stack_guard.hpp"
-
-#include "pointers.hpp"
+#include "RobloxModLoader/luau/vm/thread_identity.hpp"
 
 RML_LOG_SCOPE("Modules");
 
@@ -10,10 +10,10 @@ namespace rml::luau
 {
 	struct LoadingScope final
 	{
-		LoadingScope(std::vector<ModuleId>& loading, const ModuleId& id)
+		LoadingScope(std::vector<ResolvedModule>& loading, const ResolvedModule& module)
 			: m_loading(loading)
 		{
-			m_loading.push_back(id);
+			m_loading.push_back(module);
 		}
 
 		~LoadingScope() { m_loading.pop_back(); }
@@ -24,56 +24,54 @@ namespace rml::luau
 		LoadingScope& operator=(LoadingScope&&) = delete;
 
 	private:
-		std::vector<ModuleId>& m_loading;
+		std::vector<ResolvedModule>& m_loading;
 	};
 
 	std::expected<void, vm::VmError> ModuleRegistry::require(
-	    lua_State* L, const ModuleId& id, const ModEnvironment& env)
+	    lua_State* L, const ResolvedModule& module, const ModEnvironment& env)
 	{
-		if (const auto cached = m_loaded.find(id); cached != m_loaded.end())
+		if (const auto cached = m_loaded.find(module.id); cached != m_loaded.end())
 		{
 			vm::StackGuard guard(L);
 
 			if (!cached->second.push(L))
 			{
 				return std::unexpected(vm::VmError::internal(
-				    std::format("module '{}' lost its cached value", id.display())));
+				    std::format("module '{}' lost its cached value", module.logical)));
 			}
 
 			guard.release();
 			return {};
 		}
 
-		if (std::ranges::find(m_loading, id) != m_loading.end())
+		const auto repeated = std::ranges::find(m_loading, module.id, &ResolvedModule::id);
+		if (repeated != m_loading.end())
 		{
-			return std::unexpected(vm::VmError::internal(describe_cycle(id)));
+			return std::unexpected(vm::VmError::internal(describe_cycle(module)));
 		}
 
-		return load(L, id, env);
+		return load(L, module, env);
 	}
 
 	std::expected<void, vm::VmError> ModuleRegistry::load(
-	    lua_State* L, const ModuleId& id, const ModEnvironment& env)
+	    lua_State* L, const ResolvedModule& module, const ModEnvironment& env)
 	{
-		const LoadingScope scope(m_loading, id);
+		const LoadingScope scope(m_loading, module);
 
-		const auto bytecode = m_bytecode.acquire(id);
+		const auto bytecode = m_bytecode->acquire(module.id);
 		if (!bytecode)
 		{
 			return std::unexpected(bytecode.error());
 		}
 
-		const auto chunk_name = std::format("={}", id.display());
-
 		vm::StackGuard guard(L);
 
-		const auto status = g_pointers->m_roblox_pointers.luau_load(
-		    L, chunk_name.c_str(), reinterpret_cast<const char*>(bytecode->data()), bytecode->size(), 0);
-
-		if (status != 0)
+		if (auto loaded = vm::load_chunk(L, module.logical, *bytecode, RBX::Security::FULL_CAPABILITIES); !loaded)
 		{
-			return std::unexpected(vm::error_from_stack(L, vm::VmError::Kind::Syntax));
+			return std::unexpected(std::move(loaded.error()));
 		}
+
+		vm::set_identity(L, RBX::Security::Permissions::RobloxEngine, RBX::Security::FULL_CAPABILITIES, false);
 
 		const auto called = vm::protected_call(L, 0, 1);
 		if (!called)
@@ -85,48 +83,47 @@ namespace rml::luau
 		{
 			return std::unexpected(vm::VmError::internal(
 			    std::format("module '{}' returned nothing, a module must return exactly one value",
-			                id.display())));
+			                module.logical)));
 		}
 
 		if (lua_isnil(L, -1))
 		{
 			return std::unexpected(vm::VmError::internal(
-			    std::format("module '{}' returned nil, a module must return exactly one value", id.display())));
+			    std::format("module '{}' returned nil, a module must return exactly one value", module.logical)));
 		}
 
 		auto ref = vm::Ref::take(L, -1);
 		if (!ref.valid())
 		{
 			return std::unexpected(
-			    vm::VmError::internal(std::format("module '{}' could not be anchored", id.display())));
+			    vm::VmError::internal(std::format("module '{}' could not be anchored", module.logical)));
 		}
 
-		m_loaded.insert_or_assign(id, std::move(ref));
+		m_loaded.insert_or_assign(module.id, std::move(ref));
 
 		guard.release();
 
-		RML_DEBUG("Loaded module '{}' for '{}'", id.display(), env.mod_name());
+		RML_DEBUG("Loaded module '{}' for '{}'", module.logical, env.mod_name());
 		return {};
 	}
 
-	std::string ModuleRegistry::describe_cycle(const ModuleId& repeated) const
+	std::string ModuleRegistry::describe_cycle(const ResolvedModule& repeated) const
 	{
 		std::string rendered{"module cycle: "};
 
 		for (const auto& entry : m_loading)
 		{
-			rendered += entry.display();
+			rendered += entry.logical;
 			rendered += " -> ";
 		}
 
-		rendered += repeated.display();
+		rendered += repeated.logical;
 		return rendered;
 	}
 
 	void ModuleRegistry::invalidate(const ModuleId& id)
 	{
 		m_loaded.erase(id);
-		m_bytecode.invalidate(id);
 	}
 
 	std::size_t ModuleRegistry::invalidate_under(const std::filesystem::path& root)
@@ -144,20 +141,15 @@ namespace rml::luau
 			prefix += '/';
 		}
 
-		const auto dropped = std::erase_if(m_loaded, [&prefix](const auto& entry) {
+		return std::erase_if(m_loaded, [&prefix](const auto& entry) {
 			return entry.first.string().starts_with(prefix);
 		});
-
-		m_bytecode.invalidate_under(prefix);
-
-		return dropped;
 	}
 
 	void ModuleRegistry::clear() noexcept
 	{
 		m_loaded.clear();
 		m_loading.clear();
-		m_bytecode.clear();
 	}
 
 	void ModuleRegistry::release() noexcept

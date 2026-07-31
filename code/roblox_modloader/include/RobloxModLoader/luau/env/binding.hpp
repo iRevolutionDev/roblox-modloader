@@ -1,13 +1,13 @@
 #pragma once
 
 #include "RobloxModLoader/luau/env/mod_environment.hpp"
+#include "RobloxModLoader/luau/modules/module_registry.hpp"
 #include "RobloxModLoader/luau/vm/lua_thread.hpp"
 
 namespace rml::luau
 {
 	class ScriptEnv;
 	class ScriptHost;
-	class ModuleRegistry;
 	class ClosureRegistry;
 
 	struct EnvToken final
@@ -32,7 +32,7 @@ namespace rml::luau
 		[[nodiscard]] ScriptHost& host() const noexcept { return *m_host; }
 		[[nodiscard]] const ModEnvironment& mod() const noexcept { return m_mod; }
 
-		[[nodiscard]] ModuleRegistry& modules() const noexcept;
+		[[nodiscard]] ModuleRegistry& modules() noexcept { return m_modules; }
 		[[nodiscard]] ClosureRegistry& closures() const noexcept;
 
 		void adopt_original_require(vm::Ref require) noexcept { m_original_require = std::move(require); }
@@ -49,6 +49,7 @@ namespace rml::luau
 		ScriptHost* m_host;
 		vm::Thread m_thread;
 		ModEnvironment m_mod;
+		ModuleRegistry m_modules;
 		vm::Ref m_original_require;
 		EnvTokenPtr m_token;
 		std::vector<vm::Ref> m_unload_handlers;
