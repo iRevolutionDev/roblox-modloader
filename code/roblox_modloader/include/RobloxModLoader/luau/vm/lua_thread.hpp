@@ -20,7 +20,7 @@ namespace rml::luau::vm
 		Thread(Thread&&) noexcept = default;
 		Thread& operator=(Thread&&) noexcept = default;
 
-		[[nodiscard]] static std::expected<Thread, VmError> spawn(lua_State* parent);
+		[[nodiscard]] static std::expected<Thread, VmError> spawn(lua_State* parent, lua_State* anchor = nullptr);
 
 		[[nodiscard]] lua_State* get() const noexcept { return m_thread; }
 		[[nodiscard]] bool valid() const noexcept { return m_thread != nullptr && m_anchor.valid(); }

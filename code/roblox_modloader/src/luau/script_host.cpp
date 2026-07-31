@@ -235,7 +235,15 @@ namespace rml::luau
 
 		if (outcome->suspended)
 		{
-			RML_DEBUG("{} yielded; it carries on when the engine resumes it", label);
+			if (const auto state = vm::task_state(co); state == RBX::Luau::TaskState::None)
+			{
+				RML_WARN("{} yielded but nothing in the engine owns the resume", label);
+			}
+			else
+			{
+				RML_DEBUG("{} yielded under task state {}", label, static_cast<int>(state));
+			}
+
 			host.park(std::move(thread), std::move(owner), label);
 			return Value{};
 		}
@@ -275,7 +283,7 @@ namespace rml::luau
 			return std::unexpected(env.error());
 		}
 
-		auto thread = vm::Thread::spawn((*env)->thread());
+		auto thread = vm::Thread::spawn((*env)->thread(), host.global_state());
 		if (!thread)
 		{
 			return std::unexpected(thread.error());
@@ -321,7 +329,7 @@ namespace rml::luau
 			return std::unexpected(env.error());
 		}
 
-		auto thread = vm::Thread::spawn((*env)->thread());
+		auto thread = vm::Thread::spawn((*env)->thread(), host.global_state());
 		if (!thread)
 		{
 			return std::unexpected(thread.error());
@@ -536,7 +544,7 @@ namespace rml::luau
 
 		for (auto& [target, record] : m_closures.take_hooks_of(mod_name))
 		{
-			if (!restore_closure(L, target, record.original))
+			if (!restore_closure(L, record))
 			{
 				RML_WARN("Could not restore a function hooked by mod '{}'", mod_name);
 			}

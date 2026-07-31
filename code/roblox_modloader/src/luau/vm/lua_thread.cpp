@@ -6,7 +6,7 @@
 
 namespace rml::luau::vm
 {
-	std::expected<Thread, VmError> Thread::spawn(lua_State* parent)
+	std::expected<Thread, VmError> Thread::spawn(lua_State* parent, lua_State* anchor)
 	{
 		if (!parent)
 		{
@@ -25,15 +25,15 @@ namespace rml::luau::vm
 			return std::unexpected(VmError::unavailable("lua_newthread returned no thread"));
 		}
 
-		auto anchor = Ref::take(parent, -1);
+		auto held = Ref::take(parent, -1, anchor);
 		lua_pop(parent, 1);
 
-		if (!anchor.valid())
+		if (!held.valid())
 		{
 			return std::unexpected(VmError::internal("could not anchor the new Luau thread in the registry"));
 		}
 
-		return Thread{thread, std::move(anchor)};
+		return Thread{thread, std::move(held)};
 	}
 
 	std::expected<ResumeOutcome, VmError> resume(lua_State* L, const int nargs) noexcept

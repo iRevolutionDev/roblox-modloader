@@ -11,8 +11,8 @@ namespace rml::luau
 	class ModuleRegistry final
 	{
 	public:
-		explicit ModuleRegistry(BytecodeCache& bytecode) noexcept
-			: m_bytecode(&bytecode)
+		ModuleRegistry(BytecodeCache& bytecode, lua_State* anchor) noexcept
+			: m_bytecode(&bytecode), m_anchor(anchor)
 		{
 		}
 
@@ -38,6 +38,7 @@ namespace rml::luau
 		[[nodiscard]] std::string describe_cycle(const ResolvedModule& repeated) const;
 
 		BytecodeCache* m_bytecode;
+		lua_State* m_anchor;
 		std::unordered_map<ModuleId, vm::Ref, ModuleIdHash> m_loaded;
 		std::vector<ResolvedModule> m_loading;
 	};

@@ -114,7 +114,7 @@ check("an engine call that yields answers on our thread", function()
 	assert(ok, "a yielding engine call raised " .. tostring(err))
 end)
 
-stays_parked("require still cannot load a module that yields", "C-call boundary", function()
+stays_parked("require still cannot load a module that yields", "yieldable", function()
 	require("@self/yielding_module")
 end)
 

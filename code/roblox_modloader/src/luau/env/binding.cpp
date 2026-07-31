@@ -16,8 +16,8 @@ namespace rml::luau
 	}
 
 	ScriptEnv::ScriptEnv(ScriptHost& host, vm::Thread thread, ModEnvironment mod)
-		: m_host(&host), m_thread(std::move(thread)), m_mod(std::move(mod)), m_modules(host.bytecode()),
-		  m_token(std::make_shared<EnvToken>())
+		: m_host(&host), m_thread(std::move(thread)), m_mod(std::move(mod)),
+		  m_modules(host.bytecode(), host.global_state()), m_token(std::make_shared<EnvToken>())
 	{
 		m_token->env = this;
 	}

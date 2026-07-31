@@ -92,7 +92,7 @@ namespace rml::luau
 			    std::format("module '{}' returned nil, a module must return exactly one value", module.logical)));
 		}
 
-		auto ref = vm::Ref::take(L, -1);
+		auto ref = vm::Ref::take(L, -1, m_anchor);
 		if (!ref.valid())
 		{
 			return std::unexpected(

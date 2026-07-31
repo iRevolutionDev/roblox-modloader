@@ -3,6 +3,7 @@
 #include "RobloxModLoader/luau/env/closure_registry.hpp"
 #include "RobloxModLoader/luau/extensions/luau_extensions.hpp"
 #include "RobloxModLoader/luau/generated/layout_access.hpp"
+#include "RobloxModLoader/luau/script_host.hpp"
 #include "RobloxModLoader/luau/vm/chunk.hpp"
 #include "RobloxModLoader/luau/vm/stack_guard.hpp"
 #include "RobloxModLoader/roblox/security/script_permissions.hpp"
@@ -242,10 +243,13 @@ namespace rml::luau
 
 		if (!closures.is_hooked(reinterpret_cast<Closure*>(target)))
 		{
+			auto* const anchor = env.host().global_state();
+
 			closures.register_hook(reinterpret_cast<Closure*>(target),
 			    HookRecord{
-			        .original = vm::Ref::take(L, -1),
-			        .replacement = vm::Ref::take(L, replacement_index),
+			        .target = vm::Ref::take(L, 1, anchor),
+			        .original = vm::Ref::take(L, -1, anchor),
+			        .replacement = vm::Ref::take(L, replacement_index, anchor),
 			        .original_kind = FunctionKind::LuauClosure,
 			        .replacement_kind = FunctionKind::LuauClosure,
 			        .owner = std::string{env.mod().mod_name()},
@@ -267,16 +271,22 @@ namespace rml::luau
 		return 1;
 	}
 
-	bool restore_closure(lua_State* L, Closure* raw_target, const vm::Ref& original)
+	bool restore_closure(lua_State* L, const HookRecord& record)
 	{
 		vm::StackGuard stack(L);
 
-		if (!original.push(L) || lua_type(L, -1) != LUA_TFUNCTION)
+		if (!record.target.push(L) || lua_type(L, -1) != LUA_TFUNCTION)
 		{
 			return false;
 		}
 
-		auto* target = access::closure(raw_target);
+		auto* target = access::closure(const_cast<void*>(lua_topointer(L, -1)));
+
+		if (!record.original.push(L) || lua_type(L, -1) != LUA_TFUNCTION)
+		{
+			return false;
+		}
+
 		const auto* source = access::closure(lua_topointer(L, -1));
 
 		target->env = source->env;
@@ -307,7 +317,7 @@ namespace rml::luau
 			luaL_error(L, "restorefunction: this function was never hooked");
 		}
 
-		if (!restore_closure(L, reinterpret_cast<Closure*>(target), record->original))
+		if (!restore_closure(L, *record))
 		{
 			luaL_error(L, "restorefunction: the original function is no longer referenced");
 		}

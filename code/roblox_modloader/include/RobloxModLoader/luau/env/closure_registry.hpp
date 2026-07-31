@@ -16,6 +16,7 @@ namespace rml::luau
 
 	struct HookRecord
 	{
+		vm::Ref target;
 		vm::Ref original;
 		vm::Ref replacement;
 		FunctionKind original_kind{FunctionKind::LuauClosure};
@@ -74,5 +75,5 @@ namespace rml::luau
 		std::unordered_map<Closure*, std::string> m_ours;
 	};
 
-	[[nodiscard]] bool restore_closure(lua_State* L, Closure* target, const vm::Ref& original);
+	[[nodiscard]] bool restore_closure(lua_State* L, const HookRecord& record);
 }
