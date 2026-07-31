@@ -42,13 +42,7 @@ namespace RBX::Security {
         Restricted = 0xFFFFFFFFFFFFFFFFULL
     };
 
-    constexpr std::uint64_t FULL_CAPABILITIES =
-            Plugin | LocalUser | WritePlayer | RobloxScript | RobloxEngine | NotAccessible |
-            RunClientScript | RunServerScript | AccessOutsideWrite | Unassigned | AssetRequire |
-            LoadStringCapability | ScriptGlobals | CreateInstances | Basic | Audio | DataStore |
-            Network | Physics | UI | CSG | Chat | Animation | Avatar | Input | Environment |
-            RemoteEvent | LegacySound | Players | CapabilityControl |
-            InternalTest | PluginOrOpenCloud | Assistant;
+    constexpr std::uint64_t FULL_CAPABILITIES = Restricted;
 
     constexpr std::uint64_t BASIC_SCRIPT_CAPABILITIES =
             Plugin | LocalUser | RobloxScript | RunClientScript | RunServerScript | Basic;

@@ -17,7 +17,32 @@ namespace RBX::Luau {
     struct ExtendedIdentity {
         Security::Permissions identity;
         uint64_t asset_id;
-        void *script_context;
+    };
+
+    class ThreadIdentityContext {
+    public:
+        ExtendedIdentity identity;
+
+    private:
+        std::byte padding_0[0x8];
+
+    public:
+        lua_State *bound_state;
+
+    private:
+        std::byte padding_1[0x8];
+
+    public:
+        uint64_t capabilities;
+        void *capability_deriver;
+
+    private:
+        RML_LAYOUT_GUARD_BEGIN()
+            RML_ASSERT_LAYOUT_OFFSET(ThreadIdentityContext, identity, 0x00);
+            RML_ASSERT_LAYOUT_OFFSET(ThreadIdentityContext, bound_state, 0x18);
+            RML_ASSERT_LAYOUT_OFFSET(ThreadIdentityContext, capabilities, 0x28);
+            RML_ASSERT_LAYOUT_OFFSET(ThreadIdentityContext, capability_deriver, 0x30);
+        RML_LAYOUT_GUARD_END()
     };
 
 
@@ -48,6 +73,11 @@ namespace RBX::Luau {
         CapabilityValidator *capabilities_validator;
         ExtendedIdentity context;
         uint64_t capabilities;
+
+    private:
+        std::byte padding_capabilities[0x8];
+
+    public:
         Script *script;
 
     private:
@@ -69,7 +99,7 @@ namespace RBX::Luau {
             RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, shared, 0x18);
             RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, capabilities_validator, 0x28);
             RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, context, 0x30);
-            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, capabilities, 0x48);
+            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, capabilities, 0x40);
             RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, script, 0x50);
             RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, actor, 0x68);
             RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, is_actor_state, 0x80);

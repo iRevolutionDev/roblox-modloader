@@ -12,6 +12,7 @@ namespace rml::dumper::disasm
 	using Object = std::uint32_t;
 
 	inline constexpr Object no_object = 0;
+	inline constexpr Object zero_object = 255;
 	inline constexpr Object first_derived_object = 256;
 
 	[[nodiscard]] constexpr Object entry_object(const Register value)

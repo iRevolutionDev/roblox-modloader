@@ -158,8 +158,73 @@ namespace rml::dumper::recover
 			                freed->element, expected));
 		}
 
+		recover_userdata(context, layout);
+
 		layout.size = layout.fields.empty() ? 0 : layout.fields.back().end();
 
 		return layout;
+	}
+
+	void ProtoRecoverer::recover_userdata(const RecoveryContext& context, schema::StructLayout& layout)
+	{
+		if (!context.anchors().has(target::Anchor::rbx_derive_thread_capabilities))
+		{
+			context.report().record_failure("Proto", "userdata",
+			                                 "rbx_derive_thread_capabilities is not resolved on this build");
+			return;
+		}
+
+		const auto* p = layout.find("p");
+		const auto* typeinfo = layout.find("typeinfo");
+		if (p == nullptr || typeinfo == nullptr)
+		{
+			context.report().record_failure(
+			    "Proto", "userdata", "cannot place the mask pointer without both p and typeinfo recovered");
+			return;
+		}
+
+		const auto trace = context.trace(target::Anchor::rbx_derive_thread_capabilities);
+		if (!trace)
+		{
+			context.report().record_failure("Proto", "userdata", trace.error().message());
+			return;
+		}
+
+		const disasm::MemoryAccess* found = nullptr;
+		for (const auto& access : (*trace)->accesses)
+		{
+			if (access.is_write || access.width != 8 || access.displacement < 0)
+				continue;
+
+			const auto displacement = static_cast<std::size_t>(access.displacement);
+			if (displacement <= p->offset || displacement >= typeinfo->offset)
+				continue;
+
+			if (found != nullptr && found->displacement != access.displacement)
+			{
+				context.report().record_failure(
+				    "Proto", "userdata",
+				    "rbx_derive_thread_capabilities reads more than one qword between p and typeinfo");
+				return;
+			}
+
+			found = &access;
+		}
+
+		if (found == nullptr)
+		{
+			context.report().record_failure(
+			    "Proto", "userdata", "rbx_derive_thread_capabilities reads no qword between p and typeinfo");
+			return;
+		}
+
+		const auto probe = "the qword rbx_derive_thread_capabilities reads off the proto to gate capabilities";
+
+		context.report().record_recovered("Proto", "userdata", probe);
+		layout.add({.name = "userdata",
+		            .type = "void*",
+		            .size = 8,
+		            .offset = static_cast<std::size_t>(found->displacement),
+		            .provenance = schema::Provenance::recovered("rbx_derive_thread_capabilities", probe)});
 	}
 }

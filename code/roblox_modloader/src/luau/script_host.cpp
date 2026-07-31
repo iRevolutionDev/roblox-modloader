@@ -190,6 +190,8 @@ namespace rml::luau
 		auto* L = thread->get();
 		vm::StackGuard guard(L);
 
+		vm::set_identity(L, RBX::Security::Permissions::RobloxEngine, RBX::Security::FULL_CAPABILITIES, false);
+
 		const auto name = std::format("={}", chunk.chunk_name);
 		if (g_pointers->m_roblox_pointers.luau_load(L, name.c_str(),
 		                                            reinterpret_cast<const char*>(chunk.bytecode.data()),
@@ -197,6 +199,10 @@ namespace rml::luau
 		{
 			return std::unexpected(vm::error_from_stack(L, vm::VmError::Kind::Syntax));
 		}
+
+		if (const auto to_pointer = g_pointers->m_roblox_pointers.lua_topointer)
+			if (const void* main_closure = to_pointer(L, -1))
+				vm::elevate_closure(static_cast<const Closure*>(main_closure), RBX::Security::FULL_CAPABILITIES);
 
 		const auto called = vm::protected_call(L, 0, chunk.want_result ? 1 : 0);
 		if (!called)

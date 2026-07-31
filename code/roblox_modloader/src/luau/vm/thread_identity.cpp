@@ -2,10 +2,14 @@
 
 #include "RobloxModLoader/luau/generated/layout_access.hpp"
 #include "RobloxModLoader/roblox/luau/roblox_extra_space.hpp"
+#include "lobject.h"
+#include "lstate.h"
+#include "pointers.hpp"
 #include "utils/seh_guard.hpp"
 
-#include "lstate.h"
-#include "lobject.h"
+#include <memory>
+#include <mutex>
+#include <vector>
 
 RML_LOG_SCOPE("ThreadIdentity");
 
@@ -13,48 +17,84 @@ namespace rml::luau::vm
 {
 	struct IdentityWrite
 	{
-		const lua_State* L;
+		lua_State* raw_state;
+		const mirror::LuaState* L;
 		RBX::Security::Permissions identity;
 		std::uint64_t capabilities;
-	};
-
-	struct IdentityRead
-	{
-		const lua_State* L;
-		RBX::Security::Permissions identity;
-		std::uint64_t capabilities;
-		bool found;
+		bool reflect_identity_number;
 	};
 
 	static void write_identity(void* ctx)
 	{
 		const auto* call = static_cast<IdentityWrite*>(ctx);
-		auto* extra_space = static_cast<RBX::Luau::RobloxExtraSpace*>(call->L->userdata);
-		if (!extra_space) return;
-		extra_space->context.identity = call->identity;
-		extra_space->capabilities = call->capabilities;
+
+		if (auto* extra_space = static_cast<RBX::Luau::RobloxExtraSpace*>(call->L->userdata))
+		{
+			extra_space->context.identity = call->identity;
+			extra_space->capabilities = call->capabilities;
+		}
+
+		if (!call->reflect_identity_number)
+			return;
+
+		const auto get_context = g_pointers ? g_pointers->m_roblox_pointers.rbx_thread_identity_context : nullptr;
+		if (!get_context || !call->raw_state)
+			return;
+
+		if (auto* identity_context = static_cast<RBX::Luau::ThreadIdentityContext*>(get_context(call->raw_state)))
+		{
+			identity_context->identity.identity = call->identity;
+			identity_context->identity.asset_id = 0;
+			identity_context->capabilities = call->capabilities;
+		}
 	}
 
-	static void read_identity(void* ctx)
+	static std::uint64_t* mask_for(const std::uint64_t capabilities)
 	{
-		auto* call = static_cast<IdentityRead*>(ctx);
-		const auto* extra_space = static_cast<const RBX::Luau::RobloxExtraSpace*>(call->L->userdata);
-		if (!extra_space) return;
-		call->identity = extra_space->context.identity;
-		call->capabilities = extra_space->capabilities;
-		call->found = true;
+		static std::mutex guard;
+		static std::vector<std::unique_ptr<std::uint64_t>> masks;
+
+		const std::scoped_lock lock(guard);
+		for (const auto& mask : masks)
+			if (*mask == capabilities)
+				return mask.get();
+
+		return masks.emplace_back(std::make_unique<std::uint64_t>(capabilities)).get();
 	}
 
-	static void report_elevation_unavailable()
+	struct ElevateCall
 	{
-		static std::once_flag reported;
-		std::call_once(reported, [] {
-			RML_ERROR("Prototype elevation is off: the dumper has not recovered Proto.userdata for this Studio "
-			          "build, and the slot luau declares for it holds something else here");
-		});
+		const void* closure;
+		std::uint64_t* mask;
+	};
+
+	static void set_proto(mirror::Proto* proto, std::uint64_t* mask)
+	{
+		if (!proto)
+			return;
+
+		proto->userdata = mask;
+
+		if (proto->sizep <= 0 || !proto->p)
+			return;
+
+		for (int i = 0; i < proto->sizep; ++i)
+			if (proto->p[i])
+				set_proto(access::proto(proto->p[i]), mask);
 	}
 
-	bool set_identity(lua_State* L, const RBX::Security::Permissions identity, const std::uint64_t capabilities) noexcept
+	static void elevate_proto_tree(void* ctx)
+	{
+		const auto* call = static_cast<ElevateCall*>(ctx);
+		const auto* closure = access::closure(call->closure);
+		if (closure->isC)
+			return;
+
+		set_proto(access::proto(closure->p), call->mask);
+	}
+
+	bool set_identity(lua_State* L, const RBX::Security::Permissions identity, const std::uint64_t capabilities,
+	                  const bool reflect_identity_number) noexcept
 	{
 		if (!L)
 		{
@@ -62,11 +102,10 @@ namespace rml::luau::vm
 			return false;
 		}
 
-		IdentityWrite call{L, identity, capabilities};
+		IdentityWrite call{L, access::state(L), identity, capabilities, reflect_identity_number};
 		if (!utils::guarded_invoke(&write_identity, &call))
 		{
-			RML_ERROR("set_thread_identity faulted - lua_State/extra-space layout may have changed on this "
-			          "Studio build; skipping identity set");
+			RML_ERROR("set_thread_identity faulted; skipping identity set");
 			return false;
 		}
 
@@ -74,42 +113,13 @@ namespace rml::luau::vm
 		return true;
 	}
 
-	IdentityScope::IdentityScope(lua_State* L, const RBX::Security::Permissions identity, const std::uint64_t capabilities) noexcept
-		: m_state(L)
+	void elevate_closure(const Closure* closure, const std::uint64_t capabilities) noexcept
 	{
-		if (!L)
-		{
+		if (!closure)
 			return;
-		}
 
-		IdentityRead current{L, {}, 0, false};
-		if (!utils::guarded_invoke(&read_identity, &current) || !current.found)
-		{
-			return;
-		}
-
-		m_previous_identity = current.identity;
-		m_previous_capabilities = current.capabilities;
-		m_restore = set_identity(L, identity, capabilities);
-	}
-
-	IdentityScope::~IdentityScope()
-	{
-		if (!m_restore)
-		{
-			return;
-		}
-
-		set_identity(m_state, m_previous_identity, m_previous_capabilities);
-	}
-
-	void elevate_closure(const Closure* closure, std::uint64_t) noexcept
-	{
-		if (!closure || access::closure(closure)->isC)
-		{
-			return;
-		}
-
-		report_elevation_unavailable();
+		ElevateCall call{closure, mask_for(capabilities)};
+		if (!utils::guarded_invoke(&elevate_proto_tree, &call))
+			RML_ERROR("elevate_closure faulted while walking the proto tree; capabilities were not applied");
 	}
 }

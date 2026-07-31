@@ -73,6 +73,15 @@ namespace rml::dumper::disasm
 			}
 		}
 
+		void set_zero(const Register destination)
+		{
+			if (const auto index = static_cast<std::size_t>(destination); index < m_origins.size())
+			{
+				m_origins[index] = destination;
+				m_objects[index] = zero_object;
+			}
+		}
+
 		void redefine_volatiles()
 		{
 			for (const auto scratch : {Register::rax, Register::rcx, Register::rdx, Register::r8, Register::r9,
@@ -239,11 +248,22 @@ namespace rml::dumper::disasm
 				access.width = static_cast<std::uint8_t>(operand.size / 8);
 				access.displacement = operand.mem.disp.has_displacement ? operand.mem.disp.value : 0;
 				access.is_write = (operand.actions & ZYDIS_OPERAND_ACTION_MASK_WRITE) != 0;
-				access.value_register = origins.of(companion_register(instruction, operands, i));
+				const auto raw_value = companion_register(instruction, operands, i);
+				access.value_register = origins.of(raw_value);
 				access.immediate = first_immediate(instruction, operands);
+
+				if (access.is_write && !access.immediate && origins.object_of(raw_value) == zero_object)
+					access.immediate = 0;
 
 				trace.accesses.push_back(access);
 			}
+
+			if ((instruction.mnemonic == ZYDIS_MNEMONIC_XOR || instruction.mnemonic == ZYDIS_MNEMONIC_SUB) &&
+			    instruction.operand_count_visible == 2 &&
+			    operands[0].type == ZYDIS_OPERAND_TYPE_REGISTER &&
+			    operands[1].type == ZYDIS_OPERAND_TYPE_REGISTER &&
+			    operands[0].reg.value == operands[1].reg.value)
+				origins.set_zero(to_register(operands[0].reg.value));
 
 			record_constant(trace, instruction, operands, address, sequence);
 

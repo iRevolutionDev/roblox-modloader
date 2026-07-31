@@ -27,6 +27,7 @@ namespace rml::dumper::target
 		lua_getinfo,
 		lua_pushcclosurek,
 		luaC_enumheap,
+		rbx_derive_thread_capabilities,
 		count,
 	};
 
@@ -54,6 +55,7 @@ namespace rml::dumper::target
 		case Anchor::lua_getinfo: return "lua_getinfo";
 		case Anchor::lua_pushcclosurek: return "lua_pushcclosurek";
 		case Anchor::luaC_enumheap: return "luaC_enumheap";
+		case Anchor::rbx_derive_thread_capabilities: return "rbx_derive_thread_capabilities";
 		case Anchor::count: return "count";
 		}
 		return "unknown";

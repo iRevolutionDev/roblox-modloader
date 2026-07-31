@@ -32,6 +32,13 @@ namespace rml
 		        },
 		    },
 		    {
+		        "RBX_THREAD_IDENTITY_CONTEXT",
+		        "40 53 48 83 EC 20 48 8B D9 E8 ? ? ? ? 48 8D 0D ? ? ? ? 48 89 48 30 48 89 58 18 48 83 C4 20 5B C3",
+		        [](const memory::handle ptr) {
+			        g_pointers->m_roblox_pointers.rbx_thread_identity_context = ptr.as<functions::rbx_thread_identity_context>();
+		        },
+		    },
+		    {
 		        "LUAH_NEW",
 		        "48 89 5C 24 ? 48 89 6C 24 ? 48 89 74 24 ? 57 48 83 EC ? 41 8B F0 8B EA 44 0F B6 41",
 		        [](const memory::handle ptr) {

@@ -23,6 +23,8 @@ namespace rml::dumper::recover
 		[[nodiscard]] static std::vector<FreedArray> freed_arrays(const disasm::Trace& trace, Rva free_function,
 		                                                          disasm::Object proto);
 
+		static void recover_userdata(const RecoveryContext& context, schema::StructLayout& layout);
+
 	private:
 		static constexpr std::array<std::string_view, 1> m_dependencies{"CommonHeader"};
 	};

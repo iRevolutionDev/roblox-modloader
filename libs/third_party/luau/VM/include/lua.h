@@ -74,6 +74,7 @@ enum lua_Type
 
     LUA_TLIGHTUSERDATA,
     LUA_TNUMBER,
+    LUA_TINTEGER,
     LUA_TVECTOR,
 
     LUA_TSTRING, // all types above this must be value types, all types below this must be GC types - see iscollectable
@@ -83,6 +84,9 @@ enum lua_Type
     LUA_TUSERDATA,
     LUA_TTHREAD,
     LUA_TBUFFER,
+
+    LUA_TCLASS,
+    LUA_TOBJECT,
 
     // values below this line are used in GCObject tags but may never show up in TValue type tags
     LUA_TPROTO,

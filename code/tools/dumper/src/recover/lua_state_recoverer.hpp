@@ -17,6 +17,11 @@ namespace rml::dumper::recover
 		                                                                    disasm::Object parent, std::uint8_t width,
 		                                                                    const schema::StructLayout& claimed);
 
+		[[nodiscard]] static std::optional<std::int64_t> highest_cleared_in_child(const disasm::Trace& trace,
+		                                                                         disasm::Object parent,
+		                                                                         std::uint8_t width,
+		                                                                         const schema::StructLayout& claimed);
+
 	private:
 		class Probe
 		{

@@ -23,6 +23,7 @@ namespace functions
 	using freeblock = void(RML_ENGINE_CALL*)(lua_State* L, int32_t sizeClass, void* block);
 	using lua_pushvalue = void*(RML_ENGINE_CALL*)(lua_State * L, int idx);
 	using luaE_newthread = lua_State*(RML_ENGINE_CALL*)(lua_State * L);
+	using rbx_thread_identity_context = void*(RML_ENGINE_CALL*)(lua_State* L);
 	using luau_execute = void(RML_ENGINE_CALL*)(lua_State* L);
 	using luau_load = lua_Status(RML_ENGINE_CALL*)(lua_State* L, const char* chunkname, const char* data, size_t size, int env);
 	using lua_setfield = void(RML_ENGINE_CALL*)(lua_State* L, int idx, const char* k);

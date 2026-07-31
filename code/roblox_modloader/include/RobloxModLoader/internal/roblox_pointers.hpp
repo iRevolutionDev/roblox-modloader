@@ -53,6 +53,7 @@ struct RobloxPointers
 	functions::luau_execute luau_execute;
 	functions::luau_load luau_load;
 	functions::luaE_newthread luaE_newthread;
+	functions::rbx_thread_identity_context rbx_thread_identity_context;
 	functions::lua_pushvalue lua_pushvalue;
 	functions::luaH_new luaH_new;
 	functions::freeblock freeblock;

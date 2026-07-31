@@ -85,7 +85,7 @@ namespace rml::luau::mirror
 		std::uint8_t* debuginsn;
 		LocVar* locvars;
 		Proto** p;
-		std::byte reserved_70[0x8];
+		void* userdata;
 		std::uint8_t* typeinfo;
 		std::byte reserved_80[0x8];
 		std::int32_t sizecode;
@@ -105,6 +105,7 @@ namespace rml::luau::mirror
 	static_assert(offsetof(Proto, debuginsn) == 0x58);
 	static_assert(offsetof(Proto, locvars) == 0x60);
 	static_assert(offsetof(Proto, p) == 0x68);
+	static_assert(offsetof(Proto, userdata) == 0x70);
 	static_assert(offsetof(Proto, typeinfo) == 0x78);
 	static_assert(offsetof(Proto, sizecode) == 0x88);
 	static_assert(offsetof(Proto, sizeupvalues) == 0x8C);
@@ -188,7 +189,7 @@ namespace rml::luau::mirror
 		GlobalState* global;
 		TValue* top;
 		TValue* base;
-		std::byte reserved_78[0x8];
+		void* userdata;
 	};
 
 	static_assert(offsetof(LuaState, status) == 0x3);
@@ -209,6 +210,7 @@ namespace rml::luau::mirror
 	static_assert(offsetof(LuaState, global) == 0x60);
 	static_assert(offsetof(LuaState, top) == 0x68);
 	static_assert(offsetof(LuaState, base) == 0x70);
+	static_assert(offsetof(LuaState, userdata) == 0x78);
 	static_assert(sizeof(LuaState) >= 0x80);
 	inline constexpr std::size_t luastate_size = 0x80;
 

@@ -56,6 +56,29 @@ namespace rml::dumper::recover
 		                                                          std::move(description))});
 	}
 
+	std::optional<std::int64_t> LuaStateRecoverer::highest_cleared_in_child(const disasm::Trace& trace,
+	                                                                       const disasm::Object parent,
+	                                                                       const std::uint8_t width,
+	                                                                       const schema::StructLayout& claimed)
+	{
+		std::optional<std::int64_t> highest;
+
+		for (const auto& write : trace.accesses)
+		{
+			if (!write.is_write || write.object == parent || write.width != width || write.displacement < 0)
+				continue;
+			if (!write.immediate.has_value() || *write.immediate != 0)
+				continue;
+			if (claimed.covers(static_cast<std::size_t>(write.displacement)))
+				continue;
+
+			if (!highest || write.displacement > *highest)
+				highest = write.displacement;
+		}
+
+		return highest;
+	}
+
 	std::optional<std::int64_t> LuaStateRecoverer::copied_from_parent(const disasm::Trace& trace,
 	                                                                  const disasm::Object parent,
 	                                                                  const std::uint8_t width,
@@ -178,6 +201,24 @@ namespace rml::dumper::recover
 		probe.take_offset("singlestep", "bool", 1, copied_from_parent(**thread_trace, parent, 1, layout),
 		                  target::Anchor::luaE_newthread,
 		                  "the byte copied from the parent state that is not the memory category");
+
+		std::optional<std::int64_t> self_stored;
+
+		for (const auto& write : (*thread_trace)->accesses)
+		{
+			if (!write.is_write || write.object == parent || write.width != 8 || write.displacement < 0)
+				continue;
+			if (write.value_register != write.base)
+				continue;
+			if (layout.covers(static_cast<std::size_t>(write.displacement)))
+				continue;
+
+			if (!self_stored || write.displacement > *self_stored)
+				self_stored = write.displacement;
+		}
+
+		probe.take_offset("userdata", "void*", 8, self_stored, target::Anchor::luaE_newthread,
+		                  "the qword the constructor points back at the state it just built");
 
 		const disasm::TraceQuery settop(**settop_trace);
 
