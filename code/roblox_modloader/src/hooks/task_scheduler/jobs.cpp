@@ -36,7 +36,7 @@ RBX::TaskScheduler::StepResult rml::Hooks::on_job_step(void** this_ptr, const RB
 			const rml::JobExecutionContext context{.kind = detected_kind,
 			    .job = this_ptr,
 			    .stats = &time_metrics,
-			    .delta_time = time_metrics.delta_time};
+			    .delta_time = 0.0};
 
 			rml::task_scheduler().execute_jobs_for_kind(context);
 		}

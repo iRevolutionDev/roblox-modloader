@@ -6,8 +6,6 @@
 #include "RobloxModLoader/roblox/data_model.hpp"
 #include "RobloxModLoader/roblox/waiting_hybrid_scripts_job.hpp"
 
-#include <unordered_map>
-
 RML_LOG_SCOPE("LuauWaitingScriptJob");
 
 namespace rml::jobs
@@ -34,59 +32,10 @@ namespace rml::jobs
 		return runtime->host(data_model->type);
 	}
 
-	static void report_gate(const char* reason, const int data_model_type)
-	{
-		static std::unordered_map<std::string, bool> seen;
-		if (seen.emplace(std::format("{}:{}", reason, data_model_type), true).second)
-		{
-			RML_WARN("gate: {} (DataModel type {})", reason, data_model_type);
-		}
-	}
-
-	static void report_heartbeat(const int data_model_type)
-	{
-		static std::atomic<std::uint64_t> calls{0};
-		const auto count = calls.fetch_add(1, std::memory_order_relaxed) + 1;
-
-		if (count % 200 == 0)
-		{
-			RML_INFO("gate: still being stepped, {} calls so far, latest DataModel type {}", count, data_model_type);
-		}
-	}
-
 	bool LuauWaitingScriptJob::should_execute_impl(const JobExecutionContext& context) noexcept
 	{
-		auto* runtime = luau::script_runtime();
-		if (!runtime)
-		{
-			report_gate("script_runtime() is null", -1);
-			return false;
-		}
-
-		const auto data_model = RBX::DataModel::from_job(context.job_as<RBX::DataModelJob>());
-		if (!data_model)
-		{
-			report_gate("from_job gave no DataModel", -1);
-			return false;
-		}
-
-		const auto type = static_cast<int>(data_model->type);
-		report_heartbeat(type);
-
-		auto* host = runtime->host(data_model->type);
-		if (!host)
-		{
-			report_gate("no host bound", type);
-			return false;
-		}
-
-		if (!host->has_pending())
-		{
-			return false;
-		}
-
-		RML_INFO("gate: passing, {} item(s) pending for DataModel type {}", host->dispatcher().pending_count(), type);
-		return true;
+		const auto* host = host_for_job(context);
+		return host != nullptr && host->has_pending();
 	}
 
 	void LuauWaitingScriptJob::execute_impl(const JobExecutionContext& context)
