@@ -331,7 +331,7 @@ namespace rml::luau
 
 		vm::set_identity(co, RBX::Security::Permissions::RobloxEngine, RBX::Security::FULL_CAPABILITIES, false);
 
-		constexpr auto label = std::string{"a script callback"};
+		const auto label = std::string{"a script callback"};
 		const auto wrapped = push_xpcall(co);
 
 		if (!target->push(co))

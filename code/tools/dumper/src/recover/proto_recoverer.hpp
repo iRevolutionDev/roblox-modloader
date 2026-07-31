@@ -26,6 +26,6 @@ namespace rml::dumper::recover
 		static void recover_userdata(const RecoveryContext& context, schema::StructLayout& layout);
 
 	private:
-		static constexpr std::array<std::string_view, 1> m_dependencies{"CommonHeader"};
+		static constexpr std::array<std::string_view, 2> m_dependencies{"CommonHeader", "Closure"};
 	};
 }

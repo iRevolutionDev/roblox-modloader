@@ -72,6 +72,11 @@ namespace RBX::Luau {
     public:
         CapabilityValidator *capabilities_validator;
         ExtendedIdentity context;
+
+    private:
+        std::byte padding_capabilities_gap[0x50];
+
+    public:
         uint64_t capabilities;
 
     private:
@@ -95,15 +100,15 @@ namespace RBX::Luau {
 
     private:
         RML_LAYOUT_GUARD_BEGIN()
-            RML_ASSERT_LAYOUT_SIZE(RobloxExtraSpace, 0x88);
+            RML_ASSERT_LAYOUT_SIZE(RobloxExtraSpace, 0xD8);
             RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, shared, 0x18);
             RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, capabilities_validator, 0x28);
             RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, context, 0x30);
-            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, capabilities, 0x40);
-            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, script, 0x50);
-            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, actor, 0x68);
-            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, is_actor_state, 0x80);
-            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, task_state, 0x81);
+            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, capabilities, 0x90);
+            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, script, 0xA0);
+            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, actor, 0xB8);
+            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, is_actor_state, 0xD0);
+            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, task_state, 0xD1);
         RML_LAYOUT_GUARD_END()
     };
 }

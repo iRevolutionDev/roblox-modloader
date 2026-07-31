@@ -174,12 +174,12 @@ namespace rml::dumper::recover
 			return;
 		}
 
-		const auto* p = layout.find("p");
-		const auto* typeinfo = layout.find("typeinfo");
-		if (p == nullptr || typeinfo == nullptr)
+		const auto* closure = context.layout("Closure");
+		const auto* proto_pointer = closure == nullptr ? nullptr : closure->find("p");
+		if (proto_pointer == nullptr)
 		{
-			context.report().record_failure(
-			    "Proto", "userdata", "cannot place the mask pointer without both p and typeinfo recovered");
+			context.report().record_failure("Proto", "userdata",
+			                                 "cannot follow the mask pointer without Closure.p recovered");
 			return;
 		}
 
@@ -191,30 +191,34 @@ namespace rml::dumper::recover
 		}
 
 		const disasm::MemoryAccess* found = nullptr;
-		for (const auto& access : (*trace)->accesses)
+		for (const auto& load : (*trace)->accesses)
 		{
-			if (access.is_write || access.width != 8 || access.displacement < 0)
+			if (load.is_write || load.width != 8 || load.value_register == disasm::Register::none ||
+			    load.displacement != static_cast<std::int64_t>(proto_pointer->offset))
 				continue;
 
-			const auto displacement = static_cast<std::size_t>(access.displacement);
-			if (displacement <= p->offset || displacement >= typeinfo->offset)
-				continue;
-
-			if (found != nullptr && found->displacement != access.displacement)
+			for (const auto& access : (*trace)->accesses)
 			{
-				context.report().record_failure(
-				    "Proto", "userdata",
-				    "rbx_derive_thread_capabilities reads more than one qword between p and typeinfo");
-				return;
-			}
+				if (access.is_write || access.width != 8 || access.displacement <= 0 ||
+				    access.sequence <= load.sequence || access.base != load.value_register)
+					continue;
 
-			found = &access;
+				if (found != nullptr && found->displacement != access.displacement)
+				{
+					context.report().record_failure(
+					    "Proto", "userdata",
+					    "rbx_derive_thread_capabilities reads more than one qword off the proto");
+					return;
+				}
+
+				found = &access;
+			}
 		}
 
 		if (found == nullptr)
 		{
-			context.report().record_failure(
-			    "Proto", "userdata", "rbx_derive_thread_capabilities reads no qword between p and typeinfo");
+			context.report().record_failure("Proto", "userdata",
+			                                 "rbx_derive_thread_capabilities reads no qword off the proto");
 			return;
 		}
 
