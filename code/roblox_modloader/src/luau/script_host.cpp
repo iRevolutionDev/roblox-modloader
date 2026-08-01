@@ -296,7 +296,9 @@ namespace rml::luau
 		const auto label = std::format("script '{}'", chunk.chunk_name);
 		const auto wrapped = push_xpcall(co);
 
-		if (auto loaded = vm::load_chunk(co, chunk.chunk_name, chunk.bytecode, RBX::Security::FULL_CAPABILITIES); !loaded)
+		if (auto loaded = load_chunk_for(**env, co, chunk.chunk_name, chunk.bytecode,
+		                                 RBX::Security::FULL_CAPABILITIES, (*env)->mod().node_for(chunk.chunk_name));
+		    !loaded)
 		{
 			return std::unexpected(std::move(loaded.error()));
 		}

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "RobloxModLoader/internal/common.hpp"
+#include "RobloxModLoader/luau/script/script_tree.hpp"
 
 namespace rml::luau
 {
@@ -11,6 +11,7 @@ namespace rml::luau
 		std::string author;
 		std::string description;
 		std::filesystem::path root;
+		ScriptTreePtr scripts;
 
 		[[nodiscard]] std::filesystem::path scripts_root() const { return root / "scripts"; }
 	};

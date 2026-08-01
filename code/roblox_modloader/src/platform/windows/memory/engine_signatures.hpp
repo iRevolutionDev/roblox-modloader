@@ -336,7 +336,7 @@ namespace rml
 		        }
 		    },
 		    {"LUA_GETMETATABLE",
-		        "48 89 5C 24 ? 57 48 83 EC 20 F6 41 ? ? 48 8B D9 48 63 FA 74 ? 4C 8D 41 ? 48 8B D1 E8 ? ? ? ? 80 3D ? ? ? ? ? 74 ? 48 8B 4B ? 48 8B 43 ? 48 83 C0 10 48 3B 41 ? 76 ? BA 01 00 00 00 48 8B CB E8 ? ? ? ? 85 C0 0F 84 ? ? ? ? 85 FF 7E ? 48 8B 53 ? 48 8D 05",
+		        "48 89 5C 24 ? 57 48 83 EC 20 F6 41 ? ? 48 8B D9 48 63 FA 74 ? 4C 8D 41 ? 48 8B D1 E8 ? ? ? ? 80 3D ? ? ? ? ? 74 ? 48 8B 4B ? 48 8B 43 ? 48 83 C0 10 48 3B 41 ? 76 ? BA 01 00 00 00 48 8B CB E8 ? ? ? ? 85 C0 0F 84 ? ? ? ? 85 FF 7E ? 48 8B 53 ? 48 8D 05 ? ? ? ? 48 83 C2 F0 48 8B CF 48 C1 E1 04 48 03 D1 48 3B 53 ? 48 0F 42 C2 EB ? 81 FF F0 D8 FF FF 7E ? 48 8B C7 48 C1 E0 04 48 03 43 ? EB ? 8B D7 48 8B CB E8 ? ? ? ? 48 63 48 ? 83 F9 07",
 		        [](const memory::handle ptr) {
 			        g_pointers->m_roblox_pointers.lua_getmetatable = ptr.as<functions::lua_getmetatable>();
 		        }

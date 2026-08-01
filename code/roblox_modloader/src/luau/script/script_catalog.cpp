@@ -9,12 +9,6 @@ RML_LOG_SCOPE("ScriptCatalog");
 
 namespace rml::luau
 {
-	static bool is_script_extension(const std::filesystem::path& path)
-	{
-		const auto extension = path.extension().string();
-		return extension == ".lua" || extension == ".luau";
-	}
-
 	std::span<const ScriptAsset> ModScripts::for_context(const RBX::DataModelType type) const noexcept
 	{
 		const auto it = by_context.find(type);
@@ -142,7 +136,7 @@ namespace rml::luau
 				continue;
 			}
 
-			if (!is_script_extension(path))
+			if (!is_script_file(path))
 			{
 				continue;
 			}
@@ -278,15 +272,8 @@ namespace rml::luau
 		}
 
 		ModScripts scripts;
-		scripts.manifest = std::make_shared<const ModManifest>(ModManifest{
-		    .name = mod_config->name,
-		    .version = mod_config->version,
-		    .author = mod_config->author,
-		    .description = mod_config->description,
-		    .root = mod_directory,
-		});
 
-		const auto scripts_root = scripts.manifest->scripts_root();
+		const auto scripts_root = mod_directory / "scripts";
 		const auto& contexts = mod_config->datamodel_context;
 
 		const std::array<std::pair<RBX::DataModelType, const std::vector<std::string>*>, 4> sources{{
@@ -306,11 +293,28 @@ namespace rml::luau
 			const PatternSet set{std::span<const std::string>{*patterns}};
 			auto assets = collect_scripts(scripts_root, set);
 
-			RML_DEBUG("Mod '{}' context {}: {} scripts", scripts.manifest->name, static_cast<int>(type),
-			          assets.size());
+			RML_DEBUG("Mod '{}' context {}: {} scripts", mod_config->name, static_cast<int>(type), assets.size());
 
 			scripts.by_context.emplace(type, std::move(assets));
 		}
+
+		std::vector<std::filesystem::path> entries;
+		for (const auto& assets : scripts.by_context | std::views::values)
+		{
+			for (const auto& asset : assets)
+			{
+				entries.push_back(asset.path);
+			}
+		}
+
+		scripts.manifest = std::make_shared<const ModManifest>(ModManifest{
+		    .name = mod_config->name,
+		    .version = mod_config->version,
+		    .author = mod_config->author,
+		    .description = mod_config->description,
+		    .root = mod_directory,
+		    .scripts = build_script_tree(scripts_root, mod_config->name, "self", entries),
+		});
 
 		return scripts;
 	}

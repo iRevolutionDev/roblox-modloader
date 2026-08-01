@@ -59,6 +59,25 @@ namespace rml::luau
 		return lua_gettop(L);
 	}
 
+	static int require_node(lua_State* L, ScriptEnv& env, const ScriptNode& node)
+	{
+		if (!node.requireable())
+		{
+			luaL_error(L, "attempted to require %s \"%s\", only a ModuleScript can be required",
+			           std::string{node.class_name()}.c_str(), node.full_name().c_str());
+		}
+
+		const ResolvedModule resolved{.id = ModuleId{node.source.generic_string()}, .logical = node.logical};
+
+		if (const auto loaded = env.modules().require(L, resolved, env); !loaded)
+		{
+			const auto message = loaded.error().message;
+			luaL_error(L, "%s", message.c_str());
+		}
+
+		return 1;
+	}
+
 	static int require_binding(lua_State* L)
 	{
 		auto& env = bound_env(L);
@@ -70,6 +89,11 @@ namespace rml::luau
 
 		if (lua_type(L, 1) != LUA_TSTRING)
 		{
+			if (const auto* node = to_script_node(L, 1, &env))
+			{
+				return require_node(L, env, *node);
+			}
+
 			return forward_to_engine(L, env);
 		}
 
@@ -84,7 +108,7 @@ namespace rml::luau
 			luaL_error(L, "%s", message.c_str());
 		}
 
-		if (const auto loaded = env.modules().require(L, *resolved, env.mod()); !loaded)
+		if (const auto loaded = env.modules().require(L, *resolved, env); !loaded)
 		{
 			const auto message = loaded.error().message;
 			luaL_error(L, "%s", message.c_str());

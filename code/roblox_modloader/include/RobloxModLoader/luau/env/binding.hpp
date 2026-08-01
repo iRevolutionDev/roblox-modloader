@@ -1,6 +1,7 @@
 #pragma once
 
 #include "RobloxModLoader/luau/env/mod_environment.hpp"
+#include "RobloxModLoader/luau/env/script_instance.hpp"
 #include "RobloxModLoader/luau/modules/module_registry.hpp"
 #include "RobloxModLoader/luau/vm/lua_thread.hpp"
 
@@ -33,6 +34,8 @@ namespace rml::luau
 		[[nodiscard]] const ModEnvironment& mod() const noexcept { return m_mod; }
 
 		[[nodiscard]] ModuleRegistry& modules() noexcept { return m_modules; }
+		[[nodiscard]] NodeCache& nodes() noexcept { return m_nodes; }
+		[[nodiscard]] const vm::Ref& shared_globals();
 		[[nodiscard]] ClosureRegistry& closures() const noexcept;
 
 		void adopt_original_require(vm::Ref require) noexcept { m_original_require = std::move(require); }
@@ -50,6 +53,8 @@ namespace rml::luau
 		vm::Thread m_thread;
 		ModEnvironment m_mod;
 		ModuleRegistry m_modules;
+		NodeCache m_nodes;
+		vm::Ref m_globals;
 		vm::Ref m_original_require;
 		EnvTokenPtr m_token;
 		std::vector<vm::Ref> m_unload_handlers;
@@ -79,7 +84,8 @@ namespace rml::luau
 
 	void set_bound_global(ScriptEnv& env, lua_State* L, const char* name, lua_CFunction fn);
 
-	void push_bound_function(ScriptEnv& env, lua_State* L, const char* debug_name, lua_CFunction fn);
+	void push_bound_function(ScriptEnv& env, lua_State* L, const char* debug_name, lua_CFunction fn,
+	                         int extra_upvalues = 0);
 
 	[[nodiscard]] ScriptEnv* try_bound_env(lua_State* L) noexcept;
 

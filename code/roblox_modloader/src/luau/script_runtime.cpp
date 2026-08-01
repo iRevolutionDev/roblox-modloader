@@ -31,6 +31,7 @@ namespace rml::luau
 	{
 		m_mods_directory = mods_directory;
 		m_loader_env = ModEnvironment{.manifest = nullptr, .rml_libraries = default_rml_libraries_root()};
+		m_loader_env.libraries = build_script_tree(m_loader_env.rml_libraries, "rml", "rml", {});
 
 		std::size_t catalogued = 0;
 		{
@@ -78,7 +79,8 @@ namespace rml::luau
 
 	ModEnvironment ScriptRuntime::environment_for(const ModManifestPtr& mod) const
 	{
-		return ModEnvironment{.manifest = mod, .rml_libraries = m_loader_env.rml_libraries};
+		return ModEnvironment{
+		    .manifest = mod, .rml_libraries = m_loader_env.rml_libraries, .libraries = m_loader_env.libraries};
 	}
 
 	void ScriptRuntime::bind_host(const RBX::DataModelType type, lua_State* global_state)

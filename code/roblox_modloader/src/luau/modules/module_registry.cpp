@@ -1,5 +1,6 @@
 #include "RobloxModLoader/luau/modules/module_registry.hpp"
 
+#include "RobloxModLoader/luau/env/binding.hpp"
 #include "RobloxModLoader/luau/vm/chunk.hpp"
 #include "RobloxModLoader/luau/vm/stack_guard.hpp"
 #include "RobloxModLoader/luau/vm/thread_identity.hpp"
@@ -28,13 +29,20 @@ namespace rml::luau
 	};
 
 	std::expected<void, vm::VmError> ModuleRegistry::require(
-	    lua_State* L, const ResolvedModule& module, const ModEnvironment& env)
+	    lua_State* L, const ResolvedModule& module, ScriptEnv& env)
 	{
 		if (const auto cached = m_loaded.find(module.id); cached != m_loaded.end())
 		{
 			vm::StackGuard guard(L);
 
-			if (!cached->second.push(L))
+			if (cached->second.returned_nil)
+			{
+				lua_pushnil(L);
+				guard.release();
+				return {};
+			}
+
+			if (!cached->second.value.push(L))
 			{
 				return std::unexpected(vm::VmError::internal(
 				    std::format("module '{}' lost its cached value", module.logical)));
@@ -54,7 +62,7 @@ namespace rml::luau
 	}
 
 	std::expected<void, vm::VmError> ModuleRegistry::load(
-	    lua_State* L, const ResolvedModule& module, const ModEnvironment& env)
+	    lua_State* L, const ResolvedModule& module, ScriptEnv& env)
 	{
 		const LoadingScope scope(m_loading, module);
 
@@ -66,30 +74,36 @@ namespace rml::luau
 
 		vm::StackGuard guard(L);
 
-		if (auto loaded = vm::load_chunk(L, module.logical, *bytecode, RBX::Security::FULL_CAPABILITIES); !loaded)
+		if (auto loaded = load_chunk_for(env, L, module.logical, *bytecode, RBX::Security::FULL_CAPABILITIES,
+		                                 env.mod().node_for(module.logical));
+		    !loaded)
 		{
 			return std::unexpected(std::move(loaded.error()));
 		}
 
 		vm::set_identity(L, RBX::Security::Permissions::RobloxEngine, RBX::Security::FULL_CAPABILITIES, false);
 
-		const auto called = vm::protected_call(L, 0, 1);
+		const auto called = vm::protected_call(L, 0, LUA_MULTRET);
 		if (!called)
 		{
 			return std::unexpected(called.error());
 		}
 
-		if (lua_gettop(L) <= guard.top())
+		if (*called != 1)
 		{
 			return std::unexpected(vm::VmError::internal(
-			    std::format("module '{}' returned nothing, a module must return exactly one value",
-			                module.logical)));
+			    std::format("module '{}' returned {} values, a module must return exactly one value",
+			                module.logical, *called)));
 		}
 
 		if (lua_isnil(L, -1))
 		{
-			return std::unexpected(vm::VmError::internal(
-			    std::format("module '{}' returned nil, a module must return exactly one value", module.logical)));
+			m_loaded.insert_or_assign(module.id, LoadedModule{.returned_nil = true});
+
+			guard.release();
+
+			RML_DEBUG("Loaded module '{}' for '{}' (it returns nil)", module.logical, env.mod().mod_name());
+			return {};
 		}
 
 		auto ref = vm::Ref::take(L, -1, m_anchor);
@@ -99,11 +113,11 @@ namespace rml::luau
 			    vm::VmError::internal(std::format("module '{}' could not be anchored", module.logical)));
 		}
 
-		m_loaded.insert_or_assign(module.id, std::move(ref));
+		m_loaded.insert_or_assign(module.id, LoadedModule{.value = std::move(ref)});
 
 		guard.release();
 
-		RML_DEBUG("Loaded module '{}' for '{}'", module.logical, env.mod_name());
+		RML_DEBUG("Loaded module '{}' for '{}'", module.logical, env.mod().mod_name());
 		return {};
 	}
 
@@ -154,9 +168,9 @@ namespace rml::luau
 
 	void ModuleRegistry::release() noexcept
 	{
-		for (auto& ref : m_loaded | std::views::values)
+		for (auto& entry : m_loaded | std::views::values)
 		{
-			ref.release();
+			entry.value.release();
 		}
 
 		clear();

@@ -8,6 +8,14 @@
 
 namespace rml::luau
 {
+	class ScriptEnv;
+
+	struct LoadedModule
+	{
+		vm::Ref value;
+		bool returned_nil{false};
+	};
+
 	class ModuleRegistry final
 	{
 	public:
@@ -22,7 +30,7 @@ namespace rml::luau
 		ModuleRegistry& operator=(ModuleRegistry&&) = delete;
 
 		[[nodiscard]] std::expected<void, vm::VmError> require(
-		    lua_State* L, const ResolvedModule& module, const ModEnvironment& env);
+		    lua_State* L, const ResolvedModule& module, ScriptEnv& env);
 
 		void invalidate(const ModuleId& id);
 		std::size_t invalidate_under(const std::filesystem::path& root);
@@ -33,13 +41,13 @@ namespace rml::luau
 
 	private:
 		[[nodiscard]] std::expected<void, vm::VmError> load(
-		    lua_State* L, const ResolvedModule& module, const ModEnvironment& env);
+		    lua_State* L, const ResolvedModule& module, ScriptEnv& env);
 
 		[[nodiscard]] std::string describe_cycle(const ResolvedModule& repeated) const;
 
 		BytecodeCache* m_bytecode;
 		lua_State* m_anchor;
-		std::unordered_map<ModuleId, vm::Ref, ModuleIdHash> m_loaded;
+		std::unordered_map<ModuleId, LoadedModule, ModuleIdHash> m_loaded;
 		std::vector<ResolvedModule> m_loading;
 	};
 }

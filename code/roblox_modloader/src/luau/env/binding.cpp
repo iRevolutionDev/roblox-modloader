@@ -29,6 +29,27 @@ namespace rml::luau
 
 	ClosureRegistry& ScriptEnv::closures() const noexcept { return m_host->closures(); }
 
+	const vm::Ref& ScriptEnv::shared_globals()
+	{
+		if (m_globals.valid())
+		{
+			return m_globals;
+		}
+
+		auto* L = m_thread.get();
+		if (L == nullptr)
+		{
+			return m_globals;
+		}
+
+		vm::StackGuard guard(L);
+
+		lua_createtable(L, 0, 0);
+		m_globals = vm::Ref::take(L, -1, m_host->global_state());
+
+		return m_globals;
+	}
+
 	void ScriptEnv::add_unload_handler(vm::Ref handler)
 	{
 		if (handler.valid())
@@ -50,15 +71,24 @@ namespace rml::luau
 		}
 
 		m_unload_handlers.clear();
+		m_globals.release();
+		m_nodes.release();
 		m_modules.release();
 		m_original_require.release();
 		m_thread.release();
 	}
 
-	void push_bound_function(ScriptEnv& env, lua_State* L, const char* debug_name, const lua_CFunction fn)
+	void push_bound_function(ScriptEnv& env, lua_State* L, const char* debug_name, const lua_CFunction fn,
+	                         const int extra_upvalues)
 	{
 		push_env_upvalue(env, L);
-		lua_pushcclosure(L, fn, debug_name, 1);
+
+		if (extra_upvalues > 0)
+		{
+			lua_insert(L, -(extra_upvalues + 1));
+		}
+
+		lua_pushcclosure(L, fn, debug_name, 1 + extra_upvalues);
 	}
 
 	void set_bound_global(ScriptEnv& env, lua_State* L, const char* name, const lua_CFunction fn)

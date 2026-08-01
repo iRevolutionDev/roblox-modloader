@@ -2,6 +2,12 @@
 
 namespace rml::luau
 {
+	bool is_script_file(const std::filesystem::path& path)
+	{
+		const auto extension = path.extension().string();
+		return extension == ".lua" || extension == ".luau";
+	}
+
 	std::expected<std::string, std::string> read_source(const std::filesystem::path& path)
 	{
 		std::error_code error;

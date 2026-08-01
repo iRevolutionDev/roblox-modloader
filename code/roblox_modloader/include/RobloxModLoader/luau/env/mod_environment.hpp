@@ -8,6 +8,7 @@ namespace rml::luau
 	{
 		ModManifestPtr manifest;
 		std::filesystem::path rml_libraries;
+		ScriptTreePtr libraries;
 
 		[[nodiscard]] std::filesystem::path mod_scripts() const
 		{
@@ -18,6 +19,12 @@ namespace rml::luau
 		{
 			return manifest ? std::string_view{manifest->name} : std::string_view{"<loader>"};
 		}
+
+		[[nodiscard]] const ScriptTree* scripts() const noexcept { return manifest ? manifest->scripts.get() : nullptr; }
+
+		[[nodiscard]] const ScriptTree* tree_for(std::string_view logical) const noexcept;
+
+		[[nodiscard]] const ScriptNode* node_for(std::string_view logical) const noexcept;
 	};
 
 	[[nodiscard]] std::filesystem::path default_rml_libraries_root();
