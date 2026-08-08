@@ -222,7 +222,8 @@ namespace RBX::Reflection
 		T* find_descriptor(const char* name) const
 		{
 			if (!g_pointers || !g_pointers->m_roblox_pointers.get_string_atom
-			    || !g_pointers->m_roblox_pointers.descriptor_lookup)
+			    || !g_pointers->m_roblox_pointers.descriptor_lookup
+			    || !g_pointers->m_roblox_pointers.member_table_offset)
 			{
 				return nullptr;
 			}
@@ -233,7 +234,7 @@ namespace RBX::Reflection
 				return nullptr;
 			}
 
-			constexpr std::uint64_t member_table_offset = 0x250;
+			const std::uint64_t member_table_offset = g_pointers->m_roblox_pointers.member_table_offset;
 			const auto desc = g_pointers->m_roblox_pointers.descriptor_lookup(reinterpret_cast<uint64_t>(this) + member_table_offset, &atom);
 			if (desc && *desc)
 			{

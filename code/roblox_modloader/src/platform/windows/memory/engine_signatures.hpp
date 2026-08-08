@@ -94,7 +94,13 @@ namespace rml
 			        g_pointers->m_roblox_pointers.descriptor_lookup = ptr.as<functions::descriptor_lookup>();
 		        }
 		    },
-		    {"GET_STRING_ATOM",
+		    {"MEMBER_TABLE_OFFSET",
+	        "48 8B 4B ? E8 ? ? ? ? 48 8D 8F ? ? ? ? 48 89 44 24 ? 48 8D 54 24 ? E8",
+	        [](const memory::handle ptr) {
+		        g_pointers->m_roblox_pointers.member_table_offset = *ptr.add(12).as<std::uint32_t*>();
+	        }
+	    },
+	    {"GET_STRING_ATOM",
 		        "48 89 5C 24 ? 57 48 83 EC 20 48 8B 1D ? ? ? ? 48 8B F9 48 85 DB",
 		        [](const memory::handle ptr) {
 			        g_pointers->m_roblox_pointers.get_string_atom = ptr.as<functions::get_string_atom>();
@@ -132,13 +138,13 @@ namespace rml
 		        }
 		    },
 		    {"LUA_SETTOP",
-		        "48 89 5C 24 ? 57 48 83 EC 20 48 63 FA 48 8B D9 85 D2 0F 88",
+		        "48 89 5C 24 ? 57 48 83 EC 20 4C 8B 41 ? 48 8B D9 48 63 FA 85 D2",
 		        [](const memory::handle ptr) {
 			        g_pointers->m_roblox_pointers.lua_settop = ptr.as<functions::lua_settop>();
 		        }
 		    },
 		    {"LUA_NEWTHREAD",
-		        "40 53 48 83 EC 20 48 8B 51 ? 48 8B D9 48 8B 02",
+		        "40 53 48 83 EC 20 48 8B 51 ? 48 8B D9 48 8B 42",
 		        [](const memory::handle ptr) {
 			        g_pointers->m_roblox_pointers.lua_newthread = ptr.as<functions::lua_newthread>();
 		        }
@@ -162,7 +168,7 @@ namespace rml
 		        }
 		    },
 		    {"LUA_PUSHVALUE",
-		        "48 89 5C 24 ? 57 48 83 EC 20 F6 41 ? ? 48 8B D9 48 63 FA 74 ? 4C 8D 41 ? 48 8B D1 E8 ? ? ? ? 80 3D ? ? ? ? ? 74 ? 48 8B 4B ? 48 8B 43 ? 48 83 C0 10 48 3B 41 ? 76 ? BA 01 00 00 00 48 8B CB E8 ? ? ? ? 85 C0 74 ? 85 FF 7E ? 48 8B 43 ? 48 8B CF 48 C1 E1 04",
+		        "48 89 5C 24 ? 57 48 83 EC 20 F6 41 ? ? 48 8B D9 48 63 FA 74 ? 4C 8D 41 ? 48 8B D1 E8 ? ? ? ? 48 8B 53 ? 48 8B 43 ? 48 8D 4A ? 48 3B 08 76 ? 48 8B C2 48 2B 43 ? 48 C1 F8 04 48 FF C0 48 3D 40 1F 00 00 0F 8F ? ? ? ? 48 8B 43 ? 48 2B C2 48 83 F8 10 7F ? 4C 8D 44 24 ? C7 44 24 ? ? ? ? ? 48 8D 15 ? ? ? ? 48 8B CB E8 ? ? ? ? 85 C0 75",
 		        [](const memory::handle ptr) {
 			        g_pointers->m_roblox_pointers.lua_pushvalue = ptr.as<functions::lua_pushvalue>();
 		        }
@@ -174,25 +180,25 @@ namespace rml
 		        }
 		    },
 		    {"LUA_PUSHNIL",
-		        "40 53 48 83 EC 20 80 3D ? ? ? ? ? 48 8B D9 74 ? 48 8B 51",
+		        "40 53 48 83 EC 20 48 8B D9 48 8B 49 ? 48 8B 43",
 		        [](const memory::handle ptr) {
 			        g_pointers->m_roblox_pointers.lua_pushnil = ptr.as<functions::lua_pushnil>();
 		        }
 		    },
 		    {"LUA_PUSHNUMBER",
-		        "40 53 48 83 EC 30 80 3D ? ? ? ? ? 48 8B D9 0F 29 74 24 ? 0F 28 F1 74 ? 48 8B 51",
+		        "40 53 48 83 EC 30 48 8B D9 0F 29 74 24 ? 48 8B 49 ? 0F 28 F1 48 8B 43",
 		        [](const memory::handle ptr) {
 			        g_pointers->m_roblox_pointers.lua_pushnumber = ptr.as<functions::lua_pushnumber>();
 		        }
 		    },
 		    {"LUA_PUSHINTEGER",
-		        "48 89 5C 24 ? 57 48 83 EC 20 80 3D ? ? ? ? ? 8B FA 48 8B D9 74 ? 4C 8B 41 ? 48 8B 41 ? 48 83 C0 10 49 3B 40 ? 76 ? BA 01 00 00 00 E8 ? ? ? ? 85 C0 74 ? 48 8B 43",
+		        "48 89 5C 24 ? 57 48 83 EC 20 48 8B D9 8B FA 48 8B 49 ? 48 8B 43 ? 4C 8D 41 10 4C 3B 00 76 ? 48 8B C1 48 2B 43 ? 48 C1 F8 04 48 FF C0 48 3D 40 1F 00 00 7F ? 48 8B 43 ? 48 2B C1 48 83 F8 10 7F ? 4C 8D 44 24 ? C7 44 24 ? 01 00 00 00 48 8D 15 ? ? ? ? 48 8B CB E8 ? ? ? ? 85 C0 75 ? 48 8B 4B ? 48 8B 43 ? 48 83 C0 10 48 39 01 73 ? 48 89 01 48 8B 43 ? 66 0F 6E C7 F3 0F E6 C0",
 		        [](const memory::handle ptr) {
 			        g_pointers->m_roblox_pointers.lua_pushinteger = ptr.as<functions::lua_pushinteger>();
 		        }
 		    },
 		    {"LUA_PUSHBOOLEAN",
-		        "48 89 5C 24 ? 57 48 83 EC 20 80 3D ? ? ? ? ? 8B FA 48 8B D9 74 ? 4C 8B 41 ? 48 8B 41 ? 48 83 C0 10 49 3B 40 ? 76 ? BA 01 00 00 00 E8 ? ? ? ? 85 C0 74 ? 48 8B 4B",
+		        "48 89 5C 24 ? 57 48 83 EC 20 48 8B D9 8B FA 48 8B 49 ? 48 8B 43 ? 4C 8D 41 ? 4C 3B 00 76 ? 48 8B C1 48 2B 43 ? 48 C1 F8 04 48 FF C0 48 3D 40 1F 00 00 7F ? 48 8B 43 ? 48 2B C1 48 83 F8 10 7F ? 4C 8D 44 24 ? C7 44 24 ? ? ? ? ? 48 8D 15 ? ? ? ? 48 8B CB E8 ? ? ? ? 85 C0 75 ? 48 8B 4B ? 48 8B 43 ? 48 83 C0 10 48 39 01 73 ? 48 89 01 48 8B 4B ? 33 C0",
 		        [](const memory::handle ptr) {
 			        g_pointers->m_roblox_pointers.lua_pushboolean = ptr.as<functions::lua_pushboolean>();
 		        }
@@ -210,7 +216,7 @@ namespace rml
 		        }
 		    },
 		    {"LUA_PUSHCCLOSUREK",
-		        "48 89 5C 24 ? 48 89 74 24 ? 48 89 7C 24 ? 41 56 48 83 EC 20 4C 8B 51 ? 49 8B F0",
+		        "48 89 5C 24 ? 56 57 41 56 48 83 EC 20 4C 8B 51",
 		        [](const memory::handle ptr) {
 			        g_pointers->m_roblox_pointers.lua_pushcclosurek = ptr.as<functions::lua_pushcclosurek>();
 		        }
@@ -318,7 +324,7 @@ namespace rml
 		        }
 		    },
 		    {"LUA_NEXT",
-		        "48 89 5C 24 ? 57 48 83 EC 20 F6 41 ? ? 48 8B D9 48 63 FA 74 ? 4C 8D 41 ? 48 8B D1 E8 ? ? ? ? 80 3D ? ? ? ? ? 74 ? 48 8B 4B ? 48 8B 43 ? 48 83 C0 10 48 3B 41 ? 76 ? BA 01 00 00 00 48 8B CB E8 ? ? ? ? 85 C0 74 ? 85 FF 7E ? 48 8B 43 ? 48 8B CF 4C 8B 43",
+		        "48 89 5C 24 ? 57 48 83 EC 20 F6 41 ? ? 48 8B D9 48 63 FA 74 ? 4C 8D 41 ? 48 8B D1 E8 ? ? ? ? 48 8B 53 ? 48 8B 43 ? 48 8D 4A ? 48 3B 08 76 ? 48 8B C2 48 2B 43 ? 48 C1 F8 04 48 FF C0 48 3D 40 1F 00 00 0F 8F ? ? ? ? 48 8B 43 ? 48 2B C2 48 83 F8 10 7F ? 4C 8D 44 24 ? C7 44 24 ? ? ? ? ? 48 8D 15 ? ? ? ? 48 8B CB E8 ? ? ? ? 85 C0 0F 85 ? ? ? ? 48 8B 4B ? 48 8B 43 ? 48 83 C0 10 48 39 01 73 ? 48 89 01 85 FF 7E ? 48 8B 43 ? 48 8B CF 4C 8B 43",
 		        [](const memory::handle ptr) {
 			        g_pointers->m_roblox_pointers.lua_next = ptr.as<functions::lua_next>();
 		        }
@@ -336,7 +342,7 @@ namespace rml
 		        }
 		    },
 		    {"LUA_GETMETATABLE",
-		        "48 89 5C 24 ? 57 48 83 EC 20 F6 41 ? ? 48 8B D9 48 63 FA 74 ? 4C 8D 41 ? 48 8B D1 E8 ? ? ? ? 80 3D ? ? ? ? ? 74 ? 48 8B 4B ? 48 8B 43 ? 48 83 C0 10 48 3B 41 ? 76 ? BA 01 00 00 00 48 8B CB E8 ? ? ? ? 85 C0 0F 84 ? ? ? ? 85 FF 7E ? 48 8B 53 ? 48 8D 05 ? ? ? ? 48 83 C2 F0 48 8B CF 48 C1 E1 04 48 03 D1 48 3B 53 ? 48 0F 42 C2 EB ? 81 FF F0 D8 FF FF 7E ? 48 8B C7 48 C1 E0 04 48 03 43 ? EB ? 8B D7 48 8B CB E8 ? ? ? ? 48 63 48 ? 83 F9 07",
+		        "48 89 5C 24 ? 57 48 83 EC 20 F6 41 ? ? 48 8B D9 48 63 FA 74 ? 4C 8D 41 ? 48 8B D1 E8 ? ? ? ? 48 8B 53 ? 48 8B 43 ? 48 8D 4A ? 48 3B 08 76 ? 48 8B C2 48 2B 43 ? 48 C1 F8 04 48 FF C0 48 3D 40 1F 00 00 0F 8F ? ? ? ? 48 8B 43 ? 48 2B C2 48 83 F8 10 7F ? 4C 8D 44 24 ? C7 44 24 ? ? ? ? ? 48 8D 15 ? ? ? ? 48 8B CB E8 ? ? ? ? 85 C0 0F 85 ? ? ? ? 48 8B 4B ? 48 8B 43 ? 48 83 C0 10 48 39 01 73 ? 48 89 01 85 FF 7E ? 48 8B 53",
 		        [](const memory::handle ptr) {
 			        g_pointers->m_roblox_pointers.lua_getmetatable = ptr.as<functions::lua_getmetatable>();
 		        }
@@ -420,7 +426,7 @@ namespace rml
 		        }
 		    },
 		    {"LUA_SETREADONLY",
-		        "48 83 EC 28 45 8B D0 85 D2 7E ? 4C 8B 49 ? 48 8D 05 ? ? ? ? 49 83 C1 F0 48 63 D2 48 C1 E2 04 4C 03 CA 4C 3B 49 ? 49 0F 42 C1 45 85 C0 0F 95 C1 48 8B 00 88 48 04",
+		        "48 83 EC 28 45 8B D0 85 D2 7E ? 4C 8B 49 ? 48 8D 05 ? ? ? ? 49 83 C1 F0 48 63 D2 48 C1 E2 04 4C 03 CA 4C 3B 49 ? 49 0F 42 C1 45 85 C0 0F 95 C1 48 8B 00 88 48 05",
 		        [](const memory::handle ptr) {
 			        g_pointers->m_roblox_pointers.lua_setreadonly = ptr.as<functions::lua_setreadonly>();
 		        }
@@ -564,7 +570,7 @@ namespace rml
 		        }
 		    },
 		    {"RBX_GET_GLOBAL_STATE",
-		        "48 83 EC ? 8B 81 ? ? ? ? 90 83 F8 ? 7D ? 48 81 C1 ? ? ? ? E8 ? ? ? ? 48",
+		        "48 83 EC ? 8B 81 ? ? ? ? 90 83 F8 ? 7D ? 48 81 C1 38 01 00 00 E8",
 		        [](const memory::handle ptr) {
 			        g_pointers->m_roblox_pointers.get_global_state = ptr.as<functions::get_global_state>();
 		        }

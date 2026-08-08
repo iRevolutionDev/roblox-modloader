@@ -202,23 +202,41 @@ namespace rml::dumper::recover
 		                  target::Anchor::luaE_newthread,
 		                  "the byte copied from the parent state that is not the memory category");
 
-		std::optional<std::int64_t> self_stored;
+		std::optional<std::int64_t> extra_space;
 
-		for (const auto& write : (*thread_trace)->accesses)
+		if (const auto derive_trace = context.trace(target::Anchor::rbx_derive_thread_capabilities))
 		{
-			if (!write.is_write || write.object == parent || write.width != 8 || write.displacement < 0)
-				continue;
-			if (write.value_register != write.base)
-				continue;
-			if (layout.covers(static_cast<std::size_t>(write.displacement)))
-				continue;
+			const auto derive_state = disasm::entry_object(context.abi().argument(1));
 
-			if (!self_stored || write.displacement > *self_stored)
-				self_stored = write.displacement;
+			for (const auto& load : (*derive_trace)->accesses)
+			{
+				if (load.is_write || load.width != 8 || load.object != derive_state ||
+				    load.displacement < 0 || load.value_register == disasm::Register::none)
+					continue;
+				if (layout.covers(static_cast<std::size_t>(load.displacement)))
+					continue;
+
+				bool read_through = false;
+				for (const auto& use : (*derive_trace)->accesses)
+				{
+					if (!use.is_write && use.sequence > load.sequence && use.base == load.value_register)
+					{
+						read_through = true;
+						break;
+					}
+				}
+
+				if (read_through)
+				{
+					extra_space = load.displacement;
+					break;
+				}
+			}
 		}
 
-		probe.take_offset("userdata", "void*", 8, self_stored, target::Anchor::luaE_newthread,
-		                  "the qword the constructor points back at the state it just built");
+		probe.take_offset("userdata", "void*", 8, extra_space,
+		                  target::Anchor::rbx_derive_thread_capabilities,
+		                  "the qword the capability derive reads through to reach the extra space");
 
 		const disasm::TraceQuery settop(**settop_trace);
 

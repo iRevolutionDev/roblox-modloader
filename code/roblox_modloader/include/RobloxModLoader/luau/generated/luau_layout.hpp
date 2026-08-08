@@ -20,26 +20,26 @@ namespace rml::luau::mirror
 
 	struct CallInfo
 	{
-		TValue* base;
-		std::byte reserved_8[0x8];
-		TValue* func;
 		TValue* top;
+		std::byte reserved_8[0x8];
+		TValue* base;
+		TValue* func;
 		std::byte reserved_20[0x10];
 	};
 
-	static_assert(offsetof(CallInfo, base) == 0x0);
-	static_assert(offsetof(CallInfo, func) == 0x10);
-	static_assert(offsetof(CallInfo, top) == 0x18);
+	static_assert(offsetof(CallInfo, top) == 0x0);
+	static_assert(offsetof(CallInfo, base) == 0x10);
+	static_assert(offsetof(CallInfo, func) == 0x18);
 	static_assert(sizeof(CallInfo) >= 0x30);
 	inline constexpr std::size_t callinfo_size = 0x30;
 
 	struct Closure
 	{
 		std::byte reserved_0[0x3];
-		std::uint8_t preload;
-		std::uint8_t nupvalues;
 		std::uint8_t isC;
 		std::uint8_t stacksize;
+		std::uint8_t nupvalues;
+		std::uint8_t preload;
 		std::byte reserved_7[0x9];
 		LuaTable* env;
 		Proto* p;
@@ -48,10 +48,10 @@ namespace rml::luau::mirror
 		TValue* upvals;
 	};
 
-	static_assert(offsetof(Closure, preload) == 0x3);
-	static_assert(offsetof(Closure, nupvalues) == 0x4);
-	static_assert(offsetof(Closure, isC) == 0x5);
-	static_assert(offsetof(Closure, stacksize) == 0x6);
+	static_assert(offsetof(Closure, isC) == 0x3);
+	static_assert(offsetof(Closure, stacksize) == 0x4);
+	static_assert(offsetof(Closure, nupvalues) == 0x5);
+	static_assert(offsetof(Closure, preload) == 0x6);
 	static_assert(offsetof(Closure, env) == 0x10);
 	static_assert(offsetof(Closure, p) == 0x18);
 	static_assert(offsetof(Closure, uprefs) == 0x20);
@@ -74,46 +74,49 @@ namespace rml::luau::mirror
 
 	struct Proto
 	{
-		std::byte reserved_0[0x20];
-		void* userdata;
-		std::uint8_t* debuginsn;
-		std::uint8_t* lineinfo;
-		std::byte reserved_38[0x8];
+		std::byte reserved_0[0x18];
+		Proto** p;
 		TString** upvalues;
-		LocVar* locvars;
+		std::byte reserved_28[0x8];
+		void* userdata;
+		std::byte reserved_38[0x8];
+		std::uint8_t* debuginsn;
+		std::byte reserved_48[0x8];
 		TValue* k;
 		std::uint32_t* code;
 		std::byte reserved_60[0x8];
-		Proto** p;
-		std::byte reserved_70[0x10];
+		LocVar* locvars;
+		std::byte reserved_70[0x8];
 		std::uint8_t* typeinfo;
-		std::int32_t sizelineinfo;
+		std::uint8_t* lineinfo;
+		std::byte reserved_88[0x4];
+		std::int32_t sizek;
+		std::byte reserved_90[0x4];
+		std::int32_t sizelocvars;
 		std::int32_t sizep;
 		std::int32_t sizecode;
-		std::int32_t sizetypeinfo;
-		std::byte reserved_98[0x8];
-		std::int32_t sizek;
-		std::int32_t sizelocvars;
-		std::byte reserved_a8[0x4];
+		std::byte reserved_a0[0x4];
+		std::int32_t sizelineinfo;
 		std::int32_t sizeupvalues;
+		std::int32_t sizetypeinfo;
 	};
 
-	static_assert(offsetof(Proto, userdata) == 0x20);
-	static_assert(offsetof(Proto, debuginsn) == 0x28);
-	static_assert(offsetof(Proto, lineinfo) == 0x30);
-	static_assert(offsetof(Proto, upvalues) == 0x40);
-	static_assert(offsetof(Proto, locvars) == 0x48);
+	static_assert(offsetof(Proto, p) == 0x18);
+	static_assert(offsetof(Proto, upvalues) == 0x20);
+	static_assert(offsetof(Proto, userdata) == 0x30);
+	static_assert(offsetof(Proto, debuginsn) == 0x40);
 	static_assert(offsetof(Proto, k) == 0x50);
 	static_assert(offsetof(Proto, code) == 0x58);
-	static_assert(offsetof(Proto, p) == 0x68);
-	static_assert(offsetof(Proto, typeinfo) == 0x80);
-	static_assert(offsetof(Proto, sizelineinfo) == 0x88);
-	static_assert(offsetof(Proto, sizep) == 0x8C);
-	static_assert(offsetof(Proto, sizecode) == 0x90);
-	static_assert(offsetof(Proto, sizetypeinfo) == 0x94);
-	static_assert(offsetof(Proto, sizek) == 0xA0);
-	static_assert(offsetof(Proto, sizelocvars) == 0xA4);
-	static_assert(offsetof(Proto, sizeupvalues) == 0xAC);
+	static_assert(offsetof(Proto, locvars) == 0x68);
+	static_assert(offsetof(Proto, typeinfo) == 0x78);
+	static_assert(offsetof(Proto, lineinfo) == 0x80);
+	static_assert(offsetof(Proto, sizek) == 0x8C);
+	static_assert(offsetof(Proto, sizelocvars) == 0x94);
+	static_assert(offsetof(Proto, sizep) == 0x98);
+	static_assert(offsetof(Proto, sizecode) == 0x9C);
+	static_assert(offsetof(Proto, sizelineinfo) == 0xA4);
+	static_assert(offsetof(Proto, sizeupvalues) == 0xA8);
+	static_assert(offsetof(Proto, sizetypeinfo) == 0xAC);
 	static_assert(sizeof(Proto) >= 0xB0);
 	inline constexpr std::size_t proto_size = 0xB0;
 
@@ -131,86 +134,86 @@ namespace rml::luau::mirror
 
 	struct GlobalState
 	{
-		std::byte reserved_0[0x48];
+		std::byte reserved_0[0x10];
 		std::uint8_t currentwhite;
 	};
 
-	static_assert(offsetof(GlobalState, currentwhite) == 0x48);
-	static_assert(sizeof(GlobalState) >= 0x49);
-	inline constexpr std::size_t globalstate_size = 0x49;
+	static_assert(offsetof(GlobalState, currentwhite) == 0x10);
+	static_assert(sizeof(GlobalState) >= 0x11);
+	inline constexpr std::size_t globalstate_size = 0x11;
 
 	struct LuaDebug
 	{
-		const char* name;
-		const char* source;
 		const char* short_src;
 		const char* what;
-		std::byte reserved_20[0x8];
-		std::int32_t linedefined;
-		std::int32_t currentline;
+		const char* source;
+		const char* name;
 		std::uint8_t nupvals;
 		std::uint8_t nparams;
 		std::uint8_t isvararg;
+		std::byte reserved_23[0xD];
+		std::int32_t linedefined;
+		std::int32_t currentline;
 	};
 
-	static_assert(offsetof(LuaDebug, name) == 0x0);
-	static_assert(offsetof(LuaDebug, source) == 0x8);
-	static_assert(offsetof(LuaDebug, short_src) == 0x10);
-	static_assert(offsetof(LuaDebug, what) == 0x18);
-	static_assert(offsetof(LuaDebug, linedefined) == 0x28);
-	static_assert(offsetof(LuaDebug, currentline) == 0x2C);
-	static_assert(offsetof(LuaDebug, nupvals) == 0x30);
-	static_assert(offsetof(LuaDebug, nparams) == 0x31);
-	static_assert(offsetof(LuaDebug, isvararg) == 0x32);
-	static_assert(sizeof(LuaDebug) >= 0x33);
-	inline constexpr std::size_t luadebug_size = 0x33;
+	static_assert(offsetof(LuaDebug, short_src) == 0x0);
+	static_assert(offsetof(LuaDebug, what) == 0x8);
+	static_assert(offsetof(LuaDebug, source) == 0x10);
+	static_assert(offsetof(LuaDebug, name) == 0x18);
+	static_assert(offsetof(LuaDebug, nupvals) == 0x20);
+	static_assert(offsetof(LuaDebug, nparams) == 0x21);
+	static_assert(offsetof(LuaDebug, isvararg) == 0x22);
+	static_assert(offsetof(LuaDebug, linedefined) == 0x30);
+	static_assert(offsetof(LuaDebug, currentline) == 0x34);
+	static_assert(sizeof(LuaDebug) >= 0x38);
+	inline constexpr std::size_t luadebug_size = 0x38;
 
 	struct LuaState
 	{
 		std::byte reserved_0[0x3];
 		std::uint8_t status;
-		std::uint8_t activememcat;
 		bool singlestep;
 		bool isactive;
-		std::byte reserved_7[0x9];
-		UpVal* openupval;
-		std::byte reserved_18[0x8];
-		std::uint16_t nCcalls;
-		std::uint16_t baseCcalls;
-		std::byte reserved_24[0x4];
-		GlobalState* global;
-		TValue* stack;
-		TValue* top;
-		TValue* base;
-		CallInfo* ci;
-		TValue* stack_last;
+		std::uint8_t activememcat;
+		std::byte reserved_7[0x1];
+		LuaTable* gt;
 		CallInfo* end_ci;
 		CallInfo* base_ci;
 		void* userdata;
+		UpVal* openupval;
+		std::uint16_t nCcalls;
+		std::uint16_t baseCcalls;
+		std::byte reserved_34[0xC];
 		std::int32_t stacksize;
 		std::int32_t size_ci;
-		LuaTable* gt;
+		TValue* top;
+		TValue* stack;
+		CallInfo* ci;
+		TValue* base;
+		TValue* stack_last;
+		GlobalState* global;
+		std::byte reserved_78[0x8];
 	};
 
 	static_assert(offsetof(LuaState, status) == 0x3);
-	static_assert(offsetof(LuaState, activememcat) == 0x4);
-	static_assert(offsetof(LuaState, singlestep) == 0x5);
-	static_assert(offsetof(LuaState, isactive) == 0x6);
-	static_assert(offsetof(LuaState, openupval) == 0x10);
-	static_assert(offsetof(LuaState, nCcalls) == 0x20);
-	static_assert(offsetof(LuaState, baseCcalls) == 0x22);
-	static_assert(offsetof(LuaState, global) == 0x28);
-	static_assert(offsetof(LuaState, stack) == 0x30);
-	static_assert(offsetof(LuaState, top) == 0x38);
-	static_assert(offsetof(LuaState, base) == 0x40);
-	static_assert(offsetof(LuaState, ci) == 0x48);
-	static_assert(offsetof(LuaState, stack_last) == 0x50);
-	static_assert(offsetof(LuaState, end_ci) == 0x58);
-	static_assert(offsetof(LuaState, base_ci) == 0x60);
-	static_assert(offsetof(LuaState, userdata) == 0x68);
-	static_assert(offsetof(LuaState, stacksize) == 0x70);
-	static_assert(offsetof(LuaState, size_ci) == 0x74);
-	static_assert(offsetof(LuaState, gt) == 0x78);
+	static_assert(offsetof(LuaState, singlestep) == 0x4);
+	static_assert(offsetof(LuaState, isactive) == 0x5);
+	static_assert(offsetof(LuaState, activememcat) == 0x6);
+	static_assert(offsetof(LuaState, gt) == 0x8);
+	static_assert(offsetof(LuaState, end_ci) == 0x10);
+	static_assert(offsetof(LuaState, base_ci) == 0x18);
+	static_assert(offsetof(LuaState, userdata) == 0x20);
+	static_assert(offsetof(LuaState, openupval) == 0x28);
+	static_assert(offsetof(LuaState, nCcalls) == 0x30);
+	static_assert(offsetof(LuaState, baseCcalls) == 0x32);
+	static_assert(offsetof(LuaState, stacksize) == 0x40);
+	static_assert(offsetof(LuaState, size_ci) == 0x44);
+	static_assert(offsetof(LuaState, top) == 0x48);
+	static_assert(offsetof(LuaState, stack) == 0x50);
+	static_assert(offsetof(LuaState, ci) == 0x58);
+	static_assert(offsetof(LuaState, base) == 0x60);
+	static_assert(offsetof(LuaState, stack_last) == 0x68);
+	static_assert(offsetof(LuaState, global) == 0x70);
 	static_assert(sizeof(LuaState) >= 0x80);
 	inline constexpr std::size_t luastate_size = 0x80;
 

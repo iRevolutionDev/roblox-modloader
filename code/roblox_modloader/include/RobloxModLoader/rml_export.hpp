@@ -9,20 +9,20 @@
 #  ifndef RML_EXPORT
 #    ifdef roblox_modloader_EXPORTS
         /* We are building this library */
-#      define RML_EXPORT __attribute__((visibility("default")))
+#      define RML_EXPORT __declspec(dllexport)
 #    else
         /* We are using this library */
-#      define RML_EXPORT __attribute__((visibility("default")))
+#      define RML_EXPORT __declspec(dllimport)
 #    endif
 #  endif
 
 #  ifndef RML_NO_EXPORT
-#    define RML_NO_EXPORT __attribute__((visibility("hidden")))
+#    define RML_NO_EXPORT 
 #  endif
 #endif
 
 #ifndef RML_DEPRECATED
-#  define RML_DEPRECATED __attribute__ ((__deprecated__))
+#  define RML_DEPRECATED __declspec(deprecated)
 #endif
 
 #ifndef RML_DEPRECATED_EXPORT
