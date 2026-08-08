@@ -144,6 +144,11 @@ endfunction()
 file(GLOB EXAMPLE_DIRS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/*)
 
 foreach (EXAMPLE_DIR ${EXAMPLE_DIRS})
+    if (RML_NATIVE_ONLY AND NOT EXAMPLE_DIR STREQUAL "idspoofer")
+        message(STATUS "Skipping ${EXAMPLE_DIR} (RML_NATIVE_ONLY builds idspoofer only)")
+        continue()
+    endif ()
+
     if (IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE_DIR} AND
     (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE_DIR}/main.cpp OR
             EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE_DIR}/CMakeLists.txt))

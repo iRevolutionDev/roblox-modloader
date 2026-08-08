@@ -1,0 +1,12 @@
+name = "idspoofer"
+version = "1.0.0"
+author = "rml"
+description = "Configurable native Player.UserId and StudioService:GetUserId spoof."
+
+# Set either switch to false to leave that engine descriptor untouched.
+spoof_player = true
+spoof_studio_service = true
+
+# Positive signed 64-bit Roblox user IDs. Restart Studio after changing these.
+player_user_id = 1585524057
+studio_service_user_id = 1585524057

@@ -1,7 +1,10 @@
 #include "RobloxModLoader/memory/module.hpp"
 
 #include "RobloxModLoader/internal/common.hpp"
-#include "RobloxModLoader/memory/symbol_resolver.hpp"
+
+#if !RML_NATIVE_ONLY
+	#include "RobloxModLoader/memory/symbol_resolver.hpp"
+#endif
 
 #if defined(RML_MACOS)
 	#include <mach-o/nlist.h>
@@ -9,6 +12,7 @@
 
 namespace rml::memory
 {
+#if !RML_NATIVE_ONLY
 	static std::pair<std::string_view, std::string_view> split_qualified_name(std::string_view signature)
 	{
 		const auto name = signature.substr(0, signature.find('('));
@@ -53,6 +57,7 @@ namespace rml::memory
 
 		return 0;
 	}
+#endif
 
 	namespace
 	{
@@ -138,6 +143,10 @@ namespace rml::memory
 
 	handle module::find_export(std::string_view signature) const
 	{
+#if RML_NATIVE_ONLY
+		(void)signature;
+		return handle(nullptr);
+#else
 		std::scoped_lock lk(m_mtx);
 
 		if (!m_loaded)
@@ -147,10 +156,14 @@ namespace rml::memory
 
 		const auto it = m_export_index.find(normalize_signature(signature));
 		return it != m_export_index.end() ? handle(it->second) : handle(nullptr);
+#endif
 	}
 
 	void module::build_export_index_locked() const
 	{
+#if RML_NATIVE_ONLY
+		return;
+#else
 		if (m_export_index_built)
 			return;
 
@@ -260,6 +273,7 @@ namespace rml::memory
 
 			insert(name, reinterpret_cast<void*>(static_cast<std::uintptr_t>(symbol.n_value) + slide));
 		}
+#endif
 #endif
 	}
 
