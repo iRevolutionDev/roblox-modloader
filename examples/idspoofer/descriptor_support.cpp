@@ -4,6 +4,7 @@
 #include <RobloxModLoader/roblox/reflection/generated/reflection_layout.hpp>
 
 #include <algorithm>
+#include <chrono>
 #include <cstdint>
 #include <cstring>
 
@@ -225,6 +226,7 @@ namespace idspoofer::detail
 		if (!s_pointers || !name || descriptor_size < member_owner + sizeof(void*))
 			return nullptr;
 
+		const auto scan_started = std::chrono::steady_clock::now();
 		std::size_t name_matches = 0;
 		std::size_t rtti_matches = 0;
 		std::size_t owner_matches = 0;
@@ -280,9 +282,14 @@ namespace idspoofer::detail
 					    (region_begin + alignof(void*) - 1) & ~(alignof(void*) - 1);
 					for (; candidate + descriptor_size <= region_end; candidate += sizeof(void*))
 					{
-						const auto candidate_name = read_memory<std::uintptr_t>(
-						    reinterpret_cast<const void*>(candidate + descriptor_name));
-						if (!candidate_name || *candidate_name != atom)
+						// The entire region was validated once above. Calling VirtualQuery
+						// through read_memory for every 8-byte candidate turns this scan
+						// into millions of system calls on Studio's large .data section.
+						std::uintptr_t candidate_name{};
+						std::memcpy(&candidate_name,
+						    reinterpret_cast<const void*>(candidate + descriptor_name),
+						    sizeof(candidate_name));
+						if (candidate_name != atom)
 							continue;
 
 						++name_matches;
@@ -296,6 +303,10 @@ namespace idspoofer::detail
 						if (owner && lookup_member(*owner, name) == descriptor)
 						{
 							++owner_matches;
+							const auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(
+							    std::chrono::steady_clock::now() - scan_started);
+							RML_INFO("[idspoofer] descriptor '{}' found at {:#x} in {} ms",
+							    name, reinterpret_cast<std::uintptr_t>(descriptor), elapsed.count());
 							return descriptor;
 						}
 					}
@@ -304,8 +315,10 @@ namespace idspoofer::detail
 			}
 		}
 
-		RML_ERROR("[idspoofer] descriptor '{}' not found: name={} RTTI={} owner-roundtrip={}",
-		    name, name_matches, rtti_matches, owner_matches);
+		const auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(
+		    std::chrono::steady_clock::now() - scan_started);
+		RML_ERROR("[idspoofer] descriptor '{}' not found after {} ms: name={} RTTI={} owner-roundtrip={}",
+		    name, elapsed.count(), name_matches, rtti_matches, owner_matches);
 		return nullptr;
 #endif
 	}
