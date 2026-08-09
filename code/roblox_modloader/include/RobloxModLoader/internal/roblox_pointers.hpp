@@ -48,6 +48,7 @@ struct RobloxPointers
 
 	functions::get_string_atom get_string_atom;
 	functions::descriptor_lookup descriptor_lookup;
+	std::uint64_t member_table_offset;
 
 	// Lua Functions
 	functions::luau_execute luau_execute;

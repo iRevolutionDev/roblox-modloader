@@ -18,7 +18,9 @@ namespace rml
 
 		run_batch<roblox_batch_name>(m_roblox_batch, roblox_region);
 
+#if !RML_NATIVE_ONLY
 		m_main_window = platform::acquire_main_window();
+#endif
 	}
 
 	Pointers::~Pointers()

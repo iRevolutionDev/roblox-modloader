@@ -7,6 +7,35 @@ namespace rml
 {
 	constexpr auto Pointers::get_roblox_batch()
 	{
+#if RML_NATIVE_ONLY
+		// The native-only runtime resolves only the three reflection primitives
+		// required by idspoofer. Keeping the batch small prevents unrelated,
+		// version-sensitive Luau and scheduler signatures from blocking startup.
+		constexpr auto batch_and_hash = memory::make_batch<
+		    {
+		        "DESCRIPTOR_LOOKUP",
+		        "48 83 EC 18 ? ? ? 4C 8B D9 75",
+		        [](const memory::handle ptr) {
+			        g_pointers->m_roblox_pointers.descriptor_lookup = ptr.as<functions::descriptor_lookup>();
+		        },
+		    },
+		    {
+		        "GET_STRING_ATOM",
+		        "48 89 5C 24 ? 57 48 83 EC 20 48 8B 1D ? ? ? ? 48 8B F9 48 85 DB",
+		        [](const memory::handle ptr) {
+			        g_pointers->m_roblox_pointers.get_string_atom = ptr.as<functions::get_string_atom>();
+		        },
+		    },
+		    {
+		        "MEMBER_TABLE_OFFSET",
+		        "48 8B 4B ? E8 ? ? ? ? 48 8D 8F ? ? ? ? 48 89 44 24 ? 48 8D 54 24 ? E8",
+		        [](const memory::handle ptr) {
+			        g_pointers->m_roblox_pointers.member_table_offset = *ptr.add(12).as<std::uint32_t*>();
+		        },
+		    }>();
+
+		return batch_and_hash;
+#else
 		// clang-format off
 	    constexpr auto batch_and_hash = memory::make_batch<
 	         // Lua Functions
@@ -135,5 +164,6 @@ namespace rml
 		// clang-format on
 
 		return batch_and_hash;
+#endif
 	}
 }

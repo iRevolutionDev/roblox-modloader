@@ -11,7 +11,26 @@ file(GLOB_RECURSE MODLOADER_SUBDIRS CONFIGURE_DEPENDS
         "${ROBLOX_MODLOADER_SOURCE_DIR}/**/*.hpp"
 )
 
-if (NOT RML_ENABLE_LUAU)
+if (RML_NATIVE_ONLY)
+    set(MODLOADER_SUBDIRS
+            "${ROBLOX_MODLOADER_SOURCE_DIR}/app/application.cpp"
+            "${ROBLOX_MODLOADER_SOURCE_DIR}/platform/${RML_PLATFORM_ID}/core/entry_point.cpp"
+            "${ROBLOX_MODLOADER_SOURCE_DIR}/platform/${RML_PLATFORM_ID}/logger/windows_console.cpp"
+            "${ROBLOX_MODLOADER_SOURCE_DIR}/platform/${RML_PLATFORM_ID}/memory/host_image.cpp"
+            "${ROBLOX_MODLOADER_SOURCE_DIR}/platform/${RML_PLATFORM_ID}/memory/memory_protection.cpp"
+    )
+
+    file(GLOB_RECURSE RML_NATIVE_RUNTIME_SOURCES CONFIGURE_DEPENDS
+            "${ROBLOX_MODLOADER_SOURCE_DIR}/config/*.cpp"
+            "${ROBLOX_MODLOADER_SOURCE_DIR}/filesystem/*.cpp"
+            "${ROBLOX_MODLOADER_SOURCE_DIR}/logger/*.cpp"
+            "${ROBLOX_MODLOADER_SOURCE_DIR}/memory/*.cpp"
+            "${ROBLOX_MODLOADER_SOURCE_DIR}/mod/*.cpp"
+            "${ROBLOX_MODLOADER_SOURCE_DIR}/native/*.cpp"
+    )
+    list(FILTER RML_NATIVE_RUNTIME_SOURCES EXCLUDE REGEX "/memory/(module_utils|symbol_resolver)\\.cpp$")
+    list(APPEND MODLOADER_SUBDIRS ${RML_NATIVE_RUNTIME_SOURCES})
+elseif (NOT RML_ENABLE_LUAU)
     list(FILTER MODLOADER_SUBDIRS EXCLUDE REGEX "/luau/")
     list(FILTER MODLOADER_SUBDIRS EXCLUDE REGEX "/hooks/script_context/")
     list(FILTER MODLOADER_SUBDIRS EXCLUDE REGEX "/roblox/jobs/scripting/")
@@ -25,11 +44,13 @@ endforeach ()
 
 list(APPEND MODLOADER_SOURCES ${MODLOADER_SUBDIRS})
 
-file(GLOB_RECURSE MODLOADER_VENDOR_SOURCES CONFIGURE_DEPENDS
-        "${RML_THIRDPARTY_G3D_SRC_DIR}/*.cpp"
-)
+if (NOT RML_NATIVE_ONLY)
+    file(GLOB_RECURSE MODLOADER_VENDOR_SOURCES CONFIGURE_DEPENDS
+            "${RML_THIRDPARTY_G3D_SRC_DIR}/*.cpp"
+    )
 
-list(APPEND MODLOADER_SOURCES ${MODLOADER_VENDOR_SOURCES})
+    list(APPEND MODLOADER_SOURCES ${MODLOADER_VENDOR_SOURCES})
+endif ()
 
 set(RML_VERSION_SCRIPT "${PROJECT_SOURCE_DIR}/cmake/generate-version.cmake")
 set(RML_VERSION_INPUT "${ROBLOX_MODLOADER_SOURCE_DIR}/version.cpp.in")
@@ -65,12 +86,16 @@ add_dependencies(roblox_modloader roblox_modloader_version)
 
 setup_compiler_flags(roblox_modloader)
 setup_compile_definitions(roblox_modloader PRIVATE)
-target_compile_definitions(roblox_modloader PRIVATE RML_ENABLE_LUAU=$<BOOL:${RML_ENABLE_LUAU}>)
+target_compile_definitions(roblox_modloader PRIVATE
+        RML_ENABLE_LUAU=$<BOOL:${RML_ENABLE_LUAU}>
+        RML_NATIVE_ONLY=$<BOOL:${RML_NATIVE_ONLY}>
+)
 setup_core_dependencies(roblox_modloader PRIVATE)
-setup_luau_dependencies(roblox_modloader PRIVATE)
-setup_dotnet_hosting(roblox_modloader PRIVATE)
-
-target_link_libraries(roblox_modloader PRIVATE rml_thirdparty)
+if (NOT RML_NATIVE_ONLY)
+    setup_luau_dependencies(roblox_modloader PRIVATE)
+    setup_dotnet_hosting(roblox_modloader PRIVATE)
+    target_link_libraries(roblox_modloader PRIVATE rml_thirdparty)
+endif ()
 
 if (UNIX AND NOT APPLE)
     target_link_libraries(roblox_modloader PRIVATE dl)
@@ -81,6 +106,15 @@ target_include_directories(roblox_modloader PRIVATE
         "${ROBLOX_MODLOADER_INCLUDE_DIR}"
         "${ROBLOX_MODLOADER_SOURCE_DIR}/platform/${RML_PLATFORM_ID}"
 )
+
+if (RML_NATIVE_ONLY)
+    # RobloxPointers retains its stable public ABI, whose declarations use
+    # Luau types. Headers are sufficient; no Luau target is built or linked.
+    target_include_directories(roblox_modloader PRIVATE
+            "${LUAU_SOURCE_DIR}/VM/include"
+            "${LUAU_SOURCE_DIR}/Common/include"
+    )
+endif ()
 
 set_target_properties(roblox_modloader PROPERTIES
         CXX_STANDARD 23
@@ -97,45 +131,52 @@ target_precompile_headers(roblox_modloader PRIVATE
         "${ROBLOX_MODLOADER_INCLUDE_DIR}/RobloxModLoader/internal/common.hpp"
 )
 
-include(GenerateExportHeader)
-generate_export_header(roblox_modloader
-        EXPORT_FILE_NAME "${ROBLOX_MODLOADER_INCLUDE_DIR}/RobloxModLoader/rml_export.hpp"
-        EXPORT_MACRO_NAME "RML_EXPORT"
-        NO_EXPORT_MACRO_NAME "RML_NO_EXPORT"
-        DEPRECATED_MACRO_NAME "RML_DEPRECATED"
-)
-
 add_library(RobloxModLoader INTERFACE)
 add_library(RobloxModLoader::RobloxModLoader ALIAS RobloxModLoader)
 
 target_include_directories(RobloxModLoader INTERFACE
         "$<BUILD_INTERFACE:${ROBLOX_MODLOADER_INCLUDE_DIR}>"
         "$<INSTALL_INTERFACE:include>"
-        "$<BUILD_INTERFACE:${ROBLOX_MODLOADER_ROOT_DIR}/libs/third_party/g3d/include>"
-        "$<BUILD_INTERFACE:${ROBLOX_MODLOADER_ROOT_DIR}/libs/third_party/bullet/include>"
-        "$<BUILD_INTERFACE:${ROBLOX_MODLOADER_ROOT_DIR}/libs/third_party/rbxg3d/include>"
         "$<BUILD_INTERFACE:${spdlog_SOURCE_DIR}/include>"
         "$<BUILD_INTERFACE:${tomlplusplus_SOURCE_DIR}/include>"
-        "$<BUILD_INTERFACE:${nlohmann_json_SOURCE_DIR}/include>"
-        "$<BUILD_INTERFACE:${LUAU_SOURCE_DIR}/Compiler/include>"
-        "$<BUILD_INTERFACE:${LUAU_SOURCE_DIR}/Ast/include>"
-        "$<BUILD_INTERFACE:${LUAU_SOURCE_DIR}/VM/include>"
-        "$<BUILD_INTERFACE:${LUAU_SOURCE_DIR}/Common/include>"
 )
+
+if (RML_NATIVE_ONLY)
+    target_include_directories(RobloxModLoader INTERFACE
+            "$<BUILD_INTERFACE:${LUAU_SOURCE_DIR}/VM/include>"
+            "$<BUILD_INTERFACE:${LUAU_SOURCE_DIR}/Common/include>"
+    )
+endif ()
 
 target_link_libraries(RobloxModLoader INTERFACE
         spdlog::spdlog
-        nlohmann_json::nlohmann_json
         tomlplusplus::tomlplusplus
-        Luau.Compiler
-        Luau.Ast
-        Luau.VM
-        Luau.VM.Internals
-        Luau.CodeGen
         $<$<TARGET_EXISTS:roblox_modloader>:roblox_modloader>
 )
 
-if (RML_PLATFORM_WINDOWS)
+if (NOT RML_NATIVE_ONLY)
+    target_include_directories(RobloxModLoader INTERFACE
+            "$<BUILD_INTERFACE:${ROBLOX_MODLOADER_ROOT_DIR}/libs/third_party/g3d/include>"
+            "$<BUILD_INTERFACE:${ROBLOX_MODLOADER_ROOT_DIR}/libs/third_party/bullet/include>"
+            "$<BUILD_INTERFACE:${ROBLOX_MODLOADER_ROOT_DIR}/libs/third_party/rbxg3d/include>"
+            "$<BUILD_INTERFACE:${nlohmann_json_SOURCE_DIR}/include>"
+            "$<BUILD_INTERFACE:${LUAU_SOURCE_DIR}/Compiler/include>"
+            "$<BUILD_INTERFACE:${LUAU_SOURCE_DIR}/Ast/include>"
+            "$<BUILD_INTERFACE:${LUAU_SOURCE_DIR}/VM/include>"
+            "$<BUILD_INTERFACE:${LUAU_SOURCE_DIR}/Common/include>"
+    )
+
+    target_link_libraries(RobloxModLoader INTERFACE
+            nlohmann_json::nlohmann_json
+            Luau.Compiler
+            Luau.Ast
+            Luau.VM
+            Luau.VM.Internals
+            Luau.CodeGen
+    )
+endif ()
+
+if (RML_PLATFORM_WINDOWS AND NOT RML_NATIVE_ONLY)
     target_include_directories(RobloxModLoader INTERFACE
             "$<BUILD_INTERFACE:${minhook_SOURCE_DIR}/include>"
             "$<BUILD_INTERFACE:${polyhook2_SOURCE_DIR}>"
@@ -169,7 +210,9 @@ if (MSVC)
     )
 endif ()
 
-setup_dotnet_hosting(RobloxModLoader INTERFACE)
+if (NOT RML_NATIVE_ONLY)
+    setup_dotnet_hosting(RobloxModLoader INTERFACE)
+endif ()
 
 set(RML_LUA_LIBS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/resources/luau")
 

@@ -81,8 +81,10 @@
 
 #include "RobloxModLoader/logger/logger.hpp"
 
-#include <lua.h>
-#include <lualib.h>
+#if !RML_NATIVE_ONLY
+    #include <lua.h>
+    #include <lualib.h>
+#endif
 
 #include "RobloxModLoader/rml_export.hpp"
 

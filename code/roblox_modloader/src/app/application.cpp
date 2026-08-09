@@ -2,19 +2,22 @@
 
 #include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/version.hpp"
-#include "RobloxModLoader/qt/qt_integration.hpp"
 #include "subsystems/config_subsystem.hpp"
 #include "subsystems/logger_subsystem.hpp"
-#include "subsystems/crash_dumper_subsystem.hpp"
 #include "subsystems/event_manager_subsystem.hpp"
-#include "subsystems/qt_integration_subsystem.hpp"
-#include "subsystems/rtti_manager_subsystem.hpp"
 #include "subsystems/pointers_subsystem.hpp"
-#include "subsystems/task_scheduler_subsystem.hpp"
-#include "subsystems/job_manager_subsystem.hpp"
-#include "subsystems/hooking_subsystem.hpp"
-#include "subsystems/script_subsystem_adapter.hpp"
 #include "subsystems/mod_manager_subsystem.hpp"
+
+#if !RML_NATIVE_ONLY
+	#include "RobloxModLoader/qt/qt_integration.hpp"
+	#include "subsystems/crash_dumper_subsystem.hpp"
+	#include "subsystems/hooking_subsystem.hpp"
+	#include "subsystems/job_manager_subsystem.hpp"
+	#include "subsystems/qt_integration_subsystem.hpp"
+	#include "subsystems/rtti_manager_subsystem.hpp"
+	#include "subsystems/script_subsystem_adapter.hpp"
+	#include "subsystems/task_scheduler_subsystem.hpp"
+#endif
 
 RML_LOG_SCOPE("Application");
 
@@ -39,20 +42,34 @@ namespace rml
 		auto event_manager_subsystem = std::make_unique<EventManagerSubsystem>();
 		auto& event_manager_subsystem_ref = *event_manager_subsystem;
 
+#if !RML_NATIVE_ONLY
 		auto task_scheduler_subsystem = std::make_unique<TaskSchedulerSubsystem>();
 		auto& task_scheduler_subsystem_ref = *task_scheduler_subsystem;
+#endif
 
 		m_subsystems.push_back(std::make_unique<ConfigSubsystem>());
 		m_subsystems.push_back(std::make_unique<LoggerSubsystem>());
+
+#if !RML_NATIVE_ONLY
 		m_subsystems.push_back(std::make_unique<CrashDumperSubsystem>());
+#endif
+
 		m_subsystems.push_back(std::move(event_manager_subsystem));
+
+#if !RML_NATIVE_ONLY
 		m_subsystems.push_back(std::make_unique<QtIntegrationSubsystem>());
 		m_subsystems.push_back(std::make_unique<RttiManagerSubsystem>());
+#endif
+
 		m_subsystems.push_back(std::make_unique<PointersSubsystem>());
+
+#if !RML_NATIVE_ONLY
 		m_subsystems.push_back(std::move(task_scheduler_subsystem));
 		m_subsystems.push_back(std::make_unique<JobManagerSubsystem>(task_scheduler_subsystem_ref));
 		m_subsystems.push_back(std::make_unique<HookingSubsystem>());
 		m_subsystems.push_back(std::make_unique<ScriptSubsystemAdapter>());
+#endif
+
 		m_subsystems.push_back(std::make_unique<ModManagerSubsystem>(event_manager_subsystem_ref));
 
 		m_shutdown_complete = false;
@@ -70,6 +87,7 @@ namespace rml
 			RML_INFO("Subsystem initialized: {}", subsystem->name());
 		}
 
+#if !RML_NATIVE_ONLY
 		g_hooking->enable();
 		RML_INFO("Hooking enabled.");
 
@@ -81,6 +99,9 @@ namespace rml
 		{
 			RML_WARN("Qt action hook not installed yet (Qt not resolvable); will retry on demand.");
 		}
+#else
+		RML_INFO("Native-only runtime ready; scheduler, Luau, .NET, Qt, and engine hooks are disabled.");
+#endif
 
 		return {};
 	}
@@ -91,10 +112,12 @@ namespace rml
 
 		while (g_running)
 		{
+#if !RML_NATIVE_ONLY
 			if (const auto qt_integration = qt::QtIntegration::instance(); qt_integration && !qt_integration->is_action_hook_ready())
 			{
 				qt_integration->ensure_action_hook();
 			}
+#endif
 
 			std::this_thread::sleep_for(1s);
 		}

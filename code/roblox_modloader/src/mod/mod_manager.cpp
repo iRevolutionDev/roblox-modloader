@@ -1,9 +1,12 @@
 #include "mod_manager.hpp"
 
 #include "RobloxModLoader/internal/common.hpp"
-#include "dotnet/dotnet_mod_loader.hpp"
 #include "native/native_mod_loader.hpp"
 #include "filesystem/directory.hpp"
+
+#if !RML_NATIVE_ONLY
+	#include "dotnet/dotnet_mod_loader.hpp"
+#endif
 
 #include <algorithm>
 #include <cctype>
@@ -21,12 +24,14 @@ namespace rml
 			return std::unexpected(ModManagerError(ModManagerError::Type::DirectoryNotFound, mods_path.error()));
 		}
 
-		const auto runtime_path = filesystem::directory::get_runtime_directory();
-
 		register_loader(std::make_unique<native::NativeModLoader>(event_manager), ModKind::Native);
+
+#if !RML_NATIVE_ONLY
+		const auto runtime_path = filesystem::directory::get_runtime_directory();
 		register_loader(std::make_unique<dotnet::DotnetModLoader>(runtime_path,
 		                     mods_path.value() / mod_kind_folder_name(ModKind::Dotnet)),
 		    ModKind::Dotnet);
+#endif
 
 		for (auto mod_dir : std::filesystem::directory_iterator(mods_path.value()))
 		{

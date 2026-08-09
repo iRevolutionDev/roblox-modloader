@@ -39,6 +39,10 @@ function(setup_compile_definitions target_name access_level)
 endfunction()
 
 function(setup_luau_dependencies target_name access_level)
+    if (RML_NATIVE_ONLY)
+        return()
+    endif ()
+
     target_link_libraries(${target_name} ${access_level}
             Luau.Compiler
             Luau.Ast
@@ -58,6 +62,19 @@ function(setup_luau_dependencies target_name access_level)
 endfunction()
 
 function(setup_core_dependencies target_name access_level)
+    if (RML_NATIVE_ONLY)
+        target_link_libraries(${target_name} ${access_level}
+                spdlog::spdlog
+                tomlplusplus::tomlplusplus
+        )
+
+        target_include_directories(${target_name} ${access_level}
+                "${spdlog_SOURCE_DIR}"
+                "${tomlplusplus_SOURCE_DIR}/include"
+        )
+        return()
+    endif ()
+
     target_link_libraries(${target_name} ${access_level}
             spdlog::spdlog
             ZLIB::ZLIB

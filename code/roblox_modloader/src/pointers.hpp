@@ -33,7 +33,7 @@ namespace rml
 		void* m_main_window{};
 
 	public:
-		RobloxPointers m_roblox_pointers;
+		RobloxPointers m_roblox_pointers{};
 	};
 }
 
