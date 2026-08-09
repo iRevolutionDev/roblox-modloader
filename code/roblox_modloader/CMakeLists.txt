@@ -131,14 +131,6 @@ target_precompile_headers(roblox_modloader PRIVATE
         "${ROBLOX_MODLOADER_INCLUDE_DIR}/RobloxModLoader/internal/common.hpp"
 )
 
-include(GenerateExportHeader)
-generate_export_header(roblox_modloader
-        EXPORT_FILE_NAME "${ROBLOX_MODLOADER_INCLUDE_DIR}/RobloxModLoader/rml_export.hpp"
-        EXPORT_MACRO_NAME "RML_EXPORT"
-        NO_EXPORT_MACRO_NAME "RML_NO_EXPORT"
-        DEPRECATED_MACRO_NAME "RML_DEPRECATED"
-)
-
 add_library(RobloxModLoader INTERFACE)
 add_library(RobloxModLoader::RobloxModLoader ALIAS RobloxModLoader)
 

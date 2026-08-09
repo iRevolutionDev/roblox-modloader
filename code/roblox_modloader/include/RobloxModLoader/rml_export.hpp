@@ -7,22 +7,32 @@
 #  define RML_NO_EXPORT
 #else
 #  ifndef RML_EXPORT
-#    ifdef roblox_modloader_EXPORTS
-        /* We are building this library */
-#      define RML_EXPORT __attribute__((visibility("default")))
+#    if defined(_WIN32)
+#      ifdef roblox_modloader_EXPORTS
+#        define RML_EXPORT __declspec(dllexport)
+#      else
+#        define RML_EXPORT __declspec(dllimport)
+#      endif
 #    else
-        /* We are using this library */
 #      define RML_EXPORT __attribute__((visibility("default")))
 #    endif
 #  endif
 
 #  ifndef RML_NO_EXPORT
-#    define RML_NO_EXPORT __attribute__((visibility("hidden")))
+#    if defined(_WIN32)
+#      define RML_NO_EXPORT
+#    else
+#      define RML_NO_EXPORT __attribute__((visibility("hidden")))
+#    endif
 #  endif
 #endif
 
 #ifndef RML_DEPRECATED
-#  define RML_DEPRECATED __attribute__ ((__deprecated__))
+#  if defined(_WIN32)
+#    define RML_DEPRECATED __declspec(deprecated)
+#  else
+#    define RML_DEPRECATED __attribute__((__deprecated__))
+#  endif
 #endif
 
 #ifndef RML_DEPRECATED_EXPORT
