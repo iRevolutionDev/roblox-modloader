@@ -7,6 +7,7 @@
 #include <chrono>
 #include <cstdint>
 #include <cstring>
+#include <thread>
 
 #if defined(_WIN32)
 	#ifndef NOMINMAX
@@ -230,6 +231,8 @@ namespace idspoofer::detail
 		std::size_t name_matches = 0;
 		std::size_t rtti_matches = 0;
 		std::size_t owner_matches = 0;
+		void* unique_rtti_descriptor = nullptr;
+		void* unique_rtti_owner = nullptr;
 		const std::uintptr_t atom = s_pointers->get_string_atom(name);
 		const auto module = reinterpret_cast<std::uintptr_t>(GetModuleHandleW(nullptr));
 		if (atom == 0 || module == 0
@@ -300,6 +303,16 @@ namespace idspoofer::detail
 						++rtti_matches;
 						const auto owner = read_memory<void*>(
 						    static_cast<std::byte*>(descriptor) + member_owner);
+						if (rtti_matches == 1)
+						{
+							unique_rtti_descriptor = descriptor;
+							unique_rtti_owner = owner.value_or(nullptr);
+						}
+						else
+						{
+							unique_rtti_descriptor = nullptr;
+							unique_rtti_owner = nullptr;
+						}
 						if (owner && lookup_member(*owner, name) == descriptor)
 						{
 							++owner_matches;
@@ -312,6 +325,35 @@ namespace idspoofer::detail
 					}
 				}
 				cursor = region_end;
+			}
+		}
+
+		// The native-only loader intentionally skips the full RTTI-manager scan.
+		// Consequently ModManager can run roughly half a second earlier than it did
+		// in the full loader, while Roblox is still populating ClassDescriptor member
+		// tables. The static descriptor and RTTI already exist at that point, but the
+		// owner hash lookup cannot round-trip yet. Wait for that table instead of
+		// rejecting a descriptor which becomes valid moments later.
+		if (rtti_matches == 1 && unique_rtti_descriptor && unique_rtti_owner
+		    && has_rtti(unique_rtti_owner, ".?AVClassDescriptor@Reflection@RBX@@"))
+		{
+			constexpr auto retry_interval = std::chrono::milliseconds{25};
+			constexpr auto initialization_timeout = std::chrono::seconds{2};
+			RML_INFO("[idspoofer] descriptor '{}' is present at {:#x}; waiting for its owner member table",
+			    name, reinterpret_cast<std::uintptr_t>(unique_rtti_descriptor));
+
+			while (std::chrono::steady_clock::now() - scan_started < initialization_timeout)
+			{
+				std::this_thread::sleep_for(retry_interval);
+				if (lookup_member(unique_rtti_owner, name) != unique_rtti_descriptor)
+					continue;
+
+				++owner_matches;
+				const auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(
+				    std::chrono::steady_clock::now() - scan_started);
+				RML_INFO("[idspoofer] descriptor '{}' owner table became ready after {} ms",
+				    name, elapsed.count());
+				return unique_rtti_descriptor;
 			}
 		}
 
