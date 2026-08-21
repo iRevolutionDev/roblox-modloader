@@ -625,6 +625,20 @@ namespace rml
 				[](const memory::handle ptr) {
 					g_pointers->m_roblox_pointers.luau_execute = ptr.add(148).bl().as<functions::luau_execute>();
 				},
+			},
+			{
+				"RBX_GET_GLOBAL_STATE",
+				"F4 4F BE A9 FD 7B 01 A9 FD 43 00 91 F3 03 01 AA ? ? ? ? F4 03 00 AA E0 03 13 AA ? ? ? ? E1 03 00 AA",
+				[](const memory::handle ptr) {
+					g_pointers->m_roblox_pointers.get_global_state = ptr.as<functions::get_global_state>();
+				},
+			},
+			{
+				"LUA_ISCFUNCTION",
+				"FD 7B BF A9 FD 03 00 91 3F 04 00 71 ? ? ? ? 08 1C 40 F9 08 51 21 8B 08 41 00 D1 09 2C 40 F9 ? ? ? ? ? ? ? ? 1F 01 09 EB 00 31 8A 9A ? ? ? ? C8 E1 84 12 3F 00 08 6B ? ? ? ? 08 2C 40 F9 00 D1 21 8B ? ? ? ? ? ? ? ? 08 0C 40 B9 1F 21 00 71 ? ? ? ? 08 00 40 F9 08 0D 40 39 1F 01 00 71 E0 07 9F 1A",
+				[](const memory::handle ptr) {
+					g_pointers->m_roblox_pointers.lua_iscfunction = ptr.as<functions::lua_iscfunction>();
+				},
 			}
 		>();
 		// clang-format on
