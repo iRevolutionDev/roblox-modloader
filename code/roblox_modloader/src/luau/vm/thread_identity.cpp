@@ -24,6 +24,16 @@ namespace rml::luau::vm
 		bool reflect_identity_number;
 	};
 
+	static void report_bad_identity_context(const void* context, const lua_State* L)
+	{
+		static std::once_flag once;
+		std::call_once(once, [context, L] {
+			RML_WARN("rbx_thread_identity_context returned 0x{:X} for state 0x{:X}, which is not a "
+			         "ThreadIdentityContext; skipping the identity-number reflection on this build",
+			    reinterpret_cast<std::uintptr_t>(context), reinterpret_cast<std::uintptr_t>(L));
+		});
+	}
+
 	static void write_identity(void* ctx)
 	{
 		const auto* call = static_cast<IdentityWrite*>(ctx);
@@ -41,12 +51,20 @@ namespace rml::luau::vm
 		if (!get_context || !call->raw_state)
 			return;
 
-		if (auto* identity_context = static_cast<RBX::Luau::ThreadIdentityContext*>(get_context(call->raw_state)))
+		auto* identity_context = static_cast<RBX::Luau::ThreadIdentityContext*>(get_context(call->raw_state));
+		if (!identity_context)
+			return;
+
+		if (static_cast<void*>(identity_context) == call->L->userdata
+		    || identity_context->bound_state != call->raw_state)
 		{
-			identity_context->identity.identity = call->identity;
-			identity_context->identity.asset_id = 0;
-			identity_context->capabilities = call->capabilities;
+			report_bad_identity_context(identity_context, call->raw_state);
+			return;
 		}
+
+		identity_context->identity.identity = call->identity;
+		identity_context->identity.asset_id = 0;
+		identity_context->capabilities = call->capabilities;
 	}
 
 	static std::uint64_t* mask_for(const std::uint64_t capabilities)

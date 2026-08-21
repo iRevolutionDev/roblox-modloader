@@ -557,13 +557,6 @@ namespace rml
 				},
 			},
 			{
-				"RBX_THREAD_IDENTITY_CONTEXT",
-				"F4 4F BE A9 FD 7B 01 A9 FD 43 00 91 F3 03 08 AA ? ? ? ? ? ? ? ? 08 3C 40 F9",
-				[](const memory::handle ptr) {
-					g_pointers->m_roblox_pointers.rbx_thread_identity_context = ptr.as<functions::rbx_thread_identity_context>();
-				},
-			},
-			{
 				"SIGNAL_DISCONNECT",
 				"FF 03 01 D1 F4 4F 02 A9 FD 7B 03 A9 FD C3 00 91 F3 03 00 AA FF 0B 00 F9 ? ? ? ? F4 03 00 AA",
 				[](const memory::handle ptr) {
