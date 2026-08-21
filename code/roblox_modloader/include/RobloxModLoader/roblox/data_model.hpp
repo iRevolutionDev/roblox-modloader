@@ -46,7 +46,11 @@ namespace RBX
 		std::shared_ptr<DataModelSerialize> data_model_serialize;
 
 	private:
+#if defined(RML_WINDOWS)
 		std::byte pad_before_type[0x48];
+#else
+		std::byte pad_before_type[0x78];
+#endif
 
 	public:
 		DataModelType type;
@@ -63,8 +67,13 @@ namespace RBX
 		RML_LAYOUT_GUARD_BEGIN()
 		RML_ASSERT_LAYOUT_OFFSET(DataModel, workspace, 0x160);
 		RML_ASSERT_LAYOUT_OFFSET(DataModel, data_model_serialize, 0x2B8);
+#if defined(RML_WINDOWS)
 		RML_ASSERT_LAYOUT_OFFSET(DataModel, type, 0x310);
 		RML_ASSERT_LAYOUT_OFFSET(DataModel, verb_container, 0x318);
+#else
+		RML_ASSERT_LAYOUT_OFFSET(DataModel, type, 0x328);
+		RML_ASSERT_LAYOUT_OFFSET(DataModel, verb_container, 0x330);
+#endif
 		RML_LAYOUT_GUARD_END()
 	};
 }
