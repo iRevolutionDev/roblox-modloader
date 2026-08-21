@@ -4,7 +4,7 @@
 
 namespace RBX
 {
-	std::string Instance::get_full_name()
+	std::string Instance::compute_full_name()
 	{
 		std::string full_name{name.value()};
 		for (Instance* ancestor = parent; ancestor != nullptr; ancestor = ancestor->parent)

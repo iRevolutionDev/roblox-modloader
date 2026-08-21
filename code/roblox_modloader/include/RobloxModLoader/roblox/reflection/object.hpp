@@ -17,6 +17,8 @@
 
 namespace RBX::Reflection
 {
+	enum class InterfaceId : std::int32_t;
+
 	class ClassDescriptor : public Descriptor, public MemberDescriptorContainer<PropertyDescriptor>, public MemberDescriptorContainer<EventDescriptor>, public MemberDescriptorContainer<FunctionDescriptor>, public MemberDescriptorContainer<YieldFunctionDescriptor>, public MemberDescriptorContainer<CallbackDescriptor>
 	{
 	public:
@@ -414,6 +416,10 @@ namespace RBX::Reflection
 			}
 		}
 
+		virtual void* get_as_internal(InterfaceId interface_id) const = 0;
+
 		virtual const RBX::Name& get_class_name() const = 0;
+
+		virtual void on_created() = 0;
 	};
 }

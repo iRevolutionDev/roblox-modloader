@@ -19,6 +19,10 @@ namespace RBX
 	class ServiceProvider : public Instance, public ServiceProviderProp
 	{
 	public:
+		virtual bool can_find_service() const = 0;
+
+		virtual bool can_create_service() const = 0;
+
 		std::vector<std::shared_ptr<Instance>> services;
 		std::map<const Name*, std::shared_ptr<Instance>> service_by_name;
 		boost::intrusive_ptr<rbx::signals::slots_holder> service_added_slots;

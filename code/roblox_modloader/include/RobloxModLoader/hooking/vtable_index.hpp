@@ -8,7 +8,7 @@ namespace rml
 {
 	namespace detail
 	{
-		inline constexpr std::size_t max_probed_vtable_slots = 64;
+		inline constexpr std::size_t max_probed_vtable_slots = 256;
 
 		template<std::size_t Index>
 		std::size_t report_vtable_slot(void*)
@@ -38,9 +38,22 @@ namespace rml
 	template<typename Class, typename Ret, typename... Args, typename... Actual>
 	std::size_t vtable_index_of(Ret (Class::*method)(Args...), Actual&&... args)
 	{
+		using Reporter = std::size_t (Class::*)(Args...);
+
 		detail::VtableSlotProbe probe{detail::vtable_slot_table()};
 		auto* object = reinterpret_cast<Class*>(&probe);
 
-		return static_cast<std::size_t>((object->*method)(std::forward<Actual>(args)...));
+		return (object->*reinterpret_cast<Reporter>(method))(std::forward<Actual>(args)...);
+	}
+
+	template<typename Class, typename Ret, typename... Args, typename... Actual>
+	std::size_t vtable_index_of(Ret (Class::*method)(Args...) const, Actual&&... args)
+	{
+		using Reporter = std::size_t (Class::*)(Args...) const;
+
+		detail::VtableSlotProbe probe{detail::vtable_slot_table()};
+		const auto* object = reinterpret_cast<const Class*>(&probe);
+
+		return (object->*reinterpret_cast<Reporter>(method))(std::forward<Actual>(args)...);
 	}
 }
