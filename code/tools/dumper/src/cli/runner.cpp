@@ -3,7 +3,7 @@
 #include "rml/dumper/emit/emitter.hpp"
 #include "rml/dumper/recover/recovery_pipeline.hpp"
 #include "rml/dumper/target/target_profile.hpp"
-#include "target/pattern_anchor_resolver.hpp"
+#include "target/composite_anchor_resolver.hpp"
 
 #include <cstdlib>
 #include <fstream>
@@ -129,7 +129,7 @@ namespace rml::dumper::cli
 		spdlog::info("{} image, base 0x{:X}, {} sections, {} functions", to_string(image->format()),
 		             image->preferred_base(), image->sections().size(), image->functions().size());
 
-		const auto anchors = target::PatternAnchorResolver().resolve(*image, profile->anchors);
+		const auto anchors = target::CompositeAnchorResolver().resolve(*image, profile->anchors);
 		if (!anchors)
 			return std::unexpected(anchors.error());
 

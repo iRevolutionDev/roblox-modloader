@@ -4,6 +4,7 @@
 #include "rml/dumper/target/target_profile.hpp"
 #include "support/studio_binary.hpp"
 
+#include <algorithm>
 #include <chrono>
 
 using namespace rml::dumper;

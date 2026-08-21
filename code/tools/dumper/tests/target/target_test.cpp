@@ -43,9 +43,25 @@ TEST_CASE("the windows target is fully specified")
 
 	for (const auto& spec : profile->anchors)
 	{
+		const bool locatable = !spec.pattern.empty() || !spec.text.empty();
+		CHECK_MESSAGE(locatable, to_string(spec.id));
+
+		if (spec.pattern.empty())
+			continue;
+
 		const auto pattern = scan::Pattern::parse(spec.pattern);
 		CHECK_MESSAGE(pattern.has_value(), to_string(spec.id));
 	}
+}
+
+TEST_CASE("anchors located by a literal declare no pattern")
+{
+	const auto* profile = TargetRegistry::find("windows-x64");
+	REQUIRE(profile != nullptr);
+
+	for (const auto& spec : profile->anchors)
+		if (!spec.text.empty())
+			CHECK_MESSAGE(spec.pattern.empty(), to_string(spec.id));
 }
 
 TEST_CASE("every anchor appears exactly once in the windows profile")

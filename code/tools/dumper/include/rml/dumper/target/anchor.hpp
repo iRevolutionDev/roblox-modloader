@@ -65,6 +65,7 @@ namespace rml::dumper::target
 	{
 		Anchor id{};
 		std::string_view pattern;
+		std::string_view text;
 	};
 
 	class AnchorSet
