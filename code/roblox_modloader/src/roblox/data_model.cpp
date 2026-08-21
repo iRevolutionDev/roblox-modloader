@@ -17,8 +17,8 @@ namespace RBX
 			return nullptr;
 		}
 
-		constexpr std::uintptr_t fake_job_to_real_data_model_offset = 0x1C0;
-		const auto data_model = reinterpret_cast<std::uintptr_t>(fake_data_model.get()) + fake_job_to_real_data_model_offset;
+		constexpr std::ptrdiff_t shared_ptr_to_object_start = -0x8;
+		const auto data_model = reinterpret_cast<std::uintptr_t>(fake_data_model.get()) + shared_ptr_to_object_start;
 
 		return reinterpret_cast<DataModel*>(data_model);
 	}
