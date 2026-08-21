@@ -61,78 +61,45 @@ namespace RBX::Luau {
             uintptr_t *intrusive_hook_all_threads;
         };
 
+        struct WeakRef {
+            void *pointer;
+            void *control_block;
+        };
+
         std::byte padding_0[0x18];
 
     public:
         Shared *shared;
 
     private:
-        std::byte padding_1[0x8]; // jump the trash boost shared_ptr padding.
+        std::byte padding_1[0x8];
 
     public:
         CapabilityValidator *capabilities_validator;
-
-#if defined(RML_WINDOWS)
-        ExtendedIdentity context;
-
-    private:
-        // the mask keeps moving: 0x40 on 730, 0x90 on 732, 0x48 here. everything past it is still
-        // the 730 layout and has not been re-checked against this build.
-        std::byte padding_capabilities_gap[0x8];
-
-    public:
+        WeakRef actor;
         uint64_t capabilities;
 
     private:
-        std::byte padding_capabilities[0x8];
-
-    public:
-        Script *script;
-
-    private:
-        std::byte padding_2[0x10];
-
-    public:
-        Actor *actor;
-
-    private:
-        std::byte padding_3[0x10];
-
-    public:
-        bool is_actor_state;
-        TaskState task_state;
-#else
-    private:
-        std::byte padding_before_capabilities[0x10];
-
-    public:
-        uint64_t capabilities;
-
-    private:
-        std::byte padding_before_context[0x20];
+        std::byte padding_2[0x20];
 
     public:
         ExtendedIdentity context;
 
     private:
-        std::byte padding_after_context[0x10];
+        std::byte padding_3[0x8];
 
     public:
-        bool is_actor_state;
-        TaskState task_state;
-#endif
-
-    private:
-        RML_LAYOUT_GUARD_BEGIN()
-            RML_ASSERT_LAYOUT_SIZE(RobloxExtraSpace, 0x90);
-            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, shared, 0x18);
-            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, capabilities_validator, 0x28);
-            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, context, 0x30);
-            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, capabilities, 0x48);
-            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, script, 0x58);
-            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, actor, 0x70);
-            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, is_actor_state, 0x88);
-            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, task_state, 0x89);
-        RML_LAYOUT_GUARD_END()
+        WeakRef capability_defining_instance;
+        WeakRef script;
     };
+
+    RML_LAYOUT_DIAGNOSTIC_PUSH()
+    RML_ASSERT_OFFSET(RobloxExtraSpace, shared, 0x18);
+    RML_ASSERT_OFFSET(RobloxExtraSpace, capabilities_validator, 0x28);
+    RML_ASSERT_OFFSET(RobloxExtraSpace, actor, 0x30);
+    RML_ASSERT_OFFSET(RobloxExtraSpace, capabilities, 0x40);
+    RML_ASSERT_OFFSET(RobloxExtraSpace, context, 0x68);
+    RML_ASSERT_OFFSET(RobloxExtraSpace, capability_defining_instance, 0x80);
+    RML_ASSERT_OFFSET(RobloxExtraSpace, script, 0x90);
+    RML_LAYOUT_DIAGNOSTIC_POP()
 }

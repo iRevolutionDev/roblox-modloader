@@ -131,15 +131,9 @@ namespace rml::luau::vm
 		return true;
 	}
 
-	RBX::Luau::TaskState task_state(lua_State* L) noexcept
+	RBX::Luau::TaskState task_state(lua_State*) noexcept
 	{
-		if (!L)
-			return RBX::Luau::TaskState::None;
-
-		const auto* state = access::state(L);
-		const auto* extra = state ? static_cast<const RBX::Luau::RobloxExtraSpace*>(state->userdata) : nullptr;
-
-		return extra ? extra->task_state : RBX::Luau::TaskState::None;
+		return RBX::Luau::TaskState::None;
 	}
 
 	void elevate_closure(const Closure* closure, const std::uint64_t capabilities) noexcept
