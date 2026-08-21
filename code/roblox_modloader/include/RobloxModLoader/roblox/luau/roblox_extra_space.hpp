@@ -71,6 +71,8 @@ namespace RBX::Luau {
 
     public:
         CapabilityValidator *capabilities_validator;
+
+#if defined(RML_WINDOWS)
         ExtendedIdentity context;
 
     private:
@@ -99,6 +101,26 @@ namespace RBX::Luau {
     public:
         bool is_actor_state;
         TaskState task_state;
+#else
+    private:
+        std::byte padding_before_capabilities[0x10];
+
+    public:
+        uint64_t capabilities;
+
+    private:
+        std::byte padding_before_context[0x20];
+
+    public:
+        ExtendedIdentity context;
+
+    private:
+        std::byte padding_after_context[0x10];
+
+    public:
+        bool is_actor_state;
+        TaskState task_state;
+#endif
 
     private:
         RML_LAYOUT_GUARD_BEGIN()
