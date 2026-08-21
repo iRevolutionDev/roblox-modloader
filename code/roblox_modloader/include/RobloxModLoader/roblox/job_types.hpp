@@ -11,8 +11,13 @@ namespace RBX {
 
 namespace rml {
     struct JobVtable {
+#if defined(RML_WINDOWS)
         static constexpr std::size_t kStepIndex = 8;
         static constexpr std::size_t kSlotCount = 9;
+#else
+        static constexpr std::size_t kStepIndex = 9;
+        static constexpr std::size_t kSlotCount = 10;
+#endif
     };
 
     enum class JobKind : std::uint8_t {
