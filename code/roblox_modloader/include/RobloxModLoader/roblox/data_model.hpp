@@ -28,7 +28,9 @@ namespace RBX
 	class IDataState
 	{
 	public:
-		virtual ~IDataState() = default;
+		virtual void set_dirty(bool dirty) = 0;
+
+		virtual bool is_dirty() const = 0;
 	};
 
 	namespace Diagnostics
@@ -66,6 +68,50 @@ namespace RBX
 	                  public Described<DataModel, ServiceProvider>,
 	                  public DataModelProp
 	{
+	public:
+		void set_dirty(bool dirty) override = 0;
+
+		bool is_dirty() const override = 0;
+
+		void write_all_properties_for_change_tracking(DataModelChangeTracking::ChangeTracker* tracker,
+		    DataModelChangeTracking::DeltaTypeTag tag) override = 0;
+
+		void* get_as_internal(Reflection::InterfaceId interface_id) const override = 0;
+
+		~DataModel() override = default;
+
+		const char* arbiter_name() const override = 0;
+
+		void on_connected_to_change_signal_from_lua(const RBX::Lua::EventInstance& event,
+		    lua_State* state) override = 0;
+
+		bool verify_add_child(const Instance* child) const override = 0;
+
+		bool ask_add_child(const Instance* child) const override = 0;
+
+		void on_child_added(Instance* child) override = 0;
+
+		void on_child_changed(Instance* child,
+		    const Reflection::PropertyDescriptor& descriptor) override = 0;
+
+		void on_descendant_added(Instance* descendant) override = 0;
+
+		void on_descendant_removing(const std::shared_ptr<Instance>& descendant) override = 0;
+
+		void on_pre_acquire() override = 0;
+
+		void on_acquire() override = 0;
+
+		void* on_borrow() override = 0;
+
+		void on_return(std::size_t token) override = 0;
+
+		void on_release() override = 0;
+
+		bool can_find_service() const override = 0;
+
+		bool can_create_service() const override = 0;
+
 	private:
 		std::byte reserved_338[0x38];
 

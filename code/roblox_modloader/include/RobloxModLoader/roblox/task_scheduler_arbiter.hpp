@@ -19,7 +19,21 @@ namespace RBX
 	class TaskSchedulerArbiter
 	{
 	public:
+		virtual bool is_exclusive() const = 0;
+
+		virtual void on_pre_acquire() = 0;
+
+		virtual void on_acquire() = 0;
+
+		virtual void* on_borrow() = 0;
+
+		virtual void on_return(std::size_t token) = 0;
+
+		virtual void on_release() = 0;
+
 		virtual ~TaskSchedulerArbiter() = default;
+
+		virtual const char* arbiter_name() const = 0;
 
 		RSL::Mutex mutex;
 		std::int32_t job_count;
