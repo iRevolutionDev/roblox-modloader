@@ -87,6 +87,7 @@ namespace rml::luau
 	{
 		if (!global_state || !vm::api_ready())
 		{
+			vm::report_api_unavailable_once();
 			return;
 		}
 
