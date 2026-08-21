@@ -2,7 +2,7 @@
 
 #include "RobloxModLoader/util/layout_assert.hpp"
 
-#include <cstdint>
+#include <cstddef>
 #include <memory>
 #include <string>
 
@@ -22,25 +22,49 @@ namespace RBX
 		double error;
 	};
 
+	enum StepResult : int
+	{
+		Done,
+		Stepped,
+	};
+
 	class TaskSchedulerJob
 	{
-	protected:
+	public:
+		virtual bool try_job_again()
+		{
+			return false;
+		}
+
+		virtual StepResult step(const Stats& stats) = 0;
+
+		virtual void on_pre_step()
+		{
+		}
+
+		virtual void on_post_step()
+		{
+		}
+
+		virtual void on_added()
+		{
+		}
+
+		virtual int get_desired_worker_count() const
+		{
+			return 1;
+		}
+
+		virtual std::ptrdiff_t get_desired_stack_size() const
+		{
+			return 0;
+		}
+
 		virtual ~TaskSchedulerJob() = default;
 
-		virtual void unknown1() = 0;
-
-		virtual void unknown2() = 0;
-
-		virtual void unknown3() = 0;
-
-		virtual void unknown4() = 0;
-
-	public:
 		std::shared_ptr<TaskSchedulerJob> self;
 		std::string name;
 		std::shared_ptr<DataModel> data_model;
-
-		virtual void destroy(bool delete_after) = 0;
 
 	private:
 		RML_LAYOUT_GUARD_BEGIN()

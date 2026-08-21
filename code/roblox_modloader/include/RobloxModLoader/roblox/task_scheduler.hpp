@@ -1,5 +1,6 @@
 #pragma once
 #include "job.hpp"
+#include "task_scheduler.job.hpp"
 #include "i_task_scheduler.hpp"
 
 namespace rml {
@@ -16,10 +17,7 @@ namespace RBX {
 
     class TaskScheduler final : public rml::ITaskScheduler {
     public:
-        typedef enum {
-            Done,
-            Stepped,
-        } StepResult;
+        using StepResult = RBX::StepResult;
 
         using JobPtr = rml::ITaskScheduler::JobPtr;
         using JobId = rml::ITaskScheduler::JobId;

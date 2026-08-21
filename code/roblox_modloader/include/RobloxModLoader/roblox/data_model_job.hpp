@@ -1,10 +1,11 @@
 #pragma once
-#include "task_scheduler.hpp"
 #include "task_scheduler.job.hpp"
 
-namespace RBX {
-    class DataModelJob : public TaskSchedulerJob {
-    public:
-        virtual TaskScheduler::StepResult step(const Stats &stats) = 0;
-    };
+namespace RBX
+{
+	class DataModelJob : public TaskSchedulerJob
+	{
+	public:
+		virtual StepResult step_data_model_job(const Stats& stats) = 0;
+	};
 }
