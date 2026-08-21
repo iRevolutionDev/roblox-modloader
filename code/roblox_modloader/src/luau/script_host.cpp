@@ -406,7 +406,7 @@ namespace rml::luau
 		return Value{};
 	}
 
-	void ScriptHost::execute(Work& work, std::move_only_function<void(WorkResult)> settle) noexcept
+	void ScriptHost::execute(Work& work, std::function<void(WorkResult)> settle) noexcept
 	{
 		auto result = std::visit(
 		    [this]<typename H>(H& held) -> WorkResult {

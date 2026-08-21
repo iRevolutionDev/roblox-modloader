@@ -6,6 +6,7 @@
 #include "RobloxModLoader/luau/modules/bytecode_cache.hpp"
 #include "RobloxModLoader/luau/script/script_asset.hpp"
 #include "RobloxModLoader/luau/vm/lua_thread.hpp"
+#include <functional>
 #include <unordered_map>
 
 namespace RBX
@@ -83,7 +84,7 @@ namespace rml::luau
 		void prune_parked() noexcept;
 		void close_parked_of(const std::string& mod_name) noexcept;
 
-		void execute(Work& work, std::move_only_function<void(WorkResult)> settle) noexcept;
+		void execute(Work& work, std::function<void(WorkResult)> settle) noexcept;
 
 		void run_unload_handlers(ScriptEnv& env);
 		void release_mod_state(const std::string& mod_name, ScriptEnv& env);
