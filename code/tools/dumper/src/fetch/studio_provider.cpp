@@ -2,6 +2,7 @@
 
 #include "rml/dumper/fetch/zip_reader.hpp"
 
+#include <algorithm>
 #include <fstream>
 #include <spdlog/spdlog.h>
 

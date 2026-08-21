@@ -35,6 +35,14 @@ if (RML_PLATFORM_WINDOWS)
     target_compile_definitions(dumper_core PRIVATE WIN32_LEAN_AND_MEAN NOMINMAX)
 else ()
     find_package(CURL REQUIRED)
+
+    get_target_property(RML_CURL_INCLUDE_DIRS CURL::libcurl INTERFACE_INCLUDE_DIRECTORIES)
+    if (RML_CURL_INCLUDE_DIRS)
+        list(FILTER RML_CURL_INCLUDE_DIRS EXCLUDE REGEX "/usr/include/?$")
+        set_target_properties(CURL::libcurl PROPERTIES
+                INTERFACE_INCLUDE_DIRECTORIES "${RML_CURL_INCLUDE_DIRS}")
+    endif ()
+
     target_link_libraries(dumper_core PRIVATE CURL::libcurl)
 endif ()
 
