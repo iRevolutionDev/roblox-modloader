@@ -1,9 +1,11 @@
 #pragma once
 
+#include <expected>
 #include <memory>
+#include <string>
 
 #if RML_ENABLE_LUAU
-	#include "RobloxModLoader/luau/script_manager.hpp"
+	#include "RobloxModLoader/luau/script_runtime.hpp"
 #endif
 
 namespace rml
@@ -18,14 +20,12 @@ namespace rml
 		ScriptSubsystem(ScriptSubsystem&&) = delete;
 		ScriptSubsystem& operator=(ScriptSubsystem&&) = delete;
 
-		void initialize();
+		std::expected<void, std::string> initialize();
 		void shutdown();
 
 	private:
 #if RML_ENABLE_LUAU
-		std::unique_ptr<luau::ScriptManager> m_script_manager;
+		std::unique_ptr<luau::ScriptRuntime> m_runtime;
 #endif
 	};
-
-	inline ScriptSubsystem* g_script_subsystem{};
 }

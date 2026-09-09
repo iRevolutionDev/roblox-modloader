@@ -10,8 +10,13 @@
 #include "RobloxModLoader/qt/qstring.hpp"
 #include "RobloxModLoader/version.hpp"
 #include "logo.hpp"
+#include "config/config_manager.hpp"
 #include "filesystem/directory.hpp"
 #include "utils/shell.hpp"
+
+#if RML_ENABLE_LUAU
+	#include "RobloxModLoader/luau/script_runtime.hpp"
+#endif
 
 namespace rml::qt
 {
@@ -65,6 +70,27 @@ namespace rml::qt
 	ModsMenu::ModsMenu(ActionDispatcher& dispatcher) :
 	    m_dispatcher(dispatcher)
 	{
+	}
+
+	void ModsMenu::persist_hot_reload(const bool enabled)
+	{
+		auto& manager = config::get_config_manager();
+
+		auto core = manager.get_core_config();
+		if (core.developer.enable_hot_reload == enabled)
+			return;
+
+		core.developer.enable_hot_reload = enabled;
+
+		if (const auto updated = manager.update_core_config(std::move(core)); !updated)
+		{
+			LOG_WARN("[qt] Could not update the hot reload setting");
+			return;
+		}
+
+		if (const auto saved = manager.save_config(filesystem::directory::get_mod_loader_directory() / "config.toml");
+		    !saved)
+			LOG_WARN("[qt] Could not persist the hot reload setting");
 	}
 
 	void ModsMenu::add_action(std::string text, std::function<void()> on_click)
@@ -379,6 +405,35 @@ namespace rml::qt
 		emit_builtin("Open Config", [] {
 			utils::shell::open(filesystem::directory::get_mod_loader_directory() / "config.toml");
 		});
+
+#if RML_ENABLE_LUAU
+		if (auto* runtime = luau::script_runtime())
+		{
+			menu->addSeparator();
+
+			emit_builtin("Reload Luau Scripts", [] {
+				if (auto* target = luau::script_runtime())
+					LOG_INFO("[qt] Queued a reload of {} script mod(s)", target->reload_all());
+			});
+
+			QAction* const auto_reload = menu->addAction("Auto-reload Luau Scripts");
+			if (auto_reload)
+			{
+				auto_reload->setMenuRole(QAction::NoRole);
+				auto_reload->setCheckable(true);
+				auto_reload->setChecked(runtime->hot_reload_enabled());
+
+				m_dispatcher.connect_toggled(auto_reload, [](const bool enabled) {
+					if (auto* target = luau::script_runtime())
+						target->set_hot_reload(enabled);
+
+					persist_hot_reload(enabled);
+				});
+
+				live.push_back(auto_reload);
+			}
+		}
+#endif
 
 		if (!root_children.empty())
 		{

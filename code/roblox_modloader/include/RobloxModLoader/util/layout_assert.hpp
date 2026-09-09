@@ -4,6 +4,21 @@
 
 #include <cstddef>
 
+#if defined(__clang__)
+	#define RML_LAYOUT_DIAGNOSTIC_PUSH() \
+		_Pragma("clang diagnostic push") _Pragma("clang diagnostic ignored \"-Winvalid-offsetof\"")
+	#define RML_LAYOUT_DIAGNOSTIC_POP() _Pragma("clang diagnostic pop")
+#else
+	#define RML_LAYOUT_DIAGNOSTIC_PUSH()
+	#define RML_LAYOUT_DIAGNOSTIC_POP()
+#endif
+
+#define RML_ASSERT_SIZE(type, size) \
+	static_assert(sizeof(type) == (size), #type " size mismatch")
+
+#define RML_ASSERT_OFFSET(type, field, offset) \
+	static_assert(__builtin_offsetof(type, field) == (offset), #type "::" #field " offset mismatch")
+
 #if defined(RML_WINDOWS)
 	#define RML_ASSERT_LAYOUT_SIZE(type, size) \
 		static_assert(sizeof(type) == (size), #type " layout size mismatch")

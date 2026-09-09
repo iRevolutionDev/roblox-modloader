@@ -2,5 +2,6 @@
 
 namespace RBX
 {
-	class DataModelSerialize;
+	class IDataModelSerialize;
+	class SerializedExternalRefs;
 }

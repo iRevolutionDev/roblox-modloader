@@ -11,7 +11,12 @@ namespace rml
 		std::expected<void, SubsystemError> initialize() override
 		{
 			m_instance = std::make_unique<ScriptSubsystem>();
-			m_instance->initialize();
+
+			if (auto started = m_instance->initialize(); !started)
+			{
+				return std::unexpected(SubsystemError{std::string{name()}, std::move(started.error())});
+			}
+
 			return {};
 		}
 

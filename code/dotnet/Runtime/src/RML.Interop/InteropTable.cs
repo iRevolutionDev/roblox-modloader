@@ -32,6 +32,7 @@ public readonly struct InteropVariant
         public const byte InstanceArray = 7;
         public const byte Blittable = 8;
         public const byte Tuple = 9;
+        public const byte LuauRef = 10;
     }
 
     public static InteropVariant Null => new(Tags.Null, 0);
@@ -43,11 +44,12 @@ public readonly struct InteropVariant
     public static InteropVariant FromString(nuint ptr) => new(Tags.String, ptr);
     public static InteropVariant FromBlittable(nuint ptr) => new(Tags.Blittable, ptr);
     public static InteropVariant FromTuple(nuint ptr) => new(Tags.Tuple, ptr);
+    public static InteropVariant FromLuauRef(ulong handle) => new(Tags.LuauRef, handle);
 }
 
 internal static unsafe class NativeInterop
 {
-    public const int InteropTableVersion = 9;
+    public const int InteropTableVersion = 10;
 
     [StructLayout(LayoutKind.Sequential)]
     public struct InteropTable
@@ -89,5 +91,18 @@ internal static unsafe class NativeInterop
         public delegate* unmanaged[Cdecl]<void*, sbyte*, nuint, InteropVariant*, uint, void> EventSlotFire;
         public delegate* unmanaged[Cdecl]<nuint, void> EventSlotDisconnect;
         public delegate* unmanaged[Cdecl]<nuint, void> EventSlotRelease;
+
+        public delegate* unmanaged[Cdecl]<int, int> LuauHostReady;
+
+        public delegate* unmanaged[Cdecl]<int, sbyte*, sbyte*,
+            delegate* unmanaged[Cdecl]<void*, InteropVariant*, sbyte*, void>, void*, void> LuauSchedule;
+        public delegate* unmanaged[Cdecl]<int, sbyte*, sbyte*,
+            delegate* unmanaged[Cdecl]<void*, InteropVariant*, sbyte*, void>, void*, void> LuauEvaluate;
+
+        public delegate* unmanaged[Cdecl]<nuint, InteropVariant*, uint,
+            delegate* unmanaged[Cdecl]<void*, InteropVariant*, sbyte*, void>, void*, void> LuauRefCall;
+        public delegate* unmanaged[Cdecl]<nuint, sbyte*,
+            delegate* unmanaged[Cdecl]<void*, InteropVariant*, sbyte*, void>, void*, void> LuauRefIndex;
+        public delegate* unmanaged[Cdecl]<nuint, void> LuauRefRelease;
     }
 }

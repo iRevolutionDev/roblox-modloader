@@ -412,8 +412,8 @@ typedef struct TKey
 {
     ::Value value;
     int extra[LUA_EXTRA_SIZE];
-    unsigned tt : 4;
-    int next : 28; // for chaining
+    unsigned tt : 5;
+    int next : 27; // for chaining
 } TKey;
 
 typedef struct LuaNode

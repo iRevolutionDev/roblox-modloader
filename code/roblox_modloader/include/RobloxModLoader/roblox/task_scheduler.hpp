@@ -1,10 +1,7 @@
 #pragma once
 #include "job.hpp"
+#include "task_scheduler.job.hpp"
 #include "i_task_scheduler.hpp"
-
-#if RML_ENABLE_LUAU
-#include "RobloxModLoader/luau/script_engine_registry.hpp"
-#endif
 
 namespace rml {
     enum class JobKind : std::uint8_t;
@@ -20,10 +17,7 @@ namespace RBX {
 
     class TaskScheduler final : public rml::ITaskScheduler {
     public:
-        typedef enum {
-            Done,
-            Stepped,
-        } StepResult;
+        using StepResult = RBX::StepResult;
 
         using JobPtr = rml::ITaskScheduler::JobPtr;
         using JobId = rml::ITaskScheduler::JobId;
@@ -75,22 +69,9 @@ namespace RBX {
 
         void cleanup_data_model(DataModelType data_model_type) override;
 
-#if RML_ENABLE_LUAU
-        std::shared_ptr<rml::luau::ScriptEngine> get_script_engine(DataModelType data_model_type);
-
-        std::shared_ptr<rml::luau::ScriptEngine> get_script_engine(lua_State *L);
-
-        void cleanup_script_engine(DataModelType data_model_type);
-
-        void cleanup_orphaned_script_engines();
-#endif
-
     private:
         std::unique_ptr<rml::JobRegistry> m_job_registry;
         std::unique_ptr<rml::DataModelRegistry> m_data_model_registry;
-#if RML_ENABLE_LUAU
-        std::unique_ptr<rml::luau::ScriptEngineRegistry> m_script_engine_registry;
-#endif
     };
 }
 

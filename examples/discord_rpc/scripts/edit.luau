@@ -1,5 +1,3 @@
-local logger = require("@rml/logger")
-
 local RunService = game:GetService("RunService")
 local MemStorageService = game:GetService("MemStorageService")
 local HttpService = game:GetService("HttpService")
@@ -46,7 +44,7 @@ StudioService:GetPropertyChangedSignal("ActiveScript"):Connect(function()
 
     local scriptDocument = getLastOpenDocument()
     if not scriptDocument then
-        logger.warn("[discord_rpc] No script document found for active script: %s", activeScript.Name)
+        rml.log.warn("[discord_rpc] No script document found for active script: %s", activeScript.Name)
         return
     end
 

@@ -3,6 +3,10 @@
 #include "RobloxModLoader/internal/engine_abi.hpp"
 #include "RobloxModLoader/roblox/util/standard_out.hpp"
 #include "lua.h"
+#include "lualib.h"
+
+#include <cstdarg>
+#include <cstdint>
 
 namespace RBX::Security
 {
@@ -19,6 +23,7 @@ namespace functions
 	using freeblock = void(RML_ENGINE_CALL*)(lua_State* L, int32_t sizeClass, void* block);
 	using lua_pushvalue = void*(RML_ENGINE_CALL*)(lua_State * L, int idx);
 	using luaE_newthread = lua_State*(RML_ENGINE_CALL*)(lua_State * L);
+	using rbx_thread_identity_context = void*(RML_ENGINE_CALL*)(lua_State* L);
 	using luau_execute = void(RML_ENGINE_CALL*)(lua_State* L);
 	using luau_load = lua_Status(RML_ENGINE_CALL*)(lua_State* L, const char* chunkname, const char* data, size_t size, int env);
 	using lua_setfield = void(RML_ENGINE_CALL*)(lua_State* L, int idx, const char* k);
@@ -33,4 +38,80 @@ namespace functions
 	using signal_disconnect = void(RML_ENGINE_CALL*)(void* slot);
 	using signal_slot_free = void(RML_ENGINE_CALL*)(void* slot);
 	using signal_mutex_get = void*(RML_ENGINE_CALL*)();
+
+	using lua_gettop = int(RML_ENGINE_CALL*)(lua_State* L);
+	using lua_settop = void(RML_ENGINE_CALL*)(lua_State* L, int idx);
+	using lua_resume = int(RML_ENGINE_CALL*)(lua_State* L, lua_State* from, int narg);
+	using lua_pcall = int(RML_ENGINE_CALL*)(lua_State* L, int nargs, int nresults, int errfunc);
+	using lua_call = void(RML_ENGINE_CALL*)(lua_State* L, int nargs, int nresults);
+	using lua_yield = int(RML_ENGINE_CALL*)(lua_State* L, int nresults);
+	using lua_type = int(RML_ENGINE_CALL*)(lua_State* L, int idx);
+	using lua_pushnil = void(RML_ENGINE_CALL*)(lua_State* L);
+	using lua_pushnumber = void(RML_ENGINE_CALL*)(lua_State* L, double n);
+	using lua_pushinteger = void(RML_ENGINE_CALL*)(lua_State* L, int n);
+	using lua_pushboolean = void(RML_ENGINE_CALL*)(lua_State* L, int b);
+	using lua_pushlstring = void(RML_ENGINE_CALL*)(lua_State* L, const char* s, size_t len);
+	using lua_pushstring = void(RML_ENGINE_CALL*)(lua_State* L, const char* s);
+	using lua_pushcclosurek = void(RML_ENGINE_CALL*)(lua_State* L, lua_CFunction fn, const char* debugname, int nup, lua_Continuation cont);
+	using lua_tolstring = const char*(RML_ENGINE_CALL*)(lua_State* L, int idx, size_t* len);
+	using lua_tonumberx = double(RML_ENGINE_CALL*)(lua_State* L, int idx, int* isnum);
+	using lua_tointegerx = int(RML_ENGINE_CALL*)(lua_State* L, int idx, int* isnum);
+	using lua_toboolean = int(RML_ENGINE_CALL*)(lua_State* L, int idx);
+	using lua_topointer = const void*(RML_ENGINE_CALL*)(lua_State* L, int idx);
+	using lua_objlen = int(RML_ENGINE_CALL*)(lua_State* L, int idx);
+	using lua_createtable = void(RML_ENGINE_CALL*)(lua_State* L, int narr, int nrec);
+	using lua_getfield = int(RML_ENGINE_CALL*)(lua_State* L, int idx, const char* k);
+	using lua_gettable = int(RML_ENGINE_CALL*)(lua_State* L, int idx);
+	using lua_settable = void(RML_ENGINE_CALL*)(lua_State* L, int idx);
+	using lua_rawget = int(RML_ENGINE_CALL*)(lua_State* L, int idx);
+	using lua_rawgeti = int(RML_ENGINE_CALL*)(lua_State* L, int idx, int n);
+	using lua_rawset = void(RML_ENGINE_CALL*)(lua_State* L, int idx);
+	using lua_rawseti = void(RML_ENGINE_CALL*)(lua_State* L, int idx, int n);
+	using lua_rawgetfield = int(RML_ENGINE_CALL*)(lua_State* L, int idx, const char* k);
+	using lua_rawsetfield = void(RML_ENGINE_CALL*)(lua_State* L, int idx, const char* k);
+	using lua_rawiter = int(RML_ENGINE_CALL*)(lua_State* L, int idx, int iter);
+	using lua_next = int(RML_ENGINE_CALL*)(lua_State* L, int idx);
+	using lua_ref = int(RML_ENGINE_CALL*)(lua_State* L, int idx);
+	using lua_unref = void(RML_ENGINE_CALL*)(lua_State* L, int ref);
+	using lua_getmetatable = int(RML_ENGINE_CALL*)(lua_State* L, int objindex);
+	using lua_setmetatable = int(RML_ENGINE_CALL*)(lua_State* L, int objindex);
+	using lua_getreadonly = int(RML_ENGINE_CALL*)(lua_State* L, int idx);
+	using lua_setreadonly = void(RML_ENGINE_CALL*)(lua_State* L, int idx, int enabled);
+	using lua_setsafeenv = void(RML_ENGINE_CALL*)(lua_State* L, int idx, int enabled);
+	using lua_getupvalue = const char*(RML_ENGINE_CALL*)(lua_State* L, int funcindex, int n);
+	using lua_setupvalue = const char*(RML_ENGINE_CALL*)(lua_State* L, int funcindex, int n);
+	using lua_getinfo = int(RML_ENGINE_CALL*)(lua_State* L, int level, const char* what, lua_Debug* ar);
+	using lua_error = void(RML_ENGINE_CALL*)(lua_State* L);
+	using lua_break = int(RML_ENGINE_CALL*)(lua_State* L);
+	using lua_isnumber = int(RML_ENGINE_CALL*)(lua_State* L, int idx);
+	using lua_isstring = int(RML_ENGINE_CALL*)(lua_State* L, int idx);
+	using lua_iscfunction = int(RML_ENGINE_CALL*)(lua_State* L, int idx);
+	using lua_isuserdata = int(RML_ENGINE_CALL*)(lua_State* L, int idx);
+	using lua_insert = void(RML_ENGINE_CALL*)(lua_State* L, int idx);
+
+	using luaL_register = void(RML_ENGINE_CALL*)(lua_State* L, const char* libname, const luaL_Reg* l);
+	using luaL_errorL = void(RML_ENGINE_CALL*)(lua_State* L, const char* fmt, ...);
+	using luaL_typeerrorL = void(RML_ENGINE_CALL*)(lua_State* L, int narg, const char* tname);
+	using luaL_argerrorL = void(RML_ENGINE_CALL*)(lua_State* L, int narg, const char* extramsg);
+	using luaL_where = void(RML_ENGINE_CALL*)(lua_State* L, int lvl);
+	using luaL_checkinteger = int(RML_ENGINE_CALL*)(lua_State* L, int narg);
+	using luaL_checknumber = double(RML_ENGINE_CALL*)(lua_State* L, int narg);
+	using luaL_checklstring = const char*(RML_ENGINE_CALL*)(lua_State* L, int narg, size_t* len);
+	using luaL_checktype = void(RML_ENGINE_CALL*)(lua_State* L, int narg, int t);
+	using luaL_checkany = void(RML_ENGINE_CALL*)(lua_State* L, int narg);
+	using luaL_optinteger = int(RML_ENGINE_CALL*)(lua_State* L, int narg, int def);
+	using luaL_optboolean = int(RML_ENGINE_CALL*)(lua_State* L, int narg, int def);
+	using luaL_sandboxthread = void(RML_ENGINE_CALL*)(lua_State* L);
+	
+	using luaF_newLclosure = void*(RML_ENGINE_CALL*)(lua_State* L, int nelems, void* e, void* p);
+	using luaF_newCclosure = void*(RML_ENGINE_CALL*)(lua_State* L, int nelems, void* e);
+	using luaC_barrierf = void(RML_ENGINE_CALL*)(lua_State* L, void* o, void* v);
+	using luaC_barrierback = void(RML_ENGINE_CALL*)(lua_State* L, void* o, void** gclist);
+	using luaC_enumheap = void(RML_ENGINE_CALL*)(lua_State* L, void* context,
+	                                             void (*node)(void* ctx, void* ptr, uint8_t tt, uint8_t memcat, size_t size, const char* name),
+	                                             void (*edge)(void* ctx, void* from, void* to, const char* name));
+	using luaM_visitgco = void(RML_ENGINE_CALL*)(lua_State* L, void* context, bool (*visitor)(void* ctx, void* page, void* gco));
+	using luaC_barriertable = void(RML_ENGINE_CALL*)(lua_State* L, void* t, void* v);
+	using luaH_setnum = void*(RML_ENGINE_CALL*)(lua_State* L, void* t, int key);
+	using luaA_pseudo2addr = void*(RML_ENGINE_CALL*)(lua_State* L, int idx);
 }

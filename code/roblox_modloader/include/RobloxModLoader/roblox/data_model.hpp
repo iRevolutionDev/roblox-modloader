@@ -1,16 +1,16 @@
 #pragma once
 
 #include "RobloxModLoader/util/layout_assert.hpp"
+#include "data_model_prop.hpp"
 #include "data_model_serialize.hpp"
 #include "service_provider.hpp"
+#include "task_scheduler_arbiter.hpp"
 #include "verb_container.hpp"
-#include "workspace.hpp"
 
 #include <cstddef>
 #include <cstdint>
-#include <map>
 #include <memory>
-#include <string>
+#include <unordered_map>
 
 namespace RBX
 {
@@ -25,46 +25,140 @@ namespace RBX
 		Null = 4,
 	};
 
-	class DataModel : public ServiceProvider
+	class IDataState
 	{
-		std::byte pad_before_provider_map[0x10];
-		std::map<std::uintptr_t, std::uintptr_t> provider_map;
-		std::byte pad_after_provider_map[0x20];
-		void* named_base_vftable;
-		std::string reserved_string_0;
-		std::string reserved_string_1;
-		std::string reserved_string_2;
-
 	public:
-		std::shared_ptr<Workspace> workspace;
+		virtual void set_dirty(bool dirty) = 0;
+
+		virtual bool is_dirty() const = 0;
+	};
+
+	namespace Diagnostics
+	{
+		template<typename T>
+		class Countable
+		{
+		};
+	}
+
+	class PageMilestoneKey
+	{
+	public:
+		std::uint64_t value;
+	};
+
+	class PageMilestoneSubscribers
+	{
+	public:
+		void* inline_storage[3];
+	};
+
+	class PageMilestoneKeyHash
+	{
+	public:
+		std::size_t operator()(const PageMilestoneKey& key) const
+		{
+			return key.value;
+		}
+	};
+
+	class DataModel : public IDataState,
+	                  public Diagnostics::Countable<DataModel>,
+	                  public TaskSchedulerArbiter,
+	                  public Described<DataModel, ServiceProvider>,
+	                  public DataModelProp
+	{
+	public:
+		void set_dirty(bool dirty) override = 0;
+
+		bool is_dirty() const override = 0;
+
+		void write_all_properties_for_change_tracking(DataModelChangeTracking::ChangeTracker* tracker,
+		    DataModelChangeTracking::DeltaTypeTag tag) override = 0;
+
+		void* get_as_internal(Reflection::InterfaceId interface_id) const override = 0;
+
+		~DataModel() override = default;
+
+		const char* arbiter_name() const override = 0;
+
+		void on_connected_to_change_signal_from_lua(const RBX::Lua::EventInstance& event,
+		    lua_State* state) override = 0;
+
+		bool verify_add_child(const Instance* child) const override = 0;
+
+		bool ask_add_child(const Instance* child) const override = 0;
+
+		void on_child_added(Instance* child) override = 0;
+
+		void on_child_changed(Instance* child,
+		    const Reflection::PropertyDescriptor& descriptor) override = 0;
+
+		void on_descendant_added(Instance* descendant) override = 0;
+
+		void on_descendant_removing(const std::shared_ptr<Instance>& descendant) override = 0;
+
+		void on_pre_acquire() override = 0;
+
+		void on_acquire() override = 0;
+
+		void* on_borrow() override = 0;
+
+		void on_return(std::size_t token) override = 0;
+
+		void on_release() override = 0;
+
+		bool can_find_service() const override = 0;
+
+		bool can_create_service() const override = 0;
 
 	private:
-		std::byte pad_before_reserved_string_3[0x128];
-		std::string reserved_string_3;
+		std::byte reserved_338[0x38];
 
 	public:
-		std::shared_ptr<DataModelSerialize> data_model_serialize;
+		std::unique_ptr<SerializedExternalRefs> serialized_external_refs;
 
 	private:
-		std::byte pad_before_type[0x14];
+		boost::intrusive_ptr<rbx::signals::slots_holder> reserved_slots_0[18];
+
+	public:
+		RSL::Mutex page_milestone_mutex;
+		std::unordered_map<PageMilestoneKey, PageMilestoneSubscribers, PageMilestoneKeyHash>
+		    page_milestone_registry;
+
+	private:
+		boost::intrusive_ptr<rbx::signals::slots_holder> reserved_slots_1[12];
+
+	public:
+		std::shared_ptr<IDataModelSerialize> data_model_serialize;
+
+	private:
+		std::byte reserved_before_type[0x48];
 
 	public:
 		DataModelType type;
 
 	private:
-		std::byte pad_before_verb_container[0x38];
+		std::uint16_t reserved_after_type;
 
 	public:
 		VerbContainer* verb_container;
 
 		static DataModel* from_job(const DataModelJob* job);
-
-	private:
-		RML_LAYOUT_GUARD_BEGIN()
-		RML_ASSERT_LAYOUT_OFFSET(DataModel, workspace, 0x160);
-		RML_ASSERT_LAYOUT_OFFSET(DataModel, data_model_serialize, 0x2B8);
-		RML_ASSERT_LAYOUT_OFFSET(DataModel, type, 0x2DC);
-		RML_ASSERT_LAYOUT_OFFSET(DataModel, verb_container, 0x318);
-		RML_LAYOUT_GUARD_END()
 	};
+
+	RML_LAYOUT_DIAGNOSTIC_PUSH()
+	RML_ASSERT_OFFSET(DataModel, serialized_external_refs, 0x370);
+	RML_ASSERT_OFFSET(DataModel, page_milestone_mutex, 0x408);
+	RML_ASSERT_OFFSET(DataModel, page_milestone_registry, 0x410);
+#if defined(RML_WINDOWS)
+	RML_ASSERT_OFFSET(DataModel, data_model_serialize, 0x4A8);
+	RML_ASSERT_OFFSET(DataModel, type, 0x518);
+	RML_ASSERT_OFFSET(DataModel, verb_container, 0x520);
+#else
+	RML_ASSERT_OFFSET(DataModel, data_model_serialize, 0x498);
+	RML_ASSERT_OFFSET(DataModel, type, 0x4F0);
+	RML_ASSERT_OFFSET(DataModel, verb_container, 0x4F8);
+#endif
+	RML_LAYOUT_DIAGNOSTIC_POP()
 }

@@ -62,6 +62,7 @@ namespace rml::qt
 		};
 
 		static void show_about();
+		static void persist_hot_reload(bool enabled);
 
 		uint64_t add_node(uint64_t parent_id, MenuItem node);
 		void build_into(QMenu* parent_menu, uint64_t node_id, const std::unordered_map<uint64_t, MenuItem>& nodes, std::vector<QAction*>& live);

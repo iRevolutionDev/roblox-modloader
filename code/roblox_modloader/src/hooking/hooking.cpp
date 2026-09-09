@@ -1,4 +1,5 @@
 #include "RobloxModLoader/hooking/hooking.hpp"
+#include "RobloxModLoader/roblox/job_vtable.hpp"
 
 #include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/internal/hooking/engine_hooks.hpp"
@@ -28,8 +29,10 @@ namespace rml
 				continue;
 			}
 
-			auto job_hook = std::make_unique<vtable_hook>(*vtable, rml::JobVtable::kSlotCount);
-			job_hook->hook(rml::JobVtable::kStepIndex, reinterpret_cast<void*>(&Hooks::on_job_step));
+			const auto step_slot = rml::job_step_slot();
+
+			auto job_hook = std::make_unique<vtable_hook>(*vtable, step_slot + 1);
+			job_hook->hook(step_slot, reinterpret_cast<void*>(&Hooks::on_job_step));
 			m_jobs_hook[kind] = std::move(job_hook);
 			RML_DEBUG("Hooked job kind {} with vtable 0x{:X}", std::to_underlying(kind), reinterpret_cast<std::uintptr_t>(*vtable));
 		}

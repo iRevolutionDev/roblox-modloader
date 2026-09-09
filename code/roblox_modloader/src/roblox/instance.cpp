@@ -4,11 +4,11 @@
 
 namespace RBX
 {
-	std::string Instance::get_full_name()
+	std::string Instance::compute_full_name()
 	{
-		std::string full_name{name};
+		std::string full_name{name.value()};
 		for (Instance* ancestor = parent; ancestor != nullptr; ancestor = ancestor->parent)
-			full_name = std::string{ancestor->name} + "." + full_name;
+			full_name = ancestor->name.value() + "." + full_name;
 		return full_name;
 	}
 }

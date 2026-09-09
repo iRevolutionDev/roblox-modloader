@@ -66,6 +66,7 @@ add_dependencies(roblox_modloader roblox_modloader_version)
 setup_compiler_flags(roblox_modloader)
 setup_compile_definitions(roblox_modloader PRIVATE)
 target_compile_definitions(roblox_modloader PRIVATE RML_ENABLE_LUAU=$<BOOL:${RML_ENABLE_LUAU}>)
+target_compile_definitions(roblox_modloader PRIVATE SPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_TRACE)
 setup_core_dependencies(roblox_modloader PRIVATE)
 setup_luau_dependencies(roblox_modloader PRIVATE)
 setup_dotnet_hosting(roblox_modloader PRIVATE)
@@ -129,9 +130,9 @@ target_link_libraries(RobloxModLoader INTERFACE
         tomlplusplus::tomlplusplus
         Luau.Compiler
         Luau.Ast
-        Luau.VM
-        Luau.VM.Internals
-        Luau.CodeGen
+        $<$<NOT:$<BOOL:${RML_ENABLE_LUAU}>>:Luau.VM>
+        $<$<NOT:$<BOOL:${RML_ENABLE_LUAU}>>:Luau.VM.Internals>
+        $<$<NOT:$<BOOL:${RML_ENABLE_LUAU}>>:Luau.CodeGen>
         $<$<TARGET_EXISTS:roblox_modloader>:roblox_modloader>
 )
 

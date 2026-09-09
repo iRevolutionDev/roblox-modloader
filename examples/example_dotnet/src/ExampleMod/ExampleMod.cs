@@ -86,6 +86,30 @@ public sealed class ExampleMod : ModBase, IDataModelAware
             };
 
             RunEventDiagnostics(workspace);
+
+            _ = Task.Run(async () =>
+            {
+                try
+                {
+                    await LuauScriptManager.ScheduleAsync(
+                        DataModelType.Edit,
+                        "print('Hello from ExampleMod!')",
+                        "ExampleMod"
+                    );
+
+                    var valueFromLua = await LuauScriptManager.EvaluateAsync(
+                        DataModelType.Edit,
+                        "return 10",
+                        "ExampleMod"
+                    );
+
+                    Logger.Info($"[DOTNET]: Luau returned {valueFromLua.AsNumber()}");
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error($"[DOTNET]: Luau call failed: {ex.GetBaseException().Message}");
+                }
+            });
         }
     }
 

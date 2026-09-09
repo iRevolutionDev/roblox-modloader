@@ -15,9 +15,6 @@ namespace RBX
 	TaskScheduler::TaskScheduler() :
 	    m_job_registry(std::make_unique<rml::JobRegistry>()),
 	    m_data_model_registry(std::make_unique<rml::DataModelRegistry>())
-#if RML_ENABLE_LUAU
-	    , m_script_engine_registry(std::make_unique<rml::luau::ScriptEngineRegistry>())
-#endif
 	{
 		s_active_task_scheduler = this;
 
@@ -50,11 +47,6 @@ namespace RBX
 	{
 		m_job_registry->execute_jobs_for_kind(context);
 
-#if RML_ENABLE_LUAU
-		m_script_engine_registry->maybe_cleanup_orphaned_script_engines([this](const DataModelType data_model_type) {
-			return m_data_model_registry->get_data_model_by_type(data_model_type);
-		});
-#endif
 	}
 
 	std::optional<std::reference_wrapper<rml::IJob> > TaskScheduler::get_job(const JobId job_id) const noexcept
@@ -91,10 +83,6 @@ namespace RBX
 	{
 		RML_INFO("Shutting down TaskScheduler...");
 
-#if RML_ENABLE_LUAU
-		m_script_engine_registry->shutdown();
-#endif
-
 		m_job_registry->shutdown();
 
 		RML_INFO("Shutdown completed");
@@ -130,29 +118,6 @@ namespace RBX
 		m_data_model_registry->cleanup_data_model(data_model_type);
 	}
 
-#if RML_ENABLE_LUAU
-	std::shared_ptr<rml::luau::ScriptEngine> TaskScheduler::get_script_engine(const DataModelType data_model_type)
-	{
-		return m_script_engine_registry->get_script_engine(data_model_type);
-	}
-
-	std::shared_ptr<rml::luau::ScriptEngine> TaskScheduler::get_script_engine(lua_State* L)
-	{
-		return m_script_engine_registry->get_script_engine(L);
-	}
-
-	void TaskScheduler::cleanup_script_engine(const DataModelType data_model_type)
-	{
-		m_script_engine_registry->cleanup_script_engine(data_model_type);
-	}
-
-	void TaskScheduler::cleanup_orphaned_script_engines()
-	{
-		m_script_engine_registry->cleanup_orphaned_script_engines([this](const DataModelType data_model_type) {
-			return m_data_model_registry->get_data_model_by_type(data_model_type);
-		});
-	}
-#endif
 }
 
 namespace rml

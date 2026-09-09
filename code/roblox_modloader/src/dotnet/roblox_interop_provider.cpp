@@ -22,6 +22,14 @@
 #include <string_view>
 #include <utility>
 
+#if RML_ENABLE_LUAU
+	#include <RobloxModLoader/luau/dispatch/dispatcher.hpp>
+	#include <RobloxModLoader/luau/dispatch/work.hpp>
+	#include <RobloxModLoader/luau/modules/bytecode_cache.hpp>
+	#include <RobloxModLoader/luau/script_host.hpp>
+	#include <RobloxModLoader/luau/script_runtime.hpp>
+#endif
+
 RML_LOG_SCOPE("Interop");
 
 namespace rml::dotnet
@@ -51,6 +59,12 @@ namespace rml::dotnet
 		    {reinterpret_cast<const void*>(table.event_slot_fire), "event_slot_fire"},
 		    {reinterpret_cast<const void*>(table.event_slot_disconnect), "event_slot_disconnect"},
 		    {reinterpret_cast<const void*>(table.event_slot_release), "event_slot_release"},
+		    {reinterpret_cast<const void*>(table.luau_host_ready), "luau_host_ready"},
+		    {reinterpret_cast<const void*>(table.luau_schedule), "luau_schedule"},
+		    {reinterpret_cast<const void*>(table.luau_evaluate), "luau_evaluate"},
+		    {reinterpret_cast<const void*>(table.luau_ref_call), "luau_ref_call"},
+		    {reinterpret_cast<const void*>(table.luau_ref_index), "luau_ref_index"},
+		    {reinterpret_cast<const void*>(table.luau_ref_release), "luau_ref_release"},
 		};
 
 		for (const auto& [pointer, name] : members)
@@ -117,6 +131,58 @@ namespace rml::dotnet
 				std::destroy_at(static_cast<std::shared_ptr<const RBX::Reflection::Tuple>*>(value.storage()));
 		}
 	}
+
+#if RML_ENABLE_LUAU
+	static luau::Value to_luau_value(const InteropVariant& value)
+	{
+		switch (value.tag)
+		{
+		case InteropValueTag::Bool: return value.as_bool;
+		case InteropValueTag::Int64: return static_cast<double>(value.as_int64);
+		case InteropValueTag::Double: return value.as_double;
+		case InteropValueTag::Float: return static_cast<double>(value.as_float);
+		case InteropValueTag::String: return std::string{value.as_string ? value.as_string : ""};
+		case InteropValueTag::Instance: return luau::InstanceHandle{value.as_instance};
+		case InteropValueTag::LuauRef: return luau::LuauRefHandle{static_cast<luau::RefId>(value.as_uint64)};
+		default: return luau::Value{};
+		}
+	}
+
+	static void dispatch_luau_chunk(const int32_t data_model_type, const char* chunk_name, const char* source, ManagedYieldCallback callback, void* state, const bool want_result)
+	{
+		auto* const runtime = luau::script_runtime();
+		if (!runtime)
+		{
+			callback(state, nullptr, "luau runtime is not available");
+			return;
+		}
+
+		auto* const host = runtime->host(static_cast<RBX::DataModelType>(data_model_type));
+		if (!host)
+		{
+			callback(state, nullptr, "no luau host is bound to the requested data model");
+			return;
+		}
+
+		std::string name = chunk_name && *chunk_name ? chunk_name : "@managed";
+		auto bytecode = luau::BytecodeCache::compile(source ? source : "", name);
+		if (!bytecode)
+		{
+			callback(state, nullptr, bytecode.error().message.c_str());
+			return;
+		}
+
+		host->dispatcher().post_managed(
+		    luau::RunChunk{.chunk_name = std::move(name), .bytecode = std::move(*bytecode), .owner = {}, .want_result = want_result},
+		    luau::ManagedCompletion{callback, state});
+	}
+
+	static luau::ScriptHost* luau_host_for_ref(const luau::RefId id)
+	{
+		auto* const runtime = luau::script_runtime();
+		return runtime ? runtime->host_for_ref(id) : nullptr;
+	}
+#endif
 
 	void RobloxInteropProvider::populate(InteropTable& table)
 	{
@@ -561,6 +627,192 @@ namespace rml::dotnet
 
 		table.event_slot_release = [](const uintptr_t slot_handle) {
 			delete reinterpret_cast<RBX::Signals::Connection*>(slot_handle);
+		};
+
+		table.luau_host_ready = [](const int32_t data_model_type) -> int32_t {
+#if RML_ENABLE_LUAU
+			try
+			{
+				auto* const runtime = luau::script_runtime();
+				if (!runtime)
+					return 0;
+
+				return runtime->host(static_cast<RBX::DataModelType>(data_model_type)) ? 1 : 0;
+			}
+			catch (const std::exception& e)
+			{
+				RML_ERROR("luau_host_ready failed: {}", e.what());
+				return 0;
+			}
+			catch (...)
+			{
+				RML_ERROR("luau_host_ready failed: unknown exception");
+				return 0;
+			}
+#else
+			(void)data_model_type;
+			return 0;
+#endif
+		};
+
+		table.luau_schedule = [](const int32_t data_model_type, const char* chunk_name, const char* source, ManagedYieldCallback callback, void* state) {
+			if (!callback)
+				return;
+
+#if RML_ENABLE_LUAU
+			try
+			{
+				dispatch_luau_chunk(data_model_type, chunk_name, source, callback, state, false);
+			}
+			catch (const std::exception& e)
+			{
+				RML_ERROR("luau_schedule failed: {}", e.what());
+				callback(state, nullptr, e.what());
+			}
+			catch (...)
+			{
+				RML_ERROR("luau_schedule failed: unknown exception");
+				callback(state, nullptr, "unknown exception");
+			}
+#else
+			(void)data_model_type;
+			(void)chunk_name;
+			(void)source;
+			callback(state, nullptr, "luau support is disabled in this build");
+#endif
+		};
+
+		table.luau_evaluate = [](const int32_t data_model_type, const char* chunk_name, const char* source, ManagedYieldCallback callback, void* state) {
+			if (!callback)
+				return;
+
+#if RML_ENABLE_LUAU
+			try
+			{
+				dispatch_luau_chunk(data_model_type, chunk_name, source, callback, state, true);
+			}
+			catch (const std::exception& e)
+			{
+				RML_ERROR("luau_evaluate failed: {}", e.what());
+				callback(state, nullptr, e.what());
+			}
+			catch (...)
+			{
+				RML_ERROR("luau_evaluate failed: unknown exception");
+				callback(state, nullptr, "unknown exception");
+			}
+#else
+			(void)data_model_type;
+			(void)chunk_name;
+			(void)source;
+			callback(state, nullptr, "luau support is disabled in this build");
+#endif
+		};
+
+		table.luau_ref_call = [](const uintptr_t ref_handle, const InteropVariant* args, const uint32_t arg_count, ManagedYieldCallback callback, void* state) {
+			if (!callback)
+				return;
+
+#if RML_ENABLE_LUAU
+			try
+			{
+				const auto id = static_cast<luau::RefId>(ref_handle);
+				auto* const host = luau_host_for_ref(id);
+				if (!host)
+				{
+					callback(state, nullptr, "luau reference is not owned by any live host");
+					return;
+				}
+
+				luau::CallRef work{.target = id};
+				if (args)
+				{
+					work.args.reserve(arg_count);
+					for (uint32_t i = 0; i < arg_count; ++i)
+						work.args.push_back(to_luau_value(args[i]));
+				}
+
+				host->dispatcher().post_managed(std::move(work), luau::ManagedCompletion{callback, state});
+			}
+			catch (const std::exception& e)
+			{
+				RML_ERROR("luau_ref_call failed: {}", e.what());
+				callback(state, nullptr, e.what());
+			}
+			catch (...)
+			{
+				RML_ERROR("luau_ref_call failed: unknown exception");
+				callback(state, nullptr, "unknown exception");
+			}
+#else
+			(void)ref_handle;
+			(void)args;
+			(void)arg_count;
+			callback(state, nullptr, "luau support is disabled in this build");
+#endif
+		};
+
+		table.luau_ref_index = [](const uintptr_t ref_handle, const char* key, ManagedYieldCallback callback, void* state) {
+			if (!callback)
+				return;
+
+#if RML_ENABLE_LUAU
+			try
+			{
+				if (!key)
+				{
+					callback(state, nullptr, "index key is null");
+					return;
+				}
+
+				const auto id = static_cast<luau::RefId>(ref_handle);
+				auto* const host = luau_host_for_ref(id);
+				if (!host)
+				{
+					callback(state, nullptr, "luau reference is not owned by any live host");
+					return;
+				}
+
+				host->dispatcher().post_managed(
+				    luau::IndexRef{.target = id, .key = key},
+				    luau::ManagedCompletion{callback, state});
+			}
+			catch (const std::exception& e)
+			{
+				RML_ERROR("luau_ref_index failed: {}", e.what());
+				callback(state, nullptr, e.what());
+			}
+			catch (...)
+			{
+				RML_ERROR("luau_ref_index failed: unknown exception");
+				callback(state, nullptr, "unknown exception");
+			}
+#else
+			(void)ref_handle;
+			(void)key;
+			callback(state, nullptr, "luau support is disabled in this build");
+#endif
+		};
+
+		table.luau_ref_release = [](const uintptr_t ref_handle) {
+#if RML_ENABLE_LUAU
+			try
+			{
+				const auto id = static_cast<luau::RefId>(ref_handle);
+				if (auto* const host = luau_host_for_ref(id))
+					host->dispatcher().post(luau::ReleaseRef{.target = id});
+			}
+			catch (const std::exception& e)
+			{
+				RML_ERROR("luau_ref_release failed: {}", e.what());
+			}
+			catch (...)
+			{
+				RML_ERROR("luau_ref_release failed: unknown exception");
+			}
+#else
+			(void)ref_handle;
+#endif
 		};
 
 		verify_populated(table);
